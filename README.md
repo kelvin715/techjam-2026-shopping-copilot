@@ -35,10 +35,12 @@ change pages, space plays, `F` is fullscreen. The green `VERIFIED REPLAY` badge
 is earned: the page is published only when a SHA-256 manifest of every recorded
 source still matches the repository.
 
-### 🎮 Page 9 is a playground — go break it
+### 🔎 Inspect any of the 200 sessions yourself
 
-Every one of the **200 public sessions** was replayed through the submitted
-Agent and the unchanged evaluator, and page 9 lets you walk any of them:
+**[→ Open the session explorer](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=8)**
+
+Every public session was replayed through the submitted Agent and the unchanged
+evaluator, and the last page lets you walk any of them:
 
 - pick a **Scenario** — buying, browsing, intent override, boundary — or leave
   it on all 200;
@@ -49,12 +51,11 @@ Agent and the unchanged evaluator, and page 9 lets you walk any of them:
 - the target product and its rank sit in a panel labelled evaluator-only. It is
   joined *after* `Agent.respond` returns and is never sent to the Agent.
 
-Deep links land a reviewer directly on a case:
+One click lands on a specific case:
 
-```text
-.../?scene=8&session=public_0187&turn=3
-.../?scene=8&scenario=intent_override
-```
+- [`public_0187` at turn 3](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=8&session=public_0187&turn=3) — the boundary case where the shopper declines a question and the policy pivots
+- [only the intent-override sessions](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=8&scenario=intent_override)
+- [the four-turn walkthrough that explains the loop](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=3)
 
 The second tab, **Live Agent**, replaces the recording with the real thing: type
 any shopper message and the submitted `Agent.respond` answers it, then *Explain
