@@ -9,13 +9,13 @@
     "p75_rating_number": 56
   },
   "hit_rate_at_10": 0.996,
-  "mrr": 0.974376,
-  "mttc": 2.62,
-  "technical_score": 0.957913,
+  "mrr": 0.977408,
+  "mttc": 2.619,
+  "technical_score": 0.958842,
   "scenario_metrics": {
     "boundary": {"n": 50, "hit_rate_at_10": 1.0, "mrr": 0.974, "mttc": 3.56},
-    "browsing": {"n": 400, "hit_rate_at_10": 0.9975, "mrr": 0.9805, "mttc": 2.565},
-    "buying": {"n": 400, "hit_rate_at_10": 0.9925, "mrr": 0.971271, "mttc": 2.135},
-    "intent_override": {"n": 150, "hit_rate_at_10": 1.0, "mrr": 0.966452, "mttc": 3.746667}
+    "browsing": {"n": 400, "hit_rate_at_10": 0.9975, "mrr": 0.982167, "mttc": 2.5675},
+    "buying": {"n": 400, "hit_rate_at_10": 0.9925, "mrr": 0.973771, "mttc": 2.135},
+    "intent_override": {"n": 150, "hit_rate_at_10": 1.0, "mrr": 0.975556, "mttc": 3.733333}
   }
 }

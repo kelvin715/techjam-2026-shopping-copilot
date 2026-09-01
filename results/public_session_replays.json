@@ -6,9 +6,9 @@
   "metrics": {
     "hit_rate_at_10": 1.0,
     "mrr": 1.0,
-    "mttc": 1.985,
-    "efficiency": 0.9015,
-    "recommended_technical_score": 0.9803
+    "mttc": 1.98,
+    "efficiency": 0.902,
+    "recommended_technical_score": 0.9804
   },
   "summary": {
     "rank_distribution": {
@@ -19,8 +19,7 @@
       "2": 75,
       "3": 28,
       "4": 19,
-      "5": 1,
-      "6": 1
+      "5": 2
     }
   },
   "products": {
@@ -59,6 +58,12 @@
       "title": "Pedi Couture Women's Terry Cloth Pedicure Slipper -",
       "store": "Pedi Couture",
       "price": null
+    },
+    "B001KSFIS0": {
+      "parent_asin": "B001KSFIS0",
+      "title": "Casio General Ladies Watches Metal Fashion LTP-1241D-1ADF",
+      "store": "Casio",
+      "price": 28.99
     },
     "B001TDL1FA": {
       "parent_asin": "B001TDL1FA",
@@ -666,12 +671,6 @@
       "store": "Bravado",
       "price": 17.99
     },
-    "B01GHS9PUE": {
-      "parent_asin": "B01GHS9PUE",
-      "title": "Tribal Women's Fashion Icon Long Puffer Coat with Faux Fur Trim",
-      "store": "Tribal",
-      "price": 198.55
-    },
     "B01H54X6CM": {
       "parent_asin": "B01H54X6CM",
       "title": "MUXXN Women's Retro 1950s Style Sleeveless Slim Business Pencil Dress",
@@ -1056,12 +1055,6 @@
       "store": "Leapparel",
       "price": null
     },
-    "B07B2S1XWM": {
-      "parent_asin": "B07B2S1XWM",
-      "title": "Sanxiner PU Leather Crossbody Bag for Women Multi-Pocket Purse Shoulder Handbag",
-      "store": "Sanxiner",
-      "price": null
-    },
     "B07B5RGY2N": {
       "parent_asin": "B07B5RGY2N",
       "title": "Blowfish Malibu Women's Fruit Sneaker",
@@ -1187,12 +1180,6 @@
       "title": "Lanzom Womens Classic Wide Brim Floppy Panama Hat Belt Buckle Wool Fedora Hat",
       "store": "Lanzom",
       "price": 25.99
-    },
-    "B07CZGMNML": {
-      "parent_asin": "B07CZGMNML",
-      "title": "LONDON FOG Women's Plus Size Long Mitred Quilt Down with Faux Fur Trim Hd",
-      "store": "LONDON FOG",
-      "price": null
     },
     "B07D5M61T2": {
       "parent_asin": "B07D5M61T2",
@@ -1354,6 +1341,12 @@
       "parent_asin": "B07HJDBN4L",
       "title": "Amazon Essentials Men's Regular-Fit Pocket Jersey Polo",
       "store": "Amazon Essentials",
+      "price": null
+    },
+    "B07HRKVWHS": {
+      "parent_asin": "B07HRKVWHS",
+      "title": "LLmansha Women's Plus Size Glitter V-Neck Long Sleeve Bodycon Sequin Cocktail Party Club\u2026",
+      "store": "LLmansha",
       "price": null
     },
     "B07HT5CCPJ": {
@@ -1612,12 +1605,6 @@
       "parent_asin": "B07R8V9H4G",
       "title": "Women RFID Blocking Small Cell Phone Purse Crossbody Bag Smartphone Wallet with shoulder\u2026",
       "store": "Bveyzi",
-      "price": null
-    },
-    "B07RS44M91": {
-      "parent_asin": "B07RS44M91",
-      "title": "Tommy Hilfiger Women's Quilted Hooded Long Puffer Jacket",
-      "store": "Tommy Hilfiger",
       "price": null
     },
     "B07S2Y3THP": {
@@ -2058,12 +2045,6 @@
       "store": "Hanes",
       "price": 17.91
     },
-    "B088Y6BN67": {
-      "parent_asin": "B088Y6BN67",
-      "title": "Jones New York Women's Packable Parka Coat",
-      "store": "Jones New York",
-      "price": null
-    },
     "B0891LTVHT": {
       "parent_asin": "B0891LTVHT",
       "title": "Buyless Fashion Boys Scoop Neck Tagless Undershirts Soft Cotton Tank Top (4 Pack)",
@@ -2382,12 +2363,6 @@
       "store": "Skechers",
       "price": null
     },
-    "B08SS3Y79W": {
-      "parent_asin": "B08SS3Y79W",
-      "title": "Amazon Essentials Women's Heavyweight Diamond Quilted Knee Length Puffer Coat",
-      "store": "Amazon Essentials",
-      "price": 67.92
-    },
     "B08SZRT2H3": {
       "parent_asin": "B08SZRT2H3",
       "title": "Hirsch Lucca Artisan Calf Leather Watch Strap - 20mm, 22mm, 24mm - Black, Brown, Golden\u2026",
@@ -2538,12 +2513,6 @@
       "store": "Veatzaer",
       "price": null
     },
-    "B0995HJKRX": {
-      "parent_asin": "B0995HJKRX",
-      "title": "Womens Hooded Down Jacket Long Quilted Lightweight Puffer Coat, Standard and Plus Size",
-      "store": "S P Y M",
-      "price": null
-    },
     "B099VZRSBD": {
       "parent_asin": "B099VZRSBD",
       "title": "Womens Cropped Quarter Zip Pullover Swealsthirt Hoodie Long Sleeve Crop Top",
@@ -2592,12 +2561,6 @@
       "store": "LANMERTREE",
       "price": 25.98
     },
-    "B09D112TGF": {
-      "parent_asin": "B09D112TGF",
-      "title": "Steve Madden Women's Puffer",
-      "store": "Steve Madden",
-      "price": null
-    },
     "B09F5NCF5Z": {
       "parent_asin": "B09F5NCF5Z",
       "title": "Levi's\u00ae 501 Court Lo Monogram",
@@ -2632,12 +2595,6 @@
       "parent_asin": "B09GL65W9V",
       "title": "Fruit of the Loom Men's Dual Defense EverSoft Jogger Sweatpants",
       "store": "Fruit of the Loom",
-      "price": null
-    },
-    "B09H3VT8JH": {
-      "parent_asin": "B09H3VT8JH",
-      "title": "Invicta Women's Pro Diver 36543 Quartz Watch",
-      "store": "Invicta",
       "price": null
     },
     "B09HNJVPMH": {
@@ -2933,12 +2890,6 @@
       "title": "MIFORINES Ladies Summer Jelly Pillow-shaped Top Handle Handbag Candy Color Transparent\u2026",
       "store": "MIFORINES",
       "price": 34.99
-    },
-    "B0BCK59834": {
-      "parent_asin": "B0BCK59834",
-      "title": "ZIAI Winter Coats For Women Thickened Short & Long Puffer Jacket Womens with Fur S-XXL",
-      "store": "ZIAI",
-      "price": null
     },
     "B0BCQWYQLQ": {
       "parent_asin": "B0BCQWYQLQ",
@@ -3460,7 +3411,7 @@
             ],
             "source_candidate_count": 258,
             "ranked_candidate_count": 257,
-            "plausible_candidate_count": 21,
+            "plausible_candidate_count": 16,
             "proven_miss_count": 1,
             "top2_absolute_margin": 0.036225,
             "question": "other",
@@ -3468,8 +3419,8 @@
               "attribute": "other",
               "answerability": 1.0,
               "expected_hit_at_10": 1.0,
-              "expected_mrr": 0.660317,
-              "answerable_metric_voi": 0.398158
+              "expected_mrr": 0.554167,
+              "answerable_metric_voi": 0.278832
             },
             "output_gate": {
               "policy": "finite_horizon_refutation_plan",
@@ -3595,7 +3546,7 @@
           "agent_message": "Do you have a preference on feature?",
           "ask_attribute": "feature",
           "recommendations": [
-            "B09H3VT8JH"
+            "B001KSFIS0"
           ],
           "reported_tokens": 0,
           "eligible_for_hit": false,
@@ -3623,7 +3574,7 @@
             "ranked_candidate_count": 1033,
             "plausible_candidate_count": 44,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.0102,
+            "top2_absolute_margin": 0.036467,
             "question": "feature",
             "selected_question_value": {
               "attribute": "feature",
@@ -3671,7 +3622,7 @@
             "ranked_candidate_count": 1034,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.235643,
+            "top2_absolute_margin": 1.375643,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -3735,7 +3686,7 @@
             "ranked_candidate_count": 111,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 2.010201,
+            "top2_absolute_margin": 2.150201,
             "question": "feature",
             "selected_question_value": {
               "attribute": "feature",
@@ -3827,7 +3778,7 @@
             "ranked_candidate_count": 111,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.305537,
+            "top2_absolute_margin": 1.352203,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -4058,7 +4009,7 @@
             "ranked_candidate_count": 518,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.207022,
+            "top2_absolute_margin": 1.307022,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -4235,7 +4186,7 @@
             "ranked_candidate_count": 183,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.189367,
+            "top2_absolute_margin": 1.256033,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -4407,7 +4358,7 @@
             "ranked_candidate_count": 45,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.098624,
+            "top2_absolute_margin": 1.168624,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -4514,7 +4465,7 @@
             "ranked_candidate_count": 590,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.658353,
+            "top2_absolute_margin": 0.728353,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -4578,7 +4529,7 @@
             "ranked_candidate_count": 538,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.929553,
+            "top2_absolute_margin": 2.069553,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -4625,7 +4576,7 @@
             ],
             "source_candidate_count": 538,
             "ranked_candidate_count": 537,
-            "plausible_candidate_count": 165,
+            "plausible_candidate_count": 177,
             "proven_miss_count": 1,
             "top2_absolute_margin": 0.002012,
             "question": "other",
@@ -4633,8 +4584,8 @@
               "attribute": "other",
               "answerability": 1.0,
               "expected_hit_at_10": 1.0,
-              "expected_mrr": 0.897879,
-              "answerable_metric_voi": 0.713735
+              "expected_mrr": 0.899153,
+              "answerable_metric_voi": 0.716533
             },
             "output_gate": {
               "policy": "finite_horizon_refutation_plan",
@@ -4742,7 +4693,7 @@
             "ranked_candidate_count": 538,
             "plausible_candidate_count": 512,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.797418,
+            "top2_absolute_margin": 1.897418,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -5140,7 +5091,7 @@
             "ranked_candidate_count": 41,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.478946,
+            "top2_absolute_margin": 1.572279,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -5549,7 +5500,7 @@
             "ranked_candidate_count": 230,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.024868,
+            "top2_absolute_margin": 1.164868,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -5659,7 +5610,7 @@
             "ranked_candidate_count": 228,
             "plausible_candidate_count": 228,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.082313,
+            "top2_absolute_margin": 0.117313,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -5713,7 +5664,7 @@
             "ranked_candidate_count": 230,
             "plausible_candidate_count": 230,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 0.836913,
+            "top2_absolute_margin": 0.896913,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -5820,7 +5771,7 @@
             "ranked_candidate_count": 191,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.978006,
+            "top2_absolute_margin": 1.064673,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -6235,7 +6186,7 @@
             "ranked_candidate_count": 321,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.654305,
+            "top2_absolute_margin": 1.787638,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -6476,7 +6427,7 @@
             "ranked_candidate_count": 177,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.074406,
+            "top2_absolute_margin": 0.094406,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -6600,7 +6551,7 @@
             "ranked_candidate_count": 665,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.790875,
+            "top2_absolute_margin": 1.930875,
             "question": "feature",
             "selected_question_value": {
               "attribute": "feature",
@@ -6645,16 +6596,16 @@
             ],
             "source_candidate_count": 665,
             "ranked_candidate_count": 664,
-            "plausible_candidate_count": 231,
+            "plausible_candidate_count": 271,
             "proven_miss_count": 1,
             "top2_absolute_margin": 0.043535,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
               "answerability": 1.0,
-              "expected_hit_at_10": 0.692641,
-              "expected_mrr": 0.552776,
-              "answerable_metric_voi": 0.466704
+              "expected_hit_at_10": 0.704797,
+              "expected_mrr": 0.573646,
+              "answerable_metric_voi": 0.4828
             },
             "output_gate": {
               "policy": "finite_horizon_refutation_plan",
@@ -6762,7 +6713,7 @@
             "ranked_candidate_count": 665,
             "plausible_candidate_count": 512,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.241097,
+            "top2_absolute_margin": 1.301097,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -7077,7 +7028,7 @@
             "ranked_candidate_count": 1017,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.779595,
+            "top2_absolute_margin": 1.919595,
             "question": "feature",
             "selected_question_value": {
               "attribute": "feature",
@@ -7241,7 +7192,7 @@
             "ranked_candidate_count": 1017,
             "plausible_candidate_count": 512,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.179875,
+            "top2_absolute_margin": 1.279875,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -7544,7 +7495,7 @@
             "ranked_candidate_count": 517,
             "plausible_candidate_count": 512,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 1.471752,
+            "top2_absolute_margin": 1.571752,
             "question": "other",
             "selected_question_value": null,
             "output_gate": {
@@ -7950,7 +7901,7 @@
             "ranked_candidate_count": 24,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 0.820104,
+            "top2_absolute_margin": 0.960104,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -8114,7 +8065,7 @@
             "ranked_candidate_count": 24,
             "plausible_candidate_count": 24,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.531034,
+            "top2_absolute_margin": 1.671034,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -8215,7 +8166,7 @@
             "ranked_candidate_count": 32,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.83058,
+            "top2_absolute_margin": 0.93058,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -8549,7 +8500,7 @@
             "ranked_candidate_count": 341,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.6169,
+            "top2_absolute_margin": 1.7169,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -8662,7 +8613,7 @@
             "ranked_candidate_count": 518,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.532566,
+            "top2_absolute_margin": 0.579233,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -8771,7 +8722,7 @@
             "ranked_candidate_count": 518,
             "plausible_candidate_count": 512,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.305606,
+            "top2_absolute_margin": 0.325606,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -8948,8 +8899,8 @@
               "attribute": "other",
               "answerability": 1.0,
               "expected_hit_at_10": 1.0,
-              "expected_mrr": 0.95,
-              "answerable_metric_voi": 0.177131
+              "expected_mrr": 1.0,
+              "answerable_metric_voi": 0.192131
             },
             "output_gate": {
               "policy": "finite_horizon_refutation_plan",
@@ -8971,8 +8922,8 @@
             "B0B4D3YNXP",
             "B09CY946K5",
             "B098NRZF9Q",
-            "B0BBLPS1Z4",
-            "B098D5VJGJ"
+            "B098D5VJGJ",
+            "B0BBLPS1Z4"
           ],
           "reported_tokens": 0,
           "eligible_for_hit": true,
@@ -9003,7 +8954,7 @@
             "ranked_candidate_count": 336,
             "plausible_candidate_count": 336,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.651645,
+            "top2_absolute_margin": 0.751645,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -9104,7 +9055,7 @@
             "ranked_candidate_count": 282,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.35514,
+            "top2_absolute_margin": 1.45514,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -9211,7 +9162,7 @@
             "ranked_candidate_count": 1353,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.471936,
+            "top2_absolute_margin": 1.571936,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -9549,7 +9500,7 @@
             "ranked_candidate_count": 67,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.140092,
+            "top2_absolute_margin": 1.240092,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -9613,7 +9564,7 @@
             "ranked_candidate_count": 88,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 2.187355,
+            "top2_absolute_margin": 2.387355,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -9780,7 +9731,7 @@
             "ranked_candidate_count": 53,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.385357,
+            "top2_absolute_margin": 1.485357,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -9893,7 +9844,7 @@
             "ranked_candidate_count": 140,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.521687,
+            "top2_absolute_margin": 0.568353,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -9914,8 +9865,8 @@
           "agent_message": "I have enough detail to narrow this down.",
           "ask_attribute": null,
           "recommendations": [
-            "B07F33VP6X",
             "B08DQZQ7WP",
+            "B07F33VP6X",
             "B00OZIGHKA",
             "B07VLFQ658",
             "B07R43T314",
@@ -9923,7 +9874,7 @@
             "B08NZGBBPY",
             "B07PXMTZQK",
             "B091KNL71P",
-            "B07QLLTJWS"
+            "B07HRKVWHS"
           ],
           "reported_tokens": 0,
           "eligible_for_hit": false,
@@ -9954,7 +9905,7 @@
             "ranked_candidate_count": 139,
             "plausible_candidate_count": 139,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.027708,
+            "top2_absolute_margin": 0.007292,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -9971,8 +9922,8 @@
           "recommendations": [
             "B019DU687Q",
             "B019DU6AL0",
-            "B07F33VP6X",
             "B08DQZQ7WP",
+            "B07F33VP6X",
             "B00OZIGHKA",
             "B07VLFQ658",
             "B07PXMTZQK",
@@ -10008,7 +9959,7 @@
             "ranked_candidate_count": 141,
             "plausible_candidate_count": 141,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 0.139983,
+            "top2_absolute_margin": 0.538353,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -10258,7 +10209,7 @@
             "ranked_candidate_count": 342,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.792782,
+            "top2_absolute_margin": 1.932782,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -10355,7 +10306,7 @@
             "ranked_candidate_count": 342,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 0.832884,
+            "top2_absolute_margin": 0.860884,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -10462,7 +10413,7 @@
             "ranked_candidate_count": 502,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.75389,
+            "top2_absolute_margin": 1.85389,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -10635,7 +10586,7 @@
             "ranked_candidate_count": 337,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.006964,
+            "top2_absolute_margin": 1.053631,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -10750,7 +10701,7 @@
             "ranked_candidate_count": 338,
             "plausible_candidate_count": 338,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 0.938191,
+            "top2_absolute_margin": 0.978191,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -10857,7 +10808,7 @@
             "ranked_candidate_count": 8,
             "plausible_candidate_count": 8,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.076749,
+            "top2_absolute_margin": 0.030082,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -10905,7 +10856,7 @@
             "ranked_candidate_count": 9,
             "plausible_candidate_count": 9,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.327524,
+            "top2_absolute_margin": 1.460034,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -11012,7 +10963,7 @@
             "ranked_candidate_count": 768,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.091321,
+            "top2_absolute_margin": 1.191321,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -11553,7 +11504,7 @@
             "ranked_candidate_count": 33,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.062602,
+            "top2_absolute_margin": 1.118602,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -12039,7 +11990,7 @@
             "ranked_candidate_count": 46,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 2.151515,
+            "top2_absolute_margin": 2.351515,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -12381,7 +12332,7 @@
             "ranked_candidate_count": 258,
             "plausible_candidate_count": 258,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.515658,
+            "top2_absolute_margin": 1.615658,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -12482,7 +12433,7 @@
             "ranked_candidate_count": 189,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.956114,
+            "top2_absolute_margin": 1.026114,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -12589,7 +12540,7 @@
             "ranked_candidate_count": 537,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.628755,
+            "top2_absolute_margin": 1.728755,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -12825,7 +12776,7 @@
             "ranked_candidate_count": 44,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.753128,
+            "top2_absolute_margin": 1.893128,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -12874,7 +12825,7 @@
             "ranked_candidate_count": 43,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.467426,
+            "top2_absolute_margin": 0.514093,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -12922,7 +12873,7 @@
             "ranked_candidate_count": 44,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 0.740832,
+            "top2_absolute_margin": 0.768832,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -12986,7 +12937,7 @@
             "ranked_candidate_count": 70,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 2.072526,
+            "top2_absolute_margin": 2.272526,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -13214,7 +13165,7 @@
             "ranked_candidate_count": 282,
             "plausible_candidate_count": 282,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.144494,
+            "top2_absolute_margin": 0.480297,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -13321,7 +13272,7 @@
             "ranked_candidate_count": 43,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.202435,
+            "top2_absolute_margin": 1.269102,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -13434,7 +13385,7 @@
             "ranked_candidate_count": 136,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.713983,
+            "top2_absolute_margin": 0.807316,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -13547,7 +13498,7 @@
             "ranked_candidate_count": 262,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.92502,
+            "top2_absolute_margin": 0.991687,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -14146,7 +14097,7 @@
             "ranked_candidate_count": 123,
             "plausible_candidate_count": 123,
             "proven_miss_count": 4,
-            "top2_absolute_margin": 0.709965,
+            "top2_absolute_margin": 0.759965,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -14418,7 +14369,7 @@
             "ranked_candidate_count": 229,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.653662,
+            "top2_absolute_margin": 1.753662,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -14553,8 +14504,8 @@
           "agent_message": "I have enough detail to narrow this down.",
           "ask_attribute": null,
           "recommendations": [
-            "B017HY3OH2",
             "B07C3J1VSQ",
+            "B017HY3OH2",
             "B07HC5LL2H",
             "B07HYJZKW4",
             "B004JYCIDU",
@@ -14593,7 +14544,7 @@
             "ranked_candidate_count": 44,
             "plausible_candidate_count": 44,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.01873,
+            "top2_absolute_margin": 0.0,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -15165,7 +15116,7 @@
             "ranked_candidate_count": 275,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.174231,
+            "top2_absolute_margin": 1.274231,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -15371,7 +15322,7 @@
             "ranked_candidate_count": 340,
             "plausible_candidate_count": 340,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.153472,
+            "top2_absolute_margin": 0.183472,
             "question": "other",
             "selected_question_value": null,
             "output_gate": {
@@ -15472,7 +15423,7 @@
             "ranked_candidate_count": 537,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.875036,
+            "top2_absolute_margin": 1.005036,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -15583,7 +15534,7 @@
             "ranked_candidate_count": 1016,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.380721,
+            "top2_absolute_margin": 1.450721,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -15931,7 +15882,7 @@
             "ranked_candidate_count": 196,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.960416,
+            "top2_absolute_margin": 1.027083,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -15995,7 +15946,7 @@
             "ranked_candidate_count": 101,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 2.099457,
+            "top2_absolute_margin": 2.299457,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -16267,7 +16218,7 @@
             "ranked_candidate_count": 262,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.265832,
+            "top2_absolute_margin": 1.365832,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -16428,7 +16379,7 @@
             "ranked_candidate_count": 45,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.255998,
+            "top2_absolute_margin": 1.339998,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -16541,7 +16492,7 @@
             "ranked_candidate_count": 384,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.460521,
+            "top2_absolute_margin": 1.593854,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -16655,7 +16606,7 @@
             "ranked_candidate_count": 384,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.506258,
+            "top2_absolute_margin": 0.552925,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -17208,7 +17159,7 @@
             "ranked_candidate_count": 44,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.866404,
+            "top2_absolute_margin": 2.006404,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -17305,7 +17256,7 @@
             "ranked_candidate_count": 44,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 0.933891,
+            "top2_absolute_margin": 0.961891,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -17542,7 +17493,7 @@
             "ranked_candidate_count": 521,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.00907,
+            "top2_absolute_margin": 1.075737,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -17957,7 +17908,7 @@
             "ranked_candidate_count": 679,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.336291,
+            "top2_absolute_margin": 1.436291,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -18172,7 +18123,7 @@
             "ranked_candidate_count": 13,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 2.101046,
+            "top2_absolute_margin": 2.301046,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -18236,7 +18187,7 @@
             "ranked_candidate_count": 117,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.861645,
+            "top2_absolute_margin": 2.001645,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -18400,7 +18351,7 @@
             "ranked_candidate_count": 117,
             "plausible_candidate_count": 117,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.713608,
+            "top2_absolute_margin": 1.813608,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -18487,10 +18438,10 @@
         "sample_id": "public_0144",
         "scenario_type": "intent_override",
         "hit": true,
-        "first_hit_turn": 6,
+        "first_hit_turn": 5,
         "best_rank": 1,
         "reciprocal_rank": 1.0,
-        "technical_score_contribution": 0.9
+        "technical_score_contribution": 0.92
       },
       "turns": [
         {
@@ -18640,7 +18591,8 @@
           "agent_message": "I have enough detail to narrow this down.",
           "ask_attribute": null,
           "recommendations": [
-            "B09JX1Q6RY"
+            "B09JX1Q6RY",
+            "B09LRJ6NQX"
           ],
           "reported_tokens": 0,
           "eligible_for_hit": true,
@@ -18676,7 +18628,7 @@
             "selected_question_value": null,
             "output_gate": {
               "policy": "finite_horizon_refutation_plan",
-              "emitted_count": 1
+              "emitted_count": 2
             }
           }
         },
@@ -18686,12 +18638,13 @@
           "agent_message": "I have enough detail to narrow this down.",
           "ask_attribute": null,
           "recommendations": [
-            "B09LRJ6NQX"
+            "B08LMMDYV7",
+            "B07BR2J71F"
           ],
           "reported_tokens": 0,
           "eligible_for_hit": true,
-          "target_rank": null,
-          "hit_this_turn": false,
+          "target_rank": 1,
+          "hit_this_turn": true,
           "decision": {
             "action": "RECOMMEND",
             "reason_codes": [
@@ -18715,70 +18668,15 @@
               1.0
             ],
             "source_candidate_count": 101,
-            "ranked_candidate_count": 100,
-            "plausible_candidate_count": 100,
-            "proven_miss_count": 1,
-            "top2_absolute_margin": 0.009509,
-            "question": null,
-            "selected_question_value": null,
-            "output_gate": {
-              "policy": "finite_horizon_refutation_plan",
-              "emitted_count": 1
-            }
-          }
-        },
-        {
-          "turn": 6,
-          "customer": "Those options are not quite right yet. Ask me about one specific attribute.",
-          "agent_message": "I have enough detail to narrow this down.",
-          "ask_attribute": null,
-          "recommendations": [
-            "B08LMMDYV7",
-            "B07RS44M91",
-            "B07BR2J71F",
-            "B01GHS9PUE",
-            "B088Y6BN67",
-            "B09D112TGF",
-            "B0BCK59834",
-            "B08SS3Y79W",
-            "B07CZGMNML",
-            "B0995HJKRX"
-          ],
-          "reported_tokens": 0,
-          "eligible_for_hit": true,
-          "target_rank": 1,
-          "hit_this_turn": true,
-          "decision": {
-            "action": "RECOMMEND",
-            "reason_codes": [
-              "information_complete",
-              "maximum_protocol_constraints_observed",
-              "previously_shown_products_excluded"
-            ],
-            "intent_track": "intent_override",
-            "shelf": "Jackets & Vests Down Jackets & Parkas",
-            "constraints": [
-              "Zipper closure",
-              "polyester",
-              "100% Polyester",
-              "Imported"
-            ],
-            "constraint_confidence": [
-              0.5,
-              1.0,
-              1.0,
-              1.0
-            ],
-            "source_candidate_count": 101,
             "ranked_candidate_count": 99,
             "plausible_candidate_count": 99,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.025259,
+            "top2_absolute_margin": 0.032026,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
               "policy": "finite_horizon_refutation_plan",
-              "emitted_count": 10
+              "emitted_count": 2
             }
           }
         }
@@ -18991,7 +18889,7 @@
             "ranked_candidate_count": 590,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.86348,
+            "top2_absolute_margin": 0.930146,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -19164,7 +19062,7 @@
             "ranked_candidate_count": 23,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.304245,
+            "top2_absolute_margin": 1.437579,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -19395,7 +19293,7 @@
             "ranked_candidate_count": 46,
             "plausible_candidate_count": 20,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.129422,
+            "top2_absolute_margin": 0.159422,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -19508,7 +19406,7 @@
             "ranked_candidate_count": 1033,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.142888,
+            "top2_absolute_margin": 1.209554,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -19615,7 +19513,7 @@
             "ranked_candidate_count": 381,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.746777,
+            "top2_absolute_margin": 0.846777,
             "question": "feature",
             "selected_question_value": {
               "attribute": "feature",
@@ -19728,7 +19626,7 @@
             "ranked_candidate_count": 229,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.539446,
+            "top2_absolute_margin": 0.606112,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -19905,7 +19803,7 @@
             "ranked_candidate_count": 19,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.987963,
+            "top2_absolute_margin": 2.187963,
             "question": "material",
             "selected_question_value": {
               "attribute": "material",
@@ -20076,7 +19974,7 @@
             "ranked_candidate_count": 33,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.949016,
+            "top2_absolute_margin": 2.149016,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -20315,7 +20213,7 @@
             ],
             "source_candidate_count": 680,
             "ranked_candidate_count": 679,
-            "plausible_candidate_count": 16,
+            "plausible_candidate_count": 11,
             "proven_miss_count": 1,
             "top2_absolute_margin": 0.003608,
             "question": "other",
@@ -20323,8 +20221,8 @@
               "attribute": "other",
               "answerability": 1.0,
               "expected_hit_at_10": 1.0,
-              "expected_mrr": 0.724554,
-              "answerable_metric_voi": 0.329948
+              "expected_mrr": 0.599351,
+              "answerable_metric_voi": 0.125379
             },
             "output_gate": {
               "policy": "finite_horizon_refutation_plan",
@@ -20585,7 +20483,7 @@
             "ranked_candidate_count": 341,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.08374,
+            "top2_absolute_margin": 1.150406,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -20753,7 +20651,7 @@
             "ranked_candidate_count": 91,
             "plausible_candidate_count": 91,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 1.048425,
+            "top2_absolute_margin": 1.098425,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -20875,7 +20773,7 @@
             "ranked_candidate_count": 2,
             "plausible_candidate_count": 2,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 2.04786,
+            "top2_absolute_margin": 2.18786,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -21023,7 +20921,7 @@
             "ranked_candidate_count": 2,
             "plausible_candidate_count": 2,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.959922,
+            "top2_absolute_margin": 2.099922,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -21124,7 +21022,7 @@
             "ranked_candidate_count": 165,
             "plausible_candidate_count": 17,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.547897,
+            "top2_absolute_margin": 0.607897,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -21188,7 +21086,7 @@
             "ranked_candidate_count": 51,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 2.19146,
+            "top2_absolute_margin": 2.39146,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -21330,7 +21228,7 @@
             "ranked_candidate_count": 317,
             "plausible_candidate_count": 317,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 1.426035,
+            "top2_absolute_margin": 1.526035,
             "question": "other",
             "selected_question_value": null,
             "output_gate": {
@@ -21492,7 +21390,7 @@
             "ranked_candidate_count": 107,
             "plausible_candidate_count": 107,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.765438,
+            "top2_absolute_margin": 0.815438,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -21599,7 +21497,7 @@
             "ranked_candidate_count": 196,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.571953,
+            "top2_absolute_margin": 0.63862,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -21768,7 +21666,7 @@
             "ranked_candidate_count": 1015,
             "plausible_candidate_count": 512,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.772066,
+            "top2_absolute_margin": 0.822066,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -22195,7 +22093,7 @@
             "ranked_candidate_count": 25,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.558902,
+            "top2_absolute_margin": 1.658902,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -22423,7 +22321,7 @@
             "ranked_candidate_count": 104,
             "plausible_candidate_count": 104,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 0.945768,
+            "top2_absolute_margin": 0.985768,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -22643,7 +22541,7 @@
             "ranked_candidate_count": 518,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.869328,
+            "top2_absolute_margin": 0.935995,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -22886,7 +22784,7 @@
             "ranked_candidate_count": 83,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.189607,
+            "top2_absolute_margin": 1.289607,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -23084,10 +22982,10 @@
             "B0058YYAT0",
             "B07R7FFSJH",
             "B00DJ1XQ26",
-            "B07KGMVKL4",
             "B00GSTR88O",
             "B07DQN9FDR",
             "B00K0TZFR4",
+            "B07KGMVKL4",
             "B01DIZM72M",
             "B07F8NKWG3"
           ],
@@ -23120,7 +23018,7 @@
             "ranked_candidate_count": 48,
             "plausible_candidate_count": 48,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.119596,
+            "top2_absolute_margin": 0.154596,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -23174,7 +23072,7 @@
             "ranked_candidate_count": 50,
             "plausible_candidate_count": 50,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 0.608548,
+            "top2_absolute_margin": 0.628548,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -23336,7 +23234,7 @@
             "ranked_candidate_count": 520,
             "plausible_candidate_count": 512,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.905542,
+            "top2_absolute_margin": 0.955542,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -23443,7 +23341,7 @@
             "ranked_candidate_count": 27,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.875483,
+            "top2_absolute_margin": 0.94215,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -23507,7 +23405,7 @@
             "ranked_candidate_count": 522,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.84766,
+            "top2_absolute_margin": 1.98766,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -23554,7 +23452,7 @@
             ],
             "source_candidate_count": 522,
             "ranked_candidate_count": 521,
-            "plausible_candidate_count": 96,
+            "plausible_candidate_count": 88,
             "proven_miss_count": 1,
             "top2_absolute_margin": 0.028225,
             "question": "other",
@@ -23562,8 +23460,8 @@
               "attribute": "other",
               "answerability": 1.0,
               "expected_hit_at_10": 1.0,
-              "expected_mrr": 0.840203,
-              "answerable_metric_voi": 0.670825
+              "expected_mrr": 0.864123,
+              "answerable_metric_voi": 0.672434
             },
             "output_gate": {
               "policy": "finite_horizon_refutation_plan",
@@ -23604,7 +23502,7 @@
             "ranked_candidate_count": 522,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.01212,
+            "top2_absolute_margin": 1.04012,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -23801,7 +23699,7 @@
             "ranked_candidate_count": 662,
             "plausible_candidate_count": 512,
             "proven_miss_count": 3,
-            "top2_absolute_margin": 1.01918,
+            "top2_absolute_margin": 1.06918,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -23908,7 +23806,7 @@
             "ranked_candidate_count": 270,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.082674,
+            "top2_absolute_margin": 1.149341,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -24085,7 +23983,7 @@
             "ranked_candidate_count": 30,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.045819,
+            "top2_absolute_margin": 1.112485,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -24287,7 +24185,7 @@
             "ranked_candidate_count": 130,
             "plausible_candidate_count": 130,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 1.444854,
+            "top2_absolute_margin": 1.544854,
             "question": "other",
             "selected_question_value": null,
             "output_gate": {
@@ -24671,7 +24569,7 @@
             "ranked_candidate_count": 604,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 1.308687,
+            "top2_absolute_margin": 1.424471,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -24735,7 +24633,7 @@
             "ranked_candidate_count": 23,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.96798,
+            "top2_absolute_margin": 2.10798,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -24899,7 +24797,7 @@
             "ranked_candidate_count": 23,
             "plausible_candidate_count": 23,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 2.016422,
+            "top2_absolute_margin": 2.156422,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -25027,10 +24925,10 @@
           "agent_message": "I have enough detail to narrow this down.",
           "ask_attribute": null,
           "recommendations": [
+            "B08ZXTQC8P",
             "B09RJ3JG7M",
             "B08F9XDQ9F",
             "B0BZRCYNCG",
-            "B08ZXTQC8P",
             "B00JE8CXRM",
             "B018FSPJZE",
             "B07Q8VPHJJ",
@@ -25067,7 +24965,7 @@
             "ranked_candidate_count": 269,
             "plausible_candidate_count": 269,
             "proven_miss_count": 2,
-            "top2_absolute_margin": 0.011345,
+            "top2_absolute_margin": 0.0,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -25083,15 +24981,15 @@
           "ask_attribute": null,
           "recommendations": [
             "B08K1ZJZ4N",
+            "B08ZXTQC8P",
             "B09RJ3JG7M",
             "B08F9XDQ9F",
             "B0BZRCYNCG",
-            "B08ZXTQC8P",
             "B00JE8CXRM",
+            "B018FSPJZE",
             "B07R8V9H4G",
             "B09TQ2LLVT",
-            "B01EV95R2G",
-            "B07B2S1XWM"
+            "B01EV95R2G"
           ],
           "reported_tokens": 0,
           "eligible_for_hit": true,
@@ -25121,7 +25019,7 @@
             "ranked_candidate_count": 271,
             "plausible_candidate_count": 271,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 0.254104,
+            "top2_absolute_margin": 0.600468,
             "question": null,
             "selected_question_value": null,
             "output_gate": {
@@ -25228,7 +25126,7 @@
             "ranked_candidate_count": 50,
             "plausible_candidate_count": 10,
             "proven_miss_count": 1,
-            "top2_absolute_margin": 0.176873,
+            "top2_absolute_margin": 0.247536,
             "question": "other",
             "selected_question_value": {
               "attribute": "other",
@@ -25292,7 +25190,7 @@
             "ranked_candidate_count": 195,
             "plausible_candidate_count": 10,
             "proven_miss_count": 0,
-            "top2_absolute_margin": 1.967353,
+            "top2_absolute_margin": 2.167353,
             "question": "feature",
             "selected_question_value": {
               "attribute": "feature",

@@ -1,0 +1,43 @@
+{
+  "sessions": 200,
+  "mttc_achieved": 1.98,
+  "mttc_if_gate_perfect_rank1": 1.98,
+  "mttc_if_gate_perfect_top10": 1.51,
+  "score_achieved": 0.9804,
+  "score_if_gate_perfect_rank1": 0.9804,
+  "sessions_where_rank1_was_withheld": 0,
+  "turns_lost_to_gate": 0,
+  "first_hit_turn_histogram": {
+    "1": 76,
+    "2": 75,
+    "3": 28,
+    "4": 19,
+    "5": 2
+  },
+  "by_scenario": {
+    "boundary": {
+      "n": 10,
+      "mttc_achieved": 2.5,
+      "mttc_ideal_rank1": 2.5,
+      "turns_recoverable": 0.0
+    },
+    "browsing": {
+      "n": 80,
+      "mttc_achieved": 1.775,
+      "mttc_ideal_rank1": 1.775,
+      "turns_recoverable": 0.0
+    },
+    "buying": {
+      "n": 80,
+      "mttc_achieved": 1.4875,
+      "mttc_ideal_rank1": 1.4875,
+      "turns_recoverable": 0.0
+    },
+    "intent_override": {
+      "n": 30,
+      "mttc_achieved": 3.666667,
+      "mttc_ideal_rank1": 3.666667,
+      "turns_recoverable": 0.0
+    }
+  }
+}

@@ -1,18 +1,18 @@
 {
   "status": "reference_environment_measurement_filesystem_cache_dependent",
   "sample_count": 200,
-  "response_count": 397,
-  "evaluator_catalog_load_seconds": 0.506681,
-  "agent_startup_seconds": 10.776688,
-  "evaluation_wall_seconds": 15.149759,
-  "mean_evaluation_wall_ms_per_response": 38.160601,
-  "peak_evaluator_plus_agent_rss_kb": 466228,
+  "response_count": 396,
+  "evaluator_catalog_load_seconds": 0.56959,
+  "agent_startup_seconds": 11.65464,
+  "evaluation_wall_seconds": 15.342067,
+  "mean_evaluation_wall_ms_per_response": 38.742595,
+  "peak_evaluator_plus_agent_rss_kb": 465644,
   "reported_token_usage": {
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0
   },
-  "technical_score": 0.9803,
+  "technical_score": 0.9804,
   "notes": [
     "Mean time includes simulator and evaluator overhead around Agent.respond.",
     "Peak RSS includes both evaluator and Agent catalog representations.",

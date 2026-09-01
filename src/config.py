@@ -39,7 +39,10 @@ TITLE_BONUS = 1.0
 PROFILE_BONUS = 0.0
 
 TYPED_WEIGHT = 0.3
-SIGNATURE_WEIGHT = 0.7
+# Canonical signature likelihood is the only ranking term that improved all
+# three panels at once (public, popularity-matched, uniform long-tail), so it
+# carries more weight than the raw lexical and typed evidence it arbitrates.
+SIGNATURE_WEIGHT = 0.9
 
 POPULARITY_WEIGHT = 0.55
 POPULARITY_WINDOW = 0.15

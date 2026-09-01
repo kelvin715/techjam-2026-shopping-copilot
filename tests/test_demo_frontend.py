@@ -35,7 +35,7 @@ class DemoBundleTest(unittest.TestCase):
         self.assertEqual(bundle["explore_trace"]["sample_id"], "public_0187")
         self.assertEqual(len(bundle["explore_trace"]["turns"]), 4)
         self.assertEqual(bundle["explore_trace"]["outcome"]["first_hit_turn"], 4)
-        self.assertEqual(bundle["proof"]["public"]["technical_score"], 0.9803)
+        self.assertEqual(bundle["proof"]["public"]["technical_score"], 0.9804)
         replays = bundle["session_replays"]
         self.assertEqual(replays["sample_count"], 200)
         self.assertEqual(replays["summary"]["rank_distribution"], {"1": 200})

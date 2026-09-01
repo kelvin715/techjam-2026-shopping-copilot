@@ -3,15 +3,15 @@
   "sample_count": 200,
   "hit_rate_at_10": 1.0,
   "mrr": 1.0,
-  "mttc": 1.985,
-  "efficiency": 0.9015,
-  "technical_score": 0.9803,
+  "mttc": 1.98,
+  "efficiency": 0.902,
+  "technical_score": 0.9804,
   "reported_prompt_tokens": 0,
   "reported_completion_tokens": 0,
   "scenario_metrics": {
     "boundary": {"n": 10, "hit_rate_at_10": 1.0, "mrr": 1.0, "mttc": 2.5},
     "browsing": {"n": 80, "hit_rate_at_10": 1.0, "mrr": 1.0, "mttc": 1.775},
     "buying": {"n": 80, "hit_rate_at_10": 1.0, "mrr": 1.0, "mttc": 1.4875},
-    "intent_override": {"n": 30, "hit_rate_at_10": 1.0, "mrr": 1.0, "mttc": 3.7}
+    "intent_override": {"n": 30, "hit_rate_at_10": 1.0, "mrr": 1.0, "mttc": 3.666667}
   }
 }

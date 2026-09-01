@@ -19,7 +19,7 @@ search query. On every turn it makes three connected decisions:
 | ------------------------- | -----------------: | -----------------: | --------------: | -----------------: |
 | Organizer weak baseline   |           0.125000 |           0.068034 |           9.810 |           0.106710 |
 | ARC before this optimization | 1.000000 | 0.993333 | 2.040 | 0.977200 |
-| **ARC** | **1.000000** | **1.000000** | **1.985** | **0.980300** |
+| **ARC** | **1.000000** | **1.000000** | **1.980** | **0.980400** |
 
 These results use the unchanged organizer evaluator over all 200 public
 sessions. ARC uses **zero model tokens, zero network calls, no GPU, and only the
@@ -218,14 +218,15 @@ diagnostics.
 | ----------------- | ------------: | -----------------: | -----------------: | -----------------: |
 | Buying            |            80 |           1.000000 |           1.000000 |           1.487500 |
 | Browsing          |            80 |           1.000000 |           1.000000 |           1.775000 |
-| Intent override   |            30 |           1.000000 |           1.000000 |           3.700000 |
+| Intent override   |            30 |           1.000000 |           1.000000 |           3.666667 |
 | Boundary          |            10 |           1.000000 |           1.000000 |           2.500000 |
-| **Overall** | **200** | **1.000000** | **1.000000** | **1.985000** |
+| **Overall** | **200** | **1.000000** | **1.000000** | **1.980000** |
 
-The unchanged evaluator reports TechnicalScore `0.980300`. Public-set
-ablation separates the two additions: the finite-horizon refutation planner
+The unchanged evaluator reports TechnicalScore `0.980400`. Public-set
+ablation separates the three additions: the finite-horizon refutation planner
 alone scores `0.978800`; the zero-constraint review-count prior alone scores
-`0.978700`; together they score `0.980300`.
+`0.978700`; those two together score `0.980300`; raising the canonical
+signature weight to `0.9` reaches `0.980400`.
 
 ### 🧪 Optimization ablation
 
@@ -234,19 +235,30 @@ alone scores `0.978800`; the zero-constraint review-count prior alone scores
 | Before optimization | 1.000000 | 0.993333 | 2.040 | 0.977200 |
 | + finite-horizon refutation planner | 1.000000 | 1.000000 | 2.060 | 0.978800 |
 | + cold-start review-count prior | 1.000000 | 0.993333 | 1.965 | 0.978700 |
-| **Combined ARC** | **1.000000** | **1.000000** | **1.985** | **0.980300** |
+| + both of the above | 1.000000 | 1.000000 | 1.985 | 0.980300 |
+| **+ signature weight `0.9` (ARC)** | **1.000000** | **1.000000** | **1.980** | **0.980400** |
 
-The organizer weak baseline needs `9.81` turns on average; ARC needs `1.985`, a
-reduction of `7.825` evaluator turns while raising MRR from `0.068034` to `1.0`.
+The organizer weak baseline needs `9.81` turns on average; ARC needs `1.980`, a
+reduction of `7.830` evaluator turns while raising MRR from `0.068034` to `1.0`.
+
+With Hit Rate@10 and MRR both saturated at `1.0`, TechnicalScore is a pure
+function of MTTC, and a rank-1 result demoted to rank 2 costs as much as `7.5`
+saved turns. `tools/turn_audit.py` replays the organizer loop while capturing
+the full ranked list each turn and reports that **zero** turns are lost to the
+output gate: the target is exposed on exactly the turn it first reaches rank 1.
+The residual MTTC is therefore bounded by disclosure, not by the policy —
+`intent_override` cannot score before its override turn (floor `3.600`),
+`boundary` spends one turn on the "no preference" reply, and 90 of 200 sessions
+open with no constraint at all.
 
 ### 🔬 Target-disjoint diagnostics
 
 | Diagnostic / policy                 |     n | Hit Rate@10 |      MRR |    MTTC | TechnicalScore |
 | ----------------------------------- | ----: | ----------: | -------: | ------: | -------------: |
 | Popularity-matched / before optimization |   800 |    1.000000 | 0.972265 | 2.15250 |       0.968630 |
-| **Popularity-matched / ARC**        | **800** | **1.000000** | **0.983663** | **2.12250** | **0.972649** |
+| **Popularity-matched / ARC**        | **800** | **1.000000** | **0.984496** | **2.12125** | **0.972924** |
 | Uniform long-tail / before optimization | 1,000 |    0.996000 | 0.946613 | 2.52900 |       0.951404 |
-| **Uniform long-tail / ARC**         | **1,000** | **0.996000** | **0.974376** | **2.62000** | **0.957913** |
+| **Uniform long-tail / ARC**         | **1,000** | **0.996000** | **0.977408** | **2.61900** | **0.958842** |
 
 These are deterministic synthetic sessions over non-public catalog targets.
 They test whether the design survives outside the 200 public labels; they are
@@ -269,10 +281,10 @@ override, report zero tokens, and leave the catalog byte-identical.
 
 | Resource                               | Measurement |
 | -------------------------------------- | ----------: |
-| Agent startup/index build              |     10.77 s |
-| Mean evaluator wall time per response  |    38.16 ms |
-| Evaluation wall time after startup     |     15.15 s |
-| Peak evaluator + agent resident memory |  466,228 KB |
+| Agent startup/index build              |     11.65 s |
+| Mean evaluator wall time per response  |    38.74 ms |
+| Evaluation wall time after startup     |     15.34 s |
+| Peak evaluator + agent resident memory |  465,644 KB |
 | Prompt / completion tokens             |       0 / 0 |
 | External API calls                     |           0 |
 | Estimated inference cost               |       $0.00 |
@@ -358,9 +370,9 @@ Expected result:
 ```text
 Hit Rate@10  1.000000
 MRR          1.000000
-MTTC         1.985000
-Efficiency   0.901500
-Score        0.980300
+MTTC         1.980000
+Efficiency   0.902000
+Score        0.980400
 ```
 
 Reproduce the non-public-target and robustness diagnostics:
@@ -369,6 +381,7 @@ Reproduce the non-public-target and robustness diagnostics:
 python3 tools/matched_proxy.py
 python3 tools/uniform_proxy.py
 python3 tools/robustness_policy_benchmark.py --count 100
+python3 tools/turn_audit.py    # where every evaluator turn is spent
 ```
 
 Machine-readable results are under [`results/`](results/). Each tool in
