@@ -24,6 +24,48 @@ These results use the unchanged organizer evaluator over all 200 public
 sessions. The submitted runtime uses **zero model tokens, zero network calls,
 no GPU, and only the Python standard library**.
 
+## 🕹️ Try it live
+
+**<https://kelvin715.github.io/techjam-2026-shopping-copilot/>**
+
+Nine pages in the browser. No install, no catalog download, no API key. Pages
+1–3 give the problem, the turn loop, and the organizer result; pages 4–7 replay
+all four turns of one session; page 8 is the evaluation evidence. Arrow keys
+change pages, space plays, `F` is fullscreen. The green `VERIFIED REPLAY` badge
+is earned: the page is published only when a SHA-256 manifest of every recorded
+source still matches the repository.
+
+### 🎮 Page 9 is a playground — go break it
+
+Every one of the **200 public sessions** was replayed through the submitted
+Agent and the unchanged evaluator, and page 9 lets you walk any of them:
+
+- pick a **Scenario** — buying, browsing, intent override, boundary — or leave
+  it on all 200;
+- choose a **Session** id, or press **Random** to sample one;
+- step the **Turn** selector: each step shows only the messages ARC had seen by
+  that point, the list it submitted, and the decision certificate behind it —
+  action, clues held, candidates ruled out, and the score margin;
+- the target product and its rank sit in a panel labelled evaluator-only. It is
+  joined *after* `Agent.respond` returns and is never sent to the Agent.
+
+Deep links land a reviewer directly on a case:
+
+```text
+.../?scene=8&session=public_0187&turn=3
+.../?scene=8&scenario=intent_override
+```
+
+The second tab, **Live Agent**, replaces the recording with the real thing: type
+any shopper message and the submitted `Agent.respond` answers it, then *Explain
+this decision* prints the certificate and the smallest clue removal that would
+change rank one. It needs the 50,000-product catalog, which the data terms keep
+out of this repository, so it runs locally only:
+
+```bash
+python3 demo/server.py --catalog data/catalog.jsonl --live --prewarm
+```
+
 ## 🧭 Why shopping needs more than retrieval
 
 A retrieval system can contain the right product and still create a poor
