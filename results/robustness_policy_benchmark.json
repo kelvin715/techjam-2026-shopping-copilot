@@ -1,0 +1,239 @@
+{
+  "status": "tau_rec_inspired_local_diagnostic_not_official_tau_rec",
+  "catalog_mutation": {
+    "sha256_before": "da979b05a68af864cb0dcf9ee6a81c010c7e66a57978ad286c7a2e005fc69a67",
+    "sha256_after": "da979b05a68af864cb0dcf9ee6a81c010c7e66a57978ad286c7a2e005fc69a67",
+    "unchanged": true
+  },
+  "sample_count": 100,
+  "variants": [
+    "canonical",
+    "surface_noise",
+    "natural_paraphrase",
+    "hidden_one"
+  ],
+  "pass_at_k_note": "Computed across deterministic reveal variants, not stochastic model trials.",
+  "experiments": {
+    "canonical_parser__canonical": {
+      "parser_enabled": false,
+      "reveal_style": "canonical",
+      "hit_rate_at_10": 1.0,
+      "mrr": 0.993333,
+      "mttc": 2.02,
+      "technical_score": 0.9776,
+      "policy_audit": {
+        "session_count": 100,
+        "response_count": 202,
+        "reported_token_usage": 0,
+        "violation_count": 0,
+        "violations_by_type": {},
+        "pass": true
+      },
+      "explanation_audit": {
+        "audited_sessions": 8,
+        "grounded_certificate_rate": 1.0,
+        "counterfactual_found": 7,
+        "faithful_when_found": 1.0,
+        "statuses": {
+          "minimal_counterfactual_found": 7,
+          "top_invariant_to_all_constraint_removals": 1
+        }
+      }
+    },
+    "canonical_parser__surface_noise": {
+      "parser_enabled": false,
+      "reveal_style": "surface_noise",
+      "hit_rate_at_10": 1.0,
+      "mrr": 0.993333,
+      "mttc": 2.02,
+      "technical_score": 0.9776,
+      "policy_audit": {
+        "session_count": 100,
+        "response_count": 202,
+        "reported_token_usage": 0,
+        "violation_count": 0,
+        "violations_by_type": {},
+        "pass": true
+      },
+      "explanation_audit": {
+        "audited_sessions": 8,
+        "grounded_certificate_rate": 1.0,
+        "counterfactual_found": 7,
+        "faithful_when_found": 1.0,
+        "statuses": {
+          "minimal_counterfactual_found": 7,
+          "top_invariant_to_all_constraint_removals": 1
+        }
+      }
+    },
+    "canonical_parser__natural_paraphrase": {
+      "parser_enabled": false,
+      "reveal_style": "natural_paraphrase",
+      "hit_rate_at_10": 0.88,
+      "mrr": 0.51406,
+      "mttc": 4.31,
+      "technical_score": 0.728018,
+      "policy_audit": {
+        "session_count": 100,
+        "response_count": 419,
+        "reported_token_usage": 0,
+        "violation_count": 0,
+        "violations_by_type": {},
+        "pass": true
+      },
+      "explanation_audit": {
+        "audited_sessions": 8,
+        "grounded_certificate_rate": 1.0,
+        "counterfactual_found": 0,
+        "faithful_when_found": null,
+        "statuses": {
+          "no_constraint_evidence_to_remove": 8
+        }
+      }
+    },
+    "canonical_parser__hidden_one": {
+      "parser_enabled": false,
+      "reveal_style": "hidden_one",
+      "hit_rate_at_10": 1.0,
+      "mrr": 0.889528,
+      "mttc": 2.06,
+      "technical_score": 0.945658,
+      "policy_audit": {
+        "session_count": 100,
+        "response_count": 206,
+        "reported_token_usage": 0,
+        "violation_count": 0,
+        "violations_by_type": {},
+        "pass": true
+      },
+      "explanation_audit": {
+        "audited_sessions": 8,
+        "grounded_certificate_rate": 1.0,
+        "counterfactual_found": 7,
+        "faithful_when_found": 1.0,
+        "statuses": {
+          "minimal_counterfactual_found": 7,
+          "top_invariant_to_all_constraint_removals": 1
+        }
+      }
+    },
+    "robust_parser__canonical": {
+      "parser_enabled": true,
+      "reveal_style": "canonical",
+      "hit_rate_at_10": 1.0,
+      "mrr": 0.993333,
+      "mttc": 2.02,
+      "technical_score": 0.9776,
+      "policy_audit": {
+        "session_count": 100,
+        "response_count": 202,
+        "reported_token_usage": 0,
+        "violation_count": 0,
+        "violations_by_type": {},
+        "pass": true
+      },
+      "explanation_audit": {
+        "audited_sessions": 8,
+        "grounded_certificate_rate": 1.0,
+        "counterfactual_found": 7,
+        "faithful_when_found": 1.0,
+        "statuses": {
+          "minimal_counterfactual_found": 7,
+          "top_invariant_to_all_constraint_removals": 1
+        }
+      }
+    },
+    "robust_parser__surface_noise": {
+      "parser_enabled": true,
+      "reveal_style": "surface_noise",
+      "hit_rate_at_10": 1.0,
+      "mrr": 0.993333,
+      "mttc": 2.02,
+      "technical_score": 0.9776,
+      "policy_audit": {
+        "session_count": 100,
+        "response_count": 202,
+        "reported_token_usage": 0,
+        "violation_count": 0,
+        "violations_by_type": {},
+        "pass": true
+      },
+      "explanation_audit": {
+        "audited_sessions": 8,
+        "grounded_certificate_rate": 1.0,
+        "counterfactual_found": 7,
+        "faithful_when_found": 1.0,
+        "statuses": {
+          "minimal_counterfactual_found": 7,
+          "top_invariant_to_all_constraint_removals": 1
+        }
+      }
+    },
+    "robust_parser__natural_paraphrase": {
+      "parser_enabled": true,
+      "reveal_style": "natural_paraphrase",
+      "hit_rate_at_10": 1.0,
+      "mrr": 0.993333,
+      "mttc": 2.02,
+      "technical_score": 0.9776,
+      "policy_audit": {
+        "session_count": 100,
+        "response_count": 202,
+        "reported_token_usage": 0,
+        "violation_count": 0,
+        "violations_by_type": {},
+        "pass": true
+      },
+      "explanation_audit": {
+        "audited_sessions": 8,
+        "grounded_certificate_rate": 1.0,
+        "counterfactual_found": 7,
+        "faithful_when_found": 1.0,
+        "statuses": {
+          "minimal_counterfactual_found": 7,
+          "top_invariant_to_all_constraint_removals": 1
+        }
+      }
+    },
+    "robust_parser__hidden_one": {
+      "parser_enabled": true,
+      "reveal_style": "hidden_one",
+      "hit_rate_at_10": 1.0,
+      "mrr": 0.889528,
+      "mttc": 2.06,
+      "technical_score": 0.945658,
+      "policy_audit": {
+        "session_count": 100,
+        "response_count": 206,
+        "reported_token_usage": 0,
+        "violation_count": 0,
+        "violations_by_type": {},
+        "pass": true
+      },
+      "explanation_audit": {
+        "audited_sessions": 8,
+        "grounded_certificate_rate": 1.0,
+        "counterfactual_found": 7,
+        "faithful_when_found": 1.0,
+        "statuses": {
+          "minimal_counterfactual_found": 7,
+          "top_invariant_to_all_constraint_removals": 1
+        }
+      }
+    }
+  },
+  "aggregate_robustness": {
+    "canonical_parser": {
+      "variant_pass_at_1": 0.97,
+      "variant_pass_at_2": 1.0,
+      "variant_pass_at_4": 1.0,
+      "pass_all_variants": 0.88
+    },
+    "robust_parser": {
+      "variant_pass_at_1": 1.0,
+      "variant_pass_at_2": 1.0,
+      "variant_pass_at_4": 1.0,
+      "pass_all_variants": 1.0
+    }
+  }
+}

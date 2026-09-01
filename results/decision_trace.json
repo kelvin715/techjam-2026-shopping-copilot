@@ -1,0 +1,801 @@
+{
+  "status": "offline_diagnostic_recomputed_from_the_submitted_runtime",
+  "message_source": "unchanged organizer evaluator, canonical reveal",
+  "sample_id": "public_0007",
+  "scenario_type": "browsing",
+  "target_parent_asin": "B08PF98BV4",
+  "target_visibility": "offline_evaluator_only_never_sent_to_agent",
+  "target_product": {
+    "parent_asin": "B08PF98BV4",
+    "title": "RITERA Plus Size Tops for Women Off the Shoulder Cold Shoulder Tops Short Sleeve Shirts Summer Blouses Sexy Tunics Tee XL-5XL",
+    "price": 24.99,
+    "average_rating": 4.3,
+    "rating_number": 797,
+    "store": "RITERA"
+  },
+  "outcome": {
+    "hit": true,
+    "first_hit_turn": 2,
+    "best_rank": 1
+  },
+  "weights": {
+    "typed": 0.3,
+    "signature": 0.7,
+    "popularity": 0.55,
+    "popularity_window": 0.15,
+    "question_turn_cost": 0.02
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "has_evidence": false,
+      "shelf": {
+        "name": "Tees & Blouses Tunics",
+        "count": 519
+      },
+      "constraints": [],
+      "excluded_proven_misses": [],
+      "funnel": {
+        "catalog": 50000,
+        "shelf": 519,
+        "ranked": 519,
+        "prior_eligible": 0,
+        "voi_pool": 512,
+        "emitted": 1
+      },
+      "top": [
+        {
+          "parent_asin": "B08Y8ZJJC1",
+          "title": "LONGYUAN Womens Long Sleeve Fashion Tunic Tops Casual Vneck Shirts Dressy Blouses",
+          "price": 22.98,
+          "average_rating": 4.2,
+          "rating_number": 3932,
+          "rank": 1,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.70658,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "LONGYUAN"
+        },
+        {
+          "parent_asin": "B07BBH2R9M",
+          "title": "Nandashe Womens 3/4 Sleeves Floral Tunic Shirts Summer Casual Dressy Blouse Tops",
+          "price": null,
+          "average_rating": 4.2,
+          "rating_number": 3148,
+          "rank": 2,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.696991,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Nandashe"
+        },
+        {
+          "parent_asin": "B077JXNCPW",
+          "title": "Pink Queen Womens Loose Crew Neck Batwing Sleeve Patches Blouse Top T-Shirts",
+          "price": 21.99,
+          "average_rating": 4.6,
+          "rating_number": 8090,
+          "rank": 3,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.778132,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Pink Queen"
+        },
+        {
+          "parent_asin": "B0BQ32FHW4",
+          "title": "Sieanear Women's Puff Long-Sleeve V-Neck Sweater Casual Tunic Tops",
+          "price": 27.99,
+          "average_rating": 4.2,
+          "rating_number": 720,
+          "rank": 4,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.635144,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Sieanear"
+        },
+        {
+          "parent_asin": "B07C86S5N2",
+          "title": "Woman Within Women's Plus Size Sherpa Sweatshirt",
+          "price": 28.48,
+          "average_rating": 4.2,
+          "rating_number": 851,
+          "rank": 5,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.641988,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Woman Within"
+        },
+        {
+          "parent_asin": "B09MSY8926",
+          "title": "LETDIOSTO Women's Plus Size Tops Casual Blouse Short Sleeve Lace Tunic Tops Fit Flare, M-4XL",
+          "price": 24.99,
+          "average_rating": 4.3,
+          "rating_number": 7609,
+          "rank": 6,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.745426,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "LETDIOSTO"
+        },
+        {
+          "parent_asin": "B08G1N5KS1",
+          "title": "Womens Casual Sweatshirts Long Sleeve Shirts Oversized With Pocket Tunic Tops S-2XL",
+          "price": 29.99,
+          "average_rating": 4.2,
+          "rating_number": 9854,
+          "rank": 7,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.746872,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "XIEERDUO"
+        },
+        {
+          "parent_asin": "B09M5XXWR3",
+          "title": "AWULIFFAN Women's Summer Sleeveless V-Neck T-Shirt Tunic Tops Blouse Shirts",
+          "price": 25.98,
+          "average_rating": 4.4,
+          "rating_number": 14841,
+          "rank": 8,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.785166,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "AWULIFFAN"
+        },
+        {
+          "parent_asin": "B0B4BRW7JT",
+          "title": "KORSIS Summer Dresses For Women Casual T Shirt Dresses Swing Flowy Beach Vacation Sundress with Pockets",
+          "price": 28.99,
+          "average_rating": 4.3,
+          "rating_number": 40492,
+          "rank": 9,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.820825,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "KORSIS"
+        },
+        {
+          "parent_asin": "B07TVDN6JH",
+          "title": "Sarin Mathews Womens Shirts Casual Tee Shirts Short Sleeve Patchwork Color Block Loose Fits Tunic Tops Blouses",
+          "price": 24.99,
+          "average_rating": 4.0,
+          "rating_number": 19378,
+          "rank": 10,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.757189,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Sarin Mathews"
+        },
+        {
+          "parent_asin": "B09V5CMRQX",
+          "title": "CATHY Women's Casual Long Sleeve Ruffle Tunic Tops Loose T Shirt Blouse for Leggings",
+          "price": 25.99,
+          "average_rating": 4.4,
+          "rating_number": 8395,
+          "rank": 11,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.759768,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "CATHY"
+        },
+        {
+          "parent_asin": "B086BMHQDQ",
+          "title": "Halife Women's Floral Printed Short Sleeve Henley V Neck T-Shirt Pleated Casual Flowy Tunic Blouse Tops",
+          "price": 25.99,
+          "average_rating": 4.4,
+          "rating_number": 16495,
+          "rank": 12,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.789919,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Halife"
+        }
+      ],
+      "pool_shape": {
+        "buckets": [
+          519,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min": 0.0,
+        "max": 0.0
+      },
+      "target_rank": 358,
+      "action": "ASK",
+      "reason_codes": [
+        "maximum_answerability_aware_metric_value_of_information"
+      ],
+      "question": "other",
+      "question_value": {
+        "attribute": "other",
+        "candidate_count": 512,
+        "answer_group_count": 254,
+        "expected_remaining": 5.722656,
+        "reduction_ratio": 0.988823,
+        "answerability": 1.0,
+        "expected_hit_at_10": 0.933594,
+        "expected_mrr": 0.632851,
+        "ideal_expected_hit_at_10": 0.933594,
+        "ideal_expected_mrr": 0.632851,
+        "metric_voi": 0.62517,
+        "answerable_metric_voi": 0.62517
+      },
+      "output_gate": {
+        "policy": "risk_calibrated_count_late_4",
+        "mode": "count",
+        "proxy_rank_loss_alpha": 0.18,
+        "emitted_count": 1
+      },
+      "recommendations": [
+        "B08Y8ZJJC1"
+      ],
+      "customer": "I'm looking for Tees & Blouses Tunics, but I'm still exploring.",
+      "agent_message": "Got it. Anything else that matters for this one?",
+      "ask_attribute": "other"
+    },
+    {
+      "turn": 2,
+      "has_evidence": true,
+      "shelf": {
+        "name": "Tees & Blouses Tunics",
+        "count": 519
+      },
+      "constraints": [
+        {
+          "text": "polyester",
+          "confidence": 1.0
+        },
+        {
+          "text": "75% Polyester, 20% Rayon, 5% Spandex",
+          "confidence": 1.0
+        }
+      ],
+      "excluded_proven_misses": [
+        {
+          "parent_asin": "B08Y8ZJJC1",
+          "title": "LONGYUAN Womens Long Sleeve Fashion Tunic Tops Casual Vneck Shirts Dressy Blouses",
+          "price": 22.98,
+          "average_rating": 4.2,
+          "rating_number": 3932,
+          "store": "LONGYUAN"
+        }
+      ],
+      "funnel": {
+        "catalog": 50000,
+        "shelf": 519,
+        "ranked": 518,
+        "prior_eligible": 1,
+        "voi_pool": 10,
+        "emitted": 1
+      },
+      "top": [
+        {
+          "parent_asin": "B08PF98BV4",
+          "title": "RITERA Plus Size Tops for Women Off the Shoulder Cold Shoulder Tops Short Sleeve Shirts Summer Blouses Sexy Tunics Tee XL-5XL",
+          "price": 24.99,
+          "average_rating": 4.3,
+          "rating_number": 797,
+          "rank": 1,
+          "final_score": 2.357114,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.649299,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": true,
+          "store": "RITERA"
+        },
+        {
+          "parent_asin": "B0BR3J4BX7",
+          "title": "Rapbin Summer Shirts for Women Causal Short Sleeve Tops Solid Color Sweetheart Neckline Top with Ruffle Cuffs",
+          "price": null,
+          "average_rating": 4.6,
+          "rating_number": 64,
+          "rank": 2,
+          "final_score": 1.150093,
+          "core_score": 1.150093,
+          "core_gap_to_best": 0.849907,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.83125,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.581797,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.7
+            }
+          ],
+          "is_target": false,
+          "store": "Rapbin"
+        },
+        {
+          "parent_asin": "B0B8NB7BF2",
+          "title": "Luckymore Women's Casual Long Sleeve Tunic Tops Loose Fit Pleated Fall Shirts Blouse M-3XL",
+          "price": null,
+          "average_rating": 4.2,
+          "rating_number": 397,
+          "rank": 3,
+          "final_score": 1.150093,
+          "core_score": 1.150093,
+          "core_gap_to_best": 0.849907,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.83125,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.611142,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.7
+            }
+          ],
+          "is_target": false,
+          "store": "LuckyMore"
+        },
+        {
+          "parent_asin": "B09VY9TD7N",
+          "title": "Womens Tops Dressy Casual Plus Size Tunic Tops Loose Petal Sleeve T Shirts Lightweight Cute Blouses, Green Boho 3X-Large",
+          "price": null,
+          "average_rating": 3.6,
+          "rating_number": 4,
+          "rank": 4,
+          "final_score": 1.150093,
+          "core_score": 1.150093,
+          "core_gap_to_best": 0.849907,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.83125,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.397003,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.7
+            }
+          ],
+          "is_target": false,
+          "store": "VIVIfashion"
+        },
+        {
+          "parent_asin": "B08ZXV5Q2F",
+          "title": "Hsdjfhe Women's V Neck Basic Color Block T-Shirts Short Sleeve Casual Summer Loose Tunic Tee Tops (Purple,Large,)",
+          "price": 15.99,
+          "average_rating": 5.0,
+          "rating_number": 2,
+          "rank": 5,
+          "final_score": 1.150093,
+          "core_score": 1.150093,
+          "core_gap_to_best": 0.849907,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.83125,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.522959,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.7
+            }
+          ],
+          "is_target": false,
+          "store": "Hsdjfhe"
+        },
+        {
+          "parent_asin": "B07J3C2Y2X",
+          "title": "DJT Women\u2019s Long Sleeve Textured Side Slit Pullover Tunic Tops",
+          "price": null,
+          "average_rating": 4.0,
+          "rating_number": 161,
+          "rank": 6,
+          "final_score": 1.100172,
+          "core_score": 1.100172,
+          "core_gap_to_best": 0.899828,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.83125,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.555968,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.7
+            }
+          ],
+          "is_target": false,
+          "store": "DJT"
+        },
+        {
+          "parent_asin": "B0BD4QJ21V",
+          "title": "MixShe Womens Tops Long Sleeve Shirts Fall Clothes Dressy Casual V Neck Blouses Fashion Ladies Tunics Loose Fitting Tees",
+          "price": 25.99,
+          "average_rating": 4.1,
+          "rating_number": 84,
+          "rank": 7,
+          "final_score": 1.100172,
+          "core_score": 1.100172,
+          "core_gap_to_best": 0.899828,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.83125,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.541658,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.7
+            }
+          ],
+          "is_target": false,
+          "store": "MixShe"
+        },
+        {
+          "parent_asin": "B07R8JTSL7",
+          "title": "Bulotus Tunic Tops for Leggings for Women Plus Size Shirts Short Sleeve (Paisley Blue, Large)",
+          "price": null,
+          "average_rating": 2.2,
+          "rating_number": 2,
+          "rank": 8,
+          "final_score": 1.060797,
+          "core_score": 1.060797,
+          "core_gap_to_best": 0.939203,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.7,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.242959,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.466667
+            }
+          ],
+          "is_target": false,
+          "store": "Bulotus"
+        },
+        {
+          "parent_asin": "B084177K12",
+          "title": "DA GRACE Womens high-Low Tunic Tops Plus Size 3/4 Sleeve Scoop Neck Flare Swing Loose fit Made in USA",
+          "price": null,
+          "average_rating": 4.2,
+          "rating_number": 295,
+          "rank": 9,
+          "final_score": 1.060797,
+          "core_score": 1.060797,
+          "core_gap_to_best": 0.939203,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.7,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.599399,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.466667
+            }
+          ],
+          "is_target": false,
+          "store": "DA GRACE"
+        },
+        {
+          "parent_asin": "B07WRV215D",
+          "title": "Amzbeauty Women's Long Sleeve Crew Neck Cute Tunic Color Block Tops with Pocket",
+          "price": 17.89,
+          "average_rating": 4.2,
+          "rating_number": 67,
+          "rank": 10,
+          "final_score": 1.060797,
+          "core_score": 1.060797,
+          "core_gap_to_best": 0.939203,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.7,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.543445,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.466667
+            }
+          ],
+          "is_target": false,
+          "store": "Amzbeauty"
+        },
+        {
+          "parent_asin": "B07KRTKHS5",
+          "title": "AMCLOS Womens V Neck Tie Dye Leopard Tops Check Color Block Tunic Casual Soft Long/Short Sleeve Shirts",
+          "price": null,
+          "average_rating": 3.8,
+          "rating_number": 638,
+          "rank": 11,
+          "final_score": 1.060797,
+          "core_score": 1.060797,
+          "core_gap_to_best": 0.939203,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.7,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.590222,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.466667
+            }
+          ],
+          "is_target": false,
+          "store": "AMCLOS"
+        },
+        {
+          "parent_asin": "B07CKYR5B3",
+          "title": "Uniboutique Womens Cold Shoulder Tops Long Sleeve Lace Trim Tunic Tops for Leggings",
+          "price": null,
+          "average_rating": 4.0,
+          "rating_number": 236,
+          "rank": 12,
+          "final_score": 1.060797,
+          "core_score": 1.060797,
+          "core_gap_to_best": 0.939203,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.7,
+          "signature_likelihood": 0.5,
+          "popularity_prior": 0.570681,
+          "constraint_evidence": [
+            {
+              "constraint": "polyester",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "75% polyester, 20% rayon, 5% spandex",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.466667
+            }
+          ],
+          "is_target": false,
+          "store": "Uniboutique"
+        }
+      ],
+      "pool_shape": {
+        "buckets": [
+          227,
+          59,
+          0,
+          16,
+          45,
+          9,
+          0,
+          0,
+          0,
+          88,
+          67,
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "min": 0.0,
+        "max": 2.357114
+      },
+      "target_rank": 1,
+      "action": "ASK",
+      "reason_codes": [
+        "previously_shown_products_excluded",
+        "maximum_answerability_aware_metric_value_of_information"
+      ],
+      "question": "other",
+      "question_value": {
+        "attribute": "other",
+        "candidate_count": 10,
+        "answer_group_count": 9,
+        "expected_remaining": 1.2,
+        "reduction_ratio": 0.88,
+        "answerability": 1.0,
+        "expected_hit_at_10": 1.0,
+        "expected_mrr": 0.95,
+        "ideal_expected_hit_at_10": 1.0,
+        "ideal_expected_mrr": 0.95,
+        "metric_voi": 0.177131,
+        "answerable_metric_voi": 0.177131
+      },
+      "output_gate": {
+        "policy": "risk_calibrated_count_late_4",
+        "mode": "count",
+        "proxy_rank_loss_alpha": 0.18,
+        "emitted_count": 1
+      },
+      "recommendations": [
+        "B08PF98BV4"
+      ],
+      "customer": "For that, what matters is: polyester; 75% Polyester, 20% Rayon, 5% Spandex.",
+      "agent_message": "Got it. Anything else that matters for this one?",
+      "ask_attribute": "other"
+    }
+  ]
+}

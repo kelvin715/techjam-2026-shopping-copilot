@@ -1,0 +1,21 @@
+{
+  "status": "diagnostic_only_not_an_official_private_score",
+  "sample_count": 800,
+  "sampling": "nearest-unused catalog target matched to a sampled public target rating_number",
+  "seed": 20260825,
+  "target_popularity": {
+    "median_rating_number": 3155,
+    "p25_rating_number": 846,
+    "p75_rating_number": 5948
+  },
+  "hit_rate_at_10": 1.0,
+  "mrr": 0.972265,
+  "mttc": 2.1525,
+  "technical_score": 0.96863,
+  "scenario_metrics": {
+    "boundary": {"n": 40, "hit_rate_at_10": 1.0, "mrr": 0.9775, "mttc": 2.75},
+    "browsing": {"n": 320, "hit_rate_at_10": 1.0, "mrr": 0.982999, "mttc": 2.05},
+    "buying": {"n": 320, "hit_rate_at_10": 1.0, "mrr": 0.97276, "mttc": 1.64375},
+    "intent_override": {"n": 120, "hit_rate_at_10": 1.0, "mrr": 0.940575, "mttc": 3.583333}
+  }
+}

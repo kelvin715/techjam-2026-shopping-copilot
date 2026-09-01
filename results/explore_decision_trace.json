@@ -1,0 +1,1729 @@
+{
+  "status": "offline_diagnostic_recomputed_from_the_submitted_runtime",
+  "message_source": "unchanged organizer evaluator, canonical reveal",
+  "sample_id": "public_0187",
+  "scenario_type": "boundary",
+  "target_parent_asin": "B000GQ1F3O",
+  "target_visibility": "offline_evaluator_only_never_sent_to_agent",
+  "target_product": {
+    "parent_asin": "B000GQ1F3O",
+    "title": "Eastland Men's Newport Slip-On Shoe",
+    "price": null,
+    "average_rating": 4.4,
+    "rating_number": 542,
+    "store": "Eastland"
+  },
+  "outcome": {
+    "hit": true,
+    "first_hit_turn": 4,
+    "best_rank": 1
+  },
+  "weights": {
+    "typed": 0.3,
+    "signature": 0.7,
+    "popularity": 0.55,
+    "popularity_window": 0.15,
+    "question_turn_cost": 0.02
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "has_evidence": false,
+      "shelf": {
+        "name": "Shoes Loafers & Slip-Ons",
+        "count": 665
+      },
+      "constraints": [],
+      "excluded_proven_misses": [],
+      "funnel": {
+        "catalog": 50000,
+        "shelf": 665,
+        "ranked": 665,
+        "prior_eligible": 0,
+        "voi_pool": 512,
+        "emitted": 1
+      },
+      "top": [
+        {
+          "parent_asin": "B01NBPCYI3",
+          "title": "labato Women\u2019s Leather Loafers Comfortable Slip on Leather Driving Shoes Casual Flat Shoes\uff0810,Brown",
+          "price": null,
+          "average_rating": 3.9,
+          "rating_number": 54,
+          "rank": 1,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.505735,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "labato"
+        },
+        {
+          "parent_asin": "B08HSJ6764",
+          "title": "Clarks Women's, Kayleigh River Slip-On",
+          "price": null,
+          "average_rating": 4.3,
+          "rating_number": 253,
+          "rank": 2,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.603389,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Clarks"
+        },
+        {
+          "parent_asin": "B004QMSTGA",
+          "title": "BEARPAW Men's Moc II Multiple Colors | Men's Slipper | Men's Shoe | Comfortable & Lightweight",
+          "price": 49.96,
+          "average_rating": 4.6,
+          "rating_number": 8571,
+          "rank": 3,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.780686,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "BEARPAW"
+        },
+        {
+          "parent_asin": "B09GF1RWH5",
+          "title": "Hey Dude Men's Wally Funk-Multiple Colors and Size | Men\u2019s Shoes | Comfortable & Light-Weight",
+          "price": 59.95,
+          "average_rating": 4.7,
+          "rating_number": 38158,
+          "rank": 4,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.858093,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Hey Dude"
+        },
+        {
+          "parent_asin": "B087S13L3Q",
+          "title": "Clarks Women's Sharon Dolly Loafer",
+          "price": 94.66,
+          "average_rating": 4.4,
+          "rating_number": 3970,
+          "rank": 5,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.726996,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Clarks"
+        },
+        {
+          "parent_asin": "B07F5GJJFJ",
+          "title": "Artisure Women's Classic Genuine Leather Penny Loafers Driving Moccasins Casual Slip On Boat Shoes Fashion Comfort Flats",
+          "price": 39.99,
+          "average_rating": 4.1,
+          "rating_number": 5826,
+          "rank": 6,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.713693,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Artisure"
+        },
+        {
+          "parent_asin": "B083TP77QV",
+          "title": "Lucky Brand Women's Canyen Flat Loafer",
+          "price": null,
+          "average_rating": 4.1,
+          "rating_number": 97,
+          "rank": 7,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.546951,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Lucky Brand"
+        },
+        {
+          "parent_asin": "B09VRSZ81X",
+          "title": "Hey Dude Men's Wally Flow Multiple Colors | Men\u2019s Shoes | Men's Lace Up Loafers | Comfortable & Light-Weight",
+          "price": 59.95,
+          "average_rating": 4.8,
+          "rating_number": 1545,
+          "rank": 8,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.726756,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Hey Dude"
+        },
+        {
+          "parent_asin": "B071RG3CCH",
+          "title": "Go Tour Men's Premium Genuine Leather Casual Slip on Loafers Breathable Driving Shoes Fashion Slipper",
+          "price": 49.99,
+          "average_rating": 4.2,
+          "rating_number": 7815,
+          "rank": 9,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.736605,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Go Tour"
+        },
+        {
+          "parent_asin": "B0B6DF75NR",
+          "title": "Hurley Men's Jordan Sneakers",
+          "price": null,
+          "average_rating": 4.3,
+          "rating_number": 507,
+          "rank": 10,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.630931,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Hurley"
+        },
+        {
+          "parent_asin": "B09BN8WM1T",
+          "title": "FUSHITON Mens Loafers Slip On Comfortable and Breathable Soft Sole Walking Shoes Male Sneakers Casual Outdoor Lightweight",
+          "price": 38.99,
+          "average_rating": 4.1,
+          "rating_number": 733,
+          "rank": 11,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.625875,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "FUSHITON"
+        },
+        {
+          "parent_asin": "B086PTRJKW",
+          "title": "CYBLING Women's Chic Bowtie Pointed Toe Loafers Comfortable Slip On PU Leather Driving Shoes Casual Ballet Flats",
+          "price": null,
+          "average_rating": 3.4,
+          "rating_number": 8,
+          "rank": 12,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.394606,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "CYBLING"
+        }
+      ],
+      "pool_shape": {
+        "buckets": [
+          665,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min": 0.0,
+        "max": 0.0
+      },
+      "target_rank": 94,
+      "action": "ASK",
+      "reason_codes": [
+        "maximum_answerability_aware_metric_value_of_information"
+      ],
+      "question": "feature",
+      "question_value": {
+        "attribute": "feature",
+        "candidate_count": 512,
+        "answer_group_count": 238,
+        "expected_remaining": 17.003906,
+        "reduction_ratio": 0.966789,
+        "answerability": 0.976562,
+        "expected_hit_at_10": 0.707031,
+        "expected_mrr": 0.535245,
+        "ideal_expected_hit_at_10": 0.726562,
+        "ideal_expected_mrr": 0.540965,
+        "metric_voi": 0.494089,
+        "answerable_metric_voi": 0.482607
+      },
+      "output_gate": {
+        "policy": "risk_calibrated_count_late_4",
+        "mode": "count",
+        "proxy_rank_loss_alpha": 0.18,
+        "emitted_count": 1
+      },
+      "recommendations": [
+        "B01NBPCYI3"
+      ],
+      "customer": "I'm looking for Shoes Loafers & Slip-Ons, but I'm still exploring.",
+      "agent_message": "Do you have a preference on feature?",
+      "ask_attribute": "feature"
+    },
+    {
+      "turn": 2,
+      "has_evidence": false,
+      "shelf": {
+        "name": "Shoes Loafers & Slip-Ons",
+        "count": 665
+      },
+      "constraints": [],
+      "excluded_proven_misses": [
+        {
+          "parent_asin": "B01NBPCYI3",
+          "title": "labato Women\u2019s Leather Loafers Comfortable Slip on Leather Driving Shoes Casual Flat Shoes\uff0810,Brown",
+          "price": null,
+          "average_rating": 3.9,
+          "rating_number": 54,
+          "store": "labato"
+        }
+      ],
+      "funnel": {
+        "catalog": 50000,
+        "shelf": 665,
+        "ranked": 664,
+        "prior_eligible": 0,
+        "voi_pool": null,
+        "emitted": 1
+      },
+      "top": [
+        {
+          "parent_asin": "B08HSJ6764",
+          "title": "Clarks Women's, Kayleigh River Slip-On",
+          "price": null,
+          "average_rating": 4.3,
+          "rating_number": 253,
+          "rank": 1,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.603389,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Clarks"
+        },
+        {
+          "parent_asin": "B004QMSTGA",
+          "title": "BEARPAW Men's Moc II Multiple Colors | Men's Slipper | Men's Shoe | Comfortable & Lightweight",
+          "price": 49.96,
+          "average_rating": 4.6,
+          "rating_number": 8571,
+          "rank": 2,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.780686,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "BEARPAW"
+        },
+        {
+          "parent_asin": "B09GF1RWH5",
+          "title": "Hey Dude Men's Wally Funk-Multiple Colors and Size | Men\u2019s Shoes | Comfortable & Light-Weight",
+          "price": 59.95,
+          "average_rating": 4.7,
+          "rating_number": 38158,
+          "rank": 3,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.858093,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Hey Dude"
+        },
+        {
+          "parent_asin": "B087S13L3Q",
+          "title": "Clarks Women's Sharon Dolly Loafer",
+          "price": 94.66,
+          "average_rating": 4.4,
+          "rating_number": 3970,
+          "rank": 4,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.726996,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Clarks"
+        },
+        {
+          "parent_asin": "B07F5GJJFJ",
+          "title": "Artisure Women's Classic Genuine Leather Penny Loafers Driving Moccasins Casual Slip On Boat Shoes Fashion Comfort Flats",
+          "price": 39.99,
+          "average_rating": 4.1,
+          "rating_number": 5826,
+          "rank": 5,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.713693,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Artisure"
+        },
+        {
+          "parent_asin": "B083TP77QV",
+          "title": "Lucky Brand Women's Canyen Flat Loafer",
+          "price": null,
+          "average_rating": 4.1,
+          "rating_number": 97,
+          "rank": 6,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.546951,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Lucky Brand"
+        },
+        {
+          "parent_asin": "B09VRSZ81X",
+          "title": "Hey Dude Men's Wally Flow Multiple Colors | Men\u2019s Shoes | Men's Lace Up Loafers | Comfortable & Light-Weight",
+          "price": 59.95,
+          "average_rating": 4.8,
+          "rating_number": 1545,
+          "rank": 7,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.726756,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Hey Dude"
+        },
+        {
+          "parent_asin": "B071RG3CCH",
+          "title": "Go Tour Men's Premium Genuine Leather Casual Slip on Loafers Breathable Driving Shoes Fashion Slipper",
+          "price": 49.99,
+          "average_rating": 4.2,
+          "rating_number": 7815,
+          "rank": 8,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.736605,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Go Tour"
+        },
+        {
+          "parent_asin": "B0B6DF75NR",
+          "title": "Hurley Men's Jordan Sneakers",
+          "price": null,
+          "average_rating": 4.3,
+          "rating_number": 507,
+          "rank": 9,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.630931,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "Hurley"
+        },
+        {
+          "parent_asin": "B09BN8WM1T",
+          "title": "FUSHITON Mens Loafers Slip On Comfortable and Breathable Soft Sole Walking Shoes Male Sneakers Casual Outdoor Lightweight",
+          "price": 38.99,
+          "average_rating": 4.1,
+          "rating_number": 733,
+          "rank": 10,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.625875,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "FUSHITON"
+        },
+        {
+          "parent_asin": "B086PTRJKW",
+          "title": "CYBLING Women's Chic Bowtie Pointed Toe Loafers Comfortable Slip On PU Leather Driving Shoes Casual Ballet Flats",
+          "price": null,
+          "average_rating": 3.4,
+          "rating_number": 8,
+          "rank": 11,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.394606,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "CYBLING"
+        },
+        {
+          "parent_asin": "B0BBWJNL9X",
+          "title": "VenusCelia Women's Comfort Walking Boat Shoe",
+          "price": 27.99,
+          "average_rating": 4.3,
+          "rating_number": 18536,
+          "rank": 12,
+          "final_score": 0.0,
+          "core_score": 0.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.0,
+          "signature_likelihood": 0.0,
+          "popularity_prior": 0.785181,
+          "constraint_evidence": [],
+          "is_target": false,
+          "store": "VenusCelia"
+        }
+      ],
+      "pool_shape": {
+        "buckets": [
+          664,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "min": 0.0,
+        "max": 0.0
+      },
+      "target_rank": 93,
+      "action": "ASK",
+      "reason_codes": [
+        "previously_shown_products_excluded",
+        "boundary_safe_open_question"
+      ],
+      "question": "other",
+      "question_value": {},
+      "output_gate": {
+        "policy": "risk_calibrated_count_late_4",
+        "mode": "count",
+        "proxy_rank_loss_alpha": 0.18,
+        "emitted_count": 1
+      },
+      "recommendations": [
+        "B08HSJ6764"
+      ],
+      "customer": "I don't have a preference for feature; please use your judgment.",
+      "agent_message": "Got it. Anything else that matters for this one?",
+      "ask_attribute": "other"
+    },
+    {
+      "turn": 3,
+      "has_evidence": true,
+      "shelf": {
+        "name": "Shoes Loafers & Slip-Ons",
+        "count": 665
+      },
+      "constraints": [
+        {
+          "text": "leather",
+          "confidence": 1.0
+        },
+        {
+          "text": "100% Leather",
+          "confidence": 1.0
+        }
+      ],
+      "excluded_proven_misses": [
+        {
+          "parent_asin": "B01NBPCYI3",
+          "title": "labato Women\u2019s Leather Loafers Comfortable Slip on Leather Driving Shoes Casual Flat Shoes\uff0810,Brown",
+          "price": null,
+          "average_rating": 3.9,
+          "rating_number": 54,
+          "store": "labato"
+        },
+        {
+          "parent_asin": "B08HSJ6764",
+          "title": "Clarks Women's, Kayleigh River Slip-On",
+          "price": null,
+          "average_rating": 4.3,
+          "rating_number": 253,
+          "store": "Clarks"
+        }
+      ],
+      "funnel": {
+        "catalog": 50000,
+        "shelf": 665,
+        "ranked": 663,
+        "prior_eligible": 211,
+        "voi_pool": null,
+        "emitted": 1
+      },
+      "top": [
+        {
+          "parent_asin": "B002OHE4D6",
+          "title": "Dockers Proposal - Genuine Full-Grain Leather Slip-On Loafer Dress Shoes for Men Featuring All Motion Comfort Technology, EVA Sock Lining, and Durable Rubber Outsole",
+          "price": null,
+          "average_rating": 4.3,
+          "rating_number": 3751,
+          "rank": 1,
+          "final_score": 2.392998,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.714543,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "Dockers"
+        },
+        {
+          "parent_asin": "B003WZ4330",
+          "title": "Bostonian Men's Bolton Dress Slip-On",
+          "price": null,
+          "average_rating": 4.4,
+          "rating_number": 2015,
+          "rank": 2,
+          "final_score": 2.383876,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.697956,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "Bostonian"
+        },
+        {
+          "parent_asin": "B002JEUT92",
+          "title": "Dr. Martens Men's Tevin Slip-On Shoe",
+          "price": null,
+          "average_rating": 4.6,
+          "rating_number": 975,
+          "rank": 3,
+          "final_score": 2.378175,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.68759,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "Dr. Martens"
+        },
+        {
+          "parent_asin": "B00LVTONZM",
+          "title": "KEEN Women's Kaci Full-Grain Slip On Shoe",
+          "price": null,
+          "average_rating": 4.4,
+          "rating_number": 1179,
+          "rank": 4,
+          "final_score": 2.371504,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.675462,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "KEEN"
+        },
+        {
+          "parent_asin": "B00HF6PKY8",
+          "title": "Merrell Women's Dassie Buckle Slip-on Shoe",
+          "price": null,
+          "average_rating": 4.6,
+          "rating_number": 678,
+          "rank": 5,
+          "final_score": 2.369982,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.672694,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "Merrell"
+        },
+        {
+          "parent_asin": "B00MMYD5FE",
+          "title": "Clarks Men's Allston Free Slip-On Loafer",
+          "price": null,
+          "average_rating": 4.6,
+          "rating_number": 606,
+          "rank": 6,
+          "final_score": 2.367474,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.668134,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "Clarks"
+        },
+        {
+          "parent_asin": "B07D3VMBNB",
+          "title": "Sperry Men's Cup 2-Eye Leather Boat Shoe",
+          "price": null,
+          "average_rating": 4.6,
+          "rating_number": 485,
+          "rank": 7,
+          "final_score": 2.362531,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.659148,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "Sperry"
+        },
+        {
+          "parent_asin": "B0010ERDSC",
+          "title": "G.H. Bass & Co. Men's Larson Penny Loafer",
+          "price": null,
+          "average_rating": 4.4,
+          "rating_number": 617,
+          "rank": 8,
+          "final_score": 2.356875,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.648863,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "G.H. Bass & Co."
+        },
+        {
+          "parent_asin": "B004FXOH3E",
+          "title": "Rockport Men's BL Moc Slip-On Casual Loafer",
+          "price": null,
+          "average_rating": 4.4,
+          "rating_number": 555,
+          "rank": 9,
+          "final_score": 2.354517,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.644577,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "Rockport"
+        },
+        {
+          "parent_asin": "B000GQ1F3O",
+          "title": "Eastland Men's Newport Slip-On Shoe",
+          "price": null,
+          "average_rating": 4.4,
+          "rating_number": 542,
+          "rank": 10,
+          "final_score": 2.353991,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.64362,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": true,
+          "store": "Eastland"
+        },
+        {
+          "parent_asin": "B006T6CT4E",
+          "title": "Olukai Women's Nalukai Leather Shoes",
+          "price": null,
+          "average_rating": 4.7,
+          "rating_number": 214,
+          "rank": 11,
+          "final_score": 2.350289,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.636889,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "OLUKAI"
+        },
+        {
+          "parent_asin": "B00DNNPDB2",
+          "title": "Olukai Women's Nalukai Leather Shoes",
+          "price": null,
+          "average_rating": 4.7,
+          "rating_number": 214,
+          "rank": 12,
+          "final_score": 2.350289,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.636889,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": false,
+          "store": "OLUKAI"
+        }
+      ],
+      "pool_shape": {
+        "buckets": [
+          257,
+          1,
+          0,
+          0,
+          2,
+          7,
+          1,
+          0,
+          0,
+          0,
+          6,
+          129,
+          36,
+          0,
+          0,
+          0,
+          13,
+          0,
+          0,
+          0,
+          2,
+          22,
+          117,
+          70
+        ],
+        "min": 0.0,
+        "max": 2.392998
+      },
+      "target_rank": 10,
+      "action": "ASK",
+      "reason_codes": [
+        "previously_shown_products_excluded",
+        "boundary_safe_open_question"
+      ],
+      "question": "other",
+      "question_value": {},
+      "output_gate": {
+        "policy": "risk_calibrated_count_late_4",
+        "mode": "count",
+        "proxy_rank_loss_alpha": 0.18,
+        "emitted_count": 1
+      },
+      "recommendations": [
+        "B002OHE4D6"
+      ],
+      "customer": "For that, what matters is: leather; 100% Leather.",
+      "agent_message": "Got it. Anything else that matters for this one?",
+      "ask_attribute": "other"
+    },
+    {
+      "turn": 4,
+      "has_evidence": true,
+      "shelf": {
+        "name": "Shoes Loafers & Slip-Ons",
+        "count": 665
+      },
+      "constraints": [
+        {
+          "text": "leather",
+          "confidence": 1.0
+        },
+        {
+          "text": "100% Leather",
+          "confidence": 1.0
+        },
+        {
+          "text": "Leather sole",
+          "confidence": 1.0
+        },
+        {
+          "text": "Leather slip-on featuring dual gore panels at entry and padded collar",
+          "confidence": 1.0
+        }
+      ],
+      "excluded_proven_misses": [
+        {
+          "parent_asin": "B002OHE4D6",
+          "title": "Dockers Proposal - Genuine Full-Grain Leather Slip-On Loafer Dress Shoes for Men Featuring All Motion Comfort Technology, EVA Sock Lining, and Durable Rubber Outsole",
+          "price": null,
+          "average_rating": 4.3,
+          "rating_number": 3751,
+          "store": "Dockers"
+        },
+        {
+          "parent_asin": "B01NBPCYI3",
+          "title": "labato Women\u2019s Leather Loafers Comfortable Slip on Leather Driving Shoes Casual Flat Shoes\uff0810,Brown",
+          "price": null,
+          "average_rating": 3.9,
+          "rating_number": 54,
+          "store": "labato"
+        },
+        {
+          "parent_asin": "B08HSJ6764",
+          "title": "Clarks Women's, Kayleigh River Slip-On",
+          "price": null,
+          "average_rating": 4.3,
+          "rating_number": 253,
+          "store": "Clarks"
+        }
+      ],
+      "funnel": {
+        "catalog": 50000,
+        "shelf": 665,
+        "ranked": 662,
+        "prior_eligible": 1,
+        "voi_pool": null,
+        "emitted": 10
+      },
+      "top": [
+        {
+          "parent_asin": "B000GQ1F3O",
+          "title": "Eastland Men's Newport Slip-On Shoe",
+          "price": null,
+          "average_rating": 4.4,
+          "rating_number": 542,
+          "rank": 1,
+          "final_score": 2.353991,
+          "core_score": 2.0,
+          "core_gap_to_best": 0.0,
+          "prior_eligible": true,
+          "typed_satisfaction": 1.0,
+          "signature_likelihood": 1.0,
+          "popularity_prior": 0.64362,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            }
+          ],
+          "is_target": true,
+          "store": "Eastland"
+        },
+        {
+          "parent_asin": "B006HZDUN6",
+          "title": "Cole Haan Men's Air Lorenzo Driving Loafer",
+          "price": null,
+          "average_rating": 3.6,
+          "rating_number": 21,
+          "rank": 2,
+          "final_score": 1.334811,
+          "core_score": 1.334811,
+          "core_gap_to_best": 0.665189,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.762051,
+          "signature_likelihood": 0.75,
+          "popularity_prior": 0.443662,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.42
+            }
+          ],
+          "is_target": false,
+          "store": "Cole Haan"
+        },
+        {
+          "parent_asin": "B003WZ4330",
+          "title": "Bostonian Men's Bolton Dress Slip-On",
+          "price": null,
+          "average_rating": 4.4,
+          "rating_number": 2015,
+          "rank": 3,
+          "final_score": 1.31423,
+          "core_score": 1.31423,
+          "core_gap_to_best": 0.68577,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.733333,
+          "signature_likelihood": 0.75,
+          "popularity_prior": 0.697956,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.35
+            }
+          ],
+          "is_target": false,
+          "store": "Bostonian"
+        },
+        {
+          "parent_asin": "B001TDL1FA",
+          "title": "Allen Edmonds Men's Manchester Wing Tip Loafer",
+          "price": null,
+          "average_rating": 3.5,
+          "rating_number": 8,
+          "rank": 4,
+          "final_score": 1.273067,
+          "core_score": 1.273067,
+          "core_gap_to_best": 0.726933,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.675897,
+          "signature_likelihood": 0.75,
+          "popularity_prior": 0.404606,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.21
+            }
+          ],
+          "is_target": false,
+          "store": "Allen Edmonds"
+        },
+        {
+          "parent_asin": "B005VNW46O",
+          "title": "Luiza Barcelos Women's AV060C Slip-On Loafer",
+          "price": null,
+          "average_rating": 4.5,
+          "rating_number": 2,
+          "rank": 5,
+          "final_score": 1.273067,
+          "core_score": 1.273067,
+          "core_gap_to_best": 0.726933,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.675897,
+          "signature_likelihood": 0.75,
+          "popularity_prior": 0.472959,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.21
+            }
+          ],
+          "is_target": false,
+          "store": "Luiza Barcelos"
+        },
+        {
+          "parent_asin": "B016ZLC9IS",
+          "title": "Roberto Cavalli Men's Loafer",
+          "price": null,
+          "average_rating": 1.0,
+          "rating_number": 1,
+          "rank": 6,
+          "final_score": 1.273067,
+          "core_score": 1.273067,
+          "core_gap_to_best": 0.726933,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.675897,
+          "signature_likelihood": 0.75,
+          "popularity_prior": 0.11291,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.21
+            }
+          ],
+          "is_target": false,
+          "store": "ROBERTO CAVALLI"
+        },
+        {
+          "parent_asin": "B002LZTH1U",
+          "title": "G.H. Bass & Co. Men's Gilman Loafer",
+          "price": null,
+          "average_rating": 4.3,
+          "rating_number": 14,
+          "rank": 7,
+          "final_score": 1.273067,
+          "core_score": 1.273067,
+          "core_gap_to_best": 0.726933,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.675897,
+          "signature_likelihood": 0.75,
+          "popularity_prior": 0.500911,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.21
+            }
+          ],
+          "is_target": false,
+          "store": "Bass"
+        },
+        {
+          "parent_asin": "B005EUDPOO",
+          "title": "Cole Haan Men's Air Tremont Penny Loafer",
+          "price": null,
+          "average_rating": 4.0,
+          "rating_number": 9,
+          "rank": 8,
+          "final_score": 1.273067,
+          "core_score": 1.273067,
+          "core_gap_to_best": 0.726933,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.675897,
+          "signature_likelihood": 0.75,
+          "popularity_prior": 0.457898,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.21
+            }
+          ],
+          "is_target": false,
+          "store": "Cole Haan"
+        },
+        {
+          "parent_asin": "B004K14PN8",
+          "title": "Dansko Men's Travis",
+          "price": null,
+          "average_rating": 3.2,
+          "rating_number": 31,
+          "rank": 9,
+          "final_score": 1.273067,
+          "core_score": 1.273067,
+          "core_gap_to_best": 0.726933,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.675897,
+          "signature_likelihood": 0.75,
+          "popularity_prior": 0.416525,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.21
+            }
+          ],
+          "is_target": false,
+          "store": "Dansko"
+        },
+        {
+          "parent_asin": "B006PBS7SA",
+          "title": "Jo Ghost Men's 1438 Vernice Loafer",
+          "price": null,
+          "average_rating": 5.0,
+          "rating_number": 1,
+          "rank": 10,
+          "final_score": 1.252486,
+          "core_score": 1.252486,
+          "core_gap_to_best": 0.747514,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.647179,
+          "signature_likelihood": 0.75,
+          "popularity_prior": 0.51291,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.14
+            }
+          ],
+          "is_target": false,
+          "store": "Jo Ghost"
+        },
+        {
+          "parent_asin": "B00UVJ8MJQ",
+          "title": "Naturalizer Women's Response Slip-On Loafer",
+          "price": null,
+          "average_rating": 4.1,
+          "rating_number": 217,
+          "rank": 11,
+          "final_score": 1.241148,
+          "core_score": 1.241148,
+          "core_gap_to_best": 0.758852,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.704615,
+          "signature_likelihood": 0.675,
+          "popularity_prior": 0.577427,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.28
+            }
+          ],
+          "is_target": false,
+          "store": "Naturalizer"
+        },
+        {
+          "parent_asin": "B001FRAZR0",
+          "title": "G.H. Bass & Co. Men's Walton Slip-On Loafer",
+          "price": null,
+          "average_rating": 4.1,
+          "rating_number": 212,
+          "rank": 12,
+          "final_score": 1.241148,
+          "core_score": 1.241148,
+          "core_gap_to_best": 0.758852,
+          "prior_eligible": false,
+          "typed_satisfaction": 0.704615,
+          "signature_likelihood": 0.675,
+          "popularity_prior": 0.576526,
+          "constraint_evidence": [
+            {
+              "constraint": "leather",
+              "kind": "material",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "100% leather",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather sole",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 1.0
+            },
+            {
+              "constraint": "leather slip-on featuring dual gore panels at entry and padded collar",
+              "kind": "phrase",
+              "confidence": 1.0,
+              "satisfaction": 0.28
+            }
+          ],
+          "is_target": false,
+          "store": "Bass"
+        }
+      ],
+      "pool_shape": {
+        "buckets": [
+          226,
+          31,
+          4,
+          3,
+          2,
+          43,
+          96,
+          13,
+          16,
+          186,
+          14,
+          4,
+          21,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "min": 0.008615,
+        "max": 2.353991
+      },
+      "target_rank": 1,
+      "action": "RECOMMEND",
+      "reason_codes": [
+        "information_complete",
+        "maximum_protocol_constraints_observed",
+        "previously_shown_products_excluded"
+      ],
+      "question": null,
+      "question_value": {},
+      "output_gate": {
+        "policy": "risk_calibrated_count_late_4",
+        "mode": "count",
+        "proxy_rank_loss_alpha": 0.18,
+        "emitted_count": 10
+      },
+      "recommendations": [
+        "B000GQ1F3O",
+        "B006HZDUN6",
+        "B003WZ4330",
+        "B001TDL1FA",
+        "B005VNW46O",
+        "B016ZLC9IS",
+        "B002LZTH1U",
+        "B005EUDPOO",
+        "B004K14PN8",
+        "B006PBS7SA"
+      ],
+      "customer": "For that, what matters is: Leather sole; Leather slip-on featuring dual gore panels at entry and padded collar.",
+      "agent_message": "I have enough detail to narrow this down.",
+      "ask_attribute": null
+    }
+  ]
+}

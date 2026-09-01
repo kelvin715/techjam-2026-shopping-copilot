@@ -1,0 +1,17 @@
+{
+  "dataset": "organizer public_set.jsonl",
+  "sample_count": 200,
+  "hit_rate_at_10": 1.0,
+  "mrr": 0.993333,
+  "mttc": 2.04,
+  "efficiency": 0.896,
+  "technical_score": 0.9772,
+  "reported_prompt_tokens": 0,
+  "reported_completion_tokens": 0,
+  "scenario_metrics": {
+    "boundary": {"n": 10, "hit_rate_at_10": 1.0, "mrr": 1.0, "mttc": 2.7},
+    "browsing": {"n": 80, "hit_rate_at_10": 1.0, "mrr": 0.991667, "mttc": 1.9125},
+    "buying": {"n": 80, "hit_rate_at_10": 1.0, "mrr": 1.0, "mttc": 1.4875},
+    "intent_override": {"n": 30, "hit_rate_at_10": 1.0, "mrr": 0.977778, "mttc": 3.633333}
+  }
+}

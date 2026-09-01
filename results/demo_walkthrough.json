@@ -1,0 +1,297 @@
+{
+  "status": "public_labelled_demo_not_private_evaluation",
+  "comparison": "same natural paraphrases; canonical-only parser versus submitted additive robust parser",
+  "old": {
+    "label": "canonical_only_parser",
+    "metrics": {
+      "sample_count": 100,
+      "hit_rate_at_10": 0.88,
+      "mrr": 0.51406,
+      "mttc": 4.31,
+      "technical_score": 0.728018
+    }
+  },
+  "submitted": {
+    "label": "answerability_mvoi_plus_robust_parser",
+    "metrics": {
+      "sample_count": 100,
+      "hit_rate_at_10": 1.0,
+      "mrr": 0.993333,
+      "mttc": 2.02,
+      "technical_score": 0.9776
+    }
+  },
+  "simulator_equivalent_impact": {
+    "scope": "simulator_equivalent_not_observed_business_conversion",
+    "additional_hit_sessions_per_10k": 1200,
+    "average_agent_calls_old": 4.19,
+    "average_agent_calls_new": 2.02,
+    "fewer_agent_calls_per_session": 2.17,
+    "mrr_delta": 0.479273,
+    "technical_score_delta": 0.249582
+  },
+  "story": {
+    "sample_id": "public_0007",
+    "scenario_type": "browsing",
+    "target_parent_asin": "B08PF98BV4",
+    "target_title": "RITERA Plus Size Tops for Women Off the Shoulder Cold Shoulder Tops Short Sleeve Shirts Summer Blouses Sexy Tunics Tee XL-5XL",
+    "old_outcome": {
+      "sample_id": "public_0007",
+      "scenario_type": "browsing",
+      "hit": false,
+      "first_hit_turn": null,
+      "best_rank": null,
+      "reciprocal_rank": 0.0
+    },
+    "submitted_outcome": {
+      "sample_id": "public_0007",
+      "scenario_type": "browsing",
+      "hit": true,
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    "old_trace": [
+      {
+        "turn": 1,
+        "customer": "I'd like to browse Tees & Blouses Tunics. I haven't settled on preferences.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B08Y8ZJJC1"
+        ],
+        "target_rank": null
+      },
+      {
+        "turn": 2,
+        "customer": "Here is what matters to me: polyester; 75% Polyester, 20% Rayon, 5% Spandex.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B07BBH2R9M"
+        ],
+        "target_rank": null
+      },
+      {
+        "turn": 3,
+        "customer": "Here is what matters to me: Imported; Pull On closure.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B077JXNCPW"
+        ],
+        "target_rank": null
+      },
+      {
+        "turn": 4,
+        "customer": "Nothing else to add about other.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B0BQ32FHW4",
+          "B07C86S5N2",
+          "B09MSY8926",
+          "B08G1N5KS1",
+          "B09M5XXWR3",
+          "B0B4BRW7JT",
+          "B07TVDN6JH",
+          "B09V5CMRQX",
+          "B086BMHQDQ",
+          "B0C377NMF4"
+        ],
+        "target_rank": null
+      },
+      {
+        "turn": 5,
+        "customer": "Nothing else to add about other.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B09G2ZNZY4",
+          "B07Z8NTWVV",
+          "B08JK818ZD",
+          "B07JF1B7FZ",
+          "B0743K2K7J",
+          "B07R7G22FN",
+          "B075KWDCN3",
+          "B00LGMGCQ2",
+          "B07BB28L5G",
+          "B07W53YRX7"
+        ],
+        "target_rank": null
+      },
+      {
+        "turn": 6,
+        "customer": "Nothing else to add about other.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B07YJBBGRZ",
+          "B07FRFDWK9",
+          "B07TX4JMRP",
+          "B010G9EDTS",
+          "B079QY8LW3",
+          "B07T2HCJY1",
+          "B01N4D49MB",
+          "B06ZYGSP2V",
+          "B09Y8VHYD6",
+          "B07PYR89PS"
+        ],
+        "target_rank": null
+      },
+      {
+        "turn": 7,
+        "customer": "Nothing else to add about other.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B07MVR5TQ4",
+          "B0B64TYV9T",
+          "B093FHKGG3",
+          "B082ZVF1LD",
+          "B07KRTKHS5",
+          "B083BVSL3F",
+          "B01BLVH0NG",
+          "B07XW8Z8QT",
+          "B07BSSDJ6N",
+          "B01E0HDLUO"
+        ],
+        "target_rank": null
+      },
+      {
+        "turn": 8,
+        "customer": "Nothing else to add about other.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B09TQQQLYC",
+          "B01CT0FD1Y",
+          "B09XTYRWVL",
+          "B0BG88SYFC",
+          "B07XFLB9WQ",
+          "B07PW5Q659",
+          "B01M113MK2",
+          "B09721LJ61",
+          "B01K2LYOYO",
+          "B093329RL8"
+        ],
+        "target_rank": null
+      },
+      {
+        "turn": 9,
+        "customer": "Nothing else to add about other.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B0B6FQT7F6",
+          "B09Q2X2KWB",
+          "B0BN6DBB4K",
+          "B098SC9XH1",
+          "B089W4ZPWV",
+          "B089YDCYW8",
+          "B07TZQLX15",
+          "B08C4W9WH5",
+          "B07C1ZS97K",
+          "B076M663KT"
+        ],
+        "target_rank": null
+      },
+      {
+        "turn": 10,
+        "customer": "Nothing else to add about other.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B07X2YQ2P5",
+          "B09WNBHSFN",
+          "B08L4KLZDS",
+          "B07VBS1XWK",
+          "B08GYG5YHR",
+          "B078TFZ9G2",
+          "B07MZV2DFJ",
+          "B07FLVJ2MW",
+          "B07MX7VK2V",
+          "B09B9F4W6Z"
+        ],
+        "target_rank": null
+      }
+    ],
+    "submitted_trace": [
+      {
+        "turn": 1,
+        "customer": "I'd like to browse Tees & Blouses Tunics. I haven't settled on preferences.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B08Y8ZJJC1"
+        ],
+        "target_rank": null
+      },
+      {
+        "turn": 2,
+        "customer": "Here is what matters to me: polyester; 75% Polyester, 20% Rayon, 5% Spandex.",
+        "agent_message": "Got it. Anything else that matters for this one?",
+        "ask_attribute": "other",
+        "recommendations": [
+          "B08PF98BV4"
+        ],
+        "target_rank": 1
+      }
+    ],
+    "submitted_certificate": {
+      "action": "ASK",
+      "reason_codes": [
+        "previously_shown_products_excluded",
+        "maximum_answerability_aware_metric_value_of_information"
+      ],
+      "intent_track": "browsing_or_boundary",
+      "constraints": [
+        "polyester",
+        "75% Polyester, 20% Rayon, 5% Spandex"
+      ],
+      "proven_miss_count": 1,
+      "question": "other",
+      "selected_question_value": {
+        "attribute": "other",
+        "candidate_count": 10,
+        "answer_group_count": 9,
+        "expected_remaining": 1.2,
+        "reduction_ratio": 0.88,
+        "answerability": 1.0,
+        "expected_hit_at_10": 1.0,
+        "expected_mrr": 0.95,
+        "ideal_expected_hit_at_10": 1.0,
+        "ideal_expected_mrr": 0.95,
+        "metric_voi": 0.177131,
+        "answerable_metric_voi": 0.177131
+      },
+      "output_gate": {
+        "policy": "risk_calibrated_count_late_4",
+        "mode": "count",
+        "proxy_rank_loss_alpha": 0.18,
+        "emitted_count": 1
+      },
+      "recommendations": [
+        "B08PF98BV4"
+      ],
+      "minimal_counterfactual_explanation": {
+        "status": "minimal_counterfactual_found",
+        "faithful": true,
+        "minimal_removed_count": 1,
+        "removed_constraints": [
+          {
+            "index": 1,
+            "constraint": "75% Polyester, 20% Rayon, 5% Spandex",
+            "confidence": 1.0
+          }
+        ],
+        "retained_constraints": [
+          "polyester"
+        ],
+        "original_top": "B08PF98BV4",
+        "counterfactual_top": "B086BMHQDQ",
+        "original_top_counterfactual_rank": 15
+      }
+    }
+  }
+}

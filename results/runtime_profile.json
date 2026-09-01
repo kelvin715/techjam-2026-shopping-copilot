@@ -1,0 +1,21 @@
+{
+  "status": "reference_environment_measurement_filesystem_cache_dependent",
+  "sample_count": 200,
+  "response_count": 408,
+  "evaluator_catalog_load_seconds": 0.50172,
+  "agent_startup_seconds": 10.774307,
+  "evaluation_wall_seconds": 17.282492,
+  "mean_evaluation_wall_ms_per_response": 42.359048,
+  "peak_evaluator_plus_agent_rss_kb": 466444,
+  "reported_token_usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "technical_score": 0.9772,
+  "notes": [
+    "Mean time includes simulator and evaluator overhead around Agent.respond.",
+    "Peak RSS includes both evaluator and Agent catalog representations.",
+    "Startup varies with CPU and filesystem cache; rerun on judging hardware."
+  ]
+}
