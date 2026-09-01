@@ -179,9 +179,9 @@ update it, and when it is sufficient—not in generating more fluent prose.
 This is not a claim that language models are never useful. It is an architectural
 boundary: use deterministic catalog evidence for the common path, and introduce
 a small local language or embedding fallback only when an ambiguous Top-N case
-shows a measured gain. Today the grounded parser already preserves canonical
-performance, raises natural-paraphrase Hit@10 from `0.88` to `1.00`, and raises
-pass-all-variants from `0.88` to `1.00`. This is not an anti-LLM position: we
+shows a measured gain. Today the grounded parser achieves `1.00` Hit@10 and MRR
+on the natural-paraphrase robustness panel, while passing every audited wording
+variant. This is not an anti-LLM position: we
 would add a model when it earns its latency and complexity with a measured gain
 on unresolved language cases. Until then, putting one on the critical path
 would add operational risk without addressing the dominant failure mode.
@@ -222,21 +222,7 @@ diagnostics.
 | Boundary          |            10 |           1.000000 |           1.000000 |           2.500000 |
 | **Overall** | **200** | **1.000000** | **1.000000** | **1.980000** |
 
-The unchanged evaluator reports TechnicalScore `0.980400`. Public-set
-ablation separates the three additions: the finite-horizon refutation planner
-alone scores `0.978800`; the zero-constraint review-count prior alone scores
-`0.978700`; those two together score `0.980300`; raising the canonical
-signature weight to `0.9` reaches `0.980400`.
-
-### 🧪 Optimization ablation
-
-| Policy | Hit Rate@10 | MRR | MTTC | TechnicalScore |
-| ------ | ----------: | --: | ---: | -------------: |
-| Before optimization | 1.000000 | 0.993333 | 2.040 | 0.977200 |
-| + finite-horizon refutation planner | 1.000000 | 1.000000 | 2.060 | 0.978800 |
-| + cold-start review-count prior | 1.000000 | 0.993333 | 1.965 | 0.978700 |
-| + both of the above | 1.000000 | 1.000000 | 1.985 | 0.980300 |
-| **+ signature weight `0.9` (ARC)** | **1.000000** | **1.000000** | **1.980** | **0.980400** |
+The unchanged evaluator reports ARC's final TechnicalScore of `0.980400`.
 
 The organizer weak baseline needs `9.81` turns on average; ARC needs `1.980`, a
 reduction of `7.830` evaluator turns while raising MRR from `0.068034` to `1.0`.
@@ -253,12 +239,10 @@ open with no constraint at all.
 
 ### 🔬 Target-disjoint diagnostics
 
-| Diagnostic / policy                 |     n | Hit Rate@10 |      MRR |    MTTC | TechnicalScore |
-| ----------------------------------- | ----: | ----------: | -------: | ------: | -------------: |
-| Popularity-matched / before optimization |   800 |    1.000000 | 0.972265 | 2.15250 |       0.968630 |
-| **Popularity-matched / ARC**        | **800** | **1.000000** | **0.984496** | **2.12125** | **0.972924** |
-| Uniform long-tail / before optimization | 1,000 |    0.996000 | 0.946613 | 2.52900 |       0.951404 |
-| **Uniform long-tail / ARC**         | **1,000** | **0.996000** | **0.977408** | **2.61900** | **0.958842** |
+| Diagnostic         |     n | Hit Rate@10 |      MRR |    MTTC | TechnicalScore |
+| ------------------ | ----: | ----------: | -------: | ------: | -------------: |
+| Popularity-matched |   800 |    1.000000 | 0.984496 | 2.12125 |       0.972924 |
+| Uniform long-tail  | 1,000 |    0.996000 | 0.977408 | 2.61900 |       0.958842 |
 
 These are deterministic synthetic sessions over non-public catalog targets.
 They test whether the design survives outside the 200 public labels; they are
@@ -266,16 +250,14 @@ not organizer-private scores or claims about the private distribution.
 
 ### 🛡️ Language and policy robustness
 
-| Parser / reveal                                |          Hit@10 |              MRR |     TechnicalScore |
-| ---------------------------------------------- | --------------: | ---------------: | -----------------: |
-| Canonical parser / natural paraphrase          |           0.910 |           0.6915 |           0.806662 |
-| **Grounded parser / natural paraphrase** | **1.000** | **1.0000** | **0.980600** |
-| Grounded parser / one hidden clue              |           1.000 |           0.9079 |           0.951775 |
+| Robustness condition | Hit@10 |    MRR | TechnicalScore |
+| -------------------- | -----: | -----: | -------------: |
+| Natural paraphrase   |  1.000 | 1.0000 |       0.980600 |
+| One hidden clue      |  1.000 | 0.9079 |       0.951775 |
 
-Across 100 public targets, the grounded parser recovers 9 sessions and reduces
-average Agent calls from `3.70` to `1.97`. All audited traces stay within ten
-turns, return valid unique catalog ASINs, do not repeat proven misses before an
-override, report zero tokens, and leave the catalog byte-identical.
+Across 100 public targets, all audited traces stay within ten turns, return
+valid unique catalog ASINs, do not repeat proven misses before an override,
+report zero tokens, and leave the catalog byte-identical.
 
 ### ⚡ Runtime disclosure
 
@@ -386,8 +368,8 @@ python3 tools/turn_audit.py    # where every evaluator turn is spent
 
 Machine-readable results are under [`results/`](results/). Each tool in
 [`tools/`](tools/) prints its own usage and writes the summary it documents, so
-the MVOI, output-risk calibration, ablation, and long-tail experiments can be
-re-run directly.
+the MVOI, output-risk calibration, and long-tail diagnostics can be re-run
+directly.
 
 ## ⚠️ Limitations
 
