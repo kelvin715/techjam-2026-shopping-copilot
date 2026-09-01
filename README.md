@@ -39,6 +39,10 @@ source still matches the repository.
 
 **[→ Open the session explorer](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=8)**
 
+[![The session explorer on the final turn of public_0187: the conversation ARC actually saw on the left, the submitted list on the right with the evaluator-only target ranked first, and the decision certificate underneath](demo/screenshots/session-explorer.png)](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=8&session=public_0187&turn=4)
+
+<sub>Turn 4 of `public_0187`. Click the image to open that exact state.</sub>
+
 Every public session was replayed through the submitted Agent and the unchanged
 evaluator, and the last page lets you walk any of them:
 
