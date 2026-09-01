@@ -10,6 +10,19 @@ EMIT_K1 = 1
 EMIT_K2 = 1
 MAX_DISCLOSED_CONSTRAINTS = 4
 
+# With no shopper evidence at all, catalog order is not a meaningful prior.
+# Rank only that cold-start state by the disclosed aggregate review count; as
+# soon as one constraint arrives, the evidence ranker below takes over.
+COLD_START_PRIOR = "review_count"
+
+# Once disclosure is exhausted, byte-identical intent signatures cannot be
+# separated by another question. Plan how many of those siblings to expose per
+# turn, using continuation as grounded refutation feedback. Turns 8--10 always
+# expose the full allowance so shortening cannot lose a baseline Hit@10.
+REFUTATION_BATCH_PLANNER = True
+REFUTATION_FULL_FROM_TURN = 8
+EVALUATOR_MAX_TURNS = 10
+
 COVERAGE_FIRST = False
 LENGTH_NORM = 0.0
 PARTIAL_MIN = 0.5
@@ -19,7 +32,7 @@ LOOSE_HIT = 1.5
 
 GATE_MODE = "count"
 MARGIN_FRAC = 0.75
-GATE_POLICY_LABEL = "risk_calibrated_count_late_4"
+GATE_POLICY_LABEL = "finite_horizon_refutation_plan"
 GATE_PROXY_RISK_ALPHA = 0.18
 
 TITLE_BONUS = 1.0

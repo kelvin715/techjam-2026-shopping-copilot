@@ -8,7 +8,7 @@ from pathlib import Path
 import evaluator.local_evaluator as evaluator
 from src import config
 from src.dialog import SessionState, parse
-from src.policy import choose, emit_count
+from src.policy import choose, emit_count, exact_signature_prefix
 from src.shelf import Catalog
 from starter.agent import Agent
 
@@ -95,6 +95,58 @@ class AgentPolicyTest(unittest.TestCase):
         self.assertEqual(emit_count(2, 2, 10, scores, True), 10)
         self.assertEqual(emit_count(2, 4, 10, scores), 10)
         self.assertEqual(emit_count(4, 0, 10, scores), 10)
+
+    def test_finite_horizon_plan_enumerates_exact_signature_siblings(self) -> None:
+        scores = [("A", 10.0), ("B", 9.0), ("C", 8.0)]
+        self.assertEqual(
+            emit_count(3, 4, 10, scores, True, refutation_cohort_size=3),
+            1,
+        )
+        self.assertEqual(
+            emit_count(8, 4, 10, scores, True, refutation_cohort_size=3),
+            10,
+        )
+
+    def test_exact_signature_cohort_is_only_a_ranked_prefix(self) -> None:
+        signatures = {"A": ("same",), "B": ("same",), "C": ("other",)}
+        self.assertEqual(
+            exact_signature_prefix(
+                [("A", 3.0), ("B", 2.0), ("C", 1.0)], signatures
+            ),
+            2,
+        )
+
+    def test_zero_constraint_cold_start_uses_review_count(self) -> None:
+        products = [
+            {
+                "parent_asin": asin,
+                "title": asin,
+                "features": ["shared"],
+                "details": {},
+                "description": [],
+                "categories": ["Clothing", "Necklaces"],
+                "store": "Example",
+                "rating_number": reviews,
+            }
+            for asin, reviews in (("LOW", 2), ("HIGH", 200))
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            catalog_path = Path(directory) / "catalog.jsonl"
+            catalog_path.write_text(
+                "".join(json.dumps(product) + "\n" for product in products),
+                encoding="utf-8",
+            )
+            agent = Agent(catalog_path)
+            agent.reset("cold", {})
+            response = agent.respond(
+                "cold",
+                "I'm looking for Necklaces, but I'm still exploring.",
+                1,
+                10,
+            )
+        self.assertEqual(
+            response["recommendations"], [{"parent_asin": "HIGH"}]
+        )
 
     def test_short_other_reply_marks_information_complete(self) -> None:
         state = SessionState({})

@@ -18,7 +18,7 @@ from src.evidence import (
     estimate_question_values,
     minimal_counterfactual_explanation,
 )
-from src.policy import available_attributes, choose, emit_count
+from src.policy import available_attributes, choose, emit_count, exact_signature_prefix
 from src.rank import diversify_evidence_ties, score_candidates
 from src.shelf import Catalog
 
@@ -147,12 +147,16 @@ class Agent:
                     config.TAIL_EXPLORATION_CORE_WINDOW,
                 )
                 tail_exploration = True
+            refutation_cohort_size = exact_signature_prefix(
+                scores, self.catalog.signature
+            )
             count = emit_count(
                 turn,
                 len(state.constraints),
                 top_k,
                 scores,
                 state.information_complete,
+                refutation_cohort_size,
             )
             recommendations = [asin for asin, _ in scores[:count]]
             attribute = choose(state, question_values)
@@ -184,6 +188,7 @@ class Agent:
                 recovered=recovered,
                 candidate_details=details,
                 tail_exploration=tail_exploration,
+                refutation_cohort_size=refutation_cohort_size,
             )
             excluded = state.proven_misses if config.PROVEN_MISS_EXCLUSION else set()
             state.last_counterfactual_context = {

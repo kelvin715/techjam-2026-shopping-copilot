@@ -18,15 +18,20 @@ search query. On every turn it makes three connected decisions:
 | System                    |        Hit Rate@10 |                MRR |            MTTC |     TechnicalScore |
 | ------------------------- | -----------------: | -----------------: | --------------: | -----------------: |
 | Organizer weak baseline   |           0.125000 |           0.068034 |           9.810 |           0.106710 |
-| **ARC (submitted)** | **1.000000** | **0.993333** | **2.040** | **0.977200** |
+| ARC before this optimization | 1.000000 | 0.993333 | 2.040 | 0.977200 |
+| **ARC** | **1.000000** | **1.000000** | **1.985** | **0.980300** |
 
 These results use the unchanged organizer evaluator over all 200 public
-sessions. The submitted runtime uses **zero model tokens, zero network calls,
-no GPU, and only the Python standard library**.
+sessions. ARC uses **zero model tokens, zero network calls, no GPU, and only the
+Python standard library**. The measured optimization comparison is recorded in
+[`results/optimization_results.json`](results/optimization_results.json).
 
 ## 🕹️ Try it live
 
 **<https://kelvin715.github.io/techjam-2026-shopping-copilot/>**
+
+The hosted replay and local Agent expose the same inspectable ARC decision
+pipeline.
 
 Nine pages in the browser. No install, no catalog download, no API key. Pages
 1–3 give the problem, the turn loop, and the organizer result; pages 4–7 replay
@@ -194,6 +199,8 @@ complexity disabled.
 | Structured state and intent override     | Confidence-weighted multi-turn memory with atomic history reset            | Preferences accumulate without trapping the shopper in an old intent   |
 | Adaptive clarification                   | Answerability-aware metric value of information                            | The agent avoids questions that cost a turn but add no usable evidence |
 | Failure detection and strategy switching | Proven-miss exclusion, refusal-aware pivot, late exact-tie rotation        | Rejected products are not repeated and long-tail ties can recover      |
+| Cold-start ranking                       | Review-count prior only before the first shopper constraint                | A vague first turn is useful without letting popularity override intent |
+| Indistinguishable-candidate planning      | Finite-horizon batch-size optimization with final-turn Hit@10 insurance     | Exact intent twins are tested at rank one instead of committed at a weak rank |
 | Low latency and token cost               | Deterministic, offline, standard-library runtime                           | No API outage, credential, GPU, or per-query model cost                |
 | Transparent explanations                 | Evidence certificates and verified minimal counterfactuals                 | Engineers can inspect why the action and rank changed                  |
 | Safe personalization                     | Aggregate profile support exists, but its ranking weight is disabled       | Unproven profile correlations cannot override explicit intent          |
@@ -210,21 +217,36 @@ diagnostics.
 | Scenario          |             n |        Hit Rate@10 |                MRR |               MTTC |
 | ----------------- | ------------: | -----------------: | -----------------: | -----------------: |
 | Buying            |            80 |           1.000000 |           1.000000 |           1.487500 |
-| Browsing          |            80 |           1.000000 |           0.991667 |           1.912500 |
-| Intent override   |            30 |           1.000000 |           0.977778 |           3.633333 |
-| Boundary          |            10 |           1.000000 |           1.000000 |           2.700000 |
-| **Overall** | **200** | **1.000000** | **0.993333** | **2.040000** |
+| Browsing          |            80 |           1.000000 |           1.000000 |           1.775000 |
+| Intent override   |            30 |           1.000000 |           1.000000 |           3.700000 |
+| Boundary          |            10 |           1.000000 |           1.000000 |           2.500000 |
+| **Overall** | **200** | **1.000000** | **1.000000** | **1.985000** |
 
-The organizer weak baseline needs `9.81` turns on average; ARC needs
-`2.04`, a reduction of `7.77` evaluator turns while raising MRR from `0.068034`
-to `0.993333`.
+The unchanged evaluator reports TechnicalScore `0.980300`. Public-set
+ablation separates the two additions: the finite-horizon refutation planner
+alone scores `0.978800`; the zero-constraint review-count prior alone scores
+`0.978700`; together they score `0.980300`.
+
+### 🧪 Optimization ablation
+
+| Policy | Hit Rate@10 | MRR | MTTC | TechnicalScore |
+| ------ | ----------: | --: | ---: | -------------: |
+| Before optimization | 1.000000 | 0.993333 | 2.040 | 0.977200 |
+| + finite-horizon refutation planner | 1.000000 | 1.000000 | 2.060 | 0.978800 |
+| + cold-start review-count prior | 1.000000 | 0.993333 | 1.965 | 0.978700 |
+| **Combined ARC** | **1.000000** | **1.000000** | **1.985** | **0.980300** |
+
+The organizer weak baseline needs `9.81` turns on average; ARC needs `1.985`, a
+reduction of `7.825` evaluator turns while raising MRR from `0.068034` to `1.0`.
 
 ### 🔬 Target-disjoint diagnostics
 
-| Diagnostic         |     n | Hit Rate@10 |      MRR |    MTTC | TechnicalScore |
-| ------------------ | ----: | ----------: | -------: | ------: | -------------: |
-| Popularity-matched |   800 |    1.000000 | 0.972265 | 2.15250 |       0.968630 |
-| Uniform long-tail  | 1,000 |    0.996000 | 0.946613 | 2.52900 |       0.951404 |
+| Diagnostic / policy                 |     n | Hit Rate@10 |      MRR |    MTTC | TechnicalScore |
+| ----------------------------------- | ----: | ----------: | -------: | ------: | -------------: |
+| Popularity-matched / before optimization |   800 |    1.000000 | 0.972265 | 2.15250 |       0.968630 |
+| **Popularity-matched / ARC**        | **800** | **1.000000** | **0.983663** | **2.12250** | **0.972649** |
+| Uniform long-tail / before optimization | 1,000 |    0.996000 | 0.946613 | 2.52900 |       0.951404 |
+| **Uniform long-tail / ARC**         | **1,000** | **0.996000** | **0.974376** | **2.62000** | **0.957913** |
 
 These are deterministic synthetic sessions over non-public catalog targets.
 They test whether the design survives outside the 200 public labels; they are
@@ -234,12 +256,12 @@ not organizer-private scores or claims about the private distribution.
 
 | Parser / reveal                                |          Hit@10 |              MRR |     TechnicalScore |
 | ---------------------------------------------- | --------------: | ---------------: | -----------------: |
-| Canonical parser / natural paraphrase          |           0.880 |           0.5141 |           0.728018 |
-| **Grounded parser / natural paraphrase** | **1.000** | **0.9933** | **0.977600** |
-| Grounded parser / one hidden clue              |           1.000 |           0.8895 |           0.945658 |
+| Canonical parser / natural paraphrase          |           0.910 |           0.6915 |           0.806662 |
+| **Grounded parser / natural paraphrase** | **1.000** | **1.0000** | **0.980600** |
+| Grounded parser / one hidden clue              |           1.000 |           0.9079 |           0.951775 |
 
-Across 100 public targets, the grounded parser recovers 12 sessions and reduces
-average Agent calls from `4.19` to `2.02`. All audited traces stay within ten
+Across 100 public targets, the grounded parser recovers 9 sessions and reduces
+average Agent calls from `3.70` to `1.97`. All audited traces stay within ten
 turns, return valid unique catalog ASINs, do not repeat proven misses before an
 override, report zero tokens, and leave the catalog byte-identical.
 
@@ -248,9 +270,9 @@ override, report zero tokens, and leave the catalog byte-identical.
 | Resource                               | Measurement |
 | -------------------------------------- | ----------: |
 | Agent startup/index build              |     10.77 s |
-| Mean evaluator wall time per response  |    42.36 ms |
-| Evaluation wall time after startup     |     17.28 s |
-| Peak evaluator + agent resident memory |  466,444 KB |
+| Mean evaluator wall time per response  |    38.16 ms |
+| Evaluation wall time after startup     |     15.15 s |
+| Peak evaluator + agent resident memory |  466,228 KB |
 | Prompt / completion tokens             |       0 / 0 |
 | External API calls                     |           0 |
 | Estimated inference cost               |       $0.00 |
@@ -315,7 +337,7 @@ gzip -dc catalog.jsonl.gz > data/catalog.jsonl
 wc -l data/catalog.jsonl  # expected: 50000
 ```
 
-Run contract checks and all 47 dependency-free tests:
+Run contract checks and all 50 dependency-free tests:
 
 ```bash
 python3 tools/preflight.py
@@ -335,10 +357,10 @@ Expected result:
 
 ```text
 Hit Rate@10  1.000000
-MRR          0.993333
-MTTC         2.040000
-Efficiency   0.896000
-Score        0.977200
+MRR          1.000000
+MTTC         1.985000
+Efficiency   0.901500
+Score        0.980300
 ```
 
 Reproduce the non-public-target and robustness diagnostics:

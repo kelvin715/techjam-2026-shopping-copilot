@@ -18,12 +18,12 @@
       "parser_enabled": false,
       "reveal_style": "canonical",
       "hit_rate_at_10": 1.0,
-      "mrr": 0.993333,
-      "mttc": 2.02,
-      "technical_score": 0.9776,
+      "mrr": 1.0,
+      "mttc": 1.97,
+      "technical_score": 0.9806,
       "policy_audit": {
         "session_count": 100,
-        "response_count": 202,
+        "response_count": 197,
         "reported_token_usage": 0,
         "violation_count": 0,
         "violations_by_type": {},
@@ -32,11 +32,12 @@
       "explanation_audit": {
         "audited_sessions": 8,
         "grounded_certificate_rate": 1.0,
-        "counterfactual_found": 7,
+        "counterfactual_found": 6,
         "faithful_when_found": 1.0,
         "statuses": {
-          "minimal_counterfactual_found": 7,
-          "top_invariant_to_all_constraint_removals": 1
+          "minimal_counterfactual_found": 6,
+          "top_invariant_to_all_constraint_removals": 1,
+          "no_constraint_evidence_to_remove": 1
         }
       }
     },
@@ -44,12 +45,12 @@
       "parser_enabled": false,
       "reveal_style": "surface_noise",
       "hit_rate_at_10": 1.0,
-      "mrr": 0.993333,
-      "mttc": 2.02,
-      "technical_score": 0.9776,
+      "mrr": 1.0,
+      "mttc": 1.97,
+      "technical_score": 0.9806,
       "policy_audit": {
         "session_count": 100,
-        "response_count": 202,
+        "response_count": 197,
         "reported_token_usage": 0,
         "violation_count": 0,
         "violations_by_type": {},
@@ -58,24 +59,25 @@
       "explanation_audit": {
         "audited_sessions": 8,
         "grounded_certificate_rate": 1.0,
-        "counterfactual_found": 7,
+        "counterfactual_found": 6,
         "faithful_when_found": 1.0,
         "statuses": {
-          "minimal_counterfactual_found": 7,
-          "top_invariant_to_all_constraint_removals": 1
+          "minimal_counterfactual_found": 6,
+          "top_invariant_to_all_constraint_removals": 1,
+          "no_constraint_evidence_to_remove": 1
         }
       }
     },
     "canonical_parser__natural_paraphrase": {
       "parser_enabled": false,
       "reveal_style": "natural_paraphrase",
-      "hit_rate_at_10": 0.88,
-      "mrr": 0.51406,
-      "mttc": 4.31,
-      "technical_score": 0.728018,
+      "hit_rate_at_10": 0.91,
+      "mrr": 0.69154,
+      "mttc": 3.79,
+      "technical_score": 0.806662,
       "policy_audit": {
         "session_count": 100,
-        "response_count": 419,
+        "response_count": 370,
         "reported_token_usage": 0,
         "violation_count": 0,
         "violations_by_type": {},
@@ -95,12 +97,12 @@
       "parser_enabled": false,
       "reveal_style": "hidden_one",
       "hit_rate_at_10": 1.0,
-      "mrr": 0.889528,
-      "mttc": 2.06,
-      "technical_score": 0.945658,
+      "mrr": 0.907917,
+      "mttc": 2.03,
+      "technical_score": 0.951775,
       "policy_audit": {
         "session_count": 100,
-        "response_count": 206,
+        "response_count": 203,
         "reported_token_usage": 0,
         "violation_count": 0,
         "violations_by_type": {},
@@ -109,11 +111,12 @@
       "explanation_audit": {
         "audited_sessions": 8,
         "grounded_certificate_rate": 1.0,
-        "counterfactual_found": 7,
+        "counterfactual_found": 6,
         "faithful_when_found": 1.0,
         "statuses": {
-          "minimal_counterfactual_found": 7,
-          "top_invariant_to_all_constraint_removals": 1
+          "minimal_counterfactual_found": 6,
+          "top_invariant_to_all_constraint_removals": 1,
+          "no_constraint_evidence_to_remove": 1
         }
       }
     },
@@ -121,12 +124,12 @@
       "parser_enabled": true,
       "reveal_style": "canonical",
       "hit_rate_at_10": 1.0,
-      "mrr": 0.993333,
-      "mttc": 2.02,
-      "technical_score": 0.9776,
+      "mrr": 1.0,
+      "mttc": 1.97,
+      "technical_score": 0.9806,
       "policy_audit": {
         "session_count": 100,
-        "response_count": 202,
+        "response_count": 197,
         "reported_token_usage": 0,
         "violation_count": 0,
         "violations_by_type": {},
@@ -135,11 +138,12 @@
       "explanation_audit": {
         "audited_sessions": 8,
         "grounded_certificate_rate": 1.0,
-        "counterfactual_found": 7,
+        "counterfactual_found": 6,
         "faithful_when_found": 1.0,
         "statuses": {
-          "minimal_counterfactual_found": 7,
-          "top_invariant_to_all_constraint_removals": 1
+          "minimal_counterfactual_found": 6,
+          "top_invariant_to_all_constraint_removals": 1,
+          "no_constraint_evidence_to_remove": 1
         }
       }
     },
@@ -147,12 +151,12 @@
       "parser_enabled": true,
       "reveal_style": "surface_noise",
       "hit_rate_at_10": 1.0,
-      "mrr": 0.993333,
-      "mttc": 2.02,
-      "technical_score": 0.9776,
+      "mrr": 1.0,
+      "mttc": 1.97,
+      "technical_score": 0.9806,
       "policy_audit": {
         "session_count": 100,
-        "response_count": 202,
+        "response_count": 197,
         "reported_token_usage": 0,
         "violation_count": 0,
         "violations_by_type": {},
@@ -161,11 +165,12 @@
       "explanation_audit": {
         "audited_sessions": 8,
         "grounded_certificate_rate": 1.0,
-        "counterfactual_found": 7,
+        "counterfactual_found": 6,
         "faithful_when_found": 1.0,
         "statuses": {
-          "minimal_counterfactual_found": 7,
-          "top_invariant_to_all_constraint_removals": 1
+          "minimal_counterfactual_found": 6,
+          "top_invariant_to_all_constraint_removals": 1,
+          "no_constraint_evidence_to_remove": 1
         }
       }
     },
@@ -173,12 +178,12 @@
       "parser_enabled": true,
       "reveal_style": "natural_paraphrase",
       "hit_rate_at_10": 1.0,
-      "mrr": 0.993333,
-      "mttc": 2.02,
-      "technical_score": 0.9776,
+      "mrr": 1.0,
+      "mttc": 1.97,
+      "technical_score": 0.9806,
       "policy_audit": {
         "session_count": 100,
-        "response_count": 202,
+        "response_count": 197,
         "reported_token_usage": 0,
         "violation_count": 0,
         "violations_by_type": {},
@@ -187,11 +192,12 @@
       "explanation_audit": {
         "audited_sessions": 8,
         "grounded_certificate_rate": 1.0,
-        "counterfactual_found": 7,
+        "counterfactual_found": 6,
         "faithful_when_found": 1.0,
         "statuses": {
-          "minimal_counterfactual_found": 7,
-          "top_invariant_to_all_constraint_removals": 1
+          "minimal_counterfactual_found": 6,
+          "top_invariant_to_all_constraint_removals": 1,
+          "no_constraint_evidence_to_remove": 1
         }
       }
     },
@@ -199,12 +205,12 @@
       "parser_enabled": true,
       "reveal_style": "hidden_one",
       "hit_rate_at_10": 1.0,
-      "mrr": 0.889528,
-      "mttc": 2.06,
-      "technical_score": 0.945658,
+      "mrr": 0.907917,
+      "mttc": 2.03,
+      "technical_score": 0.951775,
       "policy_audit": {
         "session_count": 100,
-        "response_count": 206,
+        "response_count": 203,
         "reported_token_usage": 0,
         "violation_count": 0,
         "violations_by_type": {},
@@ -213,21 +219,22 @@
       "explanation_audit": {
         "audited_sessions": 8,
         "grounded_certificate_rate": 1.0,
-        "counterfactual_found": 7,
+        "counterfactual_found": 6,
         "faithful_when_found": 1.0,
         "statuses": {
-          "minimal_counterfactual_found": 7,
-          "top_invariant_to_all_constraint_removals": 1
+          "minimal_counterfactual_found": 6,
+          "top_invariant_to_all_constraint_removals": 1,
+          "no_constraint_evidence_to_remove": 1
         }
       }
     }
   },
   "aggregate_robustness": {
     "canonical_parser": {
-      "variant_pass_at_1": 0.97,
+      "variant_pass_at_1": 0.9775,
       "variant_pass_at_2": 1.0,
       "variant_pass_at_4": 1.0,
-      "pass_all_variants": 0.88
+      "pass_all_variants": 0.91
     },
     "robust_parser": {
       "variant_pass_at_1": 1.0,

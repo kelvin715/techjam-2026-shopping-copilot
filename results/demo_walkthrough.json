@@ -5,10 +5,10 @@
     "label": "canonical_only_parser",
     "metrics": {
       "sample_count": 100,
-      "hit_rate_at_10": 0.88,
-      "mrr": 0.51406,
-      "mttc": 4.31,
-      "technical_score": 0.728018
+      "hit_rate_at_10": 0.91,
+      "mrr": 0.69154,
+      "mttc": 3.79,
+      "technical_score": 0.806662
     }
   },
   "submitted": {
@@ -16,36 +16,36 @@
     "metrics": {
       "sample_count": 100,
       "hit_rate_at_10": 1.0,
-      "mrr": 0.993333,
-      "mttc": 2.02,
-      "technical_score": 0.9776
+      "mrr": 1.0,
+      "mttc": 1.97,
+      "technical_score": 0.9806
     }
   },
   "simulator_equivalent_impact": {
     "scope": "simulator_equivalent_not_observed_business_conversion",
-    "additional_hit_sessions_per_10k": 1200,
-    "average_agent_calls_old": 4.19,
-    "average_agent_calls_new": 2.02,
-    "fewer_agent_calls_per_session": 2.17,
-    "mrr_delta": 0.479273,
-    "technical_score_delta": 0.249582
+    "additional_hit_sessions_per_10k": 900,
+    "average_agent_calls_old": 3.7,
+    "average_agent_calls_new": 1.97,
+    "fewer_agent_calls_per_session": 1.73,
+    "mrr_delta": 0.30846,
+    "technical_score_delta": 0.173938
   },
   "story": {
-    "sample_id": "public_0007",
-    "scenario_type": "browsing",
-    "target_parent_asin": "B08PF98BV4",
-    "target_title": "RITERA Plus Size Tops for Women Off the Shoulder Cold Shoulder Tops Short Sleeve Shirts Summer Blouses Sexy Tunics Tee XL-5XL",
+    "sample_id": "public_0029",
+    "scenario_type": "buying",
+    "target_parent_asin": "B01IAKCZEK",
+    "target_title": "Sanuk Yoga Sling 2 Light Natural 5 B (M)",
     "old_outcome": {
-      "sample_id": "public_0007",
-      "scenario_type": "browsing",
+      "sample_id": "public_0029",
+      "scenario_type": "buying",
       "hit": false,
       "first_hit_turn": null,
       "best_rank": null,
       "reciprocal_rank": 0.0
     },
     "submitted_outcome": {
-      "sample_id": "public_0007",
-      "scenario_type": "browsing",
+      "sample_id": "public_0029",
+      "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 2,
       "best_rank": 1,
@@ -54,164 +54,164 @@
     "old_trace": [
       {
         "turn": 1,
-        "customer": "I'd like to browse Tees & Blouses Tunics. I haven't settled on preferences.",
+        "customer": "I'm shopping for Sandals Flats. The main thing I need is: fabric.",
         "agent_message": "Got it. Anything else that matters for this one?",
         "ask_attribute": "other",
         "recommendations": [
-          "B08Y8ZJJC1"
+          "B07FXWWPN6"
         ],
         "target_rank": null
       },
       {
         "turn": 2,
-        "customer": "Here is what matters to me: polyester; 75% Polyester, 20% Rayon, 5% Spandex.",
-        "agent_message": "Got it. Anything else that matters for this one?",
-        "ask_attribute": "other",
+        "customer": "Here is what matters to me: Back for a second time, it's the ever comfy, ever stylish Yoga Sling 2 sandal from Sanuk\u00ae. A sandal that's a flexible as you\u2014win!; New lightweight, two-way stretch knit upper with sling comfort construction.",
+        "agent_message": "Do you have a preference on feature?",
+        "ask_attribute": "feature",
         "recommendations": [
-          "B07BBH2R9M"
+          "B09PBMG996"
         ],
         "target_rank": null
       },
       {
         "turn": 3,
-        "customer": "Here is what matters to me: Imported; Pull On closure.",
-        "agent_message": "Got it. Anything else that matters for this one?",
-        "ask_attribute": "other",
+        "customer": "Here is what matters to me: Sealed edge footbed made from real yoga mats.",
+        "agent_message": "Do you have a preference on feature?",
+        "ask_attribute": "feature",
         "recommendations": [
-          "B077JXNCPW"
+          "B093P3MCWT"
         ],
         "target_rank": null
       },
       {
         "turn": 4,
-        "customer": "Nothing else to add about other.",
-        "agent_message": "Got it. Anything else that matters for this one?",
-        "ask_attribute": "other",
+        "customer": "Nothing else to add about feature.",
+        "agent_message": "Do you have a preference on feature?",
+        "ask_attribute": "feature",
         "recommendations": [
-          "B0BQ32FHW4",
-          "B07C86S5N2",
-          "B09MSY8926",
-          "B08G1N5KS1",
-          "B09M5XXWR3",
-          "B0B4BRW7JT",
-          "B07TVDN6JH",
-          "B09V5CMRQX",
-          "B086BMHQDQ",
-          "B0C377NMF4"
+          "B08V13PVM8",
+          "B00ZTXF23S",
+          "B00JDNIWKA",
+          "B00JVWSE56",
+          "B08MXVDBTQ",
+          "B07TXQF52F",
+          "B01I5PNYKO",
+          "B00M1PJJ6S",
+          "B07B6MXY2K",
+          "B08CDRWQL9"
         ],
         "target_rank": null
       },
       {
         "turn": 5,
-        "customer": "Nothing else to add about other.",
-        "agent_message": "Got it. Anything else that matters for this one?",
-        "ask_attribute": "other",
+        "customer": "Nothing else to add about feature.",
+        "agent_message": "Do you have a preference on feature?",
+        "ask_attribute": "feature",
         "recommendations": [
-          "B09G2ZNZY4",
-          "B07Z8NTWVV",
-          "B08JK818ZD",
-          "B07JF1B7FZ",
-          "B0743K2K7J",
-          "B07R7G22FN",
-          "B075KWDCN3",
-          "B00LGMGCQ2",
-          "B07BB28L5G",
-          "B07W53YRX7"
+          "B078PQPY9C",
+          "B00IO30BMW",
+          "B07Z7S3SSL",
+          "B07M9STRX8",
+          "B07MR4P4KD",
+          "B084QFWP9R",
+          "B01I5DX7VW",
+          "B08F8X9H4Q",
+          "B01D304XVU",
+          "B07DWJZLFS"
         ],
         "target_rank": null
       },
       {
         "turn": 6,
-        "customer": "Nothing else to add about other.",
-        "agent_message": "Got it. Anything else that matters for this one?",
-        "ask_attribute": "other",
+        "customer": "Nothing else to add about feature.",
+        "agent_message": "Do you have a preference on feature?",
+        "ask_attribute": "feature",
         "recommendations": [
-          "B07YJBBGRZ",
-          "B07FRFDWK9",
-          "B07TX4JMRP",
-          "B010G9EDTS",
-          "B079QY8LW3",
-          "B07T2HCJY1",
-          "B01N4D49MB",
-          "B06ZYGSP2V",
-          "B09Y8VHYD6",
-          "B07PYR89PS"
+          "B07H8K33C4",
+          "B00BK8H85G",
+          "B009AMOTVA",
+          "B00KWKMVM8",
+          "B011AOVOTA",
+          "B09QJ6TJCQ",
+          "B08F9F5R6F",
+          "B079HXDR11",
+          "B008KLHRRK",
+          "B010RRZ51O"
         ],
         "target_rank": null
       },
       {
         "turn": 7,
-        "customer": "Nothing else to add about other.",
-        "agent_message": "Got it. Anything else that matters for this one?",
-        "ask_attribute": "other",
+        "customer": "Nothing else to add about feature.",
+        "agent_message": "Do you have a preference on feature?",
+        "ask_attribute": "feature",
         "recommendations": [
-          "B07MVR5TQ4",
-          "B0B64TYV9T",
-          "B093FHKGG3",
-          "B082ZVF1LD",
-          "B07KRTKHS5",
-          "B083BVSL3F",
-          "B01BLVH0NG",
-          "B07XW8Z8QT",
-          "B07BSSDJ6N",
-          "B01E0HDLUO"
+          "B01D2EXAPW",
+          "B08P4WZ8QL",
+          "B0108R9G9A",
+          "B008MMJ27K",
+          "B07ZVF3MJ9",
+          "B00N9IPBEA",
+          "B09NVBH5RH",
+          "B07WK6TJB7",
+          "B00NBE8O9Q",
+          "B00BPEHQNY"
         ],
         "target_rank": null
       },
       {
         "turn": 8,
-        "customer": "Nothing else to add about other.",
-        "agent_message": "Got it. Anything else that matters for this one?",
-        "ask_attribute": "other",
+        "customer": "Nothing else to add about feature.",
+        "agent_message": "Do you have a preference on feature?",
+        "ask_attribute": "feature",
         "recommendations": [
-          "B09TQQQLYC",
-          "B01CT0FD1Y",
-          "B09XTYRWVL",
-          "B0BG88SYFC",
-          "B07XFLB9WQ",
-          "B07PW5Q659",
-          "B01M113MK2",
-          "B09721LJ61",
-          "B01K2LYOYO",
-          "B093329RL8"
+          "B01LGNHPLG",
+          "B00VSBN73W",
+          "B014GN5Q7S",
+          "B005EESFJK",
+          "B00DUGJLM4",
+          "B00DUGJBO2",
+          "B07B16X47S",
+          "B07FFLD57W",
+          "B07JBKMYFJ",
+          "B07P61QD2W"
         ],
         "target_rank": null
       },
       {
         "turn": 9,
-        "customer": "Nothing else to add about other.",
-        "agent_message": "Got it. Anything else that matters for this one?",
-        "ask_attribute": "other",
+        "customer": "Nothing else to add about feature.",
+        "agent_message": "Do you have a preference on feature?",
+        "ask_attribute": "feature",
         "recommendations": [
-          "B0B6FQT7F6",
-          "B09Q2X2KWB",
-          "B0BN6DBB4K",
-          "B098SC9XH1",
-          "B089W4ZPWV",
-          "B089YDCYW8",
-          "B07TZQLX15",
-          "B08C4W9WH5",
-          "B07C1ZS97K",
-          "B076M663KT"
+          "B07F1FP6TG",
+          "B00CX9U132",
+          "B009P8746G",
+          "B07WZCJ81L",
+          "B083Q1ZGHC",
+          "B00HV7W48Q",
+          "B074KQ5KGG",
+          "B072WHWT7W",
+          "B094QC2R8Y",
+          "B094QB5RBM"
         ],
         "target_rank": null
       },
       {
         "turn": 10,
-        "customer": "Nothing else to add about other.",
-        "agent_message": "Got it. Anything else that matters for this one?",
-        "ask_attribute": "other",
+        "customer": "Nothing else to add about feature.",
+        "agent_message": "Do you have a preference on feature?",
+        "ask_attribute": "feature",
         "recommendations": [
-          "B07X2YQ2P5",
-          "B09WNBHSFN",
-          "B08L4KLZDS",
-          "B07VBS1XWK",
-          "B08GYG5YHR",
-          "B078TFZ9G2",
-          "B07MZV2DFJ",
-          "B07FLVJ2MW",
-          "B07MX7VK2V",
-          "B09B9F4W6Z"
+          "B00R62J0LK",
+          "B00W5UTLJE",
+          "B008LSIWFS",
+          "B00LM8K69E",
+          "B084WYVVZW",
+          "B0B2PJD4R1",
+          "B0B2PJ2S29",
+          "B00B2AYG5W",
+          "B0197UH9DE",
+          "B01JJ4CTHO"
         ],
         "target_rank": null
       }
@@ -219,21 +219,21 @@
     "submitted_trace": [
       {
         "turn": 1,
-        "customer": "I'd like to browse Tees & Blouses Tunics. I haven't settled on preferences.",
+        "customer": "I'm shopping for Sandals Flats. The main thing I need is: fabric.",
         "agent_message": "Got it. Anything else that matters for this one?",
         "ask_attribute": "other",
         "recommendations": [
-          "B08Y8ZJJC1"
+          "B08V13PVM8"
         ],
         "target_rank": null
       },
       {
         "turn": 2,
-        "customer": "Here is what matters to me: polyester; 75% Polyester, 20% Rayon, 5% Spandex.",
+        "customer": "Here is what matters to me: Back for a second time, it's the ever comfy, ever stylish Yoga Sling 2 sandal from Sanuk\u00ae. A sandal that's a flexible as you\u2014win!; New lightweight, two-way stretch knit upper with sling comfort construction.",
         "agent_message": "Got it. Anything else that matters for this one?",
         "ask_attribute": "other",
         "recommendations": [
-          "B08PF98BV4"
+          "B01IAKCZEK"
         ],
         "target_rank": 1
       }
@@ -244,10 +244,11 @@
         "previously_shown_products_excluded",
         "maximum_answerability_aware_metric_value_of_information"
       ],
-      "intent_track": "browsing_or_boundary",
+      "intent_track": "buying",
       "constraints": [
-        "polyester",
-        "75% Polyester, 20% Rayon, 5% Spandex"
+        "fabric",
+        "Back for a second time, it's the ever comfy, ever stylish Yoga Sling 2 sandal from Sanuk\u00ae. A sandal that's a flexible as you\u2014win!",
+        "New lightweight, two-way stretch knit upper with sling comfort construction"
       ],
       "proven_miss_count": 1,
       "question": "other",
@@ -266,31 +267,37 @@
         "answerable_metric_voi": 0.177131
       },
       "output_gate": {
-        "policy": "risk_calibrated_count_late_4",
+        "policy": "finite_horizon_refutation_plan",
         "mode": "count",
         "proxy_rank_loss_alpha": 0.18,
-        "emitted_count": 1
+        "emitted_count": 1,
+        "indistinguishable_signature_prefix": 1
       },
       "recommendations": [
-        "B08PF98BV4"
+        "B01IAKCZEK"
       ],
       "minimal_counterfactual_explanation": {
         "status": "minimal_counterfactual_found",
         "faithful": true,
-        "minimal_removed_count": 1,
+        "minimal_removed_count": 2,
         "removed_constraints": [
           {
             "index": 1,
-            "constraint": "75% Polyester, 20% Rayon, 5% Spandex",
+            "constraint": "Back for a second time, it's the ever comfy, ever stylish Yoga Sling 2 sandal from Sanuk\u00ae. A sandal that's a flexible as you\u2014win!",
+            "confidence": 1.0
+          },
+          {
+            "index": 2,
+            "constraint": "New lightweight, two-way stretch knit upper with sling comfort construction",
             "confidence": 1.0
           }
         ],
         "retained_constraints": [
-          "polyester"
+          "fabric"
         ],
-        "original_top": "B08PF98BV4",
-        "counterfactual_top": "B086BMHQDQ",
-        "original_top_counterfactual_rank": 15
+        "original_top": "B01IAKCZEK",
+        "counterfactual_top": "B07B16X47S",
+        "original_top_counterfactual_rank": 8
       }
     }
   }

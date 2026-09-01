@@ -334,6 +334,7 @@ def build_certificate(
     recovered: bool,
     candidate_details: list[dict],
     tail_exploration: bool = False,
+    refutation_cohort_size: int = 0,
 ) -> dict:
     """Materialise the inspectable evidence behind the turn decision."""
     best = scores[0][1] if scores else None
@@ -362,6 +363,8 @@ def build_certificate(
         reasons.append("previously_shown_products_excluded")
     if tail_exploration:
         reasons.append("late_evidence_tie_exploration")
+    if refutation_cohort_size > len(recommendations):
+        reasons.append("finite_horizon_refutation_shortlist")
     if state.boundary_signal and question == "other":
         reasons.append("boundary_safe_open_question")
     if selected_value is not None and config.QUESTION_MODE == "counterfactual":
@@ -412,6 +415,7 @@ def build_certificate(
             "mode": config.GATE_MODE,
             "proxy_rank_loss_alpha": config.GATE_PROXY_RISK_ALPHA,
             "emitted_count": len(recommendations),
+            "indistinguishable_signature_prefix": refutation_cohort_size,
         },
         "tail_exploration": tail_exploration,
         "recommendations": recommendations,

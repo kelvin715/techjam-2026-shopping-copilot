@@ -26,7 +26,7 @@ class DemoBundleTest(unittest.TestCase):
             generated_at="2026-08-31T00:00:00+00:00",
         )
         story = bundle["story"]
-        self.assertEqual(story["sample_id"], "public_0007")
+        self.assertEqual(story["sample_id"], "public_0029")
         self.assertEqual(story["submitted"]["outcome"]["best_rank"], 1)
         self.assertIn("never_sent_to_agent", story["target_visibility"])
         self.assertTrue(
@@ -35,10 +35,10 @@ class DemoBundleTest(unittest.TestCase):
         self.assertEqual(bundle["explore_trace"]["sample_id"], "public_0187")
         self.assertEqual(len(bundle["explore_trace"]["turns"]), 4)
         self.assertEqual(bundle["explore_trace"]["outcome"]["first_hit_turn"], 4)
-        self.assertEqual(bundle["proof"]["public"]["technical_score"], 0.9772)
+        self.assertEqual(bundle["proof"]["public"]["technical_score"], 0.9803)
         replays = bundle["session_replays"]
         self.assertEqual(replays["sample_count"], 200)
-        self.assertEqual(replays["summary"]["rank_distribution"], {"1": 198, "3": 2})
+        self.assertEqual(replays["summary"]["rank_distribution"], {"1": 200})
         self.assertEqual(replays["target_join"], "post_response_evaluator_only")
 
     def test_catalog_snapshot_keeps_only_story_products_and_counts_real_shelf(self) -> None:
@@ -137,7 +137,7 @@ class DemoServerTest(unittest.TestCase):
         self.assertEqual(health["status"], "ok")
         self.assertTrue(health["replay_fresh"])
         self.assertFalse(health["live_available"])
-        self.assertEqual(replay["story"]["sample_id"], "public_0007")
+        self.assertEqual(replay["story"]["sample_id"], "public_0029")
         self.assertIn("Ask, Rank, Commit", html)
 
     def test_static_frontend_has_no_external_runtime_dependencies(self) -> None:
@@ -256,16 +256,16 @@ class SessionExplorerTest(unittest.TestCase):
         sessions = self.replays["sessions"]
         self.assertEqual(len(sessions), 200)
         self.assertEqual(len({row["sample_id"] for row in sessions}), 200)
-        rank_three = []
+        non_rank_one = []
         for session in sessions:
             self.assertIn("never_sent_to_agent", session["target_visibility"])
             hits = [turn for turn in session["turns"] if turn["hit_this_turn"]]
             self.assertEqual(len(hits), 1)
             self.assertEqual(hits[0]["turn"], session["outcome"]["first_hit_turn"])
             self.assertEqual(hits[0]["target_rank"], session["outcome"]["best_rank"])
-            if session["outcome"]["best_rank"] == 3:
-                rank_three.append(session["sample_id"])
-        self.assertEqual(rank_three, ["public_0099", "public_0144"])
+            if session["outcome"]["best_rank"] != 1:
+                non_rank_one.append(session["sample_id"])
+        self.assertEqual(non_rank_one, [])
 
     def test_session_explorer_is_static_first_and_live_optional(self) -> None:
         state = (ROOT / "demo/static/state.js").read_text(encoding="utf-8")

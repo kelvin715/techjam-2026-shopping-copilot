@@ -149,6 +149,22 @@ def score_candidates(
         return []
     phrases = [phrase for phrase in (norm(value) for value in constraints) if phrase]
     if not phrases:
+        if config.COLD_START_PRIOR == "review_count":
+            # ``rating_number`` is part of the frozen, disclosed catalog. Log
+            # compression keeps the diagnostic score bounded while preserving
+            # the review-count ordering; no target or session label is used.
+            denominator = catalog._log_max_ratings or 1.0
+            cold = [
+                (
+                    asin,
+                    math.log1p(catalog.rating_count.get(asin, 0)) / denominator,
+                )
+                for asin in cand_ids
+            ]
+            # Python's sort is stable, so products with equal evidence retain
+            # the frozen catalog order instead of gaining an arbitrary ASIN
+            # lexicographic preference.
+            return sorted(cold, key=lambda item: -item[1])
         return [(asin, 0.0) for asin in cand_ids]
     if constraint_weights is None or len(constraint_weights) != len(phrases):
         constraint_weights = [1.0] * len(phrases)
