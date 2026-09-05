@@ -1,1 +1,8 @@
-# Runtime dependencies: none. The agent uses only Python 3.10+ standard library.
+# Default (scored) runtime dependencies: none. With src/config.py
+# INPUT_MODE = "template" (the default), the agent uses only Python 3.10+
+# standard library -- zero network calls, zero model tokens.
+#
+# Optional, only required when INPUT_MODE = "agentic":
+#   openai>=1.40
+# Also requires OPENAI_API_KEY to be set (directly, or via a local .env
+# file; see .env.example). Template mode never imports this package.

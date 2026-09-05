@@ -11,6 +11,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from src import config
+from src.agentic_dialog import agentic_interpret
 from src.dialog import SessionState, parse
 from src.evidence import (
     build_certificate,
@@ -52,7 +53,10 @@ class Agent:
             # override parser clears this history before it can affect the new
             # intent.
             state.confirm_previous_misses()
-            parse(user_message, state, self.catalog)
+            matched = parse(user_message, state, self.catalog)
+            agentic_status = None
+            if not matched and config.INPUT_MODE == "agentic":
+                agentic_status = agentic_interpret(user_message, state, self.catalog)
             candidates = self.catalog.candidates(state.shelf)
             rank_source_ids = candidates
             scores = score_candidates(
@@ -189,6 +193,11 @@ class Agent:
                 candidate_details=details,
                 tail_exploration=tail_exploration,
                 refutation_cohort_size=refutation_cohort_size,
+            )
+            state.last_decision_certificate["input_interpretation"] = (
+                "template" if matched
+                else f"agentic_{agentic_status}" if agentic_status
+                else "unmatched"
             )
             excluded = state.proven_misses if config.PROVEN_MISS_EXCLUSION else set()
             state.last_counterfactual_context = {

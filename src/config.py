@@ -79,3 +79,8 @@ QUESTION_TURN_COST = 0.02
 # Additive parser coverage for semantically equivalent user wording. The
 # canonical protocol remains the first parse path and is unchanged.
 ROBUST_PARSER = True
+
+# Second-tier LLM fallback for template-parser misses. "template" or "agentic".
+INPUT_MODE = "agentic"
+AGENTIC_MODEL = "gpt-4o-mini"
+AGENTIC_MAX_TOOL_CALLS = 3
