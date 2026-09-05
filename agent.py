@@ -11,7 +11,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from src import config
-from src.agentic_dialog import agentic_interpret
+from src.agentic_dialog import agentic_interpret, agentic_reply
 from src.dialog import SessionState, parse
 from src.evidence import (
     build_certificate,
@@ -230,8 +230,17 @@ class Agent:
                 "recommendations": [],
             }
 
+        message = self._message(attribute)
+        repeat_ask = state.asked[:-1].count(attribute) if state.asked else 0
+        if config.INPUT_MODE == "agentic" and repeat_ask:
+            # Only call the model when the deterministic line would otherwise
+            # repeat verbatim -- the common case is phrased for free.
+            generated = agentic_reply(attribute, state)
+            if generated:
+                message = generated
+
         return {
-            "message": self._message(attribute),
+            "message": message,
             "ask_attribute": attribute,
             "recommendations": [
                 {"parent_asin": asin} for asin in recommendations

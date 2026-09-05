@@ -13,6 +13,18 @@ from src.shelf import Catalog
 from starter.agent import Agent
 
 
+def setUpModule() -> None:
+    # Tests must be hermetic: never depend on a developer's local .env or
+    # make real network calls, regardless of the committed config default.
+    global _ORIGINAL_INPUT_MODE
+    _ORIGINAL_INPUT_MODE = config.INPUT_MODE
+    config.INPUT_MODE = "template"
+
+
+def tearDownModule() -> None:
+    config.INPUT_MODE = _ORIGINAL_INPUT_MODE
+
+
 class _NoShelfCatalog:
     @staticmethod
     def match_shelf(message: str) -> None:

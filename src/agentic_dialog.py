@@ -258,3 +258,49 @@ def agentic_interpret(message: str, state, catalog) -> str:
         return STATUS_ERROR
     except Exception:
         return STATUS_ERROR
+
+
+_REPLY_SYSTEM_PROMPT = (
+    "You write one short, natural reply for a shopping assistant. "
+    "Under 15 words, one sentence, no filler, no exclamation points. "
+    "Never invent product names, prices, or facts."
+)
+
+
+def agentic_reply(attribute: str | None, state) -> str | None:
+    """LLM-phrased variant of the outgoing question/acknowledgement.
+
+    Returns None on unavailability or any failure -- caller falls back to
+    Agent._message. Capped by config.AGENTIC_REPLY_MAX_TOKENS (generation
+    cost) and config.AGENTIC_REPLY_MAX_CHARS (rejects an overlong reply
+    instead of trusting the model followed the length instruction).
+    """
+    if not agentic_available():
+        return None
+    try:
+        import openai
+    except ImportError:
+        return None
+    if attribute is None:
+        intent = "Tell the shopper you have enough detail to narrow this down now."
+    elif attribute == "other":
+        intent = "Ask the shopper if anything else matters for this purchase."
+    else:
+        intent = f"Ask the shopper if they have a preference on {attribute}."
+    try:
+        client = openai.OpenAI()
+        response = client.chat.completions.create(
+            model=config.AGENTIC_MODEL,
+            messages=[
+                {"role": "system", "content": _REPLY_SYSTEM_PROMPT},
+                {"role": "user", "content": intent},
+            ],
+            max_tokens=config.AGENTIC_REPLY_MAX_TOKENS,
+            temperature=0.7,
+        )
+        text = (response.choices[0].message.content or "").strip()
+        if not text or len(text) > config.AGENTIC_REPLY_MAX_CHARS:
+            return None
+        return text
+    except Exception:
+        return None

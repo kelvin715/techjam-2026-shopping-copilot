@@ -84,3 +84,7 @@ ROBUST_PARSER = True
 INPUT_MODE = "agentic"
 AGENTIC_MODEL = "gpt-4o-mini"
 AGENTIC_MAX_TOOL_CALLS = 3
+
+# Caps the outgoing reply generator: keeps replies short and token spend low.
+AGENTIC_REPLY_MAX_TOKENS = 20
+AGENTIC_REPLY_MAX_CHARS = 120

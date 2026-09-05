@@ -9,6 +9,7 @@ import uuid
 from collections import defaultdict
 from pathlib import Path
 
+from src import config
 from starter.agent import Agent
 
 
@@ -300,7 +301,20 @@ def main() -> None:
     parser.add_argument("--catalog", default="data/catalog.jsonl")
     parser.add_argument("--dataset", default="data/public_set.jsonl")
     parser.add_argument("--output", default="results.json")
+    parser.add_argument(
+        "--input-mode",
+        choices=["template", "agentic"],
+        default="template",
+        help=(
+            "'template' (default) reproduces the official scored, "
+            "deterministic path with zero network calls. 'agentic' is an "
+            "explicit opt-in for testing generalizability -- it makes a real "
+            "API call per turn, so point --dataset at a small paraphrase "
+            "set, not the full public set, unless you mean to spend that."
+        ),
+    )
     args = parser.parse_args()
+    config.INPUT_MODE = args.input_mode
     samples = load_jsonl(args.dataset)
     catalog_ids, categories, products = catalog_index(args.catalog)
     result = evaluate(Agent(args.catalog), samples, catalog_ids, categories, products)
