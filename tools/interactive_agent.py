@@ -41,8 +41,18 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--catalog", default="data/catalog.jsonl")
     parser.add_argument("--top-k", type=int, default=10)
+    parser.add_argument(
+        "--input-mode", choices=["template", "agentic"], default="agentic",
+        help=(
+            "This REPL is the interactive entry point, so it opts into "
+            "'agentic' for itself rather than relying on the global default, "
+            "which stays 'template' so the scored path is deterministic and "
+            "token-free."
+        ),
+    )
     args = parser.parse_args()
 
+    config.INPUT_MODE = args.input_mode
     agent = Agent(args.catalog)
     session_id = "interactive"
     agent.reset(session_id, {})
