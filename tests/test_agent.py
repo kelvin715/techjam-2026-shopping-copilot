@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+import unittest.mock
 from pathlib import Path
 
 import evaluator.local_evaluator as evaluator
@@ -318,6 +319,102 @@ class AgentEndToEndTest(unittest.TestCase):
             patient["recommended_technical_score"],
             aggressive["recommended_technical_score"],
         )
+
+
+class AgenticFallbackTest(unittest.TestCase):
+    """Hermetic: openai.OpenAI is mocked, no real network calls."""
+
+    def setUp(self) -> None:
+        from src import agentic_dialog
+
+        self.agentic_dialog = agentic_dialog
+        agentic_dialog._consecutive_failures = 0
+        agentic_dialog._circuit_open_until = 0.0
+
+    def _catalog(self) -> Catalog:
+        products = [{
+            "parent_asin": "A",
+            "title": "Grey shirt",
+            "features": ["denim"],
+            "details": {},
+            "description": [],
+            "categories": ["Clothing", "Shirts"],
+            "store": "Example",
+        }]
+        directory = tempfile.mkdtemp()
+        catalog_path = Path(directory) / "catalog.jsonl"
+        catalog_path.write_text(
+            "".join(json.dumps(product) + "\n" for product in products),
+            encoding="utf-8",
+        )
+        return Catalog(catalog_path)
+
+    def _fake_response(self, tool_calls, prompt_tokens=12, completion_tokens=8):
+        from types import SimpleNamespace
+
+        message = SimpleNamespace(tool_calls=tool_calls, content=None)
+        return SimpleNamespace(
+            choices=[SimpleNamespace(message=message)],
+            usage=SimpleNamespace(
+                prompt_tokens=prompt_tokens, completion_tokens=completion_tokens
+            ),
+        )
+
+    def _fake_tool_call(self, name: str, arguments: dict, call_id="call_1"):
+        from types import SimpleNamespace
+
+        return SimpleNamespace(
+            id=call_id,
+            function=SimpleNamespace(name=name, arguments=json.dumps(arguments)),
+        )
+
+    def test_agentic_interpret_applies_extraction_and_tracks_usage(self) -> None:
+        from src.llm import LLMUsage
+
+        catalog = self._catalog()
+        state = SessionState({})
+        state.shelf = "Shirts"
+        submission = self._fake_tool_call("submit_extraction", {
+            "constraints": ["denim"],
+            "is_override": False,
+            "uninformative": False,
+        })
+        usage = LLMUsage()
+        with unittest.mock.patch.object(
+            self.agentic_dialog, "agentic_available", return_value=True
+        ), unittest.mock.patch("openai.OpenAI") as mock_openai:
+            mock_openai.return_value.chat.completions.create.return_value = (
+                self._fake_response([submission])
+            )
+            status = self.agentic_dialog.agentic_interpret(
+                "I need something denim", state, catalog, usage
+            )
+        self.assertEqual(status, self.agentic_dialog.STATUS_EXTRACTED)
+        self.assertIn("denim", state.constraints)
+        self.assertEqual(usage.calls, 1)
+        self.assertEqual(usage.prompt_tokens, 12)
+        self.assertEqual(usage.completion_tokens, 8)
+
+    def test_agentic_circuit_breaker_opens_after_repeated_failures(self) -> None:
+        catalog = self._catalog()
+        with unittest.mock.patch.object(
+            self.agentic_dialog, "agentic_available", return_value=True
+        ), unittest.mock.patch("openai.OpenAI") as mock_openai:
+            mock_openai.return_value.chat.completions.create.side_effect = RuntimeError("boom")
+            for _ in range(config.AGENTIC_CIRCUIT_FAILURES):
+                status = self.agentic_dialog.agentic_interpret(
+                    "anything", SessionState({}), catalog
+                )
+                self.assertEqual(status, self.agentic_dialog.STATUS_ERROR)
+            calls_before = mock_openai.return_value.chat.completions.create.call_count
+            status = self.agentic_dialog.agentic_interpret(
+                "anything", SessionState({}), catalog
+            )
+            self.assertEqual(status, self.agentic_dialog.STATUS_CIRCUIT_OPEN)
+            self.assertEqual(
+                mock_openai.return_value.chat.completions.create.call_count,
+                calls_before,
+            )
 
 
 if __name__ == "__main__":

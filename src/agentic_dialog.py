@@ -5,11 +5,39 @@ from __future__ import annotations
 
 import json
 import os
+import threading
+import time
 from pathlib import Path
 
 from . import config
+from .llm import LLMReply
 
 _ENV_LOADED = False
+
+_circuit_lock = threading.Lock()
+_consecutive_failures = 0
+_circuit_open_until = 0.0
+
+
+def _circuit_open() -> bool:
+    return time.monotonic() < _circuit_open_until
+
+
+def _record_success() -> None:
+    global _consecutive_failures, _circuit_open_until
+    with _circuit_lock:
+        _consecutive_failures = 0
+        _circuit_open_until = 0.0
+
+
+def _record_failure() -> None:
+    global _consecutive_failures, _circuit_open_until
+    with _circuit_lock:
+        _consecutive_failures += 1
+        if _consecutive_failures >= config.AGENTIC_CIRCUIT_FAILURES:
+            _circuit_open_until = (
+                time.monotonic() + config.AGENTIC_CIRCUIT_COOLDOWN_SECONDS
+            )
 
 
 def _load_dotenv(path: str = ".env") -> None:
@@ -199,16 +227,31 @@ def _apply_extraction(extraction: dict, state, catalog) -> bool:
     return is_override or bool(verified)
 
 
-STATUS_UNAVAILABLE = "unavailable"  # no API key/package: model never ran
-STATUS_ERROR = "error"              # model ran but failed
-STATUS_EXTRACTED = "extracted"      # model ran and applied real signal
-STATUS_NO_SIGNAL = "no_signal"      # model ran, correctly found nothing
+STATUS_UNAVAILABLE = "unavailable"      # no API key/package: model never ran
+STATUS_CIRCUIT_OPEN = "circuit_open"    # too many recent failures: skipped
+STATUS_ERROR = "error"                  # model ran but failed
+STATUS_EXTRACTED = "extracted"          # model ran and applied real signal
+STATUS_NO_SIGNAL = "no_signal"          # model ran, correctly found nothing
 
 
-def agentic_interpret(message: str, state, catalog) -> str:
+def _absorb_call(usage, response, started: float) -> None:
+    if usage is None:
+        return
+    raw_usage = getattr(response, "usage", None)
+    usage.absorb(LLMReply(
+        text="",
+        prompt_tokens=getattr(raw_usage, "prompt_tokens", 0) or 0,
+        completion_tokens=getattr(raw_usage, "completion_tokens", 0) or 0,
+        latency_ms=(time.perf_counter() - started) * 1000.0,
+    ))
+
+
+def agentic_interpret(message: str, state, catalog, usage=None) -> str:
     """Returns one of the STATUS_* constants above. Never raises."""
     if not agentic_available():
         return STATUS_UNAVAILABLE
+    if _circuit_open():
+        return STATUS_CIRCUIT_OPEN
     try:
         import openai
     except ImportError:
@@ -222,12 +265,14 @@ def agentic_interpret(message: str, state, catalog) -> str:
             {"role": "user", "content": message},
         ]
         for _ in range(max(1, int(config.AGENTIC_MAX_TOOL_CALLS))):
+            started = time.perf_counter()
             response = client.chat.completions.create(
                 model=config.AGENTIC_MODEL,
                 messages=messages,
                 tools=_TOOLS,
                 tool_choice="auto",
             )
+            _absorb_call(usage, response, started)
             reply = response.choices[0].message
             tool_calls = reply.tool_calls or []
             submission = next(
@@ -238,10 +283,13 @@ def agentic_interpret(message: str, state, catalog) -> str:
                 try:
                     extraction = json.loads(submission.function.arguments)
                 except (json.JSONDecodeError, TypeError):
+                    _record_failure()
                     return STATUS_ERROR
+                _record_success()
                 changed = _apply_extraction(extraction, state, catalog)
                 return STATUS_EXTRACTED if changed else STATUS_NO_SIGNAL
             if not tool_calls:
+                _record_failure()
                 return STATUS_ERROR
             messages.append(reply.model_dump(exclude_unset=True))
             for call in tool_calls:
@@ -255,8 +303,10 @@ def agentic_interpret(message: str, state, catalog) -> str:
                     "tool_call_id": call.id,
                     "content": json.dumps(result),
                 })
+        _record_failure()
         return STATUS_ERROR
     except Exception:
+        _record_failure()
         return STATUS_ERROR
 
 
@@ -267,15 +317,13 @@ _REPLY_SYSTEM_PROMPT = (
 )
 
 
-def agentic_reply(attribute: str | None, state) -> str | None:
+def agentic_reply(attribute: str | None, state, usage=None) -> str | None:
     """LLM-phrased variant of the outgoing question/acknowledgement.
 
     Returns None on unavailability or any failure -- caller falls back to
-    Agent._message. Capped by config.AGENTIC_REPLY_MAX_TOKENS (generation
-    cost) and config.AGENTIC_REPLY_MAX_CHARS (rejects an overlong reply
-    instead of trusting the model followed the length instruction).
+    Agent._message.
     """
-    if not agentic_available():
+    if not agentic_available() or _circuit_open():
         return None
     try:
         import openai
@@ -289,6 +337,7 @@ def agentic_reply(attribute: str | None, state) -> str | None:
         intent = f"Ask the shopper if they have a preference on {attribute}."
     try:
         client = openai.OpenAI()
+        started = time.perf_counter()
         response = client.chat.completions.create(
             model=config.AGENTIC_MODEL,
             messages=[
@@ -298,9 +347,13 @@ def agentic_reply(attribute: str | None, state) -> str | None:
             max_tokens=config.AGENTIC_REPLY_MAX_TOKENS,
             temperature=0.7,
         )
+        _absorb_call(usage, response, started)
         text = (response.choices[0].message.content or "").strip()
         if not text or len(text) > config.AGENTIC_REPLY_MAX_CHARS:
+            _record_failure()
             return None
+        _record_success()
         return text
     except Exception:
+        _record_failure()
         return None

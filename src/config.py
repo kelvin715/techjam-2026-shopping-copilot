@@ -81,13 +81,17 @@ QUESTION_TURN_COST = 0.02
 ROBUST_PARSER = True
 
 # Second-tier LLM fallback for template-parser misses. "template" or "agentic".
-INPUT_MODE = "agentic"
+INPUT_MODE = "template"
 AGENTIC_MODEL = "gpt-4o-mini"
 AGENTIC_MAX_TOOL_CALLS = 3
 
 # Caps the outgoing reply generator: keeps replies short and token spend low.
 AGENTIC_REPLY_MAX_TOKENS = 20
 AGENTIC_REPLY_MAX_CHARS = 120
+
+# Circuit breaker, mirroring LLM_CIRCUIT_* below.
+AGENTIC_CIRCUIT_FAILURES = 2
+AGENTIC_CIRCUIT_COOLDOWN_SECONDS = 60.0
 
 # Optional hybrid language layer. ``off`` keeps the scored path byte-identical
 # and token-free. ``ground`` lets an OpenAI-compatible model propose a

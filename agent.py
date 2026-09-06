@@ -11,7 +11,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from src import config
-from src.agentic_dialog import agentic_interpret, agentic_reply
+from src.agentic_dialog import STATUS_EXTRACTED, agentic_interpret, agentic_reply
 from src.dialog import SessionState, parse
 from src.evidence import (
     build_certificate,
@@ -74,8 +74,10 @@ class Agent:
             recognized = parse(user_message, state, self.catalog)
             agentic_status = None
             if not recognized and config.INPUT_MODE == "agentic":
-                agentic_status = agentic_interpret(user_message, state, self.catalog)
-            if self.llm is not None and not recognized:
+                agentic_status = agentic_interpret(
+                    user_message, state, self.catalog, usage
+                )
+            if self.llm is not None and not recognized and agentic_status != STATUS_EXTRACTED:
                 # Off-protocol wording: let the model propose a reading and the
                 # catalog verify it. Protocol messages never reach the model.
                 from src.ground import ground_message
@@ -285,14 +287,21 @@ class Agent:
             }
 
         message = self._message(attribute)
+        agentic_replied = False
         repeat_ask = state.asked[:-1].count(attribute) if state.asked else 0
         if config.INPUT_MODE == "agentic" and repeat_ask:
             # Only call the model when the deterministic line would otherwise
             # repeat verbatim -- the common case is phrased for free.
-            generated = agentic_reply(attribute, state)
+            generated = agentic_reply(attribute, state, usage)
             if generated:
                 message = generated
-        if self.llm is not None and self.llm_settings.says and recommendations:
+                agentic_replied = True
+        if (
+            not agentic_replied
+            and self.llm is not None
+            and self.llm_settings.says
+            and recommendations
+        ):
             try:
                 from src.ground import render_message
 
