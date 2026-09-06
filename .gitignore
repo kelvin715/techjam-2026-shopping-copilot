@@ -60,6 +60,7 @@ CLAUDE.md
 # documents. README.md is the published narrative.
 # docs/baseline_results.json stays tracked: the demo bundle manifest hashes it.
 docs/*.md
+docs/*.py
 docs/evaluation_config.json
 docs/agent_api_contract.json
 
@@ -71,3 +72,9 @@ Thumbs.db
 *~
 .idea/
 .vscode/
+
+# Benchmark run logs are scratch output; the JSON summaries are tracked.
+results/logs/
+
+# Competitor research for the Grand Final playbook stays local.
+results/track4_devpost_projects.json

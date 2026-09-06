@@ -19,6 +19,7 @@ from src.evidence import (
     estimate_question_values,
     minimal_counterfactual_explanation,
 )
+from src.llm import ChatClient, LLMSettings, LLMUsage
 from src.policy import available_attributes, choose, emit_count, exact_signature_prefix
 from src.rank import diversify_evidence_ties, score_candidates
 from src.shelf import Catalog
@@ -27,9 +28,24 @@ from src.shelf import Catalog
 class Agent:
     """Agent implementation matching the organizer's reset/respond contract."""
 
-    def __init__(self, catalog_path: str | Path = "data/catalog.jsonl") -> None:
+    def __init__(
+        self,
+        catalog_path: str | Path = "data/catalog.jsonl",
+        llm_settings: LLMSettings | None = None,
+        llm_client=None,
+    ) -> None:
         self.catalog = Catalog(catalog_path)
         self._sessions: dict[str, SessionState] = {}
+        # The optional language layer is off unless ARC_LLM_MODE selects it.
+        # With it off, nothing below ever constructs a client or spends a
+        # token, so the official scoring path is unchanged.
+        self.llm_settings = llm_settings or LLMSettings.from_env()
+        if llm_client is not None:
+            self.llm = llm_client
+        elif self.llm_settings.enabled:
+            self.llm = ChatClient(self.llm_settings)
+        else:
+            self.llm = None
 
     def reset(self, session_id: str, user_profile: dict) -> None:
         self._sessions[session_id] = SessionState(user_profile)
@@ -48,16 +64,39 @@ class Agent:
             state = SessionState({})
             self._sessions[session_id] = state
 
+        usage = LLMUsage()
+        grounding: dict | None = None
         try:
             # Reaching another turn proves that the previous slate missed. The
             # override parser clears this history before it can affect the new
             # intent.
             state.confirm_previous_misses()
-            matched = parse(user_message, state, self.catalog)
+            recognized = parse(user_message, state, self.catalog)
             agentic_status = None
-            if not matched and config.INPUT_MODE == "agentic":
+            if not recognized and config.INPUT_MODE == "agentic":
                 agentic_status = agentic_interpret(user_message, state, self.catalog)
+            if self.llm is not None and not recognized:
+                # Off-protocol wording: let the model propose a reading and the
+                # catalog verify it. Protocol messages never reach the model.
+                from src.ground import ground_message
+
+                grounding = ground_message(
+                    user_message, state, self.catalog, self.llm, usage
+                )
             candidates = self.catalog.candidates(state.shelf)
+            pool_widened = False
+            if state.shelf is None and state.candidate_pool:
+                candidates = state.candidate_pool
+                if (
+                    config.LLM_POOL_WIDEN_AFTER_MISSES
+                    and len(state.proven_misses) >= config.LLM_POOL_WIDEN_AFTER_MISSES
+                ):
+                    # Failure detection: a grounded shelf guess that has
+                    # already refuted a full slate is more likely wrong than
+                    # the accumulated evidence. Rank the whole catalog on
+                    # that evidence instead of exhausting the guessed pool.
+                    candidates = self.catalog.ids
+                    pool_widened = True
             rank_source_ids = candidates
             scores = score_candidates(
                 self.catalog,
@@ -154,9 +193,16 @@ class Agent:
             refutation_cohort_size = exact_signature_prefix(
                 scores, self.catalog.signature
             )
+            # The protocol discloses at most four constraints, so four is
+            # "complete" for a simulator session. A grounded human session
+            # keeps clarifying until the shopper signals exhaustion or the
+            # late-turn gate opens.
+            disclosed = len(state.constraints)
+            if state.grounded:
+                disclosed = min(disclosed, config.MAX_DISCLOSED_CONSTRAINTS - 1)
             count = emit_count(
                 turn,
-                len(state.constraints),
+                disclosed,
                 top_k,
                 scores,
                 state.information_complete,
@@ -195,10 +241,18 @@ class Agent:
                 refutation_cohort_size=refutation_cohort_size,
             )
             state.last_decision_certificate["input_interpretation"] = (
-                "template" if matched
+                "template" if recognized
                 else f"agentic_{agentic_status}" if agentic_status
+                else "grounded" if grounding is not None
                 else "unmatched"
             )
+            if grounding is not None or usage.calls:
+                state.last_decision_certificate["llm_grounding"] = grounding
+                state.last_decision_certificate["llm_usage"] = usage.to_dict()
+            if pool_widened:
+                state.last_decision_certificate["reason_codes"].append(
+                    "grounded_pool_widened_to_catalog"
+                )
             excluded = state.proven_misses if config.PROVEN_MISS_EXCLUSION else set()
             state.last_counterfactual_context = {
                 "candidate_ids": [
@@ -238,6 +292,21 @@ class Agent:
             generated = agentic_reply(attribute, state)
             if generated:
                 message = generated
+        if self.llm is not None and self.llm_settings.says and recommendations:
+            try:
+                from src.ground import render_message
+
+                rendered = render_message(
+                    state.last_decision_certificate,
+                    self.catalog.title.get(recommendations[0]),
+                    self.llm,
+                    usage,
+                )
+                if rendered:
+                    message = rendered
+                state.last_decision_certificate["llm_usage"] = usage.to_dict()
+            except Exception:
+                pass
 
         return {
             "message": message,
@@ -245,7 +314,10 @@ class Agent:
             "recommendations": [
                 {"parent_asin": asin} for asin in recommendations
             ],
-            "usage": {"prompt_tokens": 0, "completion_tokens": 0},
+            "usage": {
+                "prompt_tokens": usage.prompt_tokens,
+                "completion_tokens": usage.completion_tokens,
+            },
         }
 
     def explain_last_decision(self, session_id: str) -> dict:

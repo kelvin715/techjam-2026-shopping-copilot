@@ -1,22 +1,23 @@
 {
   "meta": {
     "schema_version": 2,
-    "generated_at": "2026-09-01T09:13:09.937154+00:00",
-    "source_commit": "4e3a1657a05ec4746096e72ccdff5dd5d4f412c9",
-    "source_fingerprint": "d129ece55de50c02fbf28ec509214295775c5f0f894ceb412a1ceece7ddc0ccd",
+    "generated_at": "2026-09-06T15:13:11.304868+00:00",
+    "source_commit": "3c3b43a42345a950bb8bc249e87ae53de1b73b88",
+    "source_fingerprint": "abb9c69830d7ad3ec5d0a36a9437dc3368719b25ed08cb8dc335ef0afb53983d",
     "source_hashes": {
-      "agent.py": "6fda6befa92cad5335de5dc5f05f4de87a8f48b89c935cddb1a96821d4dbd615",
-      "demo/server.py": "59c4ffa4d558af547cd07196fa9304ef7cf9edcceecf3b8d438513d1850187d8",
+      "agent.py": "1cb88ff66c02169ed95f5443f0f7b791baa9e1889b5fc377238537569f7f8923",
+      "demo/server.py": "3aba0a67eb733c1488747e5394894d8ea612b75d1f00b20601a8580f5470d945",
       "demo/static/app.js": "5d57fbd730b3e8e99bedc872fa1e6557721a7a65b2b34f1d1efdf1db5b436313",
-      "demo/static/components.js": "b6506c1ed83f0d13232eae78b8f38470e10dc5bce0f09ff51b464fc74e82dacd",
+      "demo/static/components.js": "516352010623115c65b51586df875d6ede433c77d99a0f0aa2620101dc6379eb",
       "demo/static/favicon.svg": "144b68065207a2e9bcc61cf26132506d263107eac950dfcb25216618501b186e",
       "demo/static/index.html": "0fb32d8a89e127459b30afe2c486d52375a47d9cea003f2782206480e0b9f589",
-      "demo/static/state.js": "7cc005e4caaefcfb816c715c1af7ecd2f98f2fffba3fa906d4db13b028ed3c8f",
-      "demo/static/styles.css": "9c9945024d309a9fac689a8103f82db1df8dd3dc7274ef0e1ede7938a8bd3581",
+      "demo/static/state.js": "4501fbd529102e2c5d65c38112567efacdb3d4194b8ccb1899993dc497f412e8",
+      "demo/static/styles.css": "d6e1122e33e6456613d4997678b85f0b95d4cb2070f13336a9c9f3c8bdae99d1",
       "docs/baseline_results.json": "70834f738918191e4108f89ea66bc502db521bccce5ed95d6ccc73563fba5a96",
       "results/decision_trace.json": "9c18fa222bd64573f8f1cab952d4014a6e1ce87e9a5a210b924452d4244d95e3",
       "results/demo_walkthrough.json": "8dcd731b468e403d39df914841519faec919c361048669581c796b2a8b56db49",
       "results/explore_decision_trace.json": "7625650e269da89ad2a96f6e50bae988ffef2fac3667ae9a111e5bb50a1f20ba",
+      "results/human_language_benchmark.json": "751043c80dd6ea42369d28d1fce8f12eff5c134da588fcaf43c2cdfcd28657d7",
       "results/matched_proxy_metrics.json": "1861268fd025383d71148b71160ac9a2ade743430c4c0366d5e535dd89cd285b",
       "results/public_metrics.json": "f27c4951c0f01c07a93f2c5952704afd972e20f27a0f64f3aa2ddacfbc2dbbb0",
       "results/public_session_replays.json": "a3f7601ed69fc852b58e9cf2efebb4bf1bddbe5a9623e7ecbef8224cf8701fb4",
@@ -24,22 +25,25 @@
       "results/runtime_profile.json": "a6e72b4882a89cdc0bf428663a74f669f938e41af38d1c89e99aaacaca7abadb",
       "results/uniform_proxy_metrics.json": "05880f16968a1efcfed5358dc283f453c838a70044249f615e1306906ae3c0d7",
       "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "src/config.py": "21ebe045a30963cb2e11da0a33327ef7d823bbc4a7537bb22878e869e8739bf9",
-      "src/dialog.py": "9a95ab62f1b515ca0dc361aa466071bcc920bda3e0cb4067fd48f9e747d24be2",
-      "src/evidence.py": "c62bd886d97c69bef47f20b32137273f7913fdbeed223ee6fcecd560d6cbd9b4",
+      "src/config.py": "2ef3856a30b1af24b139fda3526d671b4d17bbc1caa0043d3f0abe2257cd1f00",
+      "src/dialog.py": "f1ea2ecc7274adeb3bb8bf5d28e7710d1f33ef890b643d8263f7d8c47a0ed67e",
+      "src/evidence.py": "82ce0e45cadae9d6671ab1ed993825a583956f429a37d11ba9f3c41e349b9444",
+      "src/ground.py": "f5372abce57e9ab5931cacb412cd817721330a9a19015717c276e2cf24c09e0c",
+      "src/llm.py": "ae5531de9585bfcb29ad561c554529a7c3e070772577aacf33614bf1e580ea37",
       "src/policy.py": "d18eb0df7852366b898c7648ede435fe86103473fca18c5ef91045cdb992b05c",
       "src/rank.py": "6b860c9ea6b25728109af391cf225000f3d2cbf9e86135b31c55b47409916023",
-      "src/shelf.py": "94afdd537cfcd2254eacd77e54c948e3a06f15b33fa54d50ff4db5949dcfe6f2",
+      "src/shelf.py": "ed22813c8c6ac145ab913788062ee5191ae9e9832b918622b98b8a7a3986ee90",
       "tests/test_agent.py": "767afd04819ceb31d79aabba757ece008b073d3fb1117fd59c3f1eb75dfffeae",
       "tests/test_demo_assets.py": "4ccb6032d34aba89333cc3d5e9a2200ab26b9695ae106ed03f674bd1d65919c2",
       "tests/test_demo_frontend.py": "e371243215496784df91033c1f40d68f1131fdebc2eaded73c8f6c7b87a4e8cb",
       "tests/test_evaluator.py": "e07648ee81b1be0a14a4b13be3c566d17959154fef533f7ef6f4c349ce69d5df",
       "tests/test_evidence.py": "84dc3883883bca2a847add91c5ff11f8df937dadc61beced0326194a459fce05",
+      "tests/test_llm_grounding.py": "704ff8aa179e7691aa412e39edc1a7e8cf90bd8ec1081fbc3874ae3ce10fffe4",
       "tests/test_rerank.py": "5ffce135d2ab675412016b47d1ba84d1ff41fad05e6f58b206f42e06b72450e0",
       "tests/test_signature.py": "ab6e42b3e7e7b179d7970de4a63ddb71f8f12b9c85228f62d65c93383a80bb2c",
       "tests/test_static_site.py": "8c31194f5f5c8528a42cffba383c6fedc92a71a9e8a087a9a2144bbc59072e90",
       "tests/test_submission_tools.py": "cafbdb1f497c63d6e48319eb2651ccc2015abe0b790af920f99d8bf97a8c1e10",
-      "tools/build_demo_bundle.py": "35d492a386ebeb6aba1ad10dff5fbbedd68f0de9f5ae3abaf3471208d8faa2ef",
+      "tools/build_demo_bundle.py": "9b0fce61d47075f579d7638ed71ca1141a43e576dfc02299da80e7bfc4155fdf",
       "tools/build_session_replays.py": "b2170f189ba89d887cd767c87799ba233cb82be1b15adf24a6cb6d20ae274549"
     },
     "mode": "verified_replay",
@@ -28381,8 +28385,140 @@
         "Startup varies with CPU and filesystem cache; rerun on judging hardware."
       ]
     },
+    "human_language": {
+      "status": "research_diagnostic_not_official_score",
+      "sample_count": 200,
+      "levels": [
+        "canonical",
+        "natural",
+        "paraphrase"
+      ],
+      "arms": [
+        "deterministic",
+        "hybrid"
+      ],
+      "grounding_model": {
+        "model": "gemma4",
+        "base_url": "http://10.86.229.54:8000/v1"
+      },
+      "customer_model": {
+        "model": "gemma4",
+        "base_url": "http://10.86.229.54:8000/v1"
+      },
+      "experiments": {
+        "canonical__deterministic": {
+          "level": "canonical",
+          "arm": "deterministic",
+          "hit_rate_at_10": 1.0,
+          "mrr": 1.0,
+          "mttc": 1.98,
+          "technical_score": 0.9804,
+          "model_calls": 0,
+          "total_tokens": 0,
+          "mean_model_latency_ms_per_turn": 0.0,
+          "accepted_by_tier": {}
+        },
+        "canonical__hybrid": {
+          "level": "canonical",
+          "arm": "hybrid",
+          "hit_rate_at_10": 1.0,
+          "mrr": 1.0,
+          "mttc": 1.98,
+          "technical_score": 0.9804,
+          "model_calls": 0,
+          "total_tokens": 0,
+          "mean_model_latency_ms_per_turn": 0.0,
+          "accepted_by_tier": {}
+        },
+        "natural__deterministic": {
+          "level": "natural",
+          "arm": "deterministic",
+          "hit_rate_at_10": 0.82,
+          "mrr": 0.625232,
+          "mttc": 4.495,
+          "technical_score": 0.72767,
+          "model_calls": 0,
+          "total_tokens": 0,
+          "mean_model_latency_ms_per_turn": 0.0,
+          "accepted_by_tier": {}
+        },
+        "natural__hybrid": {
+          "level": "natural",
+          "arm": "hybrid",
+          "hit_rate_at_10": 0.995,
+          "mrr": 0.953006,
+          "mttc": 2.39,
+          "technical_score": 0.955602,
+          "model_calls": 228,
+          "total_tokens": 234796,
+          "mean_model_latency_ms_per_turn": 373.7,
+          "accepted_by_tier": {
+            "signature_verbatim": 219,
+            "typed_material": 57,
+            "lexical": 58,
+            "typed_color": 22,
+            "lexical_tokens": 3,
+            "signature_mapped": 5
+          }
+        },
+        "paraphrase__deterministic": {
+          "level": "paraphrase",
+          "arm": "deterministic",
+          "hit_rate_at_10": 0.215,
+          "mrr": 0.068087,
+          "mttc": 10.005,
+          "technical_score": 0.147826,
+          "model_calls": 0,
+          "total_tokens": 0,
+          "mean_model_latency_ms_per_turn": 0.0,
+          "accepted_by_tier": {}
+        },
+        "paraphrase__hybrid": {
+          "level": "paraphrase",
+          "arm": "hybrid",
+          "hit_rate_at_10": 0.82,
+          "mrr": 0.710173,
+          "mttc": 4.155,
+          "technical_score": 0.759952,
+          "model_calls": 794,
+          "total_tokens": 765795,
+          "mean_model_latency_ms_per_turn": 304.5,
+          "accepted_by_tier": {
+            "lexical_tokens": 51,
+            "signature_verbatim": 301,
+            "typed_material": 104,
+            "lexical": 91,
+            "typed_color": 29,
+            "signature_mapped": 14
+          }
+        }
+      },
+      "sample_rewrites": {
+        "canonical": [],
+        "natural": [
+          {
+            "simulator": "I'm looking for Jewelry Necklaces. A key requirement is: Material:alloy.",
+            "human": "Hey, I'm looking for Jewelry Necklaces with Material:alloy."
+          },
+          {
+            "simulator": "For that, what matters is: Triple Moon Pentagram Symbol; The Triple Moon represents the Phases of the Moon which are linked to the three aspects of the Goddess and the phases of the Life of Women.The Pentagram representing the holistic r.",
+            "human": "I just need the Triple Moon Pentagram Symbol; The Triple Moon represents the Phases of the Moon which are linked to the three aspects of the Goddess and the phases of the Life of Women.The Pentagram representing the holistic r."
+          }
+        ],
+        "paraphrase": [
+          {
+            "simulator": "I'm looking for Jewelry Necklaces. A key requirement is: Material:alloy.",
+            "human": "I'm looking for some alloy necklaces."
+          },
+          {
+            "simulator": "For that, what matters is: Triple Moon Pentagram Symbol; The Triple Moon represents the Phases of the Moon which are linked to the three aspects of the Goddess and the phases of the Life of Women.The Pentagram representing the holistic r.",
+            "human": "I just need it to have that triple moon and pentagram design on it."
+          }
+        ]
+      }
+    },
     "tests": {
-      "count": 50,
+      "count": 66,
       "verified_pass": true,
       "command": "python3 -m unittest discover -v"
     }

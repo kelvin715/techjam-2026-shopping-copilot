@@ -812,6 +812,92 @@ function proofScene(bundle) {
   `;
 }
 
+/* --------------------------------------------------------- real language */
+
+const LANGUAGE_LEVEL = {
+  canonical: { title: "Organizer templates", note: "the control: the wording the evaluator actually uses" },
+  natural: { title: "Casual wording, attributes verbatim", note: "a shopper who talks normally but keeps the attribute words" },
+  paraphrase: { title: "Everything in their own words", note: "a shopper who never quotes the listing" },
+};
+
+function languageBar(label, row, tone) {
+  if (!row) return "";
+  const width = Math.max(4, Math.round(row.technical_score * 100));
+  return `
+    <div class="lang-bar lang-${tone}">
+      <div class="lang-bar-head"><span>${esc(label)}</span><strong>${score(row.technical_score)}</strong></div>
+      <div class="lang-bar-track"><div class="lang-bar-fill" style="width:${width}%"></div></div>
+      <dl><div><dt>Found</dt><dd>${decimal(row.hit_rate_at_10, 3)}</dd></div><div><dt>Rank quality</dt><dd>${decimal(row.mrr, 3)}</dd></div><div><dt>Turns</dt><dd>${decimal(row.mttc, 2)}</dd></div><div><dt>Model calls</dt><dd>${count(row.model_calls || 0)}</dd></div></dl>
+    </div>
+  `;
+}
+
+function languageContent(bundle) {
+  const data = bundle.proof.human_language;
+  if (!data) {
+    return `<p class="live-placeholder">The human-language benchmark has not been recorded in this bundle yet. Run <code>tools/human_language_benchmark.py</code>, then <code>tools/fill_final_numbers.py</code> and rebuild.</p>`;
+  }
+  const levels = (data.levels || []).filter((level) => level !== "canonical");
+  const control = data.experiments["canonical__hybrid"];
+  const cards = levels.map((level) => {
+    const det = data.experiments[`${level}__deterministic`];
+    const hyb = data.experiments[`${level}__hybrid`];
+    const meta = LANGUAGE_LEVEL[level] || { title: level, note: "" };
+    const rewrite = (data.sample_rewrites?.[level] || [])[0];
+    return `
+      <article class="lang-card">
+        <span class="micro-label">${esc(meta.title)}</span>
+        <p class="lang-note">${esc(meta.note)}</p>
+        ${languageBar("Frozen submission · 0 tokens", det, "det")}
+        ${languageBar(`With grounding · ${esc(data.grounding_model?.model || "model")}`, hyb, "hyb")}
+        ${rewrite ? `<div class="lang-rewrite"><small>simulator</small><p>${esc(rewrite.simulator)}</p><small>shopper</small><p>${esc(rewrite.human)}</p></div>` : ""}
+      </article>
+    `;
+  }).join("");
+  const perSession = levels.map((level) => {
+    const hyb = data.experiments[`${level}__hybrid`];
+    if (!hyb) return "";
+    const n = data.sample_count || 1;
+    return `<div><strong>${decimal(hyb.model_calls / n, 1)}</strong><span>calls per session, ${esc(LANGUAGE_LEVEL[level]?.title || level).toLowerCase()}</span></div>`;
+  }).join("");
+  const latency = levels.map((level) => data.experiments[`${level}__hybrid`]?.mean_model_latency_ms_per_turn || 0);
+  const meanLatency = latency.length ? latency.reduce((a, b) => a + b, 0) / latency.length : 0;
+  return `
+    <div class="lang-grid">${cards}</div>
+    <div class="lang-tiers">
+      <div class="lang-tier-flow">
+        <span>message</span>${icon("arrow")}<span>matches a template? <b>deterministic parser, 0 tokens</b></span>${icon("arrow")}<span>otherwise <b>the model proposes</b> intent · category · material · colour · budget · features</span>${icon("arrow")}<span><b>the catalog disposes</b></span>
+      </div>
+      <ul>
+        <li><b>verbatim</b> catalog value · confidence 1.0</li>
+        <li><b>mapped</b> "buckle" → "buckle closure", on ≥ 2 candidate products · 0.8</li>
+        <li><b>lexical</b> phrase found in candidate text · 0.6</li>
+        <li><b>tokens</b> every content word, or one rare word, found · 0.5</li>
+        <li><b>refused</b> and written in the certificate otherwise</li>
+      </ul>
+    </div>
+    <div class="engineering-row is-compact">
+      <div><strong>${control ? count(control.model_calls || 0) : "—"}</strong><span>model calls on the organizer templates${control ? ` · score ${score(control.technical_score)}` : ""}</span></div>
+      ${perSession}
+      <div><strong>${decimal(meanLatency, 0)}ms</strong><span>per model call, local ${esc(data.grounding_model?.model || "")}</span></div>
+    </div>
+    <p class="honest-note">${icon("shield")} A language model (${esc(data.customer_model?.model || "")}) plays the shopper and rewrites only the wording; the simulator's policy, cards and stopping rule are byte-identical, and both arms see the same rewrites. It is a diagnostic we designed, not an organizer score, and the shopper is still simulated.</p>
+  `;
+}
+
+function languageScene(bundle) {
+  return `
+    <section class="scene scene-language" aria-labelledby="language-title">
+      ${sceneHeader(
+        "When the shopper stops quoting the catalog · a model plays the shopper",
+        '<span id="language-title">Same simulator, human wording. The frozen agent drops; the grounded agent recovers.</span>',
+        "The public benchmark is saturated because its shopper quotes the listing. The model reads free-form wording; the catalog decides what counts as evidence; ranking never changes hands."
+      )}
+      ${languageContent(bundle)}
+    </section>
+  `;
+}
+
 /* ------------------------------------------------------------- playground */
 
 const SCENARIO_LABEL = {
@@ -1084,6 +1170,54 @@ function playgroundCertificate(certificate) {
       <p class="pg-note">${counterfactual.faithful
         ? `Smallest evidence removal that changes rank one: <strong>${esc(removed)}</strong>. Re-ranked without it, the current winner falls to #${esc(String(counterfactual.original_top_counterfactual_rank ?? "—"))}.`
         : `Minimal counterfactual: ${esc(counterfactual.status || "not available for this turn")}.`}</p>
+      ${playgroundGrounding(certificate)}
+    </div>
+  `;
+}
+
+// The optional language layer: the model proposes a reading of free-form
+// wording, the catalog verifies it. Every accepted clue names its evidence
+// tier; every rejected phrase names the reason it could not be grounded.
+function playgroundGrounding(certificate) {
+  const grounding = certificate.llm_grounding;
+  const usage = certificate.llm_usage || {};
+  if (!grounding) {
+    if (usage.calls) {
+      return `<p class="pg-note">Language layer: message phrased by the model (${count(usage.prompt_tokens || 0)} + ${count(usage.completion_tokens || 0)} tokens); the wording matched the protocol, so no grounding call was needed.</p>`;
+    }
+    return "";
+  }
+  const tierText = {
+    signature_verbatim: "verbatim catalog value",
+    signature_mapped: "mapped to catalog value",
+    lexical: "found in product text",
+    typed_material: "typed material",
+    typed_color: "typed color",
+    typed_budget: "typed budget",
+  };
+  const accepted = (grounding.accepted || []).map((item) => `
+    <li><strong>${esc(item.constraint)}</strong> <span class="pg-tier">${esc(tierText[item.tier] || item.tier)}${item.from ? ` · from “${esc(item.from)}”` : ""} · confidence ${decimal(item.confidence ?? 1, 1)}</span></li>
+  `).join("");
+  const rejected = (grounding.rejected || []).map((item) => `
+    <li><s>${esc(item.phrase)}</s> <span class="pg-tier">${esc(String(item.reason || "").replace(/_/g, " "))}</span></li>
+  `).join("");
+  const removed = (grounding.removed || []).map((item) => `
+    <li><s>${esc(item.constraint)}</s> <span class="pg-tier">cancelled by the shopper</span></li>
+  `).join("");
+  const pool = grounding.pool_shelves
+    ? `<div><dt>Shelves searched</dt><dd>${esc(grounding.pool_shelves.slice(0, 4).join(" · "))}${grounding.pool_shelves.length > 4 ? " …" : ""} (${count(grounding.pool_size || 0)} products)</dd></div>`
+    : grounding.shelf ? `<div><dt>Shelf</dt><dd>${esc(grounding.shelf)}</dd></div>` : "";
+  return `
+    <div class="pg-grounding">
+      <p class="micro-label">Language layer · ${esc(grounding.status || "")}${grounding.intent ? ` · intent ${esc(grounding.intent)}` : ""}</p>
+      <dl>
+        ${pool}
+        <div><dt>Model cost</dt><dd>${count(usage.calls || 0)} call(s) · ${count((usage.prompt_tokens || 0) + (usage.completion_tokens || 0))} tokens · ${decimal(usage.latency_ms || 0, 0)} ms</dd></div>
+      </dl>
+      ${accepted ? `<p class="pg-note">Grounded into evidence:</p><ul>${accepted}</ul>` : ""}
+      ${removed ? `<ul>${removed}</ul>` : ""}
+      ${rejected ? `<p class="pg-note">Proposed by the model, refused by the catalog:</p><ul>${rejected}</ul>` : ""}
+      ${grounding.exhausted ? `<p class="pg-note">Shopper has no preference on <strong>${esc(grounding.exhausted)}</strong>; that question is retired.</p>` : ""}
     </div>
   `;
 }
@@ -1098,7 +1232,9 @@ function livePlaygroundScene(bundle, health, state) {
       ${sceneHeader(
         "Live Agent · optional local backend",
         '<span id="playground-title">Ask it something we did not rehearse.</span>',
-        "Every reply below is produced by the same <code>Agent.respond</code> the evaluator calls, over the same read-only catalog, with no network and no model tokens."
+        health.llm && health.llm.enabled
+          ? `Every reply below is produced by the same <code>Agent.respond</code> the evaluator calls, over the same read-only catalog. The optional language layer (<code>${esc(health.llm.model || "")}</code>) is on: free-form wording is read by the model and verified against the catalog; protocol wording never reaches it.`
+          : "Every reply below is produced by the same <code>Agent.respond</code> the evaluator calls, over the same read-only catalog, with no network and no model tokens."
       )}
       ${sessionModeTabs("live", health)}
       <div class="explore-layout">
@@ -1107,12 +1243,13 @@ function livePlaygroundScene(bundle, health, state) {
             <span>${icon("terminal")}</span>
             <div><small>Live session</small><h2>Shopper</h2></div>
             ${live ? badge("Engine ready", "green", "check") : badge("Replay only", "warning", "shield")}
+            ${live && health.llm && health.llm.enabled ? badge(`Language layer · ${health.llm.mode}`, "neutral", "spark") : ""}
           </div>
           <div class="live-log">${playgroundLog(playground)}</div>
           ${live ? `
             <form id="live-form" autocomplete="off">
               <label for="live-input">Shopper message</label>
-              <input id="live-input" name="message" type="text" maxlength="4000" placeholder="I'm looking for Loafers &amp; Slip-Ons. A key requirement is: leather." ${exhausted || playground.busy ? "disabled" : ""}>
+              <input id="live-input" name="message" type="text" maxlength="4000" placeholder="${health.llm && health.llm.enabled ? "looking for a belt for my husband, something rustic with a buckle, real leather" : "I'm looking for Loafers &amp; Slip-Ons. A key requirement is: leather."}" ${exhausted || playground.busy ? "disabled" : ""}>
               <button class="primary-button" type="submit" ${exhausted || playground.busy ? "disabled" : ""}>${icon(playground.busy ? "reset" : "arrow")}${playground.busy ? "Thinking" : "Send"}</button>
             </form>
             <div class="pg-presets">
@@ -1155,6 +1292,7 @@ function storyView(bundle, health, state) {
     "walk-3": () => turnWalkthroughScene(bundle, 2),
     "walk-4": () => turnWalkthroughScene(bundle, 3),
     proof: () => proofScene(bundle),
+    language: () => languageScene(bundle),
     sessions: () => sessionExplorerScene(bundle, health, state),
   };
   const id = SCENES[state.scene].id;

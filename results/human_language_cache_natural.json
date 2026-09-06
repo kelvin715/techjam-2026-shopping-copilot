@@ -1,0 +1,2212 @@
+{
+"0026c3c4d4bcdc1be7caa51343ce4327f57952d6acb10e3a3637c763b1034790": {
+"completion_tokens": 69,
+"prompt_tokens": 952,
+"text": "```json\n{\n  \"intent\": \"no_preference\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"zipper closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"002d5095dd0e5a36a02281cce0d6190deb7ca14fc3e60be870b6736bd324eb25": {
+"completion_tokens": 69,
+"prompt_tokens": 958,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"jeans\",\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"004b42e8e9bf11b513d28001bfbf66f82c87644c642ae5b9b8d9e0a77fb288cd": {
+"completion_tokens": 72,
+"prompt_tokens": 933,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"synthetic sole\",\n    \"8\\\"\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0056440090971fe1d373297e9c38909837e12888f99b0fec750f5281c4b1f915": {
+"completion_tokens": 83,
+"prompt_tokens": 981,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"75% Polyester, 20% Rayon, 5% Spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0087de28bd2b3ca73f7112ca8c546e4174767dae59463cf76e8c8487972541a4": {
+"completion_tokens": 87,
+"prompt_tokens": 841,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"spandex\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"stretchy\",\n    \"95% cotton, 5% spandex\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"01b8110e55437af78bf75d4d918fc02e12ad1122cbfc2d6d1444122f3e6aa53f": {
+"completion_tokens": 79,
+"prompt_tokens": 971,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"slip on design\",\n    \"elastic cuff\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"023a279ae2f05911679b7f5dc81a78faa5a92ad5afb599f6208e12ea7c0bfc9d": {
+"completion_tokens": 66,
+"prompt_tokens": 886,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"white\"\n  ]\n}\n```"
+},
+"02b7ee7c30a23d67c9b439ca1d65b54f60ff2a36d0ef9fff5a5a62e078d4e6ff": {
+"completion_tokens": 67,
+"prompt_tokens": 831,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [\n    \"leather lining\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"02c4db03ead8c75e023ca351665c82591b3a4def06a1634c012e26fa286493fd": {
+"completion_tokens": 71,
+"prompt_tokens": 983,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"import\",\n    \"elastic closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"02d048ffbc0231e3674ec9eac96db020d47c0613824eef54198aeebe4277534e": {
+"completion_tokens": 33,
+"prompt_tokens": 937,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":\"black\",\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"032c3056ba210cd4ff209492061435bbc949d1813e1c5e4a9779072db46c0491": {
+"completion_tokens": 76,
+"prompt_tokens": 934,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% polyester\",\n    \"进口\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"04559424e89a9d2f230fb8355d95d2be2508108f6fba8f510a6af5eec2cd5347": {
+"completion_tokens": 75,
+"prompt_tokens": 978,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"65% polyester, 35% wool\"\n  ]\n}\n```"
+},
+"04ac211b8c01f17246c315b033251821cc57d0a23011c6d9e8adb6fab5000950": {
+"completion_tokens": 71,
+"prompt_tokens": 1012,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"04c315015c96ecfacd2511f6fdf21bdaa6adfe58aef9f2c38da1a2cc0088d9f1": {
+"completion_tokens": 39,
+"prompt_tokens": 933,
+"text": "```json\n{\"intent\":\"open\",\"category\":null,\"material\":\"nylon\",\"color\":null,\"budget\":null,\"features\":[\"100% nylon\"],\"dropped\":[]}\n```"
+},
+"0508e93bfb530d7e8b4e471fb5d8894e7e563420f0fa082c840bda990bc87bd6": {
+"completion_tokens": 80,
+"prompt_tokens": 993,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"long torso camisole\",\n    \"spagetti adjustable strap\"\n  ]\n}\n```"
+},
+"0510acd414e4cf63aaedbcde52fcbd0193bff3fecf900c8b2b19fcdf00cdf753": {
+"completion_tokens": 47,
+"prompt_tokens": 930,
+"text": "```json\n{\"intent\":\"override\",\"category\":null,\"material\":\"polyester\",\"color\":null,\"budget\":null,\"features\":[],\"dropped\":[\"Hand Wash Only please\", \"button closure\", \"hand wash only\"]}\n```"
+},
+"0519d677ffd383e9d04bd02659901952e563fed01352fabe17b67396f34da709": {
+"completion_tokens": 85,
+"prompt_tokens": 962,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"water resistant\"\n  ],\n  \"dropped\": [\n    \"with a Stainless Steel Band\",\n    \"3 year battery\"\n  ]\n}\n```"
+},
+"058304cebacc9b075bd0c2b8bf79f0e9024f894d7f3342db1d1edd32d1440f27": {
+"completion_tokens": 75,
+"prompt_tokens": 1019,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"60% cotton, 40% polyester\"\n  ]\n}\n```"
+},
+"05aac210225cbf30681e269823132d025ad2bcd2b1c4699f9d2023d61632f508": {
+"completion_tokens": 68,
+"prompt_tokens": 908,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": \"gray\",\n  \"budget\": null,\n  \"features\": [\n    \"polycarbonate frame\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"05c317ad586eea689e439b47b9043d92cd9f94a2005750e7b26d210117f86042": {
+"completion_tokens": 75,
+"prompt_tokens": 972,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"65% polyester, 35% wool\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"064cf5ba6898bfb48635068e32a7bd1b31f00a55907720369a9f6ed286fac7c3": {
+"completion_tokens": 77,
+"prompt_tokens": 932,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": \"white\",\n  \"budget\": null,\n  \"features\": [\n    \"65% polyester, 35% cotton\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"06a1b04ad4c3cac762f0645f7850028bf8a62b4f473023bb549366a7a8887b3b": {
+"completion_tokens": 89,
+"prompt_tokens": 1062,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"baseball hat\",\n  \"material\": \"acrylic\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"6 panels\",\n    \"mid-profile\",\n    \"structured\",\n    \"hook and loop closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"06b4ab8d95692476f405971290693e7f7f4847924f67161918eb2958a0b47cda": {
+"completion_tokens": 73,
+"prompt_tokens": 940,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": \"fabric\",\n  \"color\": \"pink\",\n  \"budget\": null,\n  \"features\": [\n    \"100% textile/synthetic\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"07595eb433a37b631cf934e09a3347a667f62e3078a34e578c22b2fb46d67a8a": {
+"completion_tokens": 77,
+"prompt_tokens": 828,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"nose studs\",\n  \"material\": null,\n  \"color\": \"red\",\n  \"budget\": null,\n  \"features\": [\n    \"6 Pcs\",\n    \"velvet bag\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0767245c66e8e49d1472a2cd35c718fd78e5966a7c8089c95ef3dde9757871c0": {
+"completion_tokens": 67,
+"prompt_tokens": 973,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0778c7ffd63e0409456a60ba6755c4d835ec9c3481284334fb48983f77d1a339": {
+"completion_tokens": 67,
+"prompt_tokens": 930,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": \"nylon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"elastic\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"09956a8af374665170d8ede1fc2fc47a86f8bbbfb4698414827a75699c230f6a": {
+"completion_tokens": 71,
+"prompt_tokens": 959,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"进口\",\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"09cf31d41bad4bcb011d58ae48c2c1712feedb90f203139e0a52c59134fc7550": {
+"completion_tokens": 58,
+"prompt_tokens": 971,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"0a455fd32b9cd354dbe74278c8124f58ee5d136bab8fedc03585adbebf6da602": {
+"completion_tokens": 86,
+"prompt_tokens": 980,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"hoop earrings and dangle earrings\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"post earring\",\n    \"lightweight\",\n    \"square and oval silhouette\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0ad8c3b42ce25b0a48a18a46bfdfd3ce54549d96cd866197550d05dab84e72fd": {
+"completion_tokens": 67,
+"prompt_tokens": 935,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"cotton blend\"\n  ]\n}\n```"
+},
+"0b65be9784f84031a63da9abebd8237dbf6c71e4e01fcf4a9a2a76f280e26e7a": {
+"completion_tokens": 58,
+"prompt_tokens": 1017,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"acrylic\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"0bda4e6978ff5aff985b084daf4aad1abcd22c613714c89ac9c5b0b1d3ec013d": {
+"completion_tokens": 79,
+"prompt_tokens": 983,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"polyester,cotton,spandex\",\n    \"machine wash\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0c2a25d83105c35fc4b101584e6950fba214932834d9708c5c82cbf74a5bd536": {
+"completion_tokens": 76,
+"prompt_tokens": 933,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% polyester\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0caf159dddb56799fbdcab9148a2f230ad642efd5e05c748d103f5090b0f2ada": {
+"completion_tokens": 67,
+"prompt_tokens": 924,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"cotton blend\"\n  ]\n}\n```"
+},
+"0d549b507da48f0aaf6e4f7fa00018199d38ff2601e4a8275f19e26c4d3a66af": {
+"completion_tokens": 33,
+"prompt_tokens": 957,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":\"brown\",\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"0d6054fd389f071d1317247f8abcca5db9dedaa90f2fcdd67b70edf58c36c7a8": {
+"completion_tokens": 78,
+"prompt_tokens": 1030,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": \"Push Up Bra\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hand wash only\",\n    \"3 centimeters Thickness Pad\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0db4ffebb574a5b426c33703203e1e23e7f7c2013a8861af0f0ca85468d5610b": {
+"completion_tokens": 80,
+"prompt_tokens": 743,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"boots\",\n  \"material\": null,\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [\n    \"waterproof\",\n    \"all season\",\n    \"outdoor activity\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0e1b05febc70aa8e1c5f6911558a541b26a2a93cb1d23443f65cc8532b52bd3a": {
+"completion_tokens": 79,
+"prompt_tokens": 1019,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"shoes\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"multicolor\",\n    \"steady design\",\n    \"clean look\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0e57410a9cca69facfcd9aa5bc1eca2c09b0e004c58db659a8c9aa42e3a4e2e2": {
+"completion_tokens": 66,
+"prompt_tokens": 966,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0ebf91c5426db0c92fa0eb90393fa514883d86ec7c691229d833f62fd5b96d44": {
+"completion_tokens": 75,
+"prompt_tokens": 975,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"made in usa or imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0ed91b65f1b2e7d904b2a40466227721113025907875c7c13baf528de0329ed0": {
+"completion_tokens": 69,
+"prompt_tokens": 973,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"spandex\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0f12edbcdba028e3069662c37594bf0b37ac42cf90ce2268084d11ca2f5cb659": {
+"completion_tokens": 85,
+"prompt_tokens": 987,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": \"women tops\",\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hand wash only\",\n    \"gentle cycle\",\n    \"hang to dry\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0f34b63ecf31b4c007bf872c4accb3a7d35f66ea10e92f5eb352c2a92eb18d62": {
+"completion_tokens": 74,
+"prompt_tokens": 970,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% mesh\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"0f782c2f515f294f341aa7e0b8160203865ab7e000037e24a5fa096e49042132": {
+"completion_tokens": 81,
+"prompt_tokens": 1026,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% cotton\",\n    \"soft\",\n    \"breathable\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"10b9c04070d62a17e0b2ca1f1ccb1aabaf84c0231b2cdea7ee3563c5f381e47b": {
+"completion_tokens": 72,
+"prompt_tokens": 811,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"cotton,polyester,spandex\"\n  ]\n}\n```"
+},
+"119e69d8dbabd93326367084aed32c2f28d59131f9a4a6dffdabd87434d9c4d9": {
+"completion_tokens": 35,
+"prompt_tokens": 917,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":null,\"budget\":null,\"features\":[\"cotton blend\"],\"dropped\":[]}\n```"
+},
+"11fb932d8a56e3cdd13900127704cba18dbe7da3eff6979d6053573e26cfc44c": {
+"completion_tokens": 69,
+"prompt_tokens": 942,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"polyester lining\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1205f6e8d108cd76f4558e4c6f09abc2318c99c83079469b53261a8e45335f53": {
+"completion_tokens": 58,
+"prompt_tokens": 972,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"13fc79787df99b98fdc1dd6a88712efcc0e56fb008fc258344a56cc9f21fb971": {
+"completion_tokens": 69,
+"prompt_tokens": 839,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"spandex\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"stretchy\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"155ff1bc5a62e26920d947373410527796a1f355dd8557e6cff1f4e4ddcbbc0d": {
+"completion_tokens": 67,
+"prompt_tokens": 999,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"zipper closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"165fdfdbdcfeb911bcdf6c69e0780564e2db2ff854b832b67666a806024b0d7c": {
+"completion_tokens": 67,
+"prompt_tokens": 976,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"nylon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"17d30fe3200cd48596750bbab4a7ea3419079e4ce979eff08da6855c1a073037": {
+"completion_tokens": 81,
+"prompt_tokens": 978,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"ethylene vinyl acetate sole\",\n    \"Shaft measures approximately 1\\\" from arch\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"18e16f63262229d52dbfbf0eb7a3abd3a5201b2501fbb4af831bf4483e00f46a": {
+"completion_tokens": 38,
+"prompt_tokens": 934,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[\"100% leather\"],\"dropped\":[]}\n```"
+},
+"196873ca2f1eecd529a400d3a335d821ca1a3006761c54fe07691653df56d3d3": {
+"completion_tokens": 72,
+"prompt_tokens": 960,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"19a08c45d784290c0839a3bb48fc3e3996a298489424cdc2bac49da531cc18bd": {
+"completion_tokens": 36,
+"prompt_tokens": 939,
+"text": "```json\n{\"intent\":\"override\",\"category\":null,\"material\":\"nylon\",\"color\":null,\"budget\":null,\"features\":[],\"dropped\":[\"Elastic closure\"]}\n```"
+},
+"19ef3632359ce7ed26aba12d3f6965d8ad5683eaa445da4017dc50db3b731bca": {
+"completion_tokens": 72,
+"prompt_tokens": 987,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1a04f3aea2ebf8f8adc3cac4fd1d6ce77c51e5f22382d1eee6f81571009b73db": {
+"completion_tokens": 75,
+"prompt_tokens": 973,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% polyester, 5% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1a7d2e543385125077f9f00971118d356219ae9400869f7ea8cdc97f58366ee7": {
+"completion_tokens": 68,
+"prompt_tokens": 1055,
+"text": "```json\n{\n  \"intent\": \"other\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"great for costume parties\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1a88d42b5aa0f2681e81774ba2f7458d2d2001872a55ee1e95579a83ad06ed01": {
+"completion_tokens": 86,
+"prompt_tokens": 924,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"modal,polyester,cotton\",\n    \"ultra light-weight\",\n    \"soft & smooth\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1ae951a4d7f3075cdf8edc3edf20ba55fc9ffa9f3b8b01973bc8e0f4142a36be": {
+"completion_tokens": 68,
+"prompt_tokens": 1037,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [\n    \"double zipper pulls\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1be6591ab5530a5983a7cb1fb83a7a080e586b69b032587b3cacd33003e3b4ca": {
+"completion_tokens": 75,
+"prompt_tokens": 979,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"60% cotton, 40% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1df3075135426c568bf8bde45464bd0472d3de9d08e3a4932cc5d5a647a2b823": {
+"completion_tokens": 73,
+"prompt_tokens": 970,
+"text": "```json\n{\n  \"intent\": \"no_preference\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1e76477a7c03826f44ddb69c16fe2c80c0a467131ef4d2977e96d835eb0ab190": {
+"completion_tokens": 58,
+"prompt_tokens": 922,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"1e80e26174e270189ad29f9bffa951bf46db12b8e8f5dc7327dcd5beeb298610": {
+"completion_tokens": 71,
+"prompt_tokens": 925,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"polyester,spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1e94bd41826805294ce29637b04e15f972d7e9f591a8ef51626a08f61f0ed5ca": {
+"completion_tokens": 72,
+"prompt_tokens": 939,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"import\",\n    \"zipper closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1f00d603b7191307092c94cf6d38c7ed70628a683ae1a88a8b453727188e1007": {
+"completion_tokens": 80,
+"prompt_tokens": 1032,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"APMA Seal of Acceptance\",\n    \"adjustable hook-and-loop closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"1f13ca5c31c75578021f06239c227aea8f82a7aa9022bfaa02d72e044c7e9ae4": {
+"completion_tokens": 71,
+"prompt_tokens": 976,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"elastic closure\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2108c80d7c33c52ea0987dae1e01d21b73b3873cc51bc44af84981332fdf9df4": {
+"completion_tokens": 70,
+"prompt_tokens": 920,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% leather\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2111035841f26529db85056b3203754694d223685b3a6d9c87dbbc16b1af603f": {
+"completion_tokens": 67,
+"prompt_tokens": 963,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"21116771be8863dec20ad754d1d40bff5154e7e444598482d30d0c2f88a57444": {
+"completion_tokens": 69,
+"prompt_tokens": 978,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"spandex\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"21a5740fa7863a82b220cf0aa50a7eb52fef73545bde3531707d9ba53adb3070": {
+"completion_tokens": 73,
+"prompt_tokens": 923,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"button closure\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"220a92812c81341c9bb053d2c0d318aeb1ec34911dc6880dd7ed12046955daff": {
+"completion_tokens": 67,
+"prompt_tokens": 835,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [\n    \"leather lining\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"226354652724137ab34642196ff1d99d95155246a8fd3f8458fc47980c2c18d2": {
+"completion_tokens": 75,
+"prompt_tokens": 951,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa or imported\",\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"22697fb5761bc47291e00099c334676b3dafc0d9010961dd8fb1262e76414f21": {
+"completion_tokens": 72,
+"prompt_tokens": 939,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"import\",\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"232f766c48a79f647e46271edae7490984a1fd735216b6b6269bba3a7c82f8bd": {
+"completion_tokens": 60,
+"prompt_tokens": 935,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"235e67c5a5ceb60a83e061133811e261b34bcdb4f300f1fbf7a9c4e5b261a20c": {
+"completion_tokens": 78,
+"prompt_tokens": 926,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"artificial leather\",\n    \"pu leather\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"23b0c1d469774cead52313c9533a636d344bd3c9f688975136469274b16826cb": {
+"completion_tokens": 76,
+"prompt_tokens": 982,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa or imported\",\n    \"drawstring closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"24be94cc8cebcf83cf4d44288750bf2136c4afe7c037b53cd4e5b2f420279f40": {
+"completion_tokens": 67,
+"prompt_tokens": 889,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"24becda5656ed139e84f25fa1bf3d34058aa90c9e4133c2ac870d27c0062589e": {
+"completion_tokens": 35,
+"prompt_tokens": 962,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[\"leather sole\"],\"dropped\":[]}\n```"
+},
+"2534c217de97990037b4a2e59c30cff70322b1d31b10b571b76317136e21aa3c": {
+"completion_tokens": 84,
+"prompt_tokens": 986,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"loafers\",\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"cowhide leather\",\n    \"rubber sole\",\n    \"hand-sewn\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"256f0009a0dc4362d032c78c69cdbf8a7da9cf0eba03c328bf301e430ea88643": {
+"completion_tokens": 68,
+"prompt_tokens": 930,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": \"red\",\n  \"budget\": null,\n  \"features\": [\n    \"chiffon\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"25abfb971fb97aa5503e0bd16a5149f5da230e2fd25f9518fa7d572942eea8f8": {
+"completion_tokens": 85,
+"prompt_tokens": 1091,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"bracelet\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"royal knight design\",\n    \"high polished bright chain links\",\n    \"fold-over clasp\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2673ab5fb454d66fd141536dae80aad08fedb3d0ae12518521711563c49cc790": {
+"completion_tokens": 69,
+"prompt_tokens": 933,
+"text": "```json\n{\n  \"intent\": \"no_preference\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"ratchet closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"284be484bcee40e7c397ce0b8e6eb9b0be1e5d79b2b2acfe59121fc6c11ab4aa": {
+"completion_tokens": 73,
+"prompt_tokens": 987,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"button closure\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2882df738e2ac923d2b5c123040c5e413321286729b3cea3b26b7cffa5ef2957": {
+"completion_tokens": 33,
+"prompt_tokens": 945,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":\"red\",\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"29517fbd8510456f3ea8e0566f56b456048c8ada109d155a0f9d207f0cd11af3": {
+"completion_tokens": 89,
+"prompt_tokens": 1014,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% polyester, 5% spandex\",\n    \"90% polyester, 10% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"29b29b74ba5ffe819429e99447763688c014b1d4a30b8195692f3280ac0c93c2": {
+"completion_tokens": 78,
+"prompt_tokens": 985,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"heel measures approximately 0.15\\\"\",\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2a1c245f9beae69c9898fe0e9624f7b2e51d2072534c31eb7fb99103a39b1b38": {
+"completion_tokens": 58,
+"prompt_tokens": 992,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"2a5377baf6a90f301e7e5842ec4ef0f55aa09be2a95b592a18bb112610dfe2a5": {
+"completion_tokens": 66,
+"prompt_tokens": 924,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"pu\"\n  ]\n}\n```"
+},
+"2a5d4572060143dc89944d95d6c43dc2e2503208302001ed233f26d200ca8e86": {
+"completion_tokens": 61,
+"prompt_tokens": 922,
+"text": "```json\n{\n  \"intent\": \"no_preference\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\"进口\"],\n  \"dropped\": []\n}\n```"
+},
+"2a9efed1c2850aabcac538b7770d177785330270138bec1e42bd92ba11f7ad60": {
+"completion_tokens": 72,
+"prompt_tokens": 877,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"no closure closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2b70ab3b2dd40d3fdab559629a2c9e43f5507b8b4ebe23d3881c98af7dd97f57": {
+"completion_tokens": 67,
+"prompt_tokens": 997,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2cac1ec299a4f2a7a4bd6b8b57190f2aeb59a19ad39e2b38fba76dec927ee2da": {
+"completion_tokens": 72,
+"prompt_tokens": 985,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"进口\",\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2ce77880c3006d2d3abd73299b6a6fc972a1e3d2175f4cc31b04fa51bb75e49a": {
+"completion_tokens": 68,
+"prompt_tokens": 973,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"cotton, rayon\"\n  ]\n}\n```"
+},
+"2d9f180ea8383b09fe387ee12bc3931ce0f3673e4883405783166bc74831c32e": {
+"completion_tokens": 75,
+"prompt_tokens": 898,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"totes\",\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pu leather\",\n    \"side pockets\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2e8781a2f9c71831a9f60510d0c63a44d0bdc38d7f00498146a5b2729bf741c8": {
+"completion_tokens": 75,
+"prompt_tokens": 907,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"importado\",\n    \"adjustable and removable shoulder strap\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2ed3058c21ee52ddbb7a3744212f81d67feb3e6ebe060638e524b3c2f4f644f4": {
+"completion_tokens": 73,
+"prompt_tokens": 950,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"water resistant\",\n    \"3 year battery\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2ed5bc76e27cc4931fb8ee7ba4af66f3d7fdbcff7fe0fbe29ebf6c5fdebb361a": {
+"completion_tokens": 77,
+"prompt_tokens": 1011,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% synthetic\",\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2ef92f64085d9a9cc3596f8edb208e62d3551487cf1d0ef61141ce058c4d7ae4": {
+"completion_tokens": 75,
+"prompt_tokens": 1025,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"buckle closure\",\n    \"quick release spring bars\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"2f2ff2976c6b1796b4b217343f891bfd954c048d027f1beb193a5a9dd2b022e7": {
+"completion_tokens": 72,
+"prompt_tokens": 869,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"no closure closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"31ff3d38ca98b96fdf63fd7f03ace322296fd659f50586a5574ba355e70c17e3": {
+"completion_tokens": 70,
+"prompt_tokens": 840,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"spandex\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"stretchy fabric\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"33bedacbd6c9e97b2b00f44f1043272d4f90804eabe443fbe1b8289303797c0f": {
+"completion_tokens": 68,
+"prompt_tokens": 1051,
+"text": "```json\n{\n  \"intent\": \"other\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"great for costume parties\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"33bfaeb7e8773d9eae07529938f8b8971de28deacfb0bc1021783d761ca6c064": {
+"completion_tokens": 68,
+"prompt_tokens": 975,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"353eb6e296c61cf3a97f5cb884f84a29362c3997f061128947d26cb63990d5f8": {
+"completion_tokens": 90,
+"prompt_tokens": 971,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"jeans\",\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"73% Cotton, 25% Polyester, 2% Spandex\",\n    \"Imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"353eee3362f563f5ab36945f859a60d031b4721a07ce3c767d483fcb0c074721": {
+"completion_tokens": 79,
+"prompt_tokens": 961,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"watches\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"chronograph\",\n    \"date function\",\n    \"date feature\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"35816c7bbf3314a708e47cc2fcefb269edbc2fd8a0882ca110b8d7fcec638b9e": {
+"completion_tokens": 66,
+"prompt_tokens": 990,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"35acad3d467abbb18a4705c5e4565812bcb382cc4467d70357012e18863a8863": {
+"completion_tokens": 79,
+"prompt_tokens": 853,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% cotton, 5% spandex\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"35d439439e8b1f85587e8429a7d876c3c3429a988778bd76dbd03d728c1c2794": {
+"completion_tokens": 87,
+"prompt_tokens": 960,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"slippers\",\n  \"material\": \"textile\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"textile upper\",\n    \"textile covered eva footbed\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"35dcbecd86b631d0fbde3bacb7dc133335b604c06219f101698b93ec130956e3": {
+"completion_tokens": 33,
+"prompt_tokens": 937,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":\"red\",\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"3697e88d9bf8d7d650391fb9eeb9c9cbeab5fa929980552d3e6fc16a0f53b2c4": {
+"completion_tokens": 68,
+"prompt_tokens": 895,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"36da7a720a24eec78e66cc5df52b871ab3a5435086b8e347d3c2b4e5a73537a8": {
+"completion_tokens": 59,
+"prompt_tokens": 1029,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": \"gray\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"37608f25949c8609c7e6228efcfd973584023d0370e2c7c38f09c9a23f99acad": {
+"completion_tokens": 67,
+"prompt_tokens": 952,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"zipper closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"3830e96db3c4c9af0c0509a357a1381ff968f47e3ae076da17c55769799d3ba9": {
+"completion_tokens": 70,
+"prompt_tokens": 985,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"necklace\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"Triple Moon Pentagram Symbol\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"39166489c14193bb2ce3318b654a44f308a40cf2a52e04faeb19fbda7c460c14": {
+"completion_tokens": 38,
+"prompt_tokens": 978,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":\"red\",\"budget\":null,\"features\":[\"100% cotton\"],\"dropped\":[]}\n```"
+},
+"3992ec26e3e7ab2cd090d5460bee62152b95b7e171bfd0e60d766f2b2e23b3fb": {
+"completion_tokens": 69,
+"prompt_tokens": 913,
+"text": "```json\n{\n  \"intent\": \"no_preference\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"ratchet closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"3a19d219e36a0e4ee3ea306aaa5049e6d594e831120784b7d761a0e3aa4c3e33": {
+"completion_tokens": 69,
+"prompt_tokens": 1006,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"zipper closure\"\n  ]\n}\n```"
+},
+"3a41bfe78fe9d792f86f3e814c957f2a418b8a850297f2e06e6943c91e8eac72": {
+"completion_tokens": 67,
+"prompt_tokens": 952,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"3a561b1de693559d14e0f9fd95104e3eb636247a0777774e7762126844eee262": {
+"completion_tokens": 71,
+"prompt_tokens": 944,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"import\",\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"3b0a5c0fd287b01b669207948151f0a2e27bcc79611025563264598281862094": {
+"completion_tokens": 59,
+"prompt_tokens": 922,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"3bc63305d26ab5d209280ca335af79e9df05579673d7a7e09e8aafbb77cea56f": {
+"completion_tokens": 66,
+"prompt_tokens": 1016,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"3c1c472ee922eb26e36e7da908e61adb28c89790f8d075ac6e05d619265e3c67": {
+"completion_tokens": 36,
+"prompt_tokens": 952,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":null,\"color\":null,\"budget\":null,\"features\":[\"pull on closure\"],\"dropped\":[]}\n```"
+},
+"3cd4694e64b7a6e10fa5ce157ce1084d0df80e3c6b5896ca9bcb723a2224727a": {
+"completion_tokens": 67,
+"prompt_tokens": 962,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"buckle closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"3d5cda3edd91868174601c2332ded73db2cbc50de9b6257d36c33de42b1c80b4": {
+"completion_tokens": 68,
+"prompt_tokens": 963,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"cotton, rayon\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"3d9c52659bffdb9a3e6fed2287832fa016243f2ced6ded934afdbf352eab9400": {
+"completion_tokens": 66,
+"prompt_tokens": 955,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"leather lining\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"3dc7da10ba21827d15f55db5bc6acaafeb9ef28213e85f93b10b47574c192c87": {
+"completion_tokens": 71,
+"prompt_tokens": 934,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"polyester,spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"3dcab7675d869cd91fa0b55d32458d8811f223e8ca325f008ebe523255c50634": {
+"completion_tokens": 66,
+"prompt_tokens": 963,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"3e7abb47afe0d721a2e9b69295560f2c95b269305d43ab465189e09134de844d": {
+"completion_tokens": 75,
+"prompt_tokens": 942,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa or imported\",\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"403618c9eff11f3f362ebecaddd36ac2f28ab3ac4558525ad40456802d537b6e": {
+"completion_tokens": 39,
+"prompt_tokens": 930,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"nylon\",\"color\":null,\"budget\":null,\"features\":[\"100% nylon\"],\"dropped\":[]}\n```"
+},
+"4054452a31a2e100f166dc345c9bb1139674cfae3ea0ada03b859a082014b1e5": {
+"completion_tokens": 75,
+"prompt_tokens": 964,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"made in usa or imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"414f1074527a189f0ba6d18242c9eedfb96f47ca936524915e11d6c5e4e2d25b": {
+"completion_tokens": 75,
+"prompt_tokens": 975,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"95% polyester, 5% spandex\"\n  ]\n}\n```"
+},
+"41dc5c4f7009e1ae9b438393be58e55e4c3e04abae8e7adbf0293171331b6d33": {
+"completion_tokens": 100,
+"prompt_tokens": 940,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": \"watch band tool kit\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"watch band link pin remover\",\n    \"plastic watch holder\",\n    \"dual head hammer\"\n  ],\n  \"dropped\": [\n    \"VALUE KIT FOR MONEY SAVING\"\n  ]\n}\n```"
+},
+"4332a8569e97c069642b83a378e49b0e887cc6591c55da80af7c5a8073092a00": {
+"completion_tokens": 39,
+"prompt_tokens": 941,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"polyester\",\"color\":null,\"budget\":null,\"features\":[\"100% polyester\"],\"dropped\":[]}\n```"
+},
+"4358191d0e2e9344ddf858d48fa7c8f86359751b0e500f6f3bce13ae46f0fcf3": {
+"completion_tokens": 73,
+"prompt_tokens": 852,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\",\n    \"machine wash\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"437752a62b1fbeb0c9ae83891aa948347f9dffcec5a418df50af840a070a872d": {
+"completion_tokens": 84,
+"prompt_tokens": 965,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"leather slip-on\",\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"leather sole\",\n    \"dual gore panels\",\n    \"padded collar\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"43a7f47a3d1a57c1054bd8edc8e31595c408d763fee7601e79b9aed77e54bc5b": {
+"completion_tokens": 33,
+"prompt_tokens": 958,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"44aeb99a1fed8e85dec53b2e3749c7fe776f6d90e5718419b4176abb7ea1d71b": {
+"completion_tokens": 85,
+"prompt_tokens": 991,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"women tops\",\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hand wash only\",\n    \"gentle cycle\",\n    \"hang to dry\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"4570722c2c00f64cf7556307a9251cbe06d705f7cb1661c04d43ea5ec2831776": {
+"completion_tokens": 79,
+"prompt_tokens": 997,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"shoes\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"multicolor\",\n    \"steady design\",\n    \"clean look\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"486b684cf4d981e38d41b16ce090a58fe4a6dd317c2e01e8174cc2ce14c58bf3": {
+"completion_tokens": 67,
+"prompt_tokens": 966,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"zipper closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"48b4311feda9b594c5287b390a9281383962256998e57a714f39568630f553c8": {
+"completion_tokens": 220,
+"prompt_tokens": 977,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% acrylic\",\n    \"hook and loop closure\"\n  ],\n  \"dropped\": []\n}\n```\n\n*(Note: While the shopper said \"100% Acrylic\", the system instructions require mapping material to a specific list. Since \"acrylic\" is not in the allowed list [cotton, polyester, nylon, leather, wool, spandex, silk, rayon, fabric], and \"polyester\" is the closest synthetic in the provided list, I have mapped it to the closest available or null. However, looking at the prompt instructions strictly, if a material is not in the list, it should technically be null or the closest match. Given \"polyester\" is the only synthetic option provided in the allowed list, I will use that or null. Let's use null for strict adherence to the provided"
+},
+"492353bb31f343ed89520388837cd8ecbda6d3588dfe8a09b892a6b76fbf82a6": {
+"completion_tokens": 75,
+"prompt_tokens": 956,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"60% cotton, 40% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"492aeea9880c36163265a91ce3726bdf043e2d57ef62c9dbe05e59f9c37d5e3f": {
+"completion_tokens": 33,
+"prompt_tokens": 853,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":\"white\",\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"49b634b27e32b104bfc4813de040bca1ec3cd72cfb55e5d90d564321734bc6c7": {
+"completion_tokens": 74,
+"prompt_tokens": 979,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"4a05e167005b9d61ebdf5938a79f74a98dc660ee24d1e8abddda89d03e3f719f": {
+"completion_tokens": 38,
+"prompt_tokens": 960,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":null,\"budget\":null,\"features\":[\"100% cotton\"],\"dropped\":[]}\n```"
+},
+"4a24f068b72dc5f9af343eade48ae683a4453e7957febe72f67c456e793aa1f0": {
+"completion_tokens": 80,
+"prompt_tokens": 1026,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"60% cotton, 40% polyester\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"4b70108c3a207108571765618ff639e311c0fca7704bd4a2034566db24a5409c": {
+"completion_tokens": 61,
+"prompt_tokens": 983,
+"text": "```json\n{\n  \"intent\": \"no_preference\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"4cd0d05a43dd0593a86af415e79e5aa672593d0fdc2544dde7b5de000f7ad719": {
+"completion_tokens": 68,
+"prompt_tokens": 976,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"cotton, rayon\"\n  ]\n}\n```"
+},
+"4da14c805db4dcada06eb5f0e8e001dd60aedc0acb4150a0cbd36219ccd6a0a5": {
+"completion_tokens": 88,
+"prompt_tokens": 999,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"Yoga Sling 2 sandal\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"lightweight\",\n    \"two-way stretch knit upper\",\n    \"sling comfort construction\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"4dcca57cc95a7b3359f58a1bfdf1568c2234270f454229f2306c1ff3b97176fe": {
+"completion_tokens": 73,
+"prompt_tokens": 990,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"pull-on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"4ff22e4e3e1391955e6f26a6c40121d7bd6f4f4b80f55cd02bfbb649ff52c8af": {
+"completion_tokens": 66,
+"prompt_tokens": 829,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"snap closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"50470b61681722404867e02e182a6896a3dae793c7b4ecc790bb5041f77f9c16": {
+"completion_tokens": 60,
+"prompt_tokens": 902,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"nylon\",\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"5086e554c5bb1b5b6575547c207d07859509a7e2ccca587adb2ec3b408f41f00": {
+"completion_tokens": 71,
+"prompt_tokens": 966,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"button closure\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"50da8668ae74d86fb5c4a9dc6b0b29cf12e9a149f3211eb7e072a91c85d86e20": {
+"completion_tokens": 69,
+"prompt_tokens": 984,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"50f1be0533637bfd08c2fb58f3a12c6e0e70de6bcab484d43a2d6cd19750acfb": {
+"completion_tokens": 73,
+"prompt_tokens": 975,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"button closure\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5169dc9d4c3c72670c33a7ec0603afd92e7595bcaab10e659d96323e4be31368": {
+"completion_tokens": 75,
+"prompt_tokens": 965,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% croslite\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"51900483872391fd570ab1ff2432addc1d71f24598da9dcb244db97c5f99d335": {
+"completion_tokens": 68,
+"prompt_tokens": 900,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": \"gray\",\n  \"budget\": null,\n  \"features\": [\n    \"polycarbonate frame\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5210bd8d0a0fc3d6d3acbd807725d94f0ff3bdf88a20b4ea27c59a73b3d17dd9": {
+"completion_tokens": 77,
+"prompt_tokens": 902,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"composite frame\",\n    \"plastic frame\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5235c91b82f4da7fa32ca598eab3dd42bf730690bd863544f52486981770c6d8": {
+"completion_tokens": 84,
+"prompt_tokens": 973,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"winter warm socks\",\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"machine wash,hand wash\",\n    \"soft\",\n    \"breathable\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"524f65c17595436d8dab2f119534138c513e21283a51ba6c83058b41910acfbe": {
+"completion_tokens": 38,
+"prompt_tokens": 960,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[\"100% leather\"],\"dropped\":[]}\n```"
+},
+"533fd9cf7e0f12f63836c98e51e87be71255f0fd03b5792f368556dd4d272780": {
+"completion_tokens": 74,
+"prompt_tokens": 948,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% cotton, 5% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"53aab58d6106868a4987e25252d84dbc4eb0f53e663effa9ab10cc3d75bb2105": {
+"completion_tokens": 70,
+"prompt_tokens": 979,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"60% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"540dbe3cd6327123c6181319476e775b64491fc78c1f20b5f4a60b4c47b409e6": {
+"completion_tokens": 67,
+"prompt_tokens": 1009,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"54ed4635682d6f89f9a4dc81464da8645b8e275cc8a40600365dec74f2ede92c": {
+"completion_tokens": 69,
+"prompt_tokens": 958,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"jeans\",\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"import\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5559e9c714384b0fabdb6d45a3895d1c584d8957c138fdc8b8a6a6becb0b3265": {
+"completion_tokens": 220,
+"prompt_tokens": 998,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"fabric\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"textile\"\n  ]\n}\n```\n\nWait, looking at the logic: The user says \"ignore my earlier preference. I need Textile.\" In the context, \"textile\" was a known constraint. If they say \"ignore my earlier preference\" and then specify \"I need Textile\", they are likely overriding a *different* previous preference to focus on textile, or they are being contradictory. However, based on the instruction \"ONLY when the shopper explicitly cancels or replaces an earlier stated preference\", and the context shows \"100% textile\" was a constraint, if they say \"ignore my earlier preference\", they are overriding the previous state. \n\nActually, looking at the prompt: \"Actually, ignore my earlier preference. I need Textile.\" \nIf \"textile\" was already a"
+},
+"555e709527c319284d79eca1346ad48cd02a0cc5c44aa8739af171c26546bd72": {
+"completion_tokens": 84,
+"prompt_tokens": 996,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"loafers\",\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"cowhide leather\",\n    \"rubber sole\",\n    \"hand-sewn\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5751a6751c1f124326484981fdfc66c709d77dc5a1b5baaa55d22cbbd093220b": {
+"completion_tokens": 66,
+"prompt_tokens": 1024,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"57730b7ca1be4e2db3260877d5ca0a2e5d37be772798f8dc808fd1cbbe1521a2": {
+"completion_tokens": 70,
+"prompt_tokens": 984,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"soft\",\n    \"comfortable\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"57d8bce000244e0ec7bd11e5bebc5895778d504e314b05d2d9e1822afcc4d3a3": {
+"completion_tokens": 60,
+"prompt_tokens": 892,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"nylon\",\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"595772abec13ec998975b030fa5a9a806bc4cd9f8eecd804a89e52e4e1465ab6": {
+"completion_tokens": 75,
+"prompt_tokens": 856,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported from europe\",\n    \"undershirts closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5a834b29cd897ab08a80371b0ae7189b1c8071ef859000c2ebb598d2f56aec13": {
+"completion_tokens": 69,
+"prompt_tokens": 986,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"drawstring closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5ad341518ac8f48f954387eeca70b105b206bcaaebde7ed528bfea520978c9f9": {
+"completion_tokens": 59,
+"prompt_tokens": 947,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": \"brown\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"5b45cedb24c449cda386fd3b55fc17b90a79ae412d80416c154d826daf78daed": {
+"completion_tokens": 67,
+"prompt_tokens": 951,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"fabric\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5bf64b2071fde3ee65ba4431015f673b05402bb61b37b2218bd255d235e5a99b": {
+"completion_tokens": 36,
+"prompt_tokens": 977,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":null,\"color\":null,\"budget\":null,\"features\":[\"zipper closure\"],\"dropped\":[]}\n```"
+},
+"5c33e633a3646a92315d546917f041ae4fc1602886225a2f54965822c77092a7": {
+"completion_tokens": 80,
+"prompt_tokens": 957,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"ethylene vinyl acetate sole\",\n    \"heel measures approximately 1.5\\\"\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5c70f1d698b4e0fd25ab83fb1a57792bac9875fe1d01250880f4a368c27e6392": {
+"completion_tokens": 75,
+"prompt_tokens": 971,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"65% polyester, 35% wool\"\n  ]\n}\n```"
+},
+"5ca445c1e45a6b5f1ca2fce18cb69524aa714090c1fe5d04acc852051805b469": {
+"completion_tokens": 72,
+"prompt_tokens": 986,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"import\",\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5ceb1f0934ec8fbd87a4c84f6bb58e9127267d92d5f17a4bdcd6ed072bb5252f": {
+"completion_tokens": 59,
+"prompt_tokens": 955,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"nylon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"5e76a09e45fc4790b72589c2e543904f972b8e914c18f1628a0efa3ffc4baf5e": {
+"completion_tokens": 80,
+"prompt_tokens": 1043,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"slides\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"eva\",\n    \"easy to clean\",\n    \"ergonomic design\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"5f63d46bf5a08f373ed156e359701af6b96e118bb91a2d91dac80e76adb27254": {
+"completion_tokens": 33,
+"prompt_tokens": 996,
+"text": "```json\n{\"intent\":\"override\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"5f9b8f1bac100f991dfdfdfc725758bdea571401be1b00f03b6e8ae4b423a52b": {
+"completion_tokens": 57,
+"prompt_tokens": 938,
+"text": "```json\n{\n  \"intent\": \"other\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"600d184eb772f334473c0c7dd7fc78b661c6b890ee5fd4df9616e0bdddbeea66": {
+"completion_tokens": 78,
+"prompt_tokens": 1046,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": \"Push Up Bra\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hand wash only\",\n    \"3 centimeters Thickness Pad\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"6029c3b47a1362a5600b8a33500ad525c58153b7628100ad07f443c5f1fb62fd": {
+"completion_tokens": 71,
+"prompt_tokens": 966,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"进口\",\n    \"wrap closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"61423377754340ecb12ab1ea272696dc35d6111d19b5284c3d03dccb5f01b500": {
+"completion_tokens": 73,
+"prompt_tokens": 919,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"button closure\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"6184c2cd770581d3ce89dc785014625d6091ac635a18a6df23f58573e71a15f6": {
+"completion_tokens": 69,
+"prompt_tokens": 931,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"nylon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"earlier preference\"\n  ]\n}\n```"
+},
+"61a9f22329b56a60ee2a014d545009be7945e7b2ddc96567bfe10ea2d7e28dc0": {
+"completion_tokens": 66,
+"prompt_tokens": 1007,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"machine wash\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"621f46a757833bcaabd03372b50245d283e515088a45ada70f130edbc0ef315b": {
+"completion_tokens": 75,
+"prompt_tokens": 924,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"totes\",\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pu leather\",\n    \"side pockets\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"63a23bc029b79fe346f76b80f628949abd3a070ffd487e829815fb228abf7ad4": {
+"completion_tokens": 36,
+"prompt_tokens": 946,
+"text": "```json\n{\"intent\":\"override\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[],\"dropped\":[\"buckle closure\"]}\n```"
+},
+"64f2b1a9b4db651d89d879bb4ab6031a45930303ae446aca722e85b3389c3f62": {
+"completion_tokens": 60,
+"prompt_tokens": 922,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"654af158baa0f9f787a3ad0adaeb2119deddf98a2bc3041702f2bf5681f214d5": {
+"completion_tokens": 72,
+"prompt_tokens": 1011,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"machine wash\",\n    \"wicking\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"662f2bfe4fa55f4cc853cc5e520389bb6fb018eb0bb7a06739656d4654cbc233": {
+"completion_tokens": 75,
+"prompt_tokens": 1019,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"55% cotton, 45% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"668a9d4fccec002c7a1562a07c0cd3272305b9f15a592c9f08db56650572ad75": {
+"completion_tokens": 80,
+"prompt_tokens": 966,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% polyester, 5% spandex\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"66b5499c507c52d2ab811afe7a26c9bb99b01a61e7a61d1f04bee8893b11a40e": {
+"completion_tokens": 67,
+"prompt_tokens": 947,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"leather lining\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"69dc134111fcb39992f4e9d588b8691fc5ce5e638e10d43f6c949ed4047a25d4": {
+"completion_tokens": 70,
+"prompt_tokens": 972,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% rayon\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"6a4aeffd93c2a2864547f8f77fa44c962199c54aac93607424ad143f60657546": {
+"completion_tokens": 59,
+"prompt_tokens": 985,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"6aa8e970c747a2d0f21323824346b85defa0fa23a12d1f11f5ad65e89ec53abe": {
+"completion_tokens": 59,
+"prompt_tokens": 1047,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"6ab2627b9491f1e266393db689528e5fcba58ee5339ff1f3c98ae7471576aee3": {
+"completion_tokens": 86,
+"prompt_tokens": 1038,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"Everyday Bras\",\n  \"material\": \"nylon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"96% nylon, 4% spandex\",\n    \"pull-on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"6adbd7312206cfb7cf8285ca312242a4d0e2346d6e43b309f51d3a6066953622": {
+"completion_tokens": 57,
+"prompt_tokens": 949,
+"text": "```json\n{\n  \"intent\": \"other\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"6c38ab5bb73717e429d8d3d49335b5463668451ce1560184715bd89e4f3ff396": {
+"completion_tokens": 67,
+"prompt_tokens": 1046,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"department: womens\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"6d286cb2aef0f399b432e165611d269e60cf217593efcccd7af4f736734e6780": {
+"completion_tokens": 35,
+"prompt_tokens": 936,
+"text": "```json\n{\"intent\":\"override\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[],\"dropped\":[\"pu leather\"]}\n```"
+},
+"6d4c280b29c9ec67a2a2de394ddb26dcb40b6aa530ad4d52d9128f49ba0c3ca5": {
+"completion_tokens": 67,
+"prompt_tokens": 962,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"drawstring closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"6de60b1ab21d45ead77d15017d170d135a0a5a21367454dbc799c56bd9085016": {
+"completion_tokens": 67,
+"prompt_tokens": 991,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"6e29af7f55d1b05facf1899abfd3b978fdd3243221211269583fed52a90d4c49": {
+"completion_tokens": 68,
+"prompt_tokens": 1009,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": \"silk\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"zipper closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"6e7295a8ac286475bb952ae080968b4f73525b59cf536f19a3099eab806cc7b7": {
+"completion_tokens": 59,
+"prompt_tokens": 991,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"6f3fc3b12160b6aeac89995ef5cd177e36764d06f1a0c08fb4fe3e56ea6f4c41": {
+"completion_tokens": 82,
+"prompt_tokens": 1002,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"drop dangle earring\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"geometric\",\n    \"velvet bag packaging\",\n    \"minimalist\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7040ecdbeb52cd9bd04c05b46afd197f3480c7296694b469798d97791362a578": {
+"completion_tokens": 73,
+"prompt_tokens": 950,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": \"fabric\",\n  \"color\": \"pink\",\n  \"budget\": null,\n  \"features\": [\n    \"100% textile/synthetic\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"71478eecf2ab67198687d290fd26947c7150f8daef439e4b5b43e030c97aef82": {
+"completion_tokens": 85,
+"prompt_tokens": 964,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"ankle boots house slippers\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"chenille knit styling\",\n    \"scrunchin\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"71a5409ba8967a87eb22e12f75835333f7c1d3253d1373c6d82971f4f61185f0": {
+"completion_tokens": 85,
+"prompt_tokens": 975,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"slippers\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"textile upper\",\n    \"textile covered eva footbed\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"71e856a9243847c83b01d3296682636d7e2572cd8eb4c02e8fe58f39ebf20d65": {
+"completion_tokens": 75,
+"prompt_tokens": 1006,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"60% cotton, 40% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"72acffd3feb212e74cc540819b8aabd83b0b83b9de079141236e2167dda39091": {
+"completion_tokens": 58,
+"prompt_tokens": 1012,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"7373f0c0619e1d177006bd3d1700f1fc0ff06513f4fb093b5cbaec6ccf06ef4f": {
+"completion_tokens": 59,
+"prompt_tokens": 1017,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": \"gray\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"74e33765ed6851d0c39e88f53a265dfc3bcc6e05f337163a36d9cac4dfcb671a": {
+"completion_tokens": 66,
+"prompt_tokens": 795,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"faux fur\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"756e77efaff3715b533b4c41b49ff9c39567ee22c1cb9895ef6c2283373b84f3": {
+"completion_tokens": 85,
+"prompt_tokens": 1058,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"slides\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"department: womens\",\n    \"department: unisex-adult\",\n    \"ethylene vinyl acetate sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"766431a990231a995b992f8606dc4450686ae78f4dceec709609b362f8358135": {
+"completion_tokens": 71,
+"prompt_tokens": 1009,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"76bd2e0138fcc94d7cf0d454685350123e7a460907746305da82612a879c9b77": {
+"completion_tokens": 42,
+"prompt_tokens": 956,
+"text": "```json\n{\"intent\":\"override\",\"category\":null,\"material\":\"cotton\",\"color\":null,\"budget\":null,\"features\":[],\"dropped\":[\"95% cotton, 5% spandex\"]}\n```"
+},
+"7712fa48795ee0ea4b14b0389d892c65ac3165ef63def1c2fea0f61d3de7938c": {
+"completion_tokens": 78,
+"prompt_tokens": 985,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"shoe\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"high-rebound comfort pillar technology\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7741953f006361f404cd1e7e01b2597ef0a0f2d21438bde32bf57c1b356c80a8": {
+"completion_tokens": 79,
+"prompt_tokens": 952,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"synthetic sole\",\n    \"Shaft measures approximately 8\\\" from arch\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7855c65e8a823cfeaceb4ec238cb6dbd36a7600a97a2be9da4dad41363cab77c": {
+"completion_tokens": 70,
+"prompt_tokens": 949,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% cotton\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"791a8e2e695a69ff80bbfadbb8e68cdbb09f5786bc6cb3fa49465c706500f849": {
+"completion_tokens": 76,
+"prompt_tokens": 919,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% polyester\",\n    \"进口\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"79a135b83a5879ed40eca771d63dac4bf36a0184323eb741e6eb91f57ec800c1": {
+"completion_tokens": 90,
+"prompt_tokens": 971,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"jeans\",\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"78% Cotton, 20% Polyester, 2% Elastane\",\n    \"Imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7a308db34622e000f1b9788a9489836e054bc06fd56ec08d1c149b73716f29ce": {
+"completion_tokens": 80,
+"prompt_tokens": 972,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"ethylene vinyl acetate sole\",\n    \"heel measures approximately 1.5\\\"\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7aa5f5254d424259493a4c4cc77ee16f90f4144fb3b9c4b7a274e7bdaf183d6c": {
+"completion_tokens": 84,
+"prompt_tokens": 1004,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"ruffle sleeve tops\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\",\n    \"machine wash\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7b0b5b9a1de80c4918966db8a42a9ca341e736c0a28bcad942c1d9d5230ac857": {
+"completion_tokens": 67,
+"prompt_tokens": 985,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"nylon lining\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7cf2f36c650ea5ec0c79a99bad3a146f69c947bdeeeddc5c1acc747553e7caae": {
+"completion_tokens": 71,
+"prompt_tokens": 919,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pu\",\n    \"Imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7dbe8f13b16f370cd8149f254419e3c521df2f1c9be549057ade7837cad009e7": {
+"completion_tokens": 75,
+"prompt_tokens": 966,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% croslite\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7de3e96b857a17fd613b49338d743e944e14194aea2abe48d64ab4abec52226a": {
+"completion_tokens": 66,
+"prompt_tokens": 939,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7e18f3c7e310d09817e9f3fd43fa8ef7f5986808df1f9a93c62cc744db356b89": {
+"completion_tokens": 81,
+"prompt_tokens": 823,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"78% Cotton, 21% Polyester, 1% Spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"7e3d62413c9d5d455c212372899b1b8d31f707a3efc012afb7a7b3f15da4a11d": {
+"completion_tokens": 39,
+"prompt_tokens": 915,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"polyester\",\"color\":null,\"budget\":null,\"features\":[\"100% polyester\"],\"dropped\":[]}\n```"
+},
+"7ff34258907d99fc6ba97f24e5ff2dc4c2b5012c69b8a1930509bedb5bb8db96": {
+"completion_tokens": 82,
+"prompt_tokens": 787,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"mesh lining\",\n    \"breathable\",\n    \"women's-specific last\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8342181cebaa5e57605bac8a49d2f443a02f14f772668a1cc2b1ecf1db4ac9cb": {
+"completion_tokens": 97,
+"prompt_tokens": 1084,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": \"Bike Bracelet\",\n  \"material\": \"stainless steel\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hypoallergenic (nickel-free)\",\n    \"low maintenance\",\n    \"handcrafted\"\n  ],\n  \"dropped\": [\n    \"earlier preference\"\n  ]\n}\n```"
+},
+"83b01b215ac8ec7915bb7506c73d44303cec4655c36e7c12be0ff6f5cfb67c0b": {
+"completion_tokens": 67,
+"prompt_tokens": 1042,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"845a111938b968bda50c3a0fff9538845616f0c972cc9a5590527bb7b1799df2": {
+"completion_tokens": 85,
+"prompt_tokens": 1019,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"mask\",\n  \"material\": \"latex\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"fits most adult heads\",\n    \"eco-friendly latex\",\n    \"non-toxic\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"85573c95b6b8e0a6aa87e88244ad5fc90665977a7a629de625619e8f8a303cff": {
+"completion_tokens": 75,
+"prompt_tokens": 976,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"60% cotton, 40% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"85c490bdbcb09517684a08a333bf79079b108684d5c3d84fe9ac80a78149c46d": {
+"completion_tokens": 68,
+"prompt_tokens": 986,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"elastic closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"867ea8db5ec3a97f2c209b03d6d60f55e421dbf205aa856c26feb3327058dc3b": {
+"completion_tokens": 59,
+"prompt_tokens": 1023,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"86aa123e6958380788aafdacf27ae5f571c03b99ce1c60441e33cc53cfa4848b": {
+"completion_tokens": 84,
+"prompt_tokens": 975,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"leather slip-on\",\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"leather sole\",\n    \"dual gore panels\",\n    \"padded collar\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"876a825b79e8ac8d7a1db4647919619472a589e2996a754deab8cfa580c934d3": {
+"completion_tokens": 58,
+"prompt_tokens": 1006,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"acrylic\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"87b347d8b42bc26eef42621c355dc0fd03b81350458ab7ee3d3cf9878cca7c82": {
+"completion_tokens": 72,
+"prompt_tokens": 963,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"Imported\",\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8a172863dac95a0a0a544ec742b9b67b12d70e969ce55e937a583d08718ec03e": {
+"completion_tokens": 72,
+"prompt_tokens": 968,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": \"Lace Slip On Sneaker\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"synthetic sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8b3acb73a0d21839b84cdffa18869adc81755a5e33386c7888b4c5196c5af6aa": {
+"completion_tokens": 71,
+"prompt_tokens": 963,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"elastic\",\n    \"importado\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8b7720603b5e094d6903a184f416f28f646eaf6c6da69cd07d28ff7d425e0d36": {
+"completion_tokens": 72,
+"prompt_tokens": 947,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"buckle closure\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8b987d607ccee531d80d9a922b767e8210ed183f646abd4f07449b8c5a630c72": {
+"completion_tokens": 74,
+"prompt_tokens": 854,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"zipper closure\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8bf2b53d5671cef3434236555f3c93b2782d7e39d542984eb90478c82da2b1b6": {
+"completion_tokens": 70,
+"prompt_tokens": 1022,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"nylon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull-on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8cf0e8e85350257cd5cc1b3d2f0c48bdfc3efba524dc2555b8e3a05afd06238c": {
+"completion_tokens": 65,
+"prompt_tokens": 1007,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8d79a6c73285e12f7a9db26bf80adb0ffe02785f45c12692bfcedbb5e679b3b6": {
+"completion_tokens": 58,
+"prompt_tokens": 953,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"8dc64759c87608ae8676d66199d255bfbba67accbfc623b3b82e8fdd13afa788": {
+"completion_tokens": 38,
+"prompt_tokens": 943,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[\"100% leather\"],\"dropped\":[]}\n```"
+},
+"8e0e1245e77c41497bd71c59adf2cdabfd78392bfe48872dcf765015e50e1e2e": {
+"completion_tokens": 75,
+"prompt_tokens": 1009,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% polyester, 5% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8f60097059e3d630a76517f5877b3def9101579ceaab2e54a6c5ff9f49b7c328": {
+"completion_tokens": 75,
+"prompt_tokens": 935,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"94% polyester, 6% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8f61eefd0c08a440f6cd92b226c87ce804e096eeff62d713bbb46a3715115d99": {
+"completion_tokens": 70,
+"prompt_tokens": 968,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"60% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"8fecd8377961ae965f85f09747de6e3b686006ed9ccec8a913b4ad40b94b567b": {
+"completion_tokens": 78,
+"prompt_tokens": 977,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"stainless steel\",\n  \"color\": \"green\",\n  \"budget\": null,\n  \"features\": [\n    \"expansion band\",\n    \"18mm case diameter\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"90c9742986ba0b02276dce979b05072994a8f1f66b2474c9b85666aa5b35efa2": {
+"completion_tokens": 83,
+"prompt_tokens": 987,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"75% Polyester, 20% Rayon, 5% Spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"912fd4df5512dcd501300c87494c385d8b9952a1b5d4cbbf4c9407c8c74b97f6": {
+"completion_tokens": 70,
+"prompt_tokens": 971,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% cotton\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"916023f0c6046942fcb1780ba7c237dc77e8db8381032f5ad3cfaff51acac2c4": {
+"completion_tokens": 68,
+"prompt_tokens": 967,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"nylon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"importado\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"922d352347faf440783fc6e2eabd9a213863e9e8f544bf8e22bb894152454bfe": {
+"completion_tokens": 58,
+"prompt_tokens": 924,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"92e8793902f73a7e4244f8ae0e19a2b90c5614e8a78fe62f70ac1577a55bbabb": {
+"completion_tokens": 40,
+"prompt_tokens": 848,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":null,\"color\":null,\"budget\":null,\"features\":[\"zipper closure\",\"hand wash only\"],\"dropped\":[]}\n```"
+},
+"92f300053c2dea84cdb3d8e1a7524cdff82d72b1bc4787a0854a30f916d87155": {
+"completion_tokens": 71,
+"prompt_tokens": 958,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"textile\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa or imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"931b07a7217632ee4e06a2fc88ae1a97082d97887c1805e4c53a1554bd0c2283": {
+"completion_tokens": 66,
+"prompt_tokens": 875,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"white\"\n  ]\n}\n```"
+},
+"93c05b578c7fb14a2dd7d8afb83ad5777f8c7d120afdce7d54871dff9f7cb260": {
+"completion_tokens": 73,
+"prompt_tokens": 863,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\",\n    \"machine wash\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"94b2900b5273e20495cc706e6563cad0b6ef5b7080f9defe1b04d974337165e0": {
+"completion_tokens": 73,
+"prompt_tokens": 938,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"cotton-blend\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9553f35810119f9345850223211f73d540e5ae4ece515ac07ca17ed3e7534f71": {
+"completion_tokens": 81,
+"prompt_tokens": 951,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"shaft measures approximately 8.37\\\" from arch\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"96fd0911ffe9b7c8aa01ff6f07f55c888fae79aa58e9476d32d5e01d020255e3": {
+"completion_tokens": 58,
+"prompt_tokens": 959,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"972cfdd4ee3a40dc559601a331afeae968f4681ef9bf6cb95e876e3c672fc958": {
+"completion_tokens": 76,
+"prompt_tokens": 998,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa or imported\",\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9735ef095f10ab9e5d36ca96100eb9577571bfdb3795e402df3c0c2d56aab0cd": {
+"completion_tokens": 67,
+"prompt_tokens": 851,
+"text": "```json\n{\n  \"intent\": \"no_preference\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"987c1cc8f1a235d58945ffe9ee3071e8a039ca306a0a5f1a8c88e71694266a78": {
+"completion_tokens": 87,
+"prompt_tokens": 1021,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"masks\",\n  \"material\": \"latex\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"fits most adult heads\",\n    \"100% latex\",\n    \"eco-friendly latex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"98ef4276bd0e2b1d5a89a7279f6fba59583a8d3e47abfc2487714e83f7cd3e3b": {
+"completion_tokens": 81,
+"prompt_tokens": 1051,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"baseball hat\",\n  \"material\": \"acrylic\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"6 panels\",\n    \"mid-profile\",\n    \"structured\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9a9503e8d79f3bd453cb3ff7a29d2c0b220e94dbe9f023d8ad8e50466f79cc11": {
+"completion_tokens": 72,
+"prompt_tokens": 912,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"composite frame\",\n    \"plastic frame\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9ac15ed0d20942ef71ec1ebffc1abcbd345df6e62de149eb7b6dd7cc0f49b22a": {
+"completion_tokens": 66,
+"prompt_tokens": 996,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"machine wash\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9b046e3b8299db2d9699142a978cbf556ad9326e4039d5c0d71760ff40257aa2": {
+"completion_tokens": 75,
+"prompt_tokens": 838,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"spandex\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"stretchy fabric\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9c14757105619a7adb8cf086e277bbdca58f3b95dd414c2d1decc6e6220db010": {
+"completion_tokens": 66,
+"prompt_tokens": 839,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"snap closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9c205887180c55f35acccb3788cdef69413df1761c62914e50aa14920b5e7e10": {
+"completion_tokens": 72,
+"prompt_tokens": 913,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"fleece\",\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9c4d0360ba291ab6b0f6380b1e789a35d1df415ffdfba5b969268eff2bbdf3c2": {
+"completion_tokens": 75,
+"prompt_tokens": 996,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% polyester, 5% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9c8697c04b3674a90ee7755e5dac157517df1e8fb6f4670a49a85095cf520199": {
+"completion_tokens": 35,
+"prompt_tokens": 954,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[\"leather sole\"],\"dropped\":[]}\n```"
+},
+"9d0711c9c7b472503ba4d4825c5fe08e48312689a906a2254e87b2b6999927b0": {
+"completion_tokens": 94,
+"prompt_tokens": 986,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"65% polyester, 35% cotton\",\n    \"95% polyester, 5% spandex\",\n    \"进口\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9e1e5f78ba07ddb805414be2281d3f949708afe3536cccefe5f95f1e6028933f": {
+"completion_tokens": 69,
+"prompt_tokens": 1001,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": \"watch band\",\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"durable\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9e819e74281db858b5f1e99c89089aa9d29a94e3642b2a01f12c814699a8aec0": {
+"completion_tokens": 74,
+"prompt_tokens": 978,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% rayon, 5% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9ed7dc5be7074027c2308f47a08a602c8de9074b01335027cb8826586b9405c2": {
+"completion_tokens": 66,
+"prompt_tokens": 967,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"synthetic sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"9f1a49cf3e728710be48b52c7dcef3f5a4cffa4af00f79e5b60722f8a2b397d0": {
+"completion_tokens": 73,
+"prompt_tokens": 955,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"water resistant\",\n    \"3 year battery\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a037e12ffb35a63c85282ed9c86c8d051c8fb8422edf49d7463ad5cf71e2e97c": {
+"completion_tokens": 70,
+"prompt_tokens": 987,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"soft\",\n    \"comfortable\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a1eaa2e7c25fe1c4a57ba3ce7c2f075abfe3dbb7369ea45eb0168b8856e11925": {
+"completion_tokens": 37,
+"prompt_tokens": 991,
+"text": "```json\n{\"intent\":\"no_preference\",\"category\":null,\"material\":null,\"color\":null,\"budget\":null,\"features\":[\"machine wash\"],\"dropped\":[]}\n```"
+},
+"a22893e15dcbad5091d9a270c607099ca365691905cfe2c7064401a90315d34e": {
+"completion_tokens": 59,
+"prompt_tokens": 979,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"a26da6656a32e10c8daf3f661d3c40d479210763c2c760eff2bf099b342fd416": {
+"completion_tokens": 67,
+"prompt_tokens": 1015,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"zipper closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a29a094118bcb7432653d02963fa321f78bcf245b34fbddc6fee3dd4900ea7ab": {
+"completion_tokens": 75,
+"prompt_tokens": 925,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"94% polyester / 6% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a2dd9175abfd1da8df8766df1ab909bc3dfe8f975f1569ab637cdab4279d556b": {
+"completion_tokens": 69,
+"prompt_tokens": 959,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"drawstring closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a40948c2f13dfc2b4229f1ff61a4bb6bb9f47e8ece7eb5277907fb18bf346620": {
+"completion_tokens": 73,
+"prompt_tokens": 1001,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"soft fabric\",\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a666d32c2b02bdf6a905cf48568f6eb823275bc0b182e85264bdcfdb8839310c": {
+"completion_tokens": 78,
+"prompt_tokens": 1009,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"soft\",\n    \"comfy\",\n    \"breathable\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a667c04e12b0c8a03dd66bb5636f314ce2ce64b48e47a6f2340e95a510a9cd3f": {
+"completion_tokens": 75,
+"prompt_tokens": 985,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"cushioned insole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a6d2d7f7651c2e02ef437b56ee6367d17fbb4520eeb6f0dc078957c4baaf5575": {
+"completion_tokens": 86,
+"prompt_tokens": 923,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"modal,polyester,cotton\",\n    \"ultra light-weight\",\n    \"soft & smooth\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a727324606cebd6f77f540cea3be79c43fd036776287a1ac0a58be317db7c645": {
+"completion_tokens": 71,
+"prompt_tokens": 1006,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"wrap closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a81a1313dc9747ce82e5e42a1e486bd88a4df09dc22c95bca7c787daa1b1a1ee": {
+"completion_tokens": 66,
+"prompt_tokens": 984,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a9997d2304430ee5fe3bd260c4da2b1d48be918a733f19da8fbf51d2f361706e": {
+"completion_tokens": 68,
+"prompt_tokens": 952,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"nylon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"a9f0c5d6c5b0b927d40e00c37c8afbdb6cbd54b65eb656ac7a295e4647dacba9": {
+"completion_tokens": 68,
+"prompt_tokens": 978,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"elastic closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"aa0cd1a213b9bed83977ddacadaef7b435bb7a842b3843a4c243f8365551e9d9": {
+"completion_tokens": 75,
+"prompt_tokens": 925,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hook and loop closure\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"aa138c178c87ad6f0339c87059395fb0fdd7360bd612d4e6bdd156b4c94a0d70": {
+"completion_tokens": 73,
+"prompt_tokens": 1001,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"pull-on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"aaddef0e110d6edfeb21daf233d17176f63e9d0054ea3c4c7507110c9e7b86f8": {
+"completion_tokens": 67,
+"prompt_tokens": 1052,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"department: womens\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ab44ad063b2889163a6119eecc29febf2279d21c9de3d5df3b53ca7b5a38a3f6": {
+"completion_tokens": 71,
+"prompt_tokens": 995,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ab6a74dc903feb937296fd95e0c20c84edd808fedb0189585cf3a8113194d6b2": {
+"completion_tokens": 68,
+"prompt_tokens": 1012,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": \"white\",\n  \"budget\": null,\n  \"features\": [\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ac87c3993e2fa7155b960ade2f1865f755138474375387d32adf9991f10a0e06": {
+"completion_tokens": 81,
+"prompt_tokens": 995,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"75% Cotton, 17% Polyester, 8% Spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ad7417050ed5855561ba39dc07d7c4f969ec3901ab0072771f356523ee638577": {
+"completion_tokens": 72,
+"prompt_tokens": 1000,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"machine wash\",\n    \"wicking\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ae44fe253cb92709feee542d72364a7ac6ed4d6331b3a0410a34c949460d8b32": {
+"completion_tokens": 72,
+"prompt_tokens": 996,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": \"Lace Slip On Sneaker\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"synthetic sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"afba9ef96a389e549b4086807aaf92f15cbfe8c1648cad46e02090ad4455c13c": {
+"completion_tokens": 75,
+"prompt_tokens": 1010,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa or imported\",\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b1e5dfc18e9a9c12765618ef1ce19da5b55cef251a1e7ab01d9c0cf43fd2a007": {
+"completion_tokens": 79,
+"prompt_tokens": 980,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"fabric\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% textile\",\n    \"made in usa or imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b22868d2333aae882a6973446783afd575a64a26637fc1d3f162d59519d197e5": {
+"completion_tokens": 67,
+"prompt_tokens": 1046,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b45012f3562284d3f2b2e8f46ff246b8fead4b68e32795ee41b2d8981f6a5182": {
+"completion_tokens": 75,
+"prompt_tokens": 1005,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"buckle closure\",\n    \"quick release spring bars\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b487f5a2a9511f1aaa4ff615d7e4e1bb3b5222fe4617ce0678d241472c43fb46": {
+"completion_tokens": 71,
+"prompt_tokens": 1000,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"elastic closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b52bf7cc9f1ce660e7d982c308ed8d3ff9a9968fb1746ae7cbe6256198da83b0": {
+"completion_tokens": 81,
+"prompt_tokens": 949,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"35% wool, 29% cotton, 36% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b59c0a2c8b1c2c41bbd8bced77dbf8c5b8a3af3ef611d7a84e7754cdb66c6956": {
+"completion_tokens": 74,
+"prompt_tokens": 963,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b5a1f44ea4277ee02e1cba7a056ae3533965919b90518a584a3cbfc20de1ac43": {
+"completion_tokens": 72,
+"prompt_tokens": 814,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"cotton,polyester,spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b66d6166749b16a06451c8e645f4b4b083eb30aeafb2380f45001478283d056d": {
+"completion_tokens": 68,
+"prompt_tokens": 983,
+"text": "```json\n{\n  \"intent\": \"no_preference\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"machine wash\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b6f535f5e2de4c6c202409fe4b7c594ec097d32f2e179b062f475355e27c9a9f": {
+"completion_tokens": 67,
+"prompt_tokens": 1019,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b71ec24c1c728fb69ee3a5a9691c7f97cbc238db15fd14a1c3bfb9ed6e1e44a5": {
+"completion_tokens": 88,
+"prompt_tokens": 982,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"Yoga Sling 2 sandal\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"lightweight\",\n    \"two-way stretch knit upper\",\n    \"sling comfort construction\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b7603785a32aae5bfe0e6c82a25e4829a26c149183200521a4512366dc9915af": {
+"completion_tokens": 75,
+"prompt_tokens": 982,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% croslite\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"b86efda489b9b36bcd27e30ad83e1b8c69859a102d2257539b2d0e73824734ef": {
+"completion_tokens": 58,
+"prompt_tokens": 997,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"b89032d5e170a859a8d843bf2cb328a0ca2e902008225ef37f34caff79708a2e": {
+"completion_tokens": 58,
+"prompt_tokens": 1003,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"b98d2de085e8deef29e9c6692d88e2bd95561bff7c00f902f92b12904a5b5d79": {
+"completion_tokens": 67,
+"prompt_tokens": 936,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"fabric\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ba0e6e1965312818d50f34ad73f1eae22101ec598b912c799785359dd50ef68f": {
+"completion_tokens": 70,
+"prompt_tokens": 973,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"60% polyester\"\n  ]\n}\n```"
+},
+"ba8e28922fdee606e670ae0604108386fa41cbb9fdf2442695f85245de869278": {
+"completion_tokens": 67,
+"prompt_tokens": 972,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"nylon lining\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"bab134406963396752de4c9632a99a980007e7880fe2ac2dab5e0f287bf4b625": {
+"completion_tokens": 66,
+"prompt_tokens": 972,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"bc8a1f2a2945fab9df6f7cac96ed87c440882aebf763ec4902586d4d5268c153": {
+"completion_tokens": 58,
+"prompt_tokens": 938,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"bca11a8d31fe995b5a086fe6bc49ce5ad0babda652a30df768b41a115309e574": {
+"completion_tokens": 70,
+"prompt_tokens": 974,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"necklace\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"Triple Moon Pentagram Symbol\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"bd0de9dea6c7c3b70fd8a7c52e635493af5fe260579d355b6897014f6cee9440": {
+"completion_tokens": 75,
+"prompt_tokens": 953,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa or imported\",\n    \"synthetic sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"bdfa66d4b2c4dca62181a7d97396894a8c1695aec8150c8b3b63cf97637f6972": {
+"completion_tokens": 68,
+"prompt_tokens": 1028,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": \"white\",\n  \"budget\": null,\n  \"features\": [\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"be75550af0bacd1c85de4aa075d2d17081d6486226b5ace92fb1f46b4377e02b": {
+"completion_tokens": 68,
+"prompt_tokens": 979,
+"text": "```json\n{\n  \"intent\": \"no_preference\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"be7a27864d5a637ad3c847e65674cb677d4dc7a179e5c06a1094b6ed02c5e6cc": {
+"completion_tokens": 38,
+"prompt_tokens": 961,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":\"red\",\"budget\":null,\"features\":[\"100% cotton\"],\"dropped\":[]}\n```"
+},
+"bf1d6cba3a31580294302ccf5e316260b24ff37962a0d1737d980258f2f9cd14": {
+"completion_tokens": 80,
+"prompt_tokens": 992,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"60% cotton, 40% polyester\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"bfabb5317c9f4c67e0ef0a1a4512c87588fabdef6401318012926c21aed86f51": {
+"completion_tokens": 33,
+"prompt_tokens": 945,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":\"black\",\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"c00f24b2c77910f43345ef76fedfb43f83057becfe81c0ebbba0768085481d89": {
+"completion_tokens": 70,
+"prompt_tokens": 953,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"zipper fly with button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c0130941d9fe674c28b9ddc39768247fa4115d18adcd7403b3b82fc4dafc3c8a": {
+"completion_tokens": 71,
+"prompt_tokens": 988,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"machine wash\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c049ccf04458fb782f0ed375156b543cb17d1e9bd9404424f6c01b0517f4f0aa": {
+"completion_tokens": 84,
+"prompt_tokens": 1000,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"hoop earrings and dangle earrings\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"square silhouette\",\n    \"oval silhouette\",\n    \"post back\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c0772b6f5cd018e030df9f08723a1d6222dba48e5b03bf72e9a66b3d116a9a5f": {
+"completion_tokens": 36,
+"prompt_tokens": 936,
+"text": "```json\n{\"intent\":\"override\",\"category\":null,\"material\":\"nylon\",\"color\":null,\"budget\":null,\"features\":[],\"dropped\":[\"Elastic closure\"]}\n```"
+},
+"c1304017d2ac52566613773ca33859b541d6024c12cb7551fa10278144d16489": {
+"completion_tokens": 79,
+"prompt_tokens": 1021,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"APMA Seal of Acceptance\",\n    \"hook-and-loop closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c143dbf3a4216ba2d3cbba7fdd9a8858ed31879af53b9723e1f141ed71a3b69b": {
+"completion_tokens": 75,
+"prompt_tokens": 988,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% polyester, 5% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c1472bf6377d7a1937e6c2440f4fc3ee015bf355b13cd3dcd89ae647329907d7": {
+"completion_tokens": 67,
+"prompt_tokens": 977,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c166fb0c273e3332c3fc9471e6a0aa5e7c34148269b7b77eb1f5cbbae5dafadc": {
+"completion_tokens": 35,
+"prompt_tokens": 932,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":null,\"color\":null,\"budget\":null,\"features\":[\"snap closure\"],\"dropped\":[]}\n```"
+},
+"c1cf1486529bb169c18c68ed4af8058e9db4d805f7a2771baaf3bf4dead61af5": {
+"completion_tokens": 86,
+"prompt_tokens": 950,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": \"nylon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"33% Elastic\",\n    \"34% Nylon\",\n    \"33% Polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c2fda8996c9773dbfbb0452c5e5791b53c028296ade95cc6f6eb452e2e355c69": {
+"completion_tokens": 77,
+"prompt_tokens": 928,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": \"white\",\n  \"budget\": null,\n  \"features\": [\n    \"65% polyester, 35% cotton\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c3780157d91def4993297dd5e79a305939a8765de24455d2ffb932ea361c4727": {
+"completion_tokens": 33,
+"prompt_tokens": 864,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":\"white\",\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"c4443c725e153055ae70242c9fc3f5b1f97fdb8508654e41cea708f2e0cc46fb": {
+"completion_tokens": 84,
+"prompt_tokens": 1001,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"ruffle sleeve tops\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\",\n    \"machine wash\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c449e6ac0ee06a4de7a9910273ec94abe1837af1902b04b52ae08a272204f56e": {
+"completion_tokens": 76,
+"prompt_tokens": 957,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"water resistant\"\n  ],\n  \"dropped\": [\n    \"Stainless Steel Band\"\n  ]\n}\n```"
+},
+"c45332871626cc76f7b03d9c562fa4be13c9643f81d1b660b9f3928b48af1ef1": {
+"completion_tokens": 68,
+"prompt_tokens": 888,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c5a7e4b9444ee0a3d24b386d68ddb13ab69c1fc0292ebfa26ac28461bc236cde": {
+"completion_tokens": 38,
+"prompt_tokens": 984,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":null,\"budget\":null,\"features\":[\"100% cotton\"],\"dropped\":[]}\n```"
+},
+"c62a46b1f21c455b41cf115e3d7c9249975a2bb28c338e7b057f2513781c7f07": {
+"completion_tokens": 72,
+"prompt_tokens": 927,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"buckle closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c6d936e57b231fbd63c1a214e94e16fcac6442022a959211a7e57fa0dc9aae85": {
+"completion_tokens": 38,
+"prompt_tokens": 961,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"rayon\",\"color\":null,\"budget\":null,\"features\":[\"100% rayon\"],\"dropped\":[]}\n```"
+},
+"c74c394e5e9b71b331f496bfc8c3da0ee04ee7172d18bff4ed10727ebdb16f04": {
+"completion_tokens": 66,
+"prompt_tokens": 984,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c772288dde0aa28ca42544327e8d0b68c23aaee7078bc5c2b60c22c8d012d790": {
+"completion_tokens": 69,
+"prompt_tokens": 961,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% mesh\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c7baa7507d1d878b6404df9b5a86a8eec6e5cc3fba8e23d3b8309d9afd8ef295": {
+"completion_tokens": 59,
+"prompt_tokens": 853,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"c8bbd1c54c608ca5cb94b850914ed5fd7c37ef89e74bc69893f37008dac6e78f": {
+"completion_tokens": 72,
+"prompt_tokens": 930,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pu leather\",\n    \"Imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c93e4a803d7962cec87195c9d543f3fa44946c1c72303b9b3626abf1e41e9388": {
+"completion_tokens": 59,
+"prompt_tokens": 911,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"c9485326aa372c0a561f7194c776c399d33f23cb1828a383f76c2c536b51a5bd": {
+"completion_tokens": 97,
+"prompt_tokens": 1084,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": \"Bike Bracelet\",\n  \"material\": \"stainless steel\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hypoallergenic (nickel-free)\",\n    \"low maintenance\",\n    \"handcrafted\"\n  ],\n  \"dropped\": [\n    \"earlier preference\"\n  ]\n}\n```"
+},
+"c96e6a554ed4d49585c0d9b4ea5bb1c7c05d62324060f765aa5c7433c65f5705": {
+"completion_tokens": 92,
+"prompt_tokens": 777,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": \"women's boots\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"waterproof\",\n    \"all season\",\n    \"outdoor activity\"\n  ],\n  \"dropped\": [\n    \"color: black\"\n  ]\n}\n```"
+},
+"c99b1abb8e09d3ee5f413ae974b422446ceeff9e39b8f9de741bfabd4a9e2cf0": {
+"completion_tokens": 66,
+"prompt_tokens": 1031,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"c9c8b2f8bd3dfa1faa7effa8690852874895cf5f92ad95db1d6dcd124e3fd0dd": {
+"completion_tokens": 80,
+"prompt_tokens": 982,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% polyester, 5% spandex\",\n    \"进口\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"cba48d9e538b45ed16a2d439915ae790b8529f9ed47ef18e8b73821a0f914068": {
+"completion_tokens": 35,
+"prompt_tokens": 940,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":null,\"color\":null,\"budget\":null,\"features\":[\"snap closure\"],\"dropped\":[]}\n```"
+},
+"cd344fed67016dbdec1ae62fc13e2174def488df906530607e846d2d476123fd": {
+"completion_tokens": 220,
+"prompt_tokens": 965,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"silk\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"satin\",\n    \"进口\"\n  ],\n  \"dropped\": []\n}\n```\n\n*(Note: While \"silk\" is the closest mapping for \"Satin\" in the provided material list, if the system strictly requires the exact catalog material, \"satin\" is often treated as a material type in these schemas. However, based on your strict list: \"silk\" is the closest match provided in the instructions for a satin-like material, but since \"satin\" is in the catalog phrases, I have mapped the intent to the features/material logic. If \"satin\" is not in the allowed `material` list, it belongs in `features`.)*\n\n**Correction based on strict instruction constraints:**\n```json\n{\n  \"intent\": \"add\",\n  \"category\": null"
+},
+"cdc62ef6870bdc5d4494531b76f276e79f827a522fba864fce8831d28501cf85": {
+"completion_tokens": 75,
+"prompt_tokens": 989,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"55% cotton, 45% polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ce7036087bc4aa549cf9aaf0b8f3de3241918ac6a4f528ccfbd9439a0af9d477": {
+"completion_tokens": 85,
+"prompt_tokens": 1040,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"Bike Bracelet\",\n  \"material\": \"stainless steel\",\n  \"color\": \"black\",\n  \"budget\": null,\n  \"features\": [\n    \"hypoallergenic\",\n    \"nickel-free\",\n    \"low maintenance\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"cf35668cc3209ea9c3ad47b3958ecd4b962ccc9e0dd06f55f9c5a20a497b327a": {
+"completion_tokens": 76,
+"prompt_tokens": 992,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"75% polyester, 25% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"cf43d4eac1c246d0b3826422fc532322d3e65056b63c7de2a689e167a19c78c9": {
+"completion_tokens": 58,
+"prompt_tokens": 986,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"cf6a9f68a5d5a8f2d9323a65cd226a956866e9f2952441d3babebbfd6cc1934a": {
+"completion_tokens": 67,
+"prompt_tokens": 951,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"PU Leather\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"d016daef1cade6217b71c8d89b75bcc294aa7cfbb7b58a94b9511821418e5ad6": {
+"completion_tokens": 78,
+"prompt_tokens": 993,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"shoe\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"high-rebound comfort pillar technology\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"d101a8f6ada724ca0dec9f25adfb57caa33508258db0ff6b2b1d2263cdfd60ba": {
+"completion_tokens": 71,
+"prompt_tokens": 982,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"d11b265f6cd3d1b3a1e92e1d7bcbd575a827831e0f029d842f6a8008e05d7ab7": {
+"completion_tokens": 73,
+"prompt_tokens": 959,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"pvc,resin\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"d19a4915869f3c392c5e8eb5f56590a7a569cfbc734f3fd4a61a6f58f6af2806": {
+"completion_tokens": 220,
+"prompt_tokens": 981,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% synthetic\",\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```\n\n*(Note: While \"polyester\" is the closest mapping for \"synthetic\" in the provided material list, if the engine strictly requires the exact word from the material list, \"polyester\" is the standard mapping for synthetic in many clothing taxonomies. However, since \"synthetic\" is not in the allowed material list provided in the prompt instructions, I have mapped it to the closest logical material or would return null if strictness is applied. Given the instructions, I will use \"polyester\" as the closest match or null if \"synthetic\" is not an option. Let's refine: the prompt says \"one of cotton, polyester, nylon, leather, wool, spandex, silk, rayon, fabric"
+},
+"d25531732c3d4cdba4ca18108a6c3e74baa23b1df2f138299cd83212bf71b0fa": {
+"completion_tokens": 81,
+"prompt_tokens": 987,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"75% Cotton, 17% Polyester, 8% Spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"d31049140aef84faf5daa78bb4b2f56c837855ae3396e9cd322c7f6491d2daee": {
+"completion_tokens": 75,
+"prompt_tokens": 949,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hook and loop closure\",\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"d414df8981f50c0ffa9a7a8c269120a26de33bf041276117b1283f723efff968": {
+"completion_tokens": 68,
+"prompt_tokens": 885,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"earlier preference\"\n  ]\n}\n```"
+},
+"d547ddc9bb38fff7ee13c7e20681910331141d3e52fbab698e8675df435948de": {
+"completion_tokens": 75,
+"prompt_tokens": 961,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"cushioned insole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"d57edf0aca57adbc70a22f70d0c9afcb5cb6dec0a6a7f0bd44686435ec6dbfe4": {
+"completion_tokens": 66,
+"prompt_tokens": 1002,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"d7baae7461679568fcfd8230b2e56145ba4e3d66fc55979a5ff7f0fac80a0fed": {
+"completion_tokens": 42,
+"prompt_tokens": 874,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":null,\"budget\":null,\"features\":[\"100% cotton\",\"imported from europe\"],\"dropped\":[]}\n```"
+},
+"d8f22812e44beeac3e617873b5b1e89fa60e2b1694c139d090fb1def4578b83d": {
+"completion_tokens": 33,
+"prompt_tokens": 941,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":\"black\",\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"d9077fab4aceefd2571b06884416f3a12315caeaa98985efd5f35114e98fb932": {
+"completion_tokens": 68,
+"prompt_tokens": 977,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"d954975ba7d4b07e9c714b0cee78855a40c8983733499cc3723c4f47ce3e255e": {
+"completion_tokens": 66,
+"prompt_tokens": 970,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"da43e68854e92ef2061258e3f11652bfccc47d26dd3d9d53a1c8925079a0e461": {
+"completion_tokens": 60,
+"prompt_tokens": 835,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": \"pink\",\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"dabc0279fc103861d9ea8b0d8296ddd6b4cfc95f906588db9ee6b52abcca8837": {
+"completion_tokens": 93,
+"prompt_tokens": 970,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"textile\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"Lace Slip On Sneaker\",\n    \"made in usa or imported\",\n    \"textile\",\n    \"synthetic sole\"\n  ]\n}\n```"
+},
+"dae8bfeef9367b5c35cb795669b69ed5f0143860583605faab589697abc37d00": {
+"completion_tokens": 74,
+"prompt_tokens": 948,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% mesh\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"dc15f38e3eb8919c17448ff5c3f45f3a3d75a848716b43d26bbfd4378d4dedb7": {
+"completion_tokens": 75,
+"prompt_tokens": 970,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% polyester, 5% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"dcc8dc73ac3d61be1b22b288e41d906d613f0430fd80cc365061f9ede1d20e53": {
+"completion_tokens": 73,
+"prompt_tokens": 785,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"faux fur\",\n    \"drawstring closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"dd2c11e17013166b6d3f8d102bfaba4d9d598100e5fb8375e5ac67f5708a2180": {
+"completion_tokens": 68,
+"prompt_tokens": 924,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"cotton-blend\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"dd303c8ffbdb97df7eb175fbbf8a260d3455a9b29d435c635cd281f0c508ac43": {
+"completion_tokens": 67,
+"prompt_tokens": 929,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"machine wash\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"de0fcbffdac9f029240219a294101385e1452c1f04a95b7f133c06491f3f6d53": {
+"completion_tokens": 69,
+"prompt_tokens": 933,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"adjustable and removable shoulder strap\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"de59c16e35fb9a4397758e7db36f40c01f5087c3f6a6750d54f977391ee2913a": {
+"completion_tokens": 35,
+"prompt_tokens": 940,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":null,\"color\":null,\"budget\":null,\"features\":[\"tie closure\"],\"dropped\":[]}\n```"
+},
+"df444192bd86bb3d8a8cf14b6660d527e528737e95a6c3bc16745d3386b6175e": {
+"completion_tokens": 66,
+"prompt_tokens": 975,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"synthetic sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"df83dcd216685da946964fb80a7060b7b7b326f36eda17bbac2994036c706c6c": {
+"completion_tokens": 73,
+"prompt_tokens": 928,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"Sherpa Fleece\",\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"dff80a21b829c234d9e0eb87b93dcd930d293749cb6f6df0679c6197d4018a91": {
+"completion_tokens": 75,
+"prompt_tokens": 978,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"95% polyester, 5% spandex\"\n  ]\n}\n```"
+},
+"e01cd90a85d8d154018934e65b4ed46e68414899414e87836af56014b1d59561": {
+"completion_tokens": 74,
+"prompt_tokens": 946,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa\",\n    \"buckle closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"e0614b392a40b92e1da39b2502aba5fffd55da2b7c7a15ca9a360ad776fc49a1": {
+"completion_tokens": 33,
+"prompt_tokens": 928,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":\"black\",\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"e0c7fe1c87b074060c96cfa092b869cd37d3592bd89becdd1fb7c9b8fff91c75": {
+"completion_tokens": 67,
+"prompt_tokens": 983,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"e15bab0e2bbeda0f333ab5a135291a9bae29357fdbdf372f67365f0fda02675a": {
+"completion_tokens": 74,
+"prompt_tokens": 943,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"importado\",\n    \"pvc,resin\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"e1cedcac34367085a1b31e7200a06bb8c62b1067c9329aeb01d52b229e971815": {
+"completion_tokens": 36,
+"prompt_tokens": 937,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"nylon\",\"color\":null,\"budget\":null,\"features\":[\"rubber sole\"],\"dropped\":[]}\n```"
+},
+"e26d561d82db51371c2b59a4371831e5ecb9e20dd48f861730fd1bb4e02ce472": {
+"completion_tokens": 66,
+"prompt_tokens": 953,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"fabric\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"mesh\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"e2ce7a18e13055be805e33d162fe80e637a6436317684ed2cafdadee9429ce63": {
+"completion_tokens": 38,
+"prompt_tokens": 940,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[\"100% leather\"],\"dropped\":[]}\n```"
+},
+"e30bf8acd7a44e840a87d7358d498995da4d2d2b1ce91b0d9b4896126099ac18": {
+"completion_tokens": 72,
+"prompt_tokens": 963,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"fabric\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"cotton blend\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"e40bcf76eb104e362cdd9b8bff8609c759ddc88c5aa5a977944f56735dd499f3": {
+"completion_tokens": 220,
+"prompt_tokens": 988,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% acrylic\",\n    \"hook and loop closure\"\n  ],\n  \"dropped\": []\n}\n```\n\n*(Note: While the shopper said \"100% Acrylic\", the system instructions require mapping material to a specific list. Since \"acrylic\" is not in the allowed list [cotton, polyester, nylon, leather, wool, spandex, silk, rayon, fabric], and \"polyester\" is the closest synthetic in the provided list, I have mapped it to the closest available or null. However, looking at the prompt's strict material list, \"acrylic\" is missing. If I must strictly follow the list, I would use null, but usually, in these tasks, if a material is provided that isn't in the enum, it is treated as null or the closest match. Given"
+},
+"e46e5c8a2da6edd5f81954ffe16f0e4752322bff7bf5c2efc110170310873b83": {
+"completion_tokens": 87,
+"prompt_tokens": 871,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"44% Acrylic, 28% Cotton, 20% Merino Wool, 8% Polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"e59741d1539238cd891040b94716f51c4e4c8c285861c7aa332526c0afac5943": {
+"completion_tokens": 75,
+"prompt_tokens": 867,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported from europe\",\n    \"undershirts closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"e5ce99d281d2ebbe1ab119acc0e1ad5a4cdfbe6074c0194c0d95e3c70e29b945": {
+"completion_tokens": 71,
+"prompt_tokens": 1028,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% synthetic\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"e61b96067c446b1022afb806a4694d782f12b5d42042e93fcb5e9adadb2e0d73": {
+"completion_tokens": 58,
+"prompt_tokens": 958,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"e70c1acba56e208dce4ad1612fcef5fc1e0fea0927995215b02adcdea1ca2829": {
+"completion_tokens": 69,
+"prompt_tokens": 948,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"silk\",\n  \"color\": \"red\",\n  \"budget\": null,\n  \"features\": [\n    \"chiffon\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"e7be5dda0689848efd6d1e79e283b510ae175337404bb4247eb30b1ce8a9cccb": {
+"completion_tokens": 33,
+"prompt_tokens": 959,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":\"black\",\"budget\":null,\"features\":[],\"dropped\":[]}\n```"
+},
+"e873b7ceb344d910349b9775f486510335e7af5657345b3551c05da4250c7f32": {
+"completion_tokens": 77,
+"prompt_tokens": 915,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"artificial leather\",\n    \"pu leather\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"e87f25e96f3efdda283b1d418ef0214242adf804a6ad8e8c9da3ddde8489d193": {
+"completion_tokens": 38,
+"prompt_tokens": 926,
+"text": "```json\n{\"intent\":\"override\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[],\"dropped\":[\"100% leather\"]}\n```"
+},
+"ea9863e4278367ef527abd7dd1ab8579121b668d39f15f129cfdb4e4a55756f7": {
+"completion_tokens": 71,
+"prompt_tokens": 955,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"eaa63360bac39962fdc73ba70b108554d8d70e7662ac094d8194534bfcd5bbd4": {
+"completion_tokens": 77,
+"prompt_tokens": 864,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% cotton\",\n    \"imported from europe\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"eab53da5a1b7722917be804a95a652c42880d3a7b453b793e001b52b330e24ef": {
+"completion_tokens": 97,
+"prompt_tokens": 983,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"52% Polyester, 32% Nylon, 10% EVA, 2% POM, 2% Cotton, 2% Metal\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"eb53ab2313526fbe49d5807e6afd738127381486b01389ecef2560507181f744": {
+"completion_tokens": 75,
+"prompt_tokens": 992,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"60% cotton, 40% polyester\"\n  ]\n}\n```"
+},
+"eba9eafffd85b0492b522f8a223cb82b710783474996042ff5b471efcb2e8435": {
+"completion_tokens": 67,
+"prompt_tokens": 1048,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"hand wash only\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ebd633acf3372fdebc1be6405c8f83063d1a0fb5f19aa666044d0c5e04e4b7c0": {
+"completion_tokens": 76,
+"prompt_tokens": 918,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% polyester\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ebfca2255250b4c984a5fa5f2d69b3932ea9632787d992f29165bdddec292627": {
+"completion_tokens": 68,
+"prompt_tokens": 877,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"earlier preference\"\n  ]\n}\n```"
+},
+"ec727491a3fe1615238b95ee20ac6d1775376d3f166db446a65eff97ae6b323d": {
+"completion_tokens": 67,
+"prompt_tokens": 935,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"machine wash\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ec75dcc654f62bcf1cc5fc5876ec944752595f0c782bfeb4b7a3297256ca7d70": {
+"completion_tokens": 35,
+"prompt_tokens": 918,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":null,\"color\":null,\"budget\":null,\"features\":[\"rubber sole\"],\"dropped\":[]}\n```"
+},
+"ed3051e251d514a9093b0b011fe377e07dd45994819f9f04225f2b95d00fbf65": {
+"completion_tokens": 71,
+"prompt_tokens": 998,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"100% synthetic\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ed482c423f1a7c591e3b8b811b0cc32cf9bd7f9ac113ea5ac0501e7f64df2a9d": {
+"completion_tokens": 89,
+"prompt_tokens": 1001,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"65% polyester, 35% cotton\",\n    \"95% polyester, 5% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"edc135a682ba32163a0aaa30cfa386c94ef5fb9cdcb65712b130f0902247d977": {
+"completion_tokens": 36,
+"prompt_tokens": 928,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":null,\"color\":null,\"budget\":null,\"features\":[\"pull on closure\"],\"dropped\":[]}\n```"
+},
+"edcff298acd7867a1c47757c1b53656d32a6b9abf99534ddd7b4e57a322bacd5": {
+"completion_tokens": 73,
+"prompt_tokens": 923,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"closed heel\",\n    \"toasty warm\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ee8985b845b6694b98ee36427b868a52d1663c86d422a52b0b8e0bfbdd07e9bb": {
+"completion_tokens": 59,
+"prompt_tokens": 1027,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": []\n}\n```"
+},
+"eebaadfad7aa56027b6992245f9821809f1fea8db17f3b1e4fca1487c5f657e6": {
+"completion_tokens": 74,
+"prompt_tokens": 967,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"rayon\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% rayon, 5% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ef2ec9a7ab26e94c1f4eacb5978d04df186b0da6e7b7352e8a4b4d9560f770df": {
+"completion_tokens": 87,
+"prompt_tokens": 863,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"44% Acrylic, 28% Cotton, 20% Merino Wool, 8% Polyester\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"efc135c991e31002e9b8709dd91d7362f8eba34964dd6a15bfe64fab5d003671": {
+"completion_tokens": 71,
+"prompt_tokens": 992,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"machine wash\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f040f772ab4902012bb4510a5f66527b924b5c412a58f75c7b960bc6e9ce12dd": {
+"completion_tokens": 71,
+"prompt_tokens": 963,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"imported\",\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f1442d9eb4ea2cecc62cf32a961c8c7f3e808072f4355298912c14b0fc8afd77": {
+"completion_tokens": 73,
+"prompt_tokens": 990,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"soft fabric\",\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f148955ece28f85092b4e1bbbc20ccac25f6a18cebecf93e8d543bb04b7ddcc0": {
+"completion_tokens": 80,
+"prompt_tokens": 963,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"chronograph\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"lap & split times\",\n    \"month, day & date calendar\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f196f22b3e6a0b357d97817d5d556eec036cf96347f0702ea95f2963330df5b4": {
+"completion_tokens": 79,
+"prompt_tokens": 979,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"slip on design\",\n    \"elastic cuff\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f1e2af75512364f6d26158c6d972999d57c76e3ac98eb96e1981bf32861eb0aa": {
+"completion_tokens": 75,
+"prompt_tokens": 818,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in the usa\",\n    \"pull on closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f26286d79d26a6d290e8285aee110ad25f3d2c512d35295e41d3f10e095d0f30": {
+"completion_tokens": 72,
+"prompt_tokens": 950,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"进口\",\n    \"zipper closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f2ac20b9bfa48b520d6fc413ce7cfc59ccab329c5851f3cc15f8ab1f94f37b0e": {
+"completion_tokens": 69,
+"prompt_tokens": 950,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"polyester lining\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f33f675b43a0309112712464b3f9458ef4631facd4958753144892ec6971a600": {
+"completion_tokens": 68,
+"prompt_tokens": 828,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"earlier preference\"\n  ]\n}\n```"
+},
+"f37e3d358c3514d60532542d007ad9f35a7cd771fc4a2547c1d6ed19fecc0f96": {
+"completion_tokens": 75,
+"prompt_tokens": 997,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa or imported\",\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f3e0a15a9a20b3e0f40ad94b64d407224fb7cb9145e7cc2036ebe3fae0973ab4": {
+"completion_tokens": 72,
+"prompt_tokens": 971,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"Imported\",\n    \"rubber sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f5d393ae2aeddd1136af81c7cd6f6790b27fd1bd2b3882996f72e7c839ff4379": {
+"completion_tokens": 81,
+"prompt_tokens": 967,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"shaft measures approximately 8.37\\\" from arch\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f5d3fb56e435f09961f132a3d45b8588f75bcda474d00856c1054f46f8b413c4": {
+"completion_tokens": 67,
+"prompt_tokens": 977,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"zipper closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f6f6636b4126530d089b42c9d84f3f0f069d68c5de637c7d7fdf72e50c407059": {
+"completion_tokens": 75,
+"prompt_tokens": 973,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"made in usa or imported\",\n    \"synthetic sole\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f73e5b0665560ac89df53f43f50c2908c90bfa2fb6a5fd330c85ad3ba4232be1": {
+"completion_tokens": 75,
+"prompt_tokens": 965,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"wool\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"65% polyester, 35% wool\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f774cbae151303b06dce73735c63526e6c1704309e237544051a9862191d9b38": {
+"completion_tokens": 66,
+"prompt_tokens": 829,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"snap closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f78e175f6d6ca666c21701e216cb4409572e8effb97df06965d6818726bbcbdb": {
+"completion_tokens": 68,
+"prompt_tokens": 960,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"cotton, rayon\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f8d16c6b001b0f27efc4fa91bacc96103c81db024b06a8116cb6966ed28ccc7e": {
+"completion_tokens": 72,
+"prompt_tokens": 996,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"ultra flexible\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"f9d73d9fd4945fab44128f1288f26c9192f6911fc37afa282a505c02a8ff0252": {
+"completion_tokens": 35,
+"prompt_tokens": 928,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"cotton\",\"color\":null,\"budget\":null,\"features\":[\"cotton blend\"],\"dropped\":[]}\n```"
+},
+"f9dc61961b2f136f78f4891190b418902b6b8daf00aadae8204ec1e2e20d9d76": {
+"completion_tokens": 92,
+"prompt_tokens": 934,
+"text": "```json\n{\n  \"intent\": \"override\",\n  \"category\": null,\n  \"material\": \"polyester\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [],\n  \"dropped\": [\n    \"Hand Wash Only please\",\n    \"100% polyester\",\n    \"button closure\",\n    \"hand wash only\"\n  ]\n}\n```"
+},
+"fa025c49c786ac8ccf5d39ef135d02b9530173ad31feb90f9fac374de6402129": {
+"completion_tokens": 67,
+"prompt_tokens": 1016,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"zipper closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"fa57ac31b8e3d8f7fa4838568ae76ca6f9b78d43e63b1e87a8c22eb4a682f024": {
+"completion_tokens": 74,
+"prompt_tokens": 951,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"95% cotton, 5% spandex\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"fa5e5c3ecca3b707388ea48d888090f6c169e1f606c96913f9ccdaa48615d4f8": {
+"completion_tokens": 38,
+"prompt_tokens": 950,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"leather\",\"color\":null,\"budget\":null,\"features\":[\"100% leather\"],\"dropped\":[]}\n```"
+},
+"fc24e3d06b039a7dd5603d7343b352b411934c8f23c09e37f838efd23cfcf699": {
+"completion_tokens": 39,
+"prompt_tokens": 919,
+"text": "```json\n{\"intent\":\"add\",\"category\":null,\"material\":\"polyester\",\"color\":null,\"budget\":null,\"features\":[\"100% polyester\"],\"dropped\":[]}\n```"
+},
+"fe158637d4e26edfa968ae34786043e4cf7308c5807e8c181288a19c78de95ed": {
+"completion_tokens": 69,
+"prompt_tokens": 1021,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"watch band\",\n  \"material\": \"leather\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"durable\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"fedf7331d9ebe73c66eb42db5680fc4c3549d5bf2ae7cb0824bfb3241d23220e": {
+"completion_tokens": 80,
+"prompt_tokens": 853,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": \"cotton\",\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"50% cotton, 50% polyester\",\n    \"imported\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ff635f7b6cab397525c6c37c8d0ef5fcadd64ad348acd3a48f58a80103ff5dd7": {
+"completion_tokens": 66,
+"prompt_tokens": 981,
+"text": "```json\n{\n  \"intent\": \"add\",\n  \"category\": null,\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"button closure\"\n  ],\n  \"dropped\": []\n}\n```"
+},
+"ff73f3839ca231b639576feb76d4f6512a32de196cd96c8b34fbe628cf4830cf": {
+"completion_tokens": 85,
+"prompt_tokens": 949,
+"text": "```json\n{\n  \"intent\": \"open\",\n  \"category\": \"ankle boots house slippers\",\n  \"material\": null,\n  \"color\": null,\n  \"budget\": null,\n  \"features\": [\n    \"rubber sole\",\n    \"chenille knit styling\",\n    \"scrunchin\"\n  ],\n  \"dropped\": []\n}\n```"
+}
+}

@@ -33,18 +33,19 @@ Python standard library**. The measured optimization comparison is recorded in
 The hosted replay and local Agent expose the same inspectable ARC decision
 pipeline.
 
-Nine pages in the browser. No install, no catalog download, no API key. Pages
+Ten pages in the browser. No install, no catalog download, no API key. Pages
 1–3 give the problem, the turn loop, and the organizer result; pages 4–7 replay
-all four turns of one session; page 8 is the evaluation evidence. Arrow keys
+all four turns of one session; page 8 is the evaluation evidence; page 9 is
+what happens when the shopper stops quoting the catalog. Arrow keys
 change pages, space plays, `F` is fullscreen. The green `VERIFIED REPLAY` badge
 is earned: the page is published only when a SHA-256 manifest of every recorded
 source still matches the repository.
 
 ### 🔎 Inspect any of the 200 sessions yourself
 
-**[→ Open the session explorer](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=8)**
+**[→ Open the session explorer](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=9)**
 
-[![The session explorer on the final turn of public_0187: the conversation ARC actually saw on the left, the submitted list on the right with the evaluator-only target ranked first, and the decision certificate underneath](demo/screenshots/session-explorer.png)](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=8&session=public_0187&turn=4)
+[![The session explorer on the final turn of public_0187: the conversation ARC actually saw on the left, the submitted list on the right with the evaluator-only target ranked first, and the decision certificate underneath](demo/screenshots/session-explorer.png)](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=9&session=public_0187&turn=4)
 
 <sub>Turn 4 of `public_0187`. Click the image to open that exact state.</sub>
 
@@ -62,8 +63,8 @@ evaluator, and the last page lets you walk any of them:
 
 One click lands on a specific case:
 
-- [`public_0187` at turn 3](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=8&session=public_0187&turn=3) — the boundary case where the shopper declines a question and the policy pivots
-- [only the intent-override sessions](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=8&scenario=intent_override)
+- [`public_0187` at turn 3](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=9&session=public_0187&turn=3) — the boundary case where the shopper declines a question and the policy pivots
+- [only the intent-override sessions](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=9&scenario=intent_override)
 - [the four-turn walkthrough that explains the loop](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=3)
 
 The second tab, **Live Agent**, replaces the recording with the real thing: type
@@ -156,35 +157,80 @@ miss** for the active intent. Those products are excluded on the next turn.
 When the shopper overrides their intent, this history is cleared atomically and
 the old preference is retained only at reduced confidence.
 
-## 🚫 Why we deliberately did not put an LLM in the runtime
+## 🧩 Where a language model earns its place
 
-The challenge permits LLMs, but it does not require one. We chose the smallest
-system that directly addresses the measured bottleneck.
+The challenge permits LLMs but does not require one, and the scored path of
+ARC does not use one: on the organizer's protocol the dominant uncertainty is
+*which useful constraint has not been revealed yet*, not how to read the
+sentence. Every top public-set score in this track, ours included, comes from
+a deterministic system, and the two submissions we found that put a model
+inside the scoring loop lost score to it.
 
-In this benchmark, shopper messages reveal catalog-derived constraints and a
-hit is an exact ASIN match. The dominant uncertainty is which useful constraint
-has not yet been revealed—not how to generate fluent prose.
+That protocol, however, has the shopper **quote catalog strings inside fixed
+templates**. Real shoppers do not. So ARC ships an optional **hybrid language
+layer** that is off by default and byte-for-byte irrelevant to the official
+score, but turns on for free-form wording:
 
-| What this task requires                 | Why an LLM is not the default solution here                                        |
-| --------------------------------------- | ---------------------------------------------------------------------------------- |
-| Exact catalog-valid ASIN ranking        | Fluent text does not guarantee exact identifier retrieval or ordering              |
-| Persistent constraints and overrides    | These need explicit, testable state transitions rather than implicit prompt memory |
-| Metric-aware question and output policy | An LLM does not automatically optimize Hit@10, MRR, and turn cost                  |
-| Reproducible official scoring           | Hosted inference adds network, credential, latency, cost, and nondeterminism risks |
-| Grounded explanations                   | Generated rationale may sound plausible without matching the actual reranker       |
+```text
+message ──► matches a protocol template? ──yes──► deterministic parser (0 tokens)
+                     │
+                     no ──► LLM proposes ──► catalog disposes ──► the same RANK · ASK · COMMIT
+                            {intent, category,      every proposal needs evidence among the
+                             material, color,        products still in play:
+                             budget, features,        signature_verbatim 1.0 · signature_mapped 0.8
+                             dropped}                 lexical 0.6 · lexical_tokens 0.5 · else refused
+```
 
-The intelligence is concentrated in deciding what evidence to acquire, how to
-update it, and when it is sufficient—not in generating more fluent prose.
+- **The model never ranks, never sees a label, and never sees the catalog.**
+  It sees the shopper's sentence plus at most 40 of the most common catalog
+  phrases in the candidate category, so it can say things in the catalog's own
+  words before the catalog checks them.
+- **Protocol wording never reaches the model.** On the 200 public sessions the
+  hybrid mode makes zero calls and reports zero tokens; the score is identical.
+- **A category becomes a union of shelves**, not a bet on one; once a full
+  slate has been refuted the pool widens to the whole catalog (failure
+  detection and strategy switching).
+- **A cancelled preference is decayed to `0.5` confidence**, exactly as the
+  deterministic override policy does, and the certificate records what was
+  accepted, mapped, refused and why. A dead or slow endpoint degrades to the
+  deterministic path with a contract-valid response.
 
-This is not a claim that language models are never useful. It is an architectural
-boundary: use deterministic catalog evidence for the common path, and introduce
-a small local language or embedding fallback only when an ambiguous Top-N case
-shows a measured gain. Today the grounded parser achieves `1.00` Hit@10 and MRR
-on the natural-paraphrase robustness panel, while passing every audited wording
-variant. This is not an anti-LLM position: we
-would add a model when it earns its latency and complexity with a measured gain
-on unresolved language cases. Until then, putting one on the critical path
-would add operational risk without addressing the dominant failure mode.
+Enable it with environment variables at construction time:
+
+```bash
+ARC_LLM_MODE=ground   ARC_LLM_BASE_URL=http://host:port/v1   ARC_LLM_MODEL=gemma4   # grounding only
+ARC_LLM_MODE=assist   # grounding + the customer-facing message phrased from the certificate
+```
+
+### 🗣️ What happens when the shopper stops quoting the catalog
+
+`tools/human_language_benchmark.py` keeps the organizer's simulator policy
+byte-identical and rewrites only the *surface form* of every customer message
+with a language model acting as a human shopper: **natural** keeps every
+attribute phrase verbatim inside casual wording; **paraphrase** also says every
+attribute in the shopper's own words and never quotes the listing. The same
+rewrites are served to both arms from a cache.
+
+| Shopper wording | Arm | Hit@10 | MRR | MTTC | TechnicalScore | Model calls | Tokens |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Organizer templates (control) | deterministic (frozen submission) | 1.0000 | 1.0000 | 1.980 | 0.980400 | 0 | 0 |
+| Organizer templates (control) | hybrid (LLM grounding) | 1.0000 | 1.0000 | 1.980 | 0.980400 | 0 | 0 |
+| Natural wording, attributes verbatim | deterministic (frozen submission) | 0.8200 | 0.6252 | 4.495 | 0.727670 | 0 | 0 |
+| Natural wording, attributes verbatim | hybrid (LLM grounding) | 0.9950 | 0.9530 | 2.390 | **0.955602** | 228 | 234,796 |
+| Natural wording, attributes paraphrased | deterministic (frozen submission) | 0.2150 | 0.0681 | 10.005 | 0.147826 | 0 | 0 |
+| Natural wording, attributes paraphrased | hybrid (LLM grounding) | 0.8200 | 0.7102 | 4.155 | **0.759952** | 794 | 765,795 |
+
+
+- 200 public sessions; customer rewrites by `gemma4`, grounding by `gemma4` (the same local vLLM service; the rewriter sees only the template message, never the catalog).
+- On the organizer templates the hybrid arm makes zero model calls and reproduces the deterministic score exactly: protocol wording never reaches the model.
+- Natural wording, attributes verbatim: the hybrid arm averages 1.14 model calls and 1,174 tokens per session, 374 ms per call.
+- Natural wording, attributes paraphrased: the hybrid arm averages 3.97 model calls and 3,829 tokens per session, 304 ms per call.
+- Example rewrite: simulator “I'm looking for Jewelry Necklaces. A key requirement is: Material:alloy.” → shopper “I'm looking for some alloy necklaces.”.
+- Agent latency with grounding on: natural wording mean 0.21 s per turn (p95 0.50 s); paraphrased wording mean 3.4 s (p95 16.4 s), because a grounded session that has refuted a full slate re-ranks the whole 50,000-product catalog on every later turn. Bounding that widening is the first optimisation on the list.
+- Paraphrased wording by scenario (hybrid): buying 0.863 / browsing 0.875 / intent override 0.733 / boundary 0.300 Hit@10. The boundary drop is a simulator artefact: its shopper says "no preference" once and then answers that very attribute later, which a human reading treats as a retired question.
+- Cross-model check: with `qwen2.5-7b-instruct` playing the shopper instead (rewrites precomputed by `tools/precompute_customer_rewrites.py`, grounding still `gemma4`), natural wording scores 0.4838 deterministic and 0.8684 hybrid (Hit@10 0.565 → 0.920, 2.5 calls per session); see `results/human_language_benchmark_natural_qwen_customer.json`.
+- These are research diagnostics with a model playing the shopper, not organizer scores.
+
 
 ## 🗺️ How this maps to the Track 4 directions
 
@@ -203,6 +249,7 @@ complexity disabled.
 | Indistinguishable-candidate planning      | Finite-horizon batch-size optimization with final-turn Hit@10 insurance     | Exact intent twins are tested at rank one instead of committed at a weak rank |
 | Low latency and token cost               | Deterministic, offline, standard-library runtime                           | No API outage, credential, GPU, or per-query model cost                |
 | Transparent explanations                 | Evidence certificates and verified minimal counterfactuals                 | Engineers can inspect why the action and rank changed                  |
+| LLM semantic understanding               | Optional catalog-verified grounding layer for free-form wording (off on the scored path) | Shoppers can speak naturally; the model cannot invent evidence |
 | Safe personalization                     | Aggregate profile support exists, but its ranking weight is disabled       | Unproven profile correlations cannot override explicit intent          |
 
 Dense semantic retrieval and profile weighting remain optional extensions. They
@@ -331,7 +378,7 @@ gzip -dc catalog.jsonl.gz > data/catalog.jsonl
 wc -l data/catalog.jsonl  # expected: 50000
 ```
 
-Run contract checks and all 50 dependency-free tests:
+Run contract checks and all 66 dependency-free tests:
 
 ```bash
 python3 tools/preflight.py

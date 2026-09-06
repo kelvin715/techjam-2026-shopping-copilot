@@ -768,3 +768,35 @@ em { font-style: italic; }
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* Language-layer grounding panel inside the live certificate */
+.pg-grounding { margin-top: 0.9rem; padding-top: 0.75rem; border-top: 1px dashed var(--line, rgba(120,120,120,0.35)); }
+.pg-grounding ul { margin: 0.25rem 0 0.5rem 1.1rem; padding: 0; }
+.pg-grounding li { margin: 0.15rem 0; }
+.pg-grounding .pg-tier { opacity: 0.72; font-size: 0.85em; margin-left: 0.35rem; }
+
+
+/* Real-language scene */
+.lang-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.lang-card { padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow-sm); }
+.lang-note { margin: 4px 0 12px; color: var(--muted); font-size: 13px; }
+.lang-bar { margin: 10px 0; }
+.lang-bar-head { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; }
+.lang-bar-head strong { font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: -0.02em; }
+.lang-bar-track { height: 8px; margin: 6px 0; border-radius: 6px; background: var(--line); overflow: hidden; }
+.lang-bar-fill { height: 100%; border-radius: 6px; background: var(--teal); }
+.lang-det .lang-bar-fill { background: var(--amber); }
+.lang-bar dl { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; }
+.lang-bar dt { color: var(--quiet); font-size: 11px; }
+.lang-bar dd { margin: 0; font-family: var(--mono); font-size: 12.5px; }
+.lang-rewrite { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line); font-size: 12.5px; }
+.lang-rewrite small { color: var(--quiet); text-transform: uppercase; letter-spacing: .06em; font-size: 10px; }
+.lang-rewrite p { margin: 2px 0 8px; color: var(--muted); }
+.lang-tiers { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; margin: 14px 0; padding: 14px 18px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); font-size: 13px; }
+.lang-tier-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--muted); }
+.lang-tier-flow .icon { width: 14px; color: var(--quiet); }
+.lang-tier-flow b { color: var(--text); }
+.lang-tiers ul { margin: 0; padding-left: 18px; color: var(--muted); }
+.lang-tiers li { margin: 3px 0; }
+@media (max-width: 900px) { .lang-grid, .lang-tiers { grid-template-columns: 1fr; } }
