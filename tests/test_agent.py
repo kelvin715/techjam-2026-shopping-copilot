@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import importlib.util
 import json
+import shutil
 import tempfile
 import unittest
 import unittest.mock
@@ -321,6 +323,11 @@ class AgentEndToEndTest(unittest.TestCase):
         )
 
 
+@unittest.skipUnless(
+    importlib.util.find_spec("openai") is not None,
+    "openai is an optional dependency of the agentic input mode; "
+    "unittest.mock.patch(\"openai.OpenAI\") imports it for real",
+)
 class AgenticFallbackTest(unittest.TestCase):
     """Hermetic: openai.OpenAI is mocked, no real network calls."""
 
@@ -328,8 +335,23 @@ class AgenticFallbackTest(unittest.TestCase):
         from src import agentic_dialog
 
         self.agentic_dialog = agentic_dialog
+        self._saved_circuit = (
+            agentic_dialog._consecutive_failures,
+            agentic_dialog._circuit_open_until,
+        )
+        self._temp_dirs: list[str] = []
         agentic_dialog._consecutive_failures = 0
         agentic_dialog._circuit_open_until = 0.0
+
+    def tearDown(self) -> None:
+        # The breaker is module-global. Leaving it open would silently skip
+        # the agentic path in any later test in the same process.
+        (
+            self.agentic_dialog._consecutive_failures,
+            self.agentic_dialog._circuit_open_until,
+        ) = self._saved_circuit
+        for directory in self._temp_dirs:
+            shutil.rmtree(directory, ignore_errors=True)
 
     def _catalog(self) -> Catalog:
         products = [{
@@ -342,6 +364,7 @@ class AgenticFallbackTest(unittest.TestCase):
             "store": "Example",
         }]
         directory = tempfile.mkdtemp()
+        self._temp_dirs.append(directory)
         catalog_path = Path(directory) / "catalog.jsonl"
         catalog_path.write_text(
             "".join(json.dumps(product) + "\n" for product in products),
@@ -415,6 +438,44 @@ class AgenticFallbackTest(unittest.TestCase):
                 mock_openai.return_value.chat.completions.create.call_count,
                 calls_before,
             )
+
+
+    def test_overlong_reply_is_rejected_without_opening_the_circuit(self) -> None:
+        """A length-cap rejection is a content failure, not an endpoint one."""
+        from types import SimpleNamespace
+
+        overlong = SimpleNamespace(
+            choices=[SimpleNamespace(message=SimpleNamespace(
+                content="x" * (config.AGENTIC_REPLY_MAX_CHARS + 1)
+            ))],
+            usage=SimpleNamespace(prompt_tokens=5, completion_tokens=5),
+        )
+        with unittest.mock.patch.object(
+            self.agentic_dialog, "agentic_available", return_value=True
+        ), unittest.mock.patch("openai.OpenAI") as mock_openai:
+            mock_openai.return_value.chat.completions.create.return_value = overlong
+            for _ in range(config.AGENTIC_CIRCUIT_FAILURES + 1):
+                self.assertIsNone(self.agentic_dialog.agentic_reply("color", None))
+            self.assertFalse(self.agentic_dialog._circuit_open())
+
+    def test_client_is_bounded_by_timeout_and_no_retries(self) -> None:
+        """Without these the breaker cannot be reached in bounded time."""
+        submission = self._fake_tool_call("submit_extraction", {
+            "constraints": [], "is_override": False, "uninformative": True,
+        })
+        with unittest.mock.patch.object(
+            self.agentic_dialog, "agentic_available", return_value=True
+        ), unittest.mock.patch("openai.OpenAI") as mock_openai:
+            mock_openai.return_value.chat.completions.create.return_value = (
+                self._fake_response([submission])
+            )
+            self.agentic_dialog.agentic_interpret(
+                "anything", SessionState({}), self._catalog()
+            )
+        mock_openai.assert_called_with(
+            timeout=config.AGENTIC_TIMEOUT_SECONDS,
+            max_retries=config.AGENTIC_MAX_RETRIES,
+        )
 
 
 if __name__ == "__main__":

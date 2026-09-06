@@ -89,9 +89,15 @@ AGENTIC_MAX_TOOL_CALLS = 3
 AGENTIC_REPLY_MAX_TOKENS = 20
 AGENTIC_REPLY_MAX_CHARS = 120
 
-# Circuit breaker, mirroring LLM_CIRCUIT_* below.
+# Circuit breaker, mirroring LLM_CIRCUIT_* below. The timeout is what makes
+# the breaker reachable in bounded time: the openai SDK defaults to a 600s
+# read timeout and two internal retries, so an unbounded client can stall a
+# turn for far longer than the whole evaluation budget before the second
+# failure is ever recorded.
 AGENTIC_CIRCUIT_FAILURES = 2
 AGENTIC_CIRCUIT_COOLDOWN_SECONDS = 60.0
+AGENTIC_TIMEOUT_SECONDS = 20.0
+AGENTIC_MAX_RETRIES = 0
 
 # Optional hybrid language layer. ``off`` keeps the scored path byte-identical
 # and token-free. ``ground`` lets an OpenAI-compatible model propose a

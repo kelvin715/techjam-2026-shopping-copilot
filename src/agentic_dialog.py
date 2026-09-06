@@ -258,7 +258,10 @@ def agentic_interpret(message: str, state, catalog, usage=None) -> str:
         return STATUS_UNAVAILABLE
 
     try:
-        client = openai.OpenAI()
+        client = openai.OpenAI(
+            timeout=config.AGENTIC_TIMEOUT_SECONDS,
+            max_retries=config.AGENTIC_MAX_RETRIES,
+        )
         shelf = state.shelf
         messages: list[dict] = [
             {"role": "system", "content": _SYSTEM_PROMPT},
@@ -321,7 +324,10 @@ def agentic_reply(attribute: str | None, state, usage=None) -> str | None:
     """LLM-phrased variant of the outgoing question/acknowledgement.
 
     Returns None on unavailability or any failure -- caller falls back to
-    Agent._message.
+    Agent._message. Capped by config.AGENTIC_REPLY_MAX_TOKENS (generation
+    cost) and config.AGENTIC_REPLY_MAX_CHARS (rejects an overlong reply
+    instead of trusting the model followed the length instruction); an
+    overlong reply is a content rejection, not a breaker failure.
     """
     if not agentic_available() or _circuit_open():
         return None
@@ -336,7 +342,10 @@ def agentic_reply(attribute: str | None, state, usage=None) -> str | None:
     else:
         intent = f"Ask the shopper if they have a preference on {attribute}."
     try:
-        client = openai.OpenAI()
+        client = openai.OpenAI(
+            timeout=config.AGENTIC_TIMEOUT_SECONDS,
+            max_retries=config.AGENTIC_MAX_RETRIES,
+        )
         started = time.perf_counter()
         response = client.chat.completions.create(
             model=config.AGENTIC_MODEL,
@@ -349,10 +358,18 @@ def agentic_reply(attribute: str | None, state, usage=None) -> str | None:
         )
         _absorb_call(usage, response, started)
         text = (response.choices[0].message.content or "").strip()
-        if not text or len(text) > config.AGENTIC_REPLY_MAX_CHARS:
+        if not text:
+            # An endpoint answering with nothing, repeatedly, is unhealthy and
+            # still bills for every call: that counts against the breaker.
             _record_failure()
             return None
         _record_success()
+        if len(text) > config.AGENTIC_REPLY_MAX_CHARS:
+            # Overlong is different: the call worked and the model simply
+            # ignored the length instruction. Counting it would let two chatty
+            # cosmetic replies disable agentic_interpret, the path that
+            # actually carries meaning.
+            return None
         return text
     except Exception:
         _record_failure()

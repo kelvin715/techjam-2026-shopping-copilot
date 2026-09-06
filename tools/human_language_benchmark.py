@@ -43,6 +43,7 @@ if str(ROOT) not in sys.path:
 
 from agent import Agent
 from evaluator.local_evaluator import catalog_index, evaluate, load_jsonl
+from src import config
 from src.llm import ChatClient, LLMSettings
 
 CUSTOMER_PROMPTS = {
@@ -74,11 +75,19 @@ CUSTOMER_PROMPTS = {
 class HumanCustomer:
     """Rewrites simulator messages through a cached model call."""
 
-    def __init__(self, client: ChatClient | None, level: str) -> None:
+    def __init__(
+        self,
+        client: ChatClient | None,
+        level: str,
+        max_failures: int = 0,
+        cache_path: str = "",
+    ) -> None:
         self.client = client
         self.level = level
         self.rewrites: dict[str, str] = {}
         self.failures = 0
+        self.max_failures = max_failures
+        self.cache_path = cache_path
 
     def rewrite(self, message: str) -> str:
         if self.level == "canonical" or self.client is None:
@@ -98,6 +107,20 @@ class HumanCustomer:
         if not text or len(text) > 600:
             self.failures += 1
             text = message
+            if self.failures > self.max_failures:
+                # Falling back to the un-rewritten message turns a paraphrase
+                # run into a canonical one while still printing plausible
+                # scores. Abort on the first one rather than after the arm has
+                # been paid for; the usual cause is --customer-model not
+                # matching the model --cache was built with.
+                raise SystemExit(
+                    f"level '{self.level}': rewrite failed for a message and "
+                    f"--max-rewrite-failures is {self.max_failures}. The "
+                    f"customer model '{self.client.settings.model}' must "
+                    f"match the model that built '{self.cache_path}', or the "
+                    "endpoint must be reachable. Refusing to report a run "
+                    "whose wording silently degraded to canonical."
+                )
         self.rewrites[message] = text
         return text
 
@@ -128,6 +151,7 @@ class HumanFacingAgent:
             "response": deepcopy(response),
             "grounding": deepcopy(certificate.get("llm_grounding")),
             "llm_usage": deepcopy(certificate.get("llm_usage")),
+            "input_interpretation": certificate.get("input_interpretation"),
             "latency_ms": round(elapsed, 2),
         })
         return response
@@ -140,10 +164,18 @@ def grounding_summary(wrapper: HumanFacingAgent) -> dict:
     statuses: Counter = Counter()
     calls = 0
     latency: list[float] = []
+    interpretations: Counter = Counter()
     for trace in wrapper.traces.values():
         for row in trace:
+            interpretations[str(row.get("input_interpretation"))] += 1
             grounding = row.get("grounding")
             if not grounding:
+                # The agentic arm spends tokens without producing a grounding
+                # block, so its usage must be counted before this skip.
+                usage = row.get("llm_usage") or {}
+                calls += int(usage.get("calls") or 0)
+                if usage.get("latency_ms"):
+                    latency.append(float(usage["latency_ms"]))
                 continue
             statuses[str(grounding.get("status"))] += 1
             if grounding.get("intent"):
@@ -163,6 +195,7 @@ def grounding_summary(wrapper: HumanFacingAgent) -> dict:
         "accepted_by_tier": dict(tiers),
         "rejected_by_reason": dict(rejected),
         "model_calls": calls,
+        "input_interpretation": dict(interpretations),
         "mean_model_latency_ms_per_turn": round(statistics.fmean(latency), 1) if latency else 0.0,
     }
 
@@ -196,6 +229,14 @@ def main() -> None:
     parser.add_argument("--cache", default="results/human_language_cache.json")
     parser.add_argument("--output", default="results/human_language_benchmark.json")
     parser.add_argument("--timeout", type=float, default=60.0)
+    parser.add_argument(
+        "--max-rewrite-failures", type=int, default=0,
+        help=(
+            "Abort once this many customer rewrites have fallen back to the "
+            "un-rewritten message (default 0). Raise it only for a live "
+            "endpoint where an occasional blip is acceptable."
+        ),
+    )
     args = parser.parse_args()
 
     levels = [item.strip() for item in args.levels.split(",") if item.strip()]
@@ -231,17 +272,31 @@ def main() -> None:
             agents[arm] = Agent(args.catalog, llm_settings=LLMSettings(mode="off"))
         elif arm == "hybrid":
             agents[arm] = Agent(args.catalog, llm_settings=ground_settings)
+        elif arm == "agentic":
+            # The OpenAI tool-calling input fallback, isolated: the ground
+            # layer is off so this arm measures INPUT_MODE alone.
+            agents[arm] = Agent(args.catalog, llm_settings=LLMSettings(mode="off"))
         else:
             parser.error(f"unknown arm: {arm}")
 
     experiments: dict[str, dict] = {}
     rewrites_by_level: dict[str, list[dict]] = {}
     for level in levels:
-        customer = HumanCustomer(customer_client if level != "canonical" else None, level)
+        customer = HumanCustomer(
+            customer_client if level != "canonical" else None,
+            level,
+            max_failures=args.max_rewrite_failures,
+            cache_path=args.cache,
+        )
         for arm in arms:
             wrapper = HumanFacingAgent(agents[arm], customer)
+            previous_input_mode = config.INPUT_MODE
+            config.INPUT_MODE = "agentic" if arm == "agentic" else "template"
             started = time.perf_counter()
-            outcome = evaluate(wrapper, samples, ids, categories, products)
+            try:
+                outcome = evaluate(wrapper, samples, ids, categories, products)
+            finally:
+                config.INPUT_MODE = previous_input_mode
             wall = time.perf_counter() - started
             customer_client.flush()
             client = getattr(agents[arm], "llm", None)

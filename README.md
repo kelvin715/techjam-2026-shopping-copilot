@@ -362,7 +362,11 @@ Requirements:
   agent both retain catalog representations;
 - no GPU, API key, credential, vector database, or network at inference time.
 
-There are no third-party runtime dependencies:
+The scored path has no third-party runtime dependencies. One optional,
+off-by-default research path -- the agentic input fallback,
+`src/config.py: INPUT_MODE = "agentic"` -- additionally needs `openai>=1.40`
+and an `OPENAI_API_KEY`. It is not part of the submitted result and its import
+is lazy, so the default `INPUT_MODE = "template"` run never loads it:
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -378,7 +382,9 @@ gzip -dc catalog.jsonl.gz > data/catalog.jsonl
 wc -l data/catalog.jsonl  # expected: 50000
 ```
 
-Run contract checks and all 66 dependency-free tests:
+Run contract checks and the full test suite (70 tests; the 4 covering the
+optional agentic path skip automatically when `openai` is absent, the other
+66 are dependency-free):
 
 ```bash
 python3 tools/preflight.py

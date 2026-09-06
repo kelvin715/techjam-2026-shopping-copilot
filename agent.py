@@ -77,9 +77,18 @@ class Agent:
                 agentic_status = agentic_interpret(
                     user_message, state, self.catalog, usage
                 )
-            if self.llm is not None and not recognized and agentic_status != STATUS_EXTRACTED:
+            if (
+                self.llm is not None
+                and not recognized
+                and agentic_status != STATUS_EXTRACTED
+            ):
                 # Off-protocol wording: let the model propose a reading and the
                 # catalog verify it. Protocol messages never reach the model.
+                # These are two independently configured providers. A turn the
+                # agentic path already interpreted is skipped, but a turn it
+                # ran and found nothing in still falls through to here on
+                # purpose -- so both can be called on one turn when both are
+                # configured, which is only the case in research runs.
                 from src.ground import ground_message
 
                 grounding = ground_message(
@@ -313,9 +322,14 @@ class Agent:
                 )
                 if rendered:
                     message = rendered
-                state.last_decision_certificate["llm_usage"] = usage.to_dict()
             except Exception:
                 pass
+
+        if usage.calls and isinstance(state.last_decision_certificate, dict):
+            # The certificate is written before the outgoing message is
+            # phrased, so re-sync it here: otherwise the diagnostic panel
+            # under-reports exactly the tokens the reply generator spent.
+            state.last_decision_certificate["llm_usage"] = usage.to_dict()
 
         return {
             "message": message,
