@@ -30,6 +30,7 @@ RESULT_SOURCES = (
     "results/runtime_profile.json",
     "results/robustness_policy_benchmark.json",
     "results/public_session_replays.json",
+    "results/human_language_benchmark.json",
     "docs/baseline_results.json",
 )
 
@@ -260,6 +261,36 @@ def _variant_matrix(robustness: dict) -> list[dict]:
     return rows
 
 
+def _human_language_summary(data: dict) -> dict:
+    """Keep only what the real-language scene renders."""
+    experiments = {}
+    for label, row in data.get("experiments", {}).items():
+        experiments[label] = {
+            "level": row["level"],
+            "arm": row["arm"],
+            "hit_rate_at_10": row["hit_rate_at_10"],
+            "mrr": row["mrr"],
+            "mttc": row["mttc"],
+            "technical_score": row["technical_score"],
+            "model_calls": row["grounding"]["model_calls"],
+            "total_tokens": row["reported_token_usage"]["total_tokens"],
+            "mean_model_latency_ms_per_turn": row["grounding"]["mean_model_latency_ms_per_turn"],
+            "accepted_by_tier": row["grounding"].get("accepted_by_tier", {}),
+        }
+    return {
+        "status": data.get("status"),
+        "sample_count": data.get("sample_count"),
+        "levels": data.get("levels", []),
+        "arms": data.get("arms", []),
+        "grounding_model": data.get("grounding_model"),
+        "customer_model": data.get("customer_model"),
+        "experiments": experiments,
+        "sample_rewrites": {
+            level: rows[:2] for level, rows in data.get("sample_rewrites", {}).items()
+        },
+    }
+
+
 def build_bundle(
     root: Path = ROOT,
     catalog_path: Path | None = None,
@@ -277,6 +308,12 @@ def build_bundle(
     explore_trace = _read_json(root / "results/explore_decision_trace.json")
     baseline = _read_json(root / "docs/baseline_results.json")
     session_replays = _read_json(root / "results/public_session_replays.json")
+    human_language_path = root / "results/human_language_benchmark.json"
+    human_language = (
+        _human_language_summary(_read_json(human_language_path))
+        if human_language_path.is_file()
+        else None
+    )
 
     story = demo["story"]
     certificate = story["submitted_certificate"]
@@ -376,6 +413,7 @@ def build_bundle(
                 "policy_audit": new_paraphrase["policy_audit"],
             },
             "runtime": runtime,
+            "human_language": human_language,
             "tests": {
                 "count": test_count,
                 "verified_pass": bool(tests_verified),

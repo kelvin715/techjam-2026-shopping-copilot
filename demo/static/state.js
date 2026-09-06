@@ -7,6 +7,7 @@ export const SCENES = [
   { id: "walk-3", label: "T3 · UPDATE", duration: 20000 },
   { id: "walk-4", label: "T4 · COMMIT", duration: 23000 },
   { id: "proof", label: "Evaluation", duration: 23000 },
+  { id: "language", label: "Real language", duration: 26000 },
   { id: "sessions", label: "Sessions", duration: 30000 },
 ];
 

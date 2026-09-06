@@ -1,0 +1,201 @@
+{
+  "status": "research_diagnostic_not_official_score",
+  "sample_count": 200,
+  "levels": [
+    "paraphrase"
+  ],
+  "arms": [
+    "deterministic",
+    "hybrid"
+  ],
+  "grounding_model": {
+    "model": "gemma4",
+    "base_url": "http://10.86.229.54:8000/v1"
+  },
+  "customer_model": {
+    "model": "gemma4",
+    "base_url": "http://10.86.229.54:8000/v1"
+  },
+  "experiments": {
+    "paraphrase__deterministic": {
+      "level": "paraphrase",
+      "arm": "deterministic",
+      "hit_rate_at_10": 0.215,
+      "mrr": 0.068087,
+      "mttc": 10.005,
+      "efficiency": 0.0995,
+      "technical_score": 0.147826,
+      "reported_token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      "scenario_metrics": {
+        "boundary": {
+          "sample_count": 10,
+          "hit_rate_at_10": 0.1,
+          "mrr": 0.011111,
+          "mttc": 10.6
+        },
+        "browsing": {
+          "sample_count": 80,
+          "hit_rate_at_10": 0.1875,
+          "mrr": 0.067877,
+          "mttc": 10.075
+        },
+        "buying": {
+          "sample_count": 80,
+          "hit_rate_at_10": 0.25,
+          "mrr": 0.083904,
+          "mttc": 9.7875
+        },
+        "intent_override": {
+          "sample_count": 30,
+          "hit_rate_at_10": 0.233333,
+          "mrr": 0.045463,
+          "mttc": 10.2
+        }
+      },
+      "agent_turns": 1844,
+      "mean_respond_latency_ms": 119.3,
+      "p95_respond_latency_ms": 222.7,
+      "wall_seconds": 220.5,
+      "customer_rewrite_failures": 0,
+      "grounding": {
+        "grounded_turns": 0,
+        "statuses": {},
+        "intents": {},
+        "accepted_by_tier": {},
+        "rejected_by_reason": {},
+        "model_calls": 0,
+        "mean_model_latency_ms_per_turn": 0.0
+      }
+    },
+    "paraphrase__hybrid": {
+      "level": "paraphrase",
+      "arm": "hybrid",
+      "hit_rate_at_10": 0.82,
+      "mrr": 0.710173,
+      "mttc": 4.155,
+      "efficiency": 0.6845,
+      "technical_score": 0.759952,
+      "reported_token_usage": {
+        "prompt_tokens": 727728,
+        "completion_tokens": 38067,
+        "total_tokens": 765795
+      },
+      "scenario_metrics": {
+        "boundary": {
+          "sample_count": 10,
+          "hit_rate_at_10": 0.3,
+          "mrr": 0.130952,
+          "mttc": 8.2
+        },
+        "browsing": {
+          "sample_count": 80,
+          "hit_rate_at_10": 0.875,
+          "mrr": 0.77566,
+          "mttc": 3.6
+        },
+        "buying": {
+          "sample_count": 80,
+          "hit_rate_at_10": 0.8625,
+          "mrr": 0.752153,
+          "mttc": 3.625
+        },
+        "intent_override": {
+          "sample_count": 30,
+          "hit_rate_at_10": 0.733333,
+          "mrr": 0.616667,
+          "mttc": 5.7
+        }
+      },
+      "agent_turns": 795,
+      "mean_respond_latency_ms": 3359.3,
+      "p95_respond_latency_ms": 16391.0,
+      "wall_seconds": 4408.9,
+      "customer_rewrite_failures": 0,
+      "grounding": {
+        "grounded_turns": 794,
+        "statuses": {
+          "grounded": 791,
+          "unparseable_reply": 3
+        },
+        "intents": {
+          "open": 245,
+          "add": 215,
+          "override": 30,
+          "no_preference": 66,
+          "reject": 233,
+          "other": 2
+        },
+        "accepted_by_tier": {
+          "lexical_tokens": 51,
+          "signature_verbatim": 301,
+          "typed_material": 104,
+          "lexical": 91,
+          "typed_color": 29,
+          "signature_mapped": 14
+        },
+        "rejected_by_reason": {
+          "material_already_inside_feature": 50,
+          "no_catalog_support": 15
+        },
+        "model_calls": 794,
+        "mean_model_latency_ms_per_turn": 304.5
+      }
+    }
+  },
+  "sample_rewrites": {
+    "paraphrase": [
+      {
+        "simulator": "I'm looking for Jewelry Necklaces. A key requirement is: Material:alloy.",
+        "human": "I'm looking for some alloy necklaces."
+      },
+      {
+        "simulator": "For that, what matters is: Triple Moon Pentagram Symbol; The Triple Moon represents the Phases of the Moon which are linked to the three aspects of the Goddess and the phases of the Life of Women.The Pentagram representing the holistic r.",
+        "human": "I just need it to have that triple moon and pentagram design on it."
+      },
+      {
+        "simulator": "For that, what matters is: ♥ a special gift to your wife/mom/girlfriend/daughter/grandmother/best friend/kids on St. Valentine’s Day, Easter， Christmas day,Birthday,Anniversary ,Independence Day,Labor Day,Th.",
+        "human": "I'm looking for a nice present for a woman in my life, maybe for a birthday or a holiday like Valentine's or Christmas."
+      },
+      {
+        "simulator": "I don't have an additional preference for other.",
+        "human": "I don't really care about the other options."
+      },
+      {
+        "simulator": "I'm looking for Accessories Belts. Buckle closure",
+        "human": "Hey, I'm looking for some belts with a buckle."
+      },
+      {
+        "simulator": "For that, what matters is: leather; 100% Leather.",
+        "human": "I just need to make sure it's all leather."
+      },
+      {
+        "simulator": "Actually, ignore my earlier preference. What I need is: leather.",
+        "human": "Forget what I said before, I actually want something made of leather."
+      },
+      {
+        "simulator": "For that, what matters is: Imported; Buckle closure.",
+        "human": "I just need it to have a buckle and be an imported item."
+      },
+      {
+        "simulator": "I'm looking for Watches Wrist Watches. Stainless Steel Band",
+        "human": "Hey, I'm looking for a wrist watch with a metal band."
+      },
+      {
+        "simulator": "For that, what matters is: Water Resistant; 3 Year Battery.",
+        "human": "I just need it to be able to handle water and have a battery that lasts for 3 years."
+      },
+      {
+        "simulator": "Actually, ignore my earlier preference. What I need is: Water Resistant.",
+        "human": "Forget what I said before, I actually need something that can handle water."
+      },
+      {
+        "simulator": "For that, what matters is: Day / Date Indicator; Stainless Steel Band.",
+        "human": "I just need it to have a metal strap and show the day and date."
+      }
+    ]
+  }
+}

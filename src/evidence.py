@@ -388,6 +388,7 @@ def build_certificate(
         "reason_codes": reasons,
         "intent_track": state.scenario,
         "shelf": state.shelf,
+        "pool_shelves": list(getattr(state, "pool_shelves", []) or []),
         "constraints": list(state.constraints),
         "constraint_confidence": state.constraint_weights(),
         "source_candidate_count": source_candidate_count,

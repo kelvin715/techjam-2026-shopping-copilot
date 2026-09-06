@@ -79,3 +79,48 @@ QUESTION_TURN_COST = 0.02
 # Additive parser coverage for semantically equivalent user wording. The
 # canonical protocol remains the first parse path and is unchanged.
 ROBUST_PARSER = True
+
+# Optional hybrid language layer. ``off`` keeps the scored path byte-identical
+# and token-free. ``ground`` lets an OpenAI-compatible model propose a
+# structured reading of off-protocol shopper wording; every proposal is
+# verified against read-only catalog evidence before it can touch ranking.
+# ``assist`` additionally phrases the customer-facing message from the
+# decision certificate. ``ARC_LLM_MODE``, ``ARC_LLM_BASE_URL``,
+# ``ARC_LLM_MODEL``, ``ARC_LLM_API_KEY``, ``ARC_LLM_TIMEOUT`` and
+# ``ARC_LLM_CACHE`` override these at Agent construction.
+LLM_MODE = "off"
+LLM_BASE_URL = ""
+LLM_MODEL = "gemma4"
+LLM_TIMEOUT_SECONDS = 20.0
+LLM_GROUND_MAX_TOKENS = 220
+LLM_RENDER_MAX_TOKENS = 90
+LLM_GROUND_MAX_FEATURES = 3
+# Confidence attached to grounded evidence by verification tier.
+LLM_GROUND_VERBATIM_WEIGHT = 1.0
+LLM_GROUND_MAPPED_WEIGHT = 0.8
+LLM_GROUND_LEXICAL_WEIGHT = 0.6
+LLM_GROUND_TOKEN_WEIGHT = 0.5
+# A paraphrase may map onto a canonical value only when that value is short
+# (phrase tokens + this allowance) and appears on at least this many products
+# the session can still recommend.
+LLM_GROUND_MAPPED_EXTRA_TOKENS = 3
+LLM_GROUND_MAPPED_MIN_SUPPORT = 2
+# Common catalog phrases from the candidate pool shown to the model so a
+# paraphrase can be expressed in the catalog's own words before verification.
+LLM_GROUND_VOCAB_HINTS = 40
+# A token occurring on at most this many catalog products counts as rare and
+# can ground a paraphrased phrase on its own.
+LLM_GROUND_RARE_TOKEN_DF = 250
+# ``decay`` keeps a cancelled preference at OVERRIDE_DECAY confidence, as the
+# deterministic policy does; ``remove`` deletes it.
+LLM_GROUND_DROP_MODE = "decay"
+# In a grounded (free-form) session, once this many products have been shown
+# and refuted, stop trusting the guessed shelf pool and rank the full catalog.
+LLM_POOL_WIDEN_AFTER_MISSES = 10
+# Endpoint circuit breaker. A shared or hosted model server can go down
+# mid-session; without this every later turn pays the full timeout twice
+# before falling back. After this many consecutive failures the client stops
+# calling out for the cooldown and the agent runs its deterministic path at
+# full speed.
+LLM_CIRCUIT_FAILURES = 2
+LLM_CIRCUIT_COOLDOWN_SECONDS = 60.0

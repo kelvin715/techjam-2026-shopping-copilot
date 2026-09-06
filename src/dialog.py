@@ -111,8 +111,17 @@ class SessionState:
         self.last_decision_certificate: dict = {}
         self.last_counterfactual_context: dict = {}
         self.last_counterfactual_explanation: dict | None = None
+        # Free-form sessions grounded by the optional language layer may
+        # resolve to a union of shelves rather than one canonical shelf.
+        self.candidate_pool: list[str] | None = None
+        self.pool_shelves: list[str] = []
+        self.pool_signature_counts: dict[str, int] | None = None
+        self.grounding_trace: list[dict] = []
+        # True once the language layer has admitted evidence. The protocol's
+        # four-constraint bound no longer applies to such a session.
+        self.grounded = False
 
-    def add(self, value: str, *, provisional: bool = False) -> None:
+    def add(self, value: str, *, provisional: bool = False, weight: float = 1.0) -> None:
         value = _clean(value)
         if not value:
             return
@@ -121,15 +130,35 @@ class SessionState:
             return
         self._seen.add(key)
         self.constraints.append(value)
-        self._constraint_weight[key] = 1.0
+        self._constraint_weight[key] = max(0.0, min(1.0, float(weight)))
         if provisional:
             self._provisional.add(key)
 
         # The public protocol exposes at most two hard and two soft
         # constraints. Once all four are known, another clarification turn
-        # cannot add information.
-        if len(self.constraints) >= 4:
+        # cannot add information. A human shopper is not bounded that way.
+        if len(self.constraints) >= 4 and not self.grounded:
             self.information_complete = True
+
+    def remove(self, value: str) -> bool:
+        """Forget one constraint. Returns True when something was removed."""
+        key = norm(_clean(value))
+        if key not in self._seen:
+            return False
+        self._seen.discard(key)
+        self._provisional.discard(key)
+        self._constraint_weight.pop(key, None)
+        self.constraints = [
+            item for item in self.constraints if norm(item) != key
+        ]
+        if len(self.constraints) < 4:
+            self.information_complete = False
+        return True
+
+    def set_weight(self, value: str, weight: float) -> None:
+        key = norm(_clean(value))
+        if key in self._seen:
+            self._constraint_weight[key] = max(0.0, min(1.0, float(weight)))
 
     def decay_provisional(self, decay: float) -> None:
         """Retain a withdrawn opening preference as lower-confidence evidence."""
@@ -159,8 +188,52 @@ class SessionState:
         self._last_recommendations = []
 
 
-def parse(message: str, state: SessionState, catalog) -> None:
-    """Update state from one customer message. Mutates state in place."""
+def recognized(message: str) -> bool:
+    """True when the message matches a protocol (or robust-lane) template."""
+    msg = message.strip()
+    robust = bool(config.ROBUST_PARSER)
+    patterns = [
+        _KEY_REQ, _MATTERS, _NEED_IS, _LOOKING, _EXHAUSTED, _NO_PREF, _NO_INFO,
+    ]
+    if robust:
+        patterns.extend([
+            _ALT_KEY_REQ, _ALT_MATTERS, _ALT_NEED_IS, _ALT_LOOKING,
+            _ALT_EXHAUSTED, _ALT_NO_PREF, _ALT_NO_INFO,
+        ])
+    return any(pattern.search(msg) for pattern in patterns)
+
+
+def parse(message: str, state: SessionState, catalog) -> bool:
+    """Update state from one customer message. Mutates state in place.
+
+    Returns True when the deterministic parser *learned* something: a shelf,
+    a constraint, an exhausted attribute, a boundary or override signal, or
+    the protocol's explicit "not quite right" reply. A False return means the
+    wording taught the parser nothing, which is the signal the optional
+    grounding layer uses to decide whether it is needed.
+    """
+    def snapshot() -> tuple:
+        return (
+            state.shelf,
+            len(state.constraints),
+            len(state.exhausted),
+            state.boundary_signal,
+            state.override_seen,
+            state.information_complete,
+        )
+
+    before = snapshot()
+    _parse(message, state, catalog)
+    if snapshot() != before:
+        return True
+    msg = message.strip()
+    return bool(
+        _NO_INFO.search(msg)
+        or (config.ROBUST_PARSER and _ALT_NO_INFO.search(msg))
+    )
+
+
+def _parse(message: str, state: SessionState, catalog) -> None:
     msg = message.strip()
     robust = bool(config.ROBUST_PARSER)
     key_match = _KEY_REQ.search(msg) or (robust and _ALT_KEY_REQ.search(msg))

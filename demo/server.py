@@ -155,6 +155,29 @@ class DemoRuntime:
             "catalog_present": self.catalog_present,
             "catalog_verified": self.catalog_verified,
             "catalog_sha256": self.catalog_hash,
+            "llm": self._llm_status(),
+        }
+
+    def _llm_status(self) -> dict:
+        """Describe the optional language layer without exposing secrets."""
+        try:
+            from src.llm import LLMSettings
+
+            settings = (
+                getattr(self._agent, "llm_settings", None)
+                or LLMSettings.from_env()
+            )
+        except Exception:  # pragma: no cover - defensive UI path
+            return {"mode": "off", "enabled": False}
+        host = ""
+        if settings.base_url:
+            host = settings.base_url.split("//", 1)[-1].split("/", 1)[0]
+        return {
+            "mode": settings.mode,
+            "enabled": bool(settings.enabled),
+            "says": bool(settings.says),
+            "model": settings.model if settings.enabled else None,
+            "endpoint_host": host if settings.enabled else None,
         }
 
     def live_reset(self, payload: dict) -> dict:
