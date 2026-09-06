@@ -94,10 +94,17 @@ AGENTIC_REPLY_MAX_CHARS = 120
 # read timeout and two internal retries, so an unbounded client can stall a
 # turn for far longer than the whole evaluation budget before the second
 # failure is ever recorded.
-AGENTIC_CIRCUIT_FAILURES = 2
-AGENTIC_CIRCUIT_COOLDOWN_SECONDS = 60.0
+# The breaker guards against a dead endpoint, not against ordinary transient
+# errors, so one retry absorbs the rate-limit and 5xx blips the SDK would
+# normally back off from, and the breaker needs three consecutive failures
+# before it stops calling out. Worst case before it opens is
+# FAILURES * (MAX_RETRIES + 1) * TIMEOUT, which stays bounded; with no retry
+# and a two-failure threshold a pair of 429s disabled the fallback for a full
+# cooldown mid-run.
+AGENTIC_CIRCUIT_FAILURES = 3
+AGENTIC_CIRCUIT_COOLDOWN_SECONDS = 30.0
 AGENTIC_TIMEOUT_SECONDS = 20.0
-AGENTIC_MAX_RETRIES = 0
+AGENTIC_MAX_RETRIES = 1
 
 # Optional hybrid language layer. ``off`` keeps the scored path byte-identical
 # and token-free. ``ground`` lets an OpenAI-compatible model propose a
