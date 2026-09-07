@@ -301,7 +301,7 @@ class Agent:
         if config.INPUT_MODE == "agentic" and repeat_ask:
             # Only call the model when the deterministic line would otherwise
             # repeat verbatim -- the common case is phrased for free.
-            generated = agentic_reply(attribute, state, usage)
+            generated = agentic_reply(attribute, usage)
             if generated:
                 message = generated
                 agentic_replied = True

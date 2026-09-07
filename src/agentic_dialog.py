@@ -390,7 +390,7 @@ _REPLY_SYSTEM_PROMPT = (
 )
 
 
-def agentic_reply(attribute: str | None, state, usage=None) -> str | None:
+def agentic_reply(attribute: str | None, usage=None) -> str | None:
     """LLM-phrased variant of the outgoing question/acknowledgement.
 
     Returns None on unavailability or any failure -- caller falls back to

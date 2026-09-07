@@ -1183,7 +1183,17 @@ function playgroundGrounding(certificate) {
   const usage = certificate.llm_usage || {};
   if (!grounding) {
     if (usage.calls) {
-      return `<p class="pg-note">Language layer: message phrased by the model (${count(usage.prompt_tokens || 0)} + ${count(usage.completion_tokens || 0)} tokens); the wording matched the protocol, so no grounding call was needed.</p>`;
+      // A turn can spend tokens without producing a grounding block: the
+      // agentic interpreter reads the message itself, and the reply
+      // generator phrases the outgoing question. Read the certificate's
+      // input_interpretation rather than assuming the protocol matched.
+      const how = certificate.input_interpretation || "";
+      const reason = how.startsWith("agentic_")
+        ? `the deterministic parser did not match, so the agentic interpreter read this turn (${esc(how.slice(8).replace(/_/g, " "))})`
+        : how === "template" || how === ""
+          ? "the wording matched the protocol, so no grounding call was needed"
+          : `the deterministic parser did not match (${esc(how)})`;
+      return `<p class="pg-note">Language layer: ${count(usage.prompt_tokens || 0)} + ${count(usage.completion_tokens || 0)} tokens; ${reason}.</p>`;
     }
     return "";
   }

@@ -259,7 +259,7 @@ def _parse(message: str, state: SessionState, catalog) -> None:
 
     # --- messages that carry no information ---
     if _NO_INFO.search(msg) or (robust and _ALT_NO_INFO.search(msg)):
-        return True
+        return
     m = _EXHAUSTED.search(msg) or (robust and _ALT_EXHAUSTED.search(msg))
     if m:
         attribute = m.group(1).lower()
@@ -267,11 +267,11 @@ def _parse(message: str, state: SessionState, catalog) -> None:
         state.last_reply_count = 0
         if attribute == "other":
             state.information_complete = True
-        return True
+        return
     if _NO_PREF.search(msg) or (robust and _ALT_NO_PREF.search(msg)):
         # boundary session deflecting our first question; not exhausted
         state.boundary_signal = True
-        return True
+        return
 
     # --- the override turn ---
     if need_match:
@@ -281,7 +281,7 @@ def _parse(message: str, state: SessionState, catalog) -> None:
         state.decay_provisional(config.OVERRIDE_DECAY)
         for c in split_constraints(need_match.group(1), catalog, state.shelf):
             state.add(c)
-        return True
+        return
 
     # --- constraints revealed by answering a question ---
     if matters_match:
@@ -299,24 +299,21 @@ def _parse(message: str, state: SessionState, catalog) -> None:
         # remaining constraints, so a short batch proves that none remain.
         if state.asked and state.asked[-1] == "other" and len(revealed) < 2:
             state.information_complete = True
-        return True
+        return
 
     # --- the opening line ---
     if key_match:
         state.add(key_match.group(1))
-        return True
+        return
 
     m = looking_match
     if m:
         tail = m.group(1)
         if exploring_match:
-            return True                  # browsing: nothing but the shelf
+            return                       # browsing: nothing but the shelf
         if state.shelf:                  # intent_override: shelf then a constraint
             low, sl = tail.lower(), state.shelf.lower()
             if low.startswith(sl):
                 rest = _clean(tail[len(sl):])
                 if rest:
                     state.add(rest, provisional=True)
-        return True
-
-    return False

@@ -366,7 +366,11 @@ The scored path has no third-party runtime dependencies. One optional,
 off-by-default research path -- the agentic input fallback,
 `src/config.py: INPUT_MODE = "agentic"` -- additionally needs `openai>=1.40`
 and an `OPENAI_API_KEY`. It is not part of the submitted result and its import
-is lazy, so the default `INPUT_MODE = "template"` run never loads it:
+is lazy, so the default `INPUT_MODE = "template"` run never loads it. Note
+that under `INPUT_MODE = "agentic"` token spend is not zero even on canonical
+protocol wording: the interpreter does not fire, but the reply generator does
+when a question would otherwise repeat verbatim. It does not affect
+`technical_score`, which is hit@10, MRR and efficiency only:
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -382,9 +386,9 @@ gzip -dc catalog.jsonl.gz > data/catalog.jsonl
 wc -l data/catalog.jsonl  # expected: 50000
 ```
 
-Run contract checks and the full test suite (73 tests; the 7 covering the
-optional agentic path skip automatically when `openai` is absent, the other
-66 are dependency-free):
+Run contract checks and the full test suite (73 tests, all dependency-free:
+the 7 covering the optional agentic path stub the client, so they run with or
+without `openai` installed rather than skipping in CI):
 
 ```bash
 python3 tools/preflight.py

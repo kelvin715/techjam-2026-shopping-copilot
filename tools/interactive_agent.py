@@ -19,22 +19,19 @@ if str(ROOT) not in sys.path:
 
 from agent import Agent
 from src import config
-from src.agentic_dialog import agentic_available, agentic_interpret
+from src.agentic_dialog import agentic_available
 from src.dialog import parse
 
 
-def _probe(message: str, state, catalog) -> tuple[bool, str | None, list[str]]:
-    """Non-mutating probe: what would each path do with this message?
+def _probe(message: str, state, catalog) -> bool:
+    """Non-mutating probe of the deterministic parser only.
 
-    Returns (template_matched, agentic_status, agentic_constraints).
+    This never calls out. The agentic interpreter is not probed here: in
+    agentic mode the real turn already reports what it did through the
+    certificate's ``input_interpretation``, and in template mode calling it
+    would make the token-free path the one that reaches the network.
     """
-    template_probe = copy.deepcopy(state)
-    template_matched = parse(message, template_probe, catalog)
-    if template_matched:
-        return True, None, []
-    agentic_probe = copy.deepcopy(state)
-    status = agentic_interpret(message, agentic_probe, catalog)
-    return False, status, list(agentic_probe.constraints)
+    return parse(message, copy.deepcopy(state), catalog)
 
 
 def main() -> None:
@@ -81,14 +78,8 @@ def main() -> None:
         turn += 1
         state = agent._sessions[session_id]
 
-        skip_probe = config.INPUT_MODE == "agentic"
-        if not skip_probe:
-            t_matched, a_status, a_constraints = _probe(message, state, agent.catalog)
-            print(f"  [probe] template parser matched: {t_matched}")
-            if not t_matched:
-                print(f"  [probe] agentic status: {a_status}")
-                if a_constraints:
-                    print(f"  [probe] agentic constraints: {a_constraints}")
+        print(f"  [probe] template parser matched: "
+              f"{_probe(message, state, agent.catalog)}")
 
         response = agent.respond(session_id, message, turn, args.top_k)
         certificate = agent.explain_last_decision(session_id)

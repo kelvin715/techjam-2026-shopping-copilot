@@ -3,7 +3,9 @@ from __future__ import annotations
 import importlib.util
 import json
 import shutil
+import sys
 import tempfile
+import types
 import unittest
 import unittest.mock
 from pathlib import Path
@@ -323,16 +325,22 @@ class AgentEndToEndTest(unittest.TestCase):
         )
 
 
-@unittest.skipUnless(
-    importlib.util.find_spec("openai") is not None,
-    "openai is an optional dependency of the agentic input mode; "
-    "unittest.mock.patch(\"openai.OpenAI\") imports it for real",
-)
 class AgenticFallbackTest(unittest.TestCase):
-    """Hermetic: openai.OpenAI is mocked, no real network calls."""
+    """Hermetic: openai.OpenAI is mocked, no real network calls.
+
+    When the optional package is absent a stub stands in for it, so these
+    run in CI too -- an agentic path that only ever ships untested is worse
+    than the dependency it avoids.
+    """
 
     def setUp(self) -> None:
         from src import agentic_dialog
+
+        self._stubbed_openai = importlib.util.find_spec("openai") is None
+        if self._stubbed_openai:
+            stub = types.ModuleType("openai")
+            stub.OpenAI = unittest.mock.MagicMock(name="OpenAI")
+            sys.modules["openai"] = stub
 
         self.agentic_dialog = agentic_dialog
         self._saved_circuit = (
@@ -344,6 +352,8 @@ class AgenticFallbackTest(unittest.TestCase):
         agentic_dialog._circuit_open_until = 0.0
 
     def tearDown(self) -> None:
+        if self._stubbed_openai:
+            sys.modules.pop("openai", None)
         # The breaker is module-global. Leaving it open would silently skip
         # the agentic path in any later test in the same process.
         (
@@ -455,7 +465,7 @@ class AgenticFallbackTest(unittest.TestCase):
         ), unittest.mock.patch("openai.OpenAI") as mock_openai:
             mock_openai.return_value.chat.completions.create.return_value = overlong
             for _ in range(config.AGENTIC_CIRCUIT_FAILURES + 1):
-                self.assertIsNone(self.agentic_dialog.agentic_reply("color", None))
+                self.assertIsNone(self.agentic_dialog.agentic_reply("color"))
             self.assertFalse(self.agentic_dialog._circuit_open())
 
     def test_extraction_marks_the_session_grounded_and_positions_unreliable(
