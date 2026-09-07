@@ -459,7 +459,19 @@ def _propose_iterative(message, state, catalog, client, usage, vocabulary, trace
         {"role": "user", "content": _user_prompt(message, state, vocabulary)},
     ]
     verifications = 0
-    for _ in range(max(1, int(config.LLM_GROUND_MAX_TOOL_CALLS))):
+    rounds = max(1, int(config.LLM_GROUND_MAX_TOOL_CALLS))
+    for index in range(rounds):
+        if index == rounds - 1:
+            # Last round: the model must commit now. Without this it can
+            # spend the whole budget verifying and never submit, which ends
+            # the turn with no reading at all.
+            messages.append({
+                "role": "user",
+                "content": (
+                    "No more verification. Call submit_reading now with what "
+                    "you have, using the catalog wording you confirmed."
+                ),
+            })
         reply = client.chat(
             messages,
             max_tokens=config.LLM_GROUND_TOOL_MAX_TOKENS,
@@ -509,8 +521,12 @@ def _propose_iterative(message, state, catalog, client, usage, vocabulary, trace
         if submission is not None:
             trace["tool_verifications"] = verifications
             return submission, None
+    # The loop never committed. Falling back to one plain call is strictly
+    # better than returning nothing: iterative must degrade to propose, never
+    # to an ungrounded turn.
     trace["tool_verifications"] = verifications
-    return None, "tool_budget_exhausted"
+    trace["fell_back_to_propose"] = True
+    return _propose_once(message, state, client, usage, vocabulary, trace)
 
 
 def ground_message(message: str, state, catalog, client, usage) -> dict:

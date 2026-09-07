@@ -1,9 +1,9 @@
 {
   "meta": {
     "schema_version": 2,
-    "generated_at": "2026-09-07T09:19:03.336983+00:00",
-    "source_commit": "d8bd8d0442e13bf67a8023ca4bcbe37bc89e53a8",
-    "source_fingerprint": "ec54043952030ec2806a1f6abd432b37e542cfc75f339ec25217186fa8ae34f2",
+    "generated_at": "2026-09-07T09:35:12.665648+00:00",
+    "source_commit": "1efd3af4a3b9ba5920138f416e83789b1501c195",
+    "source_fingerprint": "b5951e9584fd6fc9e807f014cbcc13a61c4c1665b0702adf4d021b6ba74b349a",
     "source_hashes": {
       "agent.py": "f2770d032498eaac776e6d1dd42b3c5b8f04deb7600cdd6ef6f860271d4a240a",
       "demo/server.py": "be575c6fa0e31684d99c414e5b418d987bbc1bba85f407ba6d4d3b4034b9e311",
@@ -28,7 +28,7 @@
       "src/config.py": "0df83dbd90410ec4148b32a9c2eeee45c6840398e760f4edb303e715ff766a92",
       "src/dialog.py": "d63b6858eeec6fbe3b4183c89eaffd439af555c3755fb03f0543e0409406ada7",
       "src/evidence.py": "4687761d90274af9eb95c23a032f3e5f6959131061b6c9d62061a063f5dcabdb",
-      "src/ground.py": "a8ae3b164e48f83eff9716f4eb15a67ade2cbd852f939754e46e040dce97d5ba",
+      "src/ground.py": "3348f2bf4aeed2f27fe512407bd191efe3b9b33e92bc77317fbade0d1a2443f0",
       "src/llm.py": "1ad64c701bccbb2971a8bcc1e81692dcea841f5730921fd2aba82c9d53238544",
       "src/policy.py": "4c35c2f97b5794e5cae137db7043b9c43bd9f60f69acf0a4d669ec3cd0526047",
       "src/rank.py": "8d94b97f65c97eebd3dfb5904381ffb2676604ce45b4ebb17aaddb7cf36e23bb",
@@ -38,7 +38,7 @@
       "tests/test_demo_frontend.py": "2a21d3fbba849db7f58f36e82174634565656c38219f6de5314678deaaa54146",
       "tests/test_evaluator.py": "358b6ac17a33b737580159a91564fea3fae5907fbb919ca9067e0df3c65bb8c1",
       "tests/test_evidence.py": "045921597f5611645f947f1a5189bae15f01b5354ba1958d9721e3e2a5e0981a",
-      "tests/test_llm_grounding.py": "3d43130d402c1f82d9ddc7fb91c337e6cbc2a07ad7ef0e34fa437a0e1b146bc3",
+      "tests/test_llm_grounding.py": "4d0aa56df1e7aaa19077bf7dde897603730308e3bc6df3e1a2219b410f26dc39",
       "tests/test_rerank.py": "453cb92858b2ced0b89489c11c60e621264bb6cc8286ba994d64a63637cfeb8d",
       "tests/test_signature.py": "0919981e72fe4659f83cb9f1a334e86636a6f1c8de27a4f0818788ccd0699965",
       "tests/test_static_site.py": "abf25a9ce1f6a8f08f306257947de9510598c1244fc9ba934e00a06aa5f76c5d",
@@ -28506,7 +28506,7 @@
       }
     },
     "tests": {
-      "count": 72,
+      "count": 73,
       "verified_pass": true,
       "command": "python3 -m unittest discover -v"
     }

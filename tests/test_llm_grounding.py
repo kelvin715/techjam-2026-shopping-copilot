@@ -468,15 +468,36 @@ class IterativeVerificationTest(unittest.TestCase):
         self.assertEqual(trace["tool_verifications"], 0)
         self.assertTrue(trace["accepted"])
 
-    def test_a_loop_that_never_submits_fails_closed(self) -> None:
+    def test_a_loop_that_never_submits_degrades_to_propose(self) -> None:
+        """It must never end a turn with no reading at all."""
         catalog = Catalog(self.catalog_path)
         state = self._state(catalog)
-        client = FakeChatClient(tool_replies=[
-            {"tool_calls": [self._call("list_known_values", {"limit": 5})]}
-            for _ in range(config.LLM_GROUND_MAX_TOOL_CALLS + 2)
-        ])
+        reading = json.dumps({"intent": "add", "features": ["100% Leather"]})
+        client = FakeChatClient(
+            replies={"*": reading},
+            tool_replies=[
+                {"tool_calls": [self._call("list_known_values", {"limit": 5})]}
+                for _ in range(config.LLM_GROUND_MAX_TOOL_CALLS)
+            ],
+        )
         trace = ground.ground_message("leather", state, catalog, client, LLMUsage())
-        self.assertEqual(trace["status"], "tool_budget_exhausted")
+        self.assertEqual(trace["status"], "grounded")
+        self.assertTrue(trace["fell_back_to_propose"])
+        self.assertTrue(trace["accepted"])
+        self.assertTrue(state.constraints)
+
+    def test_a_loop_that_never_submits_and_cannot_fall_back_fails_closed(self) -> None:
+        catalog = Catalog(self.catalog_path)
+        state = self._state(catalog)
+        client = FakeChatClient(
+            replies={"*": "not json at all"},
+            tool_replies=[
+                {"tool_calls": [self._call("list_known_values", {"limit": 5})]}
+                for _ in range(config.LLM_GROUND_MAX_TOOL_CALLS)
+            ],
+        )
+        trace = ground.ground_message("leather", state, catalog, client, LLMUsage())
+        self.assertEqual(trace["status"], "unparseable_reply")
         self.assertEqual(state.constraints, [])   # nothing half-applied
 
     def test_env_overrides_the_configured_mode(self) -> None:
