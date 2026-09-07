@@ -359,7 +359,17 @@ Not every accepted phrase is worth submitting. verify_phrase returns a
 confidence, and a result marked "weak" will barely influence ranking -- when
 you see one, look for the catalog's own word for the same thing through
 list_known_values and verify that instead. Prefer one high-confidence phrase
-over several weak ones. Finish by calling submit_reading exactly once.
+over several weak ones.
+
+Attribution comes first, though. verify_phrase tells you whether a phrase
+exists in the catalog, never whether this shopper asked for it, and the
+vocabulary list is what other products happen to say -- not a menu to pick
+from. Only submit wording the shopper actually expressed in this message. If
+they stated no preference, or only rejected what they were shown, the correct
+features list is empty. Submitting a plausible catalog phrase they did not ask
+for is worse than submitting nothing.
+
+Finish by calling submit_reading exactly once.
 """
 
 

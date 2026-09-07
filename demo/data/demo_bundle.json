@@ -1,9 +1,9 @@
 {
   "meta": {
     "schema_version": 2,
-    "generated_at": "2026-09-07T09:35:12.665648+00:00",
-    "source_commit": "1efd3af4a3b9ba5920138f416e83789b1501c195",
-    "source_fingerprint": "b5951e9584fd6fc9e807f014cbcc13a61c4c1665b0702adf4d021b6ba74b349a",
+    "generated_at": "2026-09-07T09:51:46.976292+00:00",
+    "source_commit": "1d7d2cd5dea4163f9cc071d79826072947ff8873",
+    "source_fingerprint": "3215bb64eea93da5ce746bb61f75fbfc2aabbd6cb5e2d1ade0297d30bd215627",
     "source_hashes": {
       "agent.py": "f2770d032498eaac776e6d1dd42b3c5b8f04deb7600cdd6ef6f860271d4a240a",
       "demo/server.py": "be575c6fa0e31684d99c414e5b418d987bbc1bba85f407ba6d4d3b4034b9e311",
@@ -28,7 +28,7 @@
       "src/config.py": "0df83dbd90410ec4148b32a9c2eeee45c6840398e760f4edb303e715ff766a92",
       "src/dialog.py": "d63b6858eeec6fbe3b4183c89eaffd439af555c3755fb03f0543e0409406ada7",
       "src/evidence.py": "4687761d90274af9eb95c23a032f3e5f6959131061b6c9d62061a063f5dcabdb",
-      "src/ground.py": "3348f2bf4aeed2f27fe512407bd191efe3b9b33e92bc77317fbade0d1a2443f0",
+      "src/ground.py": "70770e76d06d01ec33f6085a0345c01c99bbf82bae254a5a74c22f2d09ab761b",
       "src/llm.py": "1ad64c701bccbb2971a8bcc1e81692dcea841f5730921fd2aba82c9d53238544",
       "src/policy.py": "4c35c2f97b5794e5cae137db7043b9c43bd9f60f69acf0a4d669ec3cd0526047",
       "src/rank.py": "8d94b97f65c97eebd3dfb5904381ffb2676604ce45b4ebb17aaddb7cf36e23bb",
