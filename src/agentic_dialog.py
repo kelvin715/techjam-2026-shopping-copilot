@@ -220,6 +220,15 @@ def _apply_extraction(extraction: dict, state, catalog) -> bool:
         and phrase.strip()
         and catalog.signature_support(phrase, state.shelf) > 0
     ]
+    if verified or is_override:
+        # Provenance rather than preference, mirroring src/ground.py: a model
+        # read this message, so the order of ``verified`` is the order the
+        # model chose to emit its array in and carries no positional evidence,
+        # and the protocol's four-constraint bound does not apply to free-form
+        # wording. Set before the state.add() loop below, so that bound
+        # (SessionState.add) never fires in the first place.
+        state.signature_positions_reliable = False
+        state.grounded = True
     for phrase in verified:
         state.add(phrase)
     if not is_override:

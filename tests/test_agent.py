@@ -458,6 +458,51 @@ class AgenticFallbackTest(unittest.TestCase):
                 self.assertIsNone(self.agentic_dialog.agentic_reply("color", None))
             self.assertFalse(self.agentic_dialog._circuit_open())
 
+    def test_extraction_marks_the_session_grounded_and_positions_unreliable(
+        self,
+    ) -> None:
+        """A model reading is provenance: its array order is not evidence."""
+        catalog = self._catalog()
+        state = SessionState({})
+        state.shelf = "Shirts"
+        self.assertTrue(state.signature_positions_reliable)
+        self.assertFalse(state.grounded)
+        submission = self._fake_tool_call("submit_extraction", {
+            "constraints": ["denim"],
+            "is_override": False,
+            "uninformative": False,
+        })
+        with unittest.mock.patch.object(
+            self.agentic_dialog, "agentic_available", return_value=True
+        ), unittest.mock.patch("openai.OpenAI") as mock_openai:
+            mock_openai.return_value.chat.completions.create.return_value = (
+                self._fake_response([submission])
+            )
+            self.agentic_dialog.agentic_interpret(
+                "something in that blue jean material", state, catalog
+            )
+        self.assertIn("denim", state.constraints)
+        # Without these, rank._signature_score keeps awarding the positional
+        # bonus against the model's array order, and SessionState.add applies
+        # the protocol's four-constraint bound to free-form wording.
+        self.assertFalse(state.signature_positions_reliable)
+        self.assertTrue(state.grounded)
+
+        # An extraction that verified nothing must leave both flags alone.
+        unverified = SessionState({})
+        unverified.shelf = "Shirts"
+        self.agentic_dialog._apply_extraction(
+            {
+                "constraints": ["not-a-real-catalog-phrase"],
+                "is_override": False,
+                "uninformative": False,
+            },
+            unverified,
+            catalog,
+        )
+        self.assertTrue(unverified.signature_positions_reliable)
+        self.assertFalse(unverified.grounded)
+
     def test_client_is_bounded_by_timeout_and_no_retries(self) -> None:
         """Without these the breaker cannot be reached in bounded time."""
         submission = self._fake_tool_call("submit_extraction", {
