@@ -2,14 +2,15 @@
 from __future__ import annotations
 
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
 
 from agent import Agent
-from src import config
+from src import config, ground
 from src.dialog import SessionState, parse
-from src.llm import FakeChatClient, LLMReply, LLMSettings
+from src.llm import FakeChatClient, LLMReply, LLMSettings, LLMUsage
 from src.shelf import Catalog
 
 PRODUCTS = [
@@ -392,6 +393,111 @@ class GroundingTest(unittest.TestCase):
         self.assertTrue(response["message"].startswith("Great, a leather belt"))
         self.assertEqual(response["recommendations"][0]["parent_asin"], "BELT_A")
         self.assertEqual(response["usage"], {"prompt_tokens": 200, "completion_tokens": 40})
+
+
+class IterativeVerificationTest(unittest.TestCase):
+    """The tool loop must reach the same place as propose-once, not past it."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.catalog_path = _write_catalog(self._tmp.name)
+        self._saved_mode = config.LLM_GROUND_VERIFY
+        config.LLM_GROUND_VERIFY = "iterative"
+        os.environ.pop("ARC_LLM_VERIFY", None)
+
+    def tearDown(self) -> None:
+        config.LLM_GROUND_VERIFY = self._saved_mode
+        self._tmp.cleanup()
+
+    @staticmethod
+    def _call(name, arguments, call_id="c1"):
+        return {
+            "id": call_id,
+            "type": "function",
+            "function": {"name": name, "arguments": json.dumps(arguments)},
+        }
+
+    def _state(self, catalog):
+        state = SessionState({})
+        state.shelf = catalog.shelf_of["BELT_A"]
+        return state
+
+    def test_verify_phrase_runs_the_catalog_s_own_check(self) -> None:
+        catalog = Catalog(self.catalog_path)
+        state = self._state(catalog)
+        accepted = ground._run_ground_tool(
+            "verify_phrase", {"phrase": "100% Leather"}, catalog, state
+        )
+        self.assertTrue(accepted["accepted"])
+        self.assertIn("tier", accepted)
+        self.assertGreater(accepted["confidence"], 0.0)
+        rejected = ground._run_ground_tool(
+            "verify_phrase", {"phrase": "zzzzz nonsense"}, catalog, state
+        )
+        self.assertFalse(rejected["accepted"])
+        # Same verdict the propose-once path reaches afterwards.
+        self.assertIsNone(ground._verify_feature(catalog, "zzzzz nonsense", state)[0])
+
+    def test_a_verified_reading_is_applied_and_counted(self) -> None:
+        catalog = Catalog(self.catalog_path)
+        state = self._state(catalog)
+        usage = LLMUsage()
+        client = FakeChatClient(tool_replies=[
+            {"tool_calls": [self._call("verify_phrase", {"phrase": "leather"})]},
+            {"tool_calls": [self._call("submit_reading", {
+                "intent": "add", "features": ["leather"],
+            }, call_id="c2")]},
+        ])
+        trace = ground.ground_message("something in leather", state, catalog, client, usage)
+        self.assertEqual(trace["status"], "grounded")
+        self.assertEqual(trace["verify_mode"], "iterative")
+        self.assertEqual(trace["tool_verifications"], 1)
+        self.assertTrue(trace["accepted"])
+        # Two model calls were made, and both are accounted for.
+        self.assertEqual(usage.calls, 2)
+        self.assertEqual(trace["tokens"]["prompt"], 200)
+
+    def test_a_reply_with_no_tool_calls_is_the_propose_once_contract(self) -> None:
+        catalog = Catalog(self.catalog_path)
+        state = self._state(catalog)
+        client = FakeChatClient(tool_replies=[
+            {"text": json.dumps({"intent": "add", "features": ["leather"]})},
+        ])
+        trace = ground.ground_message("leather please", state, catalog, client, LLMUsage())
+        self.assertEqual(trace["status"], "grounded")
+        self.assertEqual(trace["tool_verifications"], 0)
+        self.assertTrue(trace["accepted"])
+
+    def test_a_loop_that_never_submits_fails_closed(self) -> None:
+        catalog = Catalog(self.catalog_path)
+        state = self._state(catalog)
+        client = FakeChatClient(tool_replies=[
+            {"tool_calls": [self._call("list_known_values", {"limit": 5})]}
+            for _ in range(config.LLM_GROUND_MAX_TOOL_CALLS + 2)
+        ])
+        trace = ground.ground_message("leather", state, catalog, client, LLMUsage())
+        self.assertEqual(trace["status"], "tool_budget_exhausted")
+        self.assertEqual(state.constraints, [])   # nothing half-applied
+
+    def test_env_overrides_the_configured_mode(self) -> None:
+        config.LLM_GROUND_VERIFY = "iterative"
+        os.environ["ARC_LLM_VERIFY"] = "propose"
+        try:
+            self.assertEqual(ground.verify_mode(), "propose")
+        finally:
+            os.environ.pop("ARC_LLM_VERIFY", None)
+        self.assertEqual(ground.verify_mode(), "iterative")
+        config.LLM_GROUND_VERIFY = "nonsense"
+        self.assertEqual(ground.verify_mode(), "propose")
+
+
+class NullishFieldTest(unittest.TestCase):
+    """A model answering "null" for a nullable field must mean null."""
+
+    def test_string_null_is_not_a_phrase_to_verify(self) -> None:
+        for value in ("null", "None", " n/a ", "", None, "undefined"):
+            self.assertIsNone(ground._as_str(value), value)
+        self.assertEqual(ground._as_str(" Denim "), "Denim")
 
 
 if __name__ == "__main__":

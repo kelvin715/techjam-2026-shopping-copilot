@@ -80,32 +80,6 @@ QUESTION_TURN_COST = 0.02
 # canonical protocol remains the first parse path and is unchanged.
 ROBUST_PARSER = True
 
-# Second-tier LLM fallback for template-parser misses. "template" or "agentic".
-INPUT_MODE = "template"
-AGENTIC_MODEL = "gpt-4o-mini"
-AGENTIC_MAX_TOOL_CALLS = 3
-
-# Caps the outgoing reply generator: keeps replies short and token spend low.
-AGENTIC_REPLY_MAX_TOKENS = 20
-AGENTIC_REPLY_MAX_CHARS = 120
-
-# Circuit breaker, mirroring LLM_CIRCUIT_* below. The timeout is what makes
-# the breaker reachable in bounded time: the openai SDK defaults to a 600s
-# read timeout and two internal retries, so an unbounded client can stall a
-# turn for far longer than the whole evaluation budget before the second
-# failure is ever recorded.
-# The breaker guards against a dead endpoint, not against ordinary transient
-# errors, so one retry absorbs the rate-limit and 5xx blips the SDK would
-# normally back off from, and the breaker needs three consecutive failures
-# before it stops calling out. Worst case before it opens is
-# FAILURES * (MAX_RETRIES + 1) * TIMEOUT, which stays bounded; with no retry
-# and a two-failure threshold a pair of 429s disabled the fallback for a full
-# cooldown mid-run.
-AGENTIC_CIRCUIT_FAILURES = 3
-AGENTIC_CIRCUIT_COOLDOWN_SECONDS = 30.0
-AGENTIC_TIMEOUT_SECONDS = 20.0
-AGENTIC_MAX_RETRIES = 1
-
 # Optional hybrid language layer. ``off`` keeps the scored path byte-identical
 # and token-free. ``ground`` lets an OpenAI-compatible model propose a
 # structured reading of off-protocol shopper wording; every proposal is
@@ -119,6 +93,21 @@ LLM_BASE_URL = ""
 LLM_MODEL = "gemma4"
 LLM_TIMEOUT_SECONDS = 20.0
 LLM_GROUND_MAX_TOKENS = 220
+
+# How the language layer reaches its reading of an off-protocol message.
+# "propose"    -- one call; the model answers with JSON, the catalog then
+#                 verifies every phrase (the default, and what shipped).
+# "iterative"  -- the model may call verify_phrase/list_known_values, which
+#                 run _verify_feature and the shelf vocabulary, before it
+#                 commits. Same reading, same downstream application; the
+#                 only difference is whether verification happens before or
+#                 after the model decides. Set ARC_LLM_VERIFY to override.
+LLM_GROUND_VERIFY = "propose"
+LLM_GROUND_MAX_TOOL_CALLS = 3
+# A tool call spends its arguments out of the completion budget, and a
+# truncated call arrives as unparseable JSON, so the loop needs more room
+# than a single JSON answer does.
+LLM_GROUND_TOOL_MAX_TOKENS = 500
 LLM_RENDER_MAX_TOKENS = 90
 LLM_GROUND_MAX_FEATURES = 3
 # Confidence attached to grounded evidence by verification tier.

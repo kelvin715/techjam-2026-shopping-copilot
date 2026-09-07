@@ -11,7 +11,6 @@ from copy import deepcopy
 from pathlib import Path
 
 from src import config
-from src.agentic_dialog import STATUS_EXTRACTED, agentic_interpret, agentic_reply
 from src.dialog import SessionState, parse
 from src.evidence import (
     build_certificate,
@@ -72,23 +71,9 @@ class Agent:
             # intent.
             state.confirm_previous_misses()
             recognized = parse(user_message, state, self.catalog)
-            agentic_status = None
-            if not recognized and config.INPUT_MODE == "agentic":
-                agentic_status = agentic_interpret(
-                    user_message, state, self.catalog, usage
-                )
-            if (
-                self.llm is not None
-                and not recognized
-                and agentic_status != STATUS_EXTRACTED
-            ):
+            if self.llm is not None and not recognized:
                 # Off-protocol wording: let the model propose a reading and the
                 # catalog verify it. Protocol messages never reach the model.
-                # These are two independently configured providers. A turn the
-                # agentic path already interpreted is skipped, but a turn it
-                # ran and found nothing in still falls through to here on
-                # purpose -- so both can be called on one turn when both are
-                # configured, which is only the case in research runs.
                 from src.ground import ground_message
 
                 grounding = ground_message(
@@ -253,7 +238,6 @@ class Agent:
             )
             state.last_decision_certificate["input_interpretation"] = (
                 "template" if recognized
-                else f"agentic_{agentic_status}" if agentic_status
                 else "grounded" if grounding is not None
                 else "unmatched"
             )
@@ -296,18 +280,8 @@ class Agent:
             }
 
         message = self._message(attribute)
-        agentic_replied = False
-        repeat_ask = state.asked[:-1].count(attribute) if state.asked else 0
-        if config.INPUT_MODE == "agentic" and repeat_ask:
-            # Only call the model when the deterministic line would otherwise
-            # repeat verbatim -- the common case is phrased for free.
-            generated = agentic_reply(attribute, usage)
-            if generated:
-                message = generated
-                agentic_replied = True
         if (
-            not agentic_replied
-            and self.llm is not None
+            self.llm is not None
             and self.llm_settings.says
             and recommendations
         ):

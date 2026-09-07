@@ -362,15 +362,21 @@ Requirements:
   agent both retain catalog representations;
 - no GPU, API key, credential, vector database, or network at inference time.
 
-The scored path has no third-party runtime dependencies. One optional,
-off-by-default research path -- the agentic input fallback,
-`src/config.py: INPUT_MODE = "agentic"` -- additionally needs `openai>=1.40`
-and an `OPENAI_API_KEY`. It is not part of the submitted result and its import
-is lazy, so the default `INPUT_MODE = "template"` run never loads it. Note
-that under `INPUT_MODE = "agentic"` token spend is not zero even on canonical
-protocol wording: the interpreter does not fire, but the reply generator does
-when a question would otherwise repeat verbatim. It does not affect
-`technical_score`, which is hit@10, MRR and efficiency only:
+There are no third-party runtime dependencies, including for the optional
+language layer: `src/llm.py` speaks the OpenAI chat-completions protocol --
+tool calls included -- over `urllib`, so any compatible endpoint is reachable
+by environment variable alone. A hosted model needs no package:
+
+```bash
+export ARC_LLM_MODE=ground ARC_LLM_BASE_URL=https://api.openai.com/v1
+export ARC_LLM_MODEL=gpt-4o-mini ARC_LLM_API_KEY=sk-...
+```
+
+The layer stays off in the scored run (`LLM_MODE = "off"`), which is
+deterministic and token-free. `LLM_GROUND_VERIFY` (or `ARC_LLM_VERIFY`)
+chooses how it reads a message when it is on: `propose` asks once and
+verifies afterwards, `iterative` lets the model check a phrase through
+`_verify_feature` before committing to it.
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -386,9 +392,7 @@ gzip -dc catalog.jsonl.gz > data/catalog.jsonl
 wc -l data/catalog.jsonl  # expected: 50000
 ```
 
-Run contract checks and the full test suite (73 tests, all dependency-free:
-the 7 covering the optional agentic path stub the client, so they run with or
-without `openai` installed rather than skipping in CI):
+Run contract checks and the full test suite (72 dependency-free tests):
 
 ```bash
 python3 tools/preflight.py

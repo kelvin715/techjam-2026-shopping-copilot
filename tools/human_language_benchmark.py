@@ -170,8 +170,8 @@ def grounding_summary(wrapper: HumanFacingAgent) -> dict:
             interpretations[str(row.get("input_interpretation"))] += 1
             grounding = row.get("grounding")
             if not grounding:
-                # The agentic arm spends tokens without producing a grounding
-                # block, so its usage must be counted before this skip.
+                # A turn can spend tokens without producing a grounding block
+                # (the reply generator), so count its usage before this skip.
                 usage = row.get("llm_usage") or {}
                 calls += int(usage.get("calls") or 0)
                 if usage.get("latency_ms"):
@@ -272,10 +272,12 @@ def main() -> None:
             agents[arm] = Agent(args.catalog, llm_settings=LLMSettings(mode="off"))
         elif arm == "hybrid":
             agents[arm] = Agent(args.catalog, llm_settings=ground_settings)
-        elif arm == "agentic":
-            # The OpenAI tool-calling input fallback, isolated: the ground
-            # layer is off so this arm measures INPUT_MODE alone.
-            agents[arm] = Agent(args.catalog, llm_settings=LLMSettings(mode="off"))
+        elif arm == "iterative":
+            # Same layer, same provider, same cache as `hybrid`; the only
+            # difference is that the model may verify a phrase through
+            # _verify_feature before committing to it. That makes this arm a
+            # direct A/B of iterative verification against propose-then-verify.
+            agents[arm] = Agent(args.catalog, llm_settings=ground_settings)
         else:
             parser.error(f"unknown arm: {arm}")
 
@@ -290,13 +292,15 @@ def main() -> None:
         )
         for arm in arms:
             wrapper = HumanFacingAgent(agents[arm], customer)
-            previous_input_mode = config.INPUT_MODE
-            config.INPUT_MODE = "agentic" if arm == "agentic" else "template"
+            previous_verify = config.LLM_GROUND_VERIFY
+            config.LLM_GROUND_VERIFY = (
+                "iterative" if arm == "iterative" else "propose"
+            )
             started = time.perf_counter()
             try:
                 outcome = evaluate(wrapper, samples, ids, categories, products)
             finally:
-                config.INPUT_MODE = previous_input_mode
+                config.LLM_GROUND_VERIFY = previous_verify
             wall = time.perf_counter() - started
             customer_client.flush()
             client = getattr(agents[arm], "llm", None)
