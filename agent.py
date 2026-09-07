@@ -236,11 +236,6 @@ class Agent:
                 tail_exploration=tail_exploration,
                 refutation_cohort_size=refutation_cohort_size,
             )
-            state.last_decision_certificate["input_interpretation"] = (
-                "template" if recognized
-                else "grounded" if grounding is not None
-                else "unmatched"
-            )
             if grounding is not None or usage.calls:
                 state.last_decision_certificate["llm_grounding"] = grounding
                 state.last_decision_certificate["llm_usage"] = usage.to_dict()
@@ -280,11 +275,7 @@ class Agent:
             }
 
         message = self._message(attribute)
-        if (
-            self.llm is not None
-            and self.llm_settings.says
-            and recommendations
-        ):
+        if self.llm is not None and self.llm_settings.says and recommendations:
             try:
                 from src.ground import render_message
 
@@ -296,14 +287,9 @@ class Agent:
                 )
                 if rendered:
                     message = rendered
+                state.last_decision_certificate["llm_usage"] = usage.to_dict()
             except Exception:
                 pass
-
-        if usage.calls and isinstance(state.last_decision_certificate, dict):
-            # The certificate is written before the outgoing message is
-            # phrased, so re-sync it here: otherwise the diagnostic panel
-            # under-reports exactly the tokens the reply generator spent.
-            state.last_decision_certificate["llm_usage"] = usage.to_dict()
 
         return {
             "message": message,

@@ -1,4 +1,1 @@
-# Runtime dependencies: none. The agent uses only Python 3.10+ standard
-# library, including the optional language layer -- src/llm.py speaks the
-# OpenAI chat-completions protocol (tool calls included) over urllib, so
-# pointing ARC_LLM_BASE_URL at any compatible endpoint needs no package.
+# Runtime dependencies: none. The agent uses only Python 3.10+ standard library.

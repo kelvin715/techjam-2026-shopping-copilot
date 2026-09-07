@@ -77,7 +77,6 @@ class LLMReply:
     latency_ms: float = 0.0
     cached: bool = False
     error: str | None = None
-    tool_calls: list = field(default_factory=list)
 
     @property
     def ok(self) -> bool:
@@ -159,20 +158,13 @@ class ChatClient:
                 self._cache = {}
 
     # -- cache ---------------------------------------------------------------
-    def _key(
-        self,
-        messages: list[dict],
-        max_tokens: int,
-        temperature: float,
-        tools: list | None = None,
-    ) -> str:
+    def _key(self, messages: list[dict], max_tokens: int, temperature: float) -> str:
         payload = json.dumps(
             {
                 "model": self.settings.model,
                 "messages": messages,
                 "max_tokens": max_tokens,
                 "temperature": temperature,
-                **({"tools": tools} if tools else {}),
             },
             sort_keys=True,
             ensure_ascii=False,
@@ -200,7 +192,6 @@ class ChatClient:
         max_tokens: int = 200,
         temperature: float = 0.0,
         stream: bool = False,
-        tools: list | None = None,
     ) -> LLMReply:
         """Send one chat completion.
 
@@ -211,7 +202,7 @@ class ChatClient:
         load. The warm path stays non-streaming because it needs the whole
         JSON body anyway.
         """
-        key = self._key(messages, max_tokens, temperature, tools)
+        key = self._key(messages, max_tokens, temperature)
         with self._cache_lock:
             hit = self._cache.get(key)
         if hit is None and time.monotonic() < self._circuit_open_until:
@@ -226,21 +217,16 @@ class ChatClient:
                 completion_tokens=int(hit.get("completion_tokens", 0)),
                 latency_ms=0.0,
                 cached=True,
-                # Absent on entries written before tool support, so an older
-                # cache stays readable and simply replays no tool calls.
-                tool_calls=list(hit.get("tool_calls") or []),
             )
-        payload = {
-            "model": self.settings.model,
-            "messages": messages,
-            "max_tokens": max_tokens,
-            "temperature": temperature,
-            "stream": bool(stream),
-        }
-        if tools:
-            payload["tools"] = tools
-            payload["tool_choice"] = "auto"
-        body = json.dumps(payload).encode("utf-8")
+        body = json.dumps(
+            {
+                "model": self.settings.model,
+                "messages": messages,
+                "max_tokens": max_tokens,
+                "temperature": temperature,
+                "stream": bool(stream),
+            }
+        ).encode("utf-8")
         request = urllib.request.Request(
             f"{self.settings.base_url}/chat/completions",
             data=body,
@@ -255,15 +241,12 @@ class ChatClient:
             started = time.perf_counter()
             try:
                 with urllib.request.urlopen(request, timeout=self.settings.timeout) as handle:
-                    tool_calls: list = []
                     if stream:
                         text, usage = _read_stream(handle)
                     else:
                         raw = json.loads(handle.read().decode("utf-8"))
                         choice = (raw.get("choices") or [{}])[0]
-                        reply_message = choice.get("message") or {}
-                        text = str(reply_message.get("content") or "")
-                        tool_calls = list(reply_message.get("tool_calls") or [])
+                        text = str(((choice.get("message") or {}).get("content")) or "")
                         usage = raw.get("usage") or {}
                 elapsed = (time.perf_counter() - started) * 1000.0
                 reply = LLMReply(
@@ -271,14 +254,12 @@ class ChatClient:
                     prompt_tokens=int(usage.get("prompt_tokens") or 0),
                     completion_tokens=int(usage.get("completion_tokens") or 0),
                     latency_ms=elapsed,
-                    tool_calls=tool_calls,
                 )
                 with self._cache_lock:
                     self._cache[key] = {
                         "text": reply.text,
                         "prompt_tokens": reply.prompt_tokens,
                         "completion_tokens": reply.completion_tokens,
-                        **({"tool_calls": reply.tool_calls} if reply.tool_calls else {}),
                     }
                     self._cache_dirty = True
                 self._consecutive_failures = 0
@@ -325,17 +306,9 @@ def _read_stream(handle) -> tuple[str, dict]:
 class FakeChatClient:
     """Deterministic stand-in for tests: maps a user message to a canned reply."""
 
-    def __init__(
-        self,
-        replies: dict[str, str] | None = None,
-        *,
-        fail: bool = False,
-        tool_replies: list | None = None,
-    ) -> None:
+    def __init__(self, replies: dict[str, str] | None = None, *, fail: bool = False) -> None:
         self.replies = dict(replies or {})
         self.fail = fail
-        # Consumed one per call, so a test can stage a whole tool loop.
-        self.tool_replies = list(tool_replies or [])
         self.calls: list[list[dict]] = []
         self.settings = LLMSettings(mode="ground", base_url="fake://", model="fake")
 
@@ -346,20 +319,10 @@ class FakeChatClient:
         max_tokens: int = 200,
         temperature: float = 0.0,
         stream: bool = False,
-        tools: list | None = None,
     ) -> LLMReply:
         self.calls.append(messages)
         if self.fail:
             return LLMReply(text="", error="fake failure")
-        if self.tool_replies:
-            staged = self.tool_replies.pop(0)
-            return LLMReply(
-                text=str(staged.get("text", "")),
-                prompt_tokens=100,
-                completion_tokens=20,
-                latency_ms=1.0,
-                tool_calls=list(staged.get("tool_calls") or []),
-            )
         user = next((m["content"] for m in reversed(messages) if m.get("role") == "user"), "")
         text = self.replies.get(user, self.replies.get("*", "{}"))
         return LLMReply(text=text, prompt_tokens=100, completion_tokens=20, latency_ms=1.0)

@@ -362,21 +362,7 @@ Requirements:
   agent both retain catalog representations;
 - no GPU, API key, credential, vector database, or network at inference time.
 
-There are no third-party runtime dependencies, including for the optional
-language layer: `src/llm.py` speaks the OpenAI chat-completions protocol --
-tool calls included -- over `urllib`, so any compatible endpoint is reachable
-by environment variable alone. A hosted model needs no package:
-
-```bash
-export ARC_LLM_MODE=ground ARC_LLM_BASE_URL=https://api.openai.com/v1
-export ARC_LLM_MODEL=gpt-4o-mini ARC_LLM_API_KEY=sk-...
-```
-
-The layer stays off in the scored run (`LLM_MODE = "off"`), which is
-deterministic and token-free. `LLM_GROUND_VERIFY` (or `ARC_LLM_VERIFY`)
-chooses how it reads a message when it is on: `propose` asks once and
-verifies afterwards, `iterative` lets the model check a phrase through
-`_verify_feature` before committing to it.
+There are no third-party runtime dependencies:
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -392,7 +378,7 @@ gzip -dc catalog.jsonl.gz > data/catalog.jsonl
 wc -l data/catalog.jsonl  # expected: 50000
 ```
 
-Run contract checks and the full test suite (72 dependency-free tests):
+Run contract checks and all 66 dependency-free tests:
 
 ```bash
 python3 tools/preflight.py
