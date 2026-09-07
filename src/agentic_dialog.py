@@ -249,7 +249,21 @@ def _apply_extraction(extraction: dict, state, catalog) -> bool:
                 state.information_complete = True
             return True
     if extraction.get("no_preference_attribute"):
-        state.boundary_signal = True
+        # Retire the question that was actually asked, mirroring ground.py.
+        # The agent knows what it asked, so the model's own name for the
+        # attribute is advisory only -- boundary_signal is a scenario hint
+        # (evidence.py, policy.py), not a record that a question is answered,
+        # so setting it alone left the question live and re-askable.
+        asked = state.asked[-1] if state.asked else None
+        if asked == "other":
+            state.information_complete = True
+        elif asked:
+            state.exhausted.add(asked)
+            state.last_reply_count = 0
+        else:
+            # Nothing asked yet: the shopper is deflecting the opening
+            # question, which is what dialog.py's _NO_PREF branch means.
+            state.boundary_signal = True
         return True
     is_override = bool(extraction.get("is_override"))
     if is_override:

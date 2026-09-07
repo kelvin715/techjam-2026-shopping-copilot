@@ -542,6 +542,43 @@ class AgenticFallbackTest(unittest.TestCase):
         ))
         self.assertEqual(only_category.shelf, "Shirts")
 
+    def test_no_preference_retires_the_question_that_was_asked(self) -> None:
+        """boundary_signal is a scenario hint; exhausted is what retires it."""
+        catalog = self._catalog()
+        state = SessionState({})
+        state.asked.append("color")
+        self.agentic_dialog._apply_extraction(
+            {"no_preference_attribute": "colour", "constraints": [],
+             "is_override": False, "uninformative": False},
+            state,
+            catalog,
+        )
+        self.assertIn("color", state.exhausted)   # what we asked, not "colour"
+        self.assertEqual(state.last_reply_count, 0)
+        self.assertFalse(state.boundary_signal)
+
+        # "other" is the wildcard question: nothing left to disclose.
+        wildcard = SessionState({})
+        wildcard.asked.append("other")
+        self.agentic_dialog._apply_extraction(
+            {"no_preference_attribute": "other", "constraints": [],
+             "is_override": False, "uninformative": False},
+            wildcard,
+            catalog,
+        )
+        self.assertTrue(wildcard.information_complete)
+
+        # Deflecting before anything was asked is the boundary case.
+        deflect = SessionState({})
+        self.agentic_dialog._apply_extraction(
+            {"no_preference_attribute": "color", "constraints": [],
+             "is_override": False, "uninformative": False},
+            deflect,
+            catalog,
+        )
+        self.assertTrue(deflect.boundary_signal)
+        self.assertFalse(deflect.exhausted)
+
     def test_client_is_bounded_by_timeout_and_no_retries(self) -> None:
         """Without these the breaker cannot be reached in bounded time."""
         submission = self._fake_tool_call("submit_extraction", {
