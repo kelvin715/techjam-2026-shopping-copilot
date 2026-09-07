@@ -382,7 +382,7 @@ gzip -dc catalog.jsonl.gz > data/catalog.jsonl
 wc -l data/catalog.jsonl  # expected: 50000
 ```
 
-Run contract checks and the full test suite (71 tests; the 5 covering the
+Run contract checks and the full test suite (72 tests; the 6 covering the
 optional agentic path skip automatically when `openai` is absent, the other
 66 are dependency-free):
 

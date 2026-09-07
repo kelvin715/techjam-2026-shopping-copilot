@@ -11,6 +11,7 @@ from pathlib import Path
 
 from . import config
 from .llm import LLMReply
+from .shelf import norm
 
 _ENV_LOADED = False
 
@@ -114,6 +115,16 @@ _TOOLS = [
             "parameters": {
                 "type": "object",
                 "properties": {
+                    "category": {
+                        "type": ["string", "null"],
+                        "description": (
+                            "The kind of product the shopper is after, in "
+                            "their own words ('running shoes', 'winter "
+                            "coat'), if this message reveals it; otherwise "
+                            "null. This is what narrows the search to a "
+                            "shelf."
+                        ),
+                    },
                     "constraints": {
                         "type": "array",
                         "items": {"type": "string"},
@@ -174,6 +185,10 @@ extract in real catalog attribute values before submitting it; never submit a
 constraint phrase you have not verified has non-zero support. If a phrase has
 zero support, try a close catalog synonym via list_known_values, or omit it.
 
+If the message reveals what kind of product the shopper wants, always set
+"category" in their own words. It is what narrows the search to a shelf;
+leaving it out makes the entire catalog the candidate set.
+
 Finish by calling submit_extraction exactly once."""
 
 
@@ -192,10 +207,38 @@ def _run_tool(name: str, tool_input: dict, catalog, shelf: str | None) -> dict:
     return {"error": f"unknown tool {name}"}
 
 
+def _resolve_category(category, state, catalog) -> str | None:
+    """Turn a proposed category into a shelf or a candidate pool.
+
+    Mirrors src/ground.py's shelf block. Without it the agentic path leaves
+    ``state.shelf`` None and ``state.candidate_pool`` empty, so agent.py
+    ranks every row in the catalog. Returns a short trace tag, or None when
+    the category taught us nothing.
+    """
+    if not isinstance(category, str) or not category.strip():
+        return None
+    if state.shelf is not None or state.candidate_pool:
+        return None                      # the shelf is stated once and kept
+    shelf = catalog.match_shelf(category)
+    if shelf is not None:
+        state.shelf = shelf
+        return f"shelf:{shelf}"
+    shelves, pool = catalog.shelf_pool(category)
+    if pool:
+        # A wrong guess widens the pool instead of losing the target.
+        state.pool_shelves = shelves
+        state.candidate_pool = pool
+        return f"pool:{len(pool)}"
+    return None
+
+
 def _apply_extraction(extraction: dict, state, catalog) -> bool:
     """Mirror dialog.parse's state transitions. Returns True if state changed."""
     if extraction.get("uninformative"):
         return False
+    # Resolve the shelf first: it scopes every support check below, and a
+    # category can ride along with any other signal in the same message.
+    resolved = _resolve_category(extraction.get("category"), state, catalog)
     exhausted_attribute = extraction.get("exhausted_attribute")
     if exhausted_attribute:
         attribute = str(exhausted_attribute).strip().lower()
@@ -214,11 +257,13 @@ def _apply_extraction(extraction: dict, state, catalog) -> bool:
         state.last_reply_count = None
         state.clear_recommendation_history()
         state.decay_provisional(config.OVERRIDE_DECAY)
+    from .ground import _support
+
     verified = [
         phrase for phrase in extraction.get("constraints") or []
         if isinstance(phrase, str)
         and phrase.strip()
-        and catalog.signature_support(phrase, state.shelf) > 0
+        and _support(catalog, state, norm(phrase)) > 0
     ]
     if verified or is_override:
         # Provenance rather than preference, mirroring src/ground.py: a model
@@ -233,7 +278,9 @@ def _apply_extraction(extraction: dict, state, catalog) -> bool:
         state.add(phrase)
     if not is_override:
         state.last_reply_count = len(verified)
-    return is_override or bool(verified)
+    # Narrowing the shelf is something learned even when no constraint was
+    # verified this turn, so the caller must not treat it as a no-signal turn.
+    return bool(resolved) or is_override or bool(verified)
 
 
 STATUS_UNAVAILABLE = "unavailable"      # no API key/package: model never ran

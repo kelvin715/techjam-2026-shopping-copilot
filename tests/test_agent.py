@@ -503,6 +503,45 @@ class AgenticFallbackTest(unittest.TestCase):
         self.assertTrue(unverified.signature_positions_reliable)
         self.assertFalse(unverified.grounded)
 
+    def test_category_narrows_the_shelf_instead_of_the_whole_catalog(self) -> None:
+        """Without a shelf or pool, agent.py ranks every row in the catalog."""
+        catalog = self._catalog()
+        state = SessionState({})
+        self.assertIsNone(state.shelf)
+        submission = self._fake_tool_call("submit_extraction", {
+            "category": "shirts",
+            "constraints": ["denim"],
+            "is_override": False,
+            "uninformative": False,
+        })
+        with unittest.mock.patch.object(
+            self.agentic_dialog, "agentic_available", return_value=True
+        ), unittest.mock.patch("openai.OpenAI") as mock_openai:
+            mock_openai.return_value.chat.completions.create.return_value = (
+                self._fake_response([submission])
+            )
+            status = self.agentic_dialog.agentic_interpret(
+                "after a shirt in that blue jean material", state, catalog
+            )
+        self.assertEqual(status, self.agentic_dialog.STATUS_EXTRACTED)
+        self.assertEqual(state.shelf, "Shirts")
+        self.assertIn("denim", state.constraints)
+
+        # A category on its own is still something learned: the turn must not
+        # be reported as no_signal, or the caller re-reads an answered turn.
+        only_category = SessionState({})
+        self.assertTrue(self.agentic_dialog._apply_extraction(
+            {
+                "category": "shirts",
+                "constraints": [],
+                "is_override": False,
+                "uninformative": False,
+            },
+            only_category,
+            catalog,
+        ))
+        self.assertEqual(only_category.shelf, "Shirts")
+
     def test_client_is_bounded_by_timeout_and_no_retries(self) -> None:
         """Without these the breaker cannot be reached in bounded time."""
         submission = self._fake_tool_call("submit_extraction", {
