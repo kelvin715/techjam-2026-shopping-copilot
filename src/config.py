@@ -93,6 +93,21 @@ LLM_BASE_URL = ""
 LLM_MODEL = "gemma4"
 LLM_TIMEOUT_SECONDS = 20.0
 LLM_GROUND_MAX_TOKENS = 220
+
+# How the language layer reaches its reading of an off-protocol message.
+# "propose"    -- one call; the model answers with JSON, the catalog then
+#                 verifies every phrase (the default, and what shipped).
+# "iterative"  -- the model may call verify_phrase/list_known_values, which
+#                 run _verify_feature and the shelf vocabulary, before it
+#                 commits. Same reading, same downstream application; the
+#                 only difference is whether verification happens before or
+#                 after the model decides. Set ARC_LLM_VERIFY to override.
+LLM_GROUND_VERIFY = "propose"
+LLM_GROUND_MAX_TOOL_CALLS = 3
+# A tool call spends its arguments out of the completion budget, and a
+# truncated call arrives as unparseable JSON, so the loop needs more room
+# than a single JSON answer does.
+LLM_GROUND_TOOL_MAX_TOKENS = 500
 LLM_RENDER_MAX_TOKENS = 90
 LLM_GROUND_MAX_FEATURES = 3
 # Confidence attached to grounded evidence by verification tier.

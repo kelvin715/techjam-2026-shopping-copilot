@@ -28,6 +28,7 @@ model never sees the catalog, never ranks a product, and never sees a label.
 from __future__ import annotations
 
 import json
+import os
 import re
 
 from . import config
@@ -78,11 +79,20 @@ def content_tokens(text: str) -> list[str]:
     return [_stem(token) for token in tokens(text) if len(token) > 2]
 
 
+# A model asked for a nullable field routinely answers with the *string*
+# "null" (or "none"/"n/a") instead of JSON null. Passing that through sends a
+# phrase called "null" to the verifier, which rejects it and leaves a phantom
+# entry in the decision certificate the demo shows.
+_NULLISH = {"null", "none", "nil", "n/a", "na", "unknown", "undefined", "-"}
+
+
 def _as_str(value: object) -> str | None:
     if value is None:
         return None
     text = str(value).strip()
-    return text or None
+    if not text or text.lower() in _NULLISH:
+        return None
+    return text
 
 
 def _as_list(value: object, limit: int) -> list[str]:
@@ -270,6 +280,265 @@ def _verify_feature(catalog, phrase: str, state) -> tuple[str | None, str, float
     return None, "no_catalog_support", 0.0, {"from": phrase}
 
 
+def verify_mode() -> str:
+    """Which way the reading is produced. ARC_LLM_VERIFY overrides config."""
+    mode = str(
+        os.environ.get("ARC_LLM_VERIFY", config.LLM_GROUND_VERIFY) or "propose"
+    ).strip().lower()
+    return mode if mode in ("propose", "iterative") else "propose"
+
+
+GROUND_TOOLS = [
+    {
+        "type": "function",
+        "function": {
+            "name": "verify_phrase",
+            "description": (
+                "Check one candidate phrase against the products the shopper "
+                "can still be shown. Returns whether the catalog accepts it, "
+                "the exact catalog wording to use, the evidence tier, and the "
+                "confidence that tier carries. Never submit a phrase this "
+                "rejects."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {"phrase": {"type": "string"}},
+                "required": ["phrase"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "list_known_values",
+            "description": (
+                "List common catalog phrases among the products still in "
+                "play, to match the shopper's wording to the catalog's own "
+                "vocabulary."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {"limit": {"type": "integer"}},
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "submit_reading",
+            "description": (
+                "Submit the final reading of the shopper's message, with the "
+                "same fields the JSON contract describes. Call exactly once "
+                "to finish."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "intent": {"type": "string"},
+                    "category": {"type": ["string", "null"]},
+                    "material": {"type": ["string", "null"]},
+                    "color": {"type": ["string", "null"]},
+                    "budget": {"type": ["number", "null"]},
+                    "features": {"type": "array", "items": {"type": "string"}},
+                    "dropped": {"type": "array", "items": {"type": "string"}},
+                },
+                "required": ["intent"],
+            },
+        },
+    },
+]
+
+_ITERATIVE_NOTE = """
+You may call verify_phrase before committing to any feature, material or
+colour, and list_known_values when the shopper's wording has no obvious
+catalog equivalent. verify_phrase runs the very check the catalog applies
+afterwards, so use it to repair a phrase now rather than have it rejected
+later: submit the exact "constraint" wording it hands back.
+
+Not every accepted phrase is worth submitting. verify_phrase returns a
+confidence, and a result marked "weak" will barely influence ranking -- when
+you see one, look for the catalog's own word for the same thing through
+list_known_values and verify that instead. Prefer one high-confidence phrase
+over several weak ones.
+
+Attribution comes first, though. verify_phrase tells you whether a phrase
+exists in the catalog, never whether this shopper asked for it, and the
+vocabulary list is what other products happen to say -- not a menu to pick
+from. Only submit wording the shopper actually expressed in this message. If
+they stated no preference, or only rejected what they were shown, the correct
+features list is empty. Submitting a plausible catalog phrase they did not ask
+for is worse than submitting nothing.
+
+Finish by calling submit_reading exactly once.
+"""
+
+
+def _run_ground_tool(name: str, args: dict, catalog, state) -> dict:
+    """Expose the catalog's own verification to the model, unchanged.
+
+    verify_phrase *is* _verify_feature -- the same function that judges the
+    proposal afterwards -- so the loop can never admit anything the
+    propose-once path would have rejected. The only thing that moves is
+    when the verification happens: before the model commits, or after.
+    """
+    if name == "verify_phrase":
+        value, tier, weight, detail = _verify_feature(
+            catalog, str(args.get("phrase", "")), state
+        )
+        if value is None:
+            return {"accepted": False, "reason": tier, **detail}
+        result = {
+            "accepted": True,
+            "constraint": value,
+            "tier": tier,
+            "confidence": weight,
+            **detail,
+        }
+        if weight < config.LLM_GROUND_MAPPED_WEIGHT:
+            # Accepting is not the same as being worth submitting. Without
+            # this the model stops at the first phrase that returns true and
+            # submits the shopper's own wording at 0.5 confidence, when a
+            # verbatim catalog value usually exists for the same meaning.
+            result["weak"] = True
+            result["advice"] = (
+                "Low-confidence match: this will carry little weight in "
+                "ranking. Call list_known_values and verify a catalog phrase "
+                "that means the same thing; submit this one only if nothing "
+                "stronger fits."
+            )
+        return result
+    if name == "list_known_values":
+        try:
+            limit = int(args.get("limit") or config.LLM_GROUND_VOCAB_HINTS)
+        except (TypeError, ValueError):
+            limit = config.LLM_GROUND_VOCAB_HINTS
+        return {"values": _catalog_vocabulary(catalog, state)[: max(1, limit)]}
+    return {"error": "unknown tool " + str(name)}
+
+
+def _absorb(reply, usage, trace) -> None:
+    """Accumulate across however many calls the reading took."""
+    tokens = trace.setdefault("tokens", {"prompt": 0, "completion": 0})
+    usage.absorb(reply)
+    tokens["prompt"] += reply.prompt_tokens
+    tokens["completion"] += reply.completion_tokens
+    trace["latency_ms"] = round(
+        float(trace.get("latency_ms") or 0.0) + reply.latency_ms, 1
+    )
+    # True only if every call behind this reading replayed from cache.
+    trace["cached"] = bool(reply.cached) and trace.get("cached", True)
+
+
+def _propose(message, state, catalog, client, usage, vocabulary, trace):
+    """Obtain the model's structured reading. Returns (data, failure_status).
+
+    Both modes return the same dict shape, so everything downstream --
+    _verify_feature, the confidence tiers, the shelf pool, the budget, the
+    exhaustion rule -- is identical whichever produced it.
+    """
+    if verify_mode() == "iterative":
+        return _propose_iterative(
+            message, state, catalog, client, usage, vocabulary, trace
+        )
+    return _propose_once(message, state, client, usage, vocabulary, trace)
+
+
+def _propose_once(message, state, client, usage, vocabulary, trace):
+    reply = client.chat(
+        [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": _user_prompt(message, state, vocabulary)},
+        ],
+        max_tokens=config.LLM_GROUND_MAX_TOKENS,
+        temperature=0.0,
+    )
+    _absorb(reply, usage, trace)
+    if not reply.ok:
+        trace["error"] = reply.error
+        return None, "llm_unavailable"
+    data = reply.json()
+    if data is None:
+        trace["raw"] = reply.text[:400]
+        return None, "unparseable_reply"
+    return data, None
+
+
+def _propose_iterative(message, state, catalog, client, usage, vocabulary, trace):
+    messages = [
+        {"role": "system", "content": SYSTEM_PROMPT + _ITERATIVE_NOTE},
+        {"role": "user", "content": _user_prompt(message, state, vocabulary)},
+    ]
+    verifications = 0
+    rounds = max(1, int(config.LLM_GROUND_MAX_TOOL_CALLS))
+    for index in range(rounds):
+        if index == rounds - 1:
+            # Last round: the model must commit now. Without this it can
+            # spend the whole budget verifying and never submit, which ends
+            # the turn with no reading at all.
+            messages.append({
+                "role": "user",
+                "content": (
+                    "No more verification. Call submit_reading now with what "
+                    "you have, using the catalog wording you confirmed."
+                ),
+            })
+        reply = client.chat(
+            messages,
+            max_tokens=config.LLM_GROUND_TOOL_MAX_TOKENS,
+            temperature=0.0,
+            tools=GROUND_TOOLS,
+        )
+        _absorb(reply, usage, trace)
+        if not reply.ok:
+            trace["error"] = reply.error
+            return None, "llm_unavailable"
+        tool_calls = list(reply.tool_calls or [])
+        if not tool_calls:
+            # The model wanted no tools and answered directly: that is the
+            # propose-once contract, so accept it rather than burn the budget.
+            data = reply.json()
+            trace["tool_verifications"] = verifications
+            if data is None:
+                trace["raw"] = reply.text[:400]
+                return None, "unparseable_reply"
+            return data, None
+        messages.append({
+            "role": "assistant",
+            "content": reply.text or None,
+            "tool_calls": tool_calls,
+        })
+        submission = None
+        for call in tool_calls:
+            function = call.get("function") or {}
+            name = str(function.get("name") or "")
+            try:
+                args = json.loads(function.get("arguments") or "{}")
+            except (json.JSONDecodeError, TypeError):
+                args = {}
+            if not isinstance(args, dict):
+                args = {}
+            if name == "submit_reading":
+                submission = args
+                result = {"received": True}
+            else:
+                verifications += 1
+                result = _run_ground_tool(name, args, catalog, state)
+            messages.append({
+                "role": "tool",
+                "tool_call_id": str(call.get("id") or ""),
+                "content": json.dumps(result, ensure_ascii=False),
+            })
+        if submission is not None:
+            trace["tool_verifications"] = verifications
+            return submission, None
+    # The loop never committed. Falling back to one plain call is strictly
+    # better than returning nothing: iterative must degrade to propose, never
+    # to an ungrounded turn.
+    trace["tool_verifications"] = verifications
+    trace["fell_back_to_propose"] = True
+    return _propose_once(message, state, client, usage, vocabulary, trace)
+
+
 def ground_message(message: str, state, catalog, client, usage) -> dict:
     """Ground one off-protocol message. Mutates ``state``; returns a trace."""
     trace: dict = {
@@ -280,31 +549,13 @@ def ground_message(message: str, state, catalog, client, usage) -> dict:
         "removed": [],
     }
     vocabulary = _catalog_vocabulary(catalog, state)
-    reply = client.chat(
-        [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": _user_prompt(message, state, vocabulary)},
-        ],
-        max_tokens=config.LLM_GROUND_MAX_TOKENS,
-        temperature=0.0,
-    )
     trace["vocabulary_hints"] = len(vocabulary)
-    usage.absorb(reply)
-    trace["tokens"] = {
-        "prompt": reply.prompt_tokens,
-        "completion": reply.completion_tokens,
-    }
-    trace["latency_ms"] = round(reply.latency_ms, 1)
-    trace["cached"] = reply.cached
-    if not reply.ok:
-        trace["status"] = "llm_unavailable"
-        trace["error"] = reply.error
-        state.grounding_trace.append(trace)
-        return trace
-    data = reply.json()
-    if data is None:
-        trace["status"] = "unparseable_reply"
-        trace["raw"] = reply.text[:400]
+    trace["verify_mode"] = verify_mode()
+    data, failure = _propose(
+        message, state, catalog, client, usage, vocabulary, trace
+    )
+    if failure is not None:
+        trace["status"] = failure
         state.grounding_trace.append(trace)
         return trace
 
