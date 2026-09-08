@@ -115,8 +115,20 @@ class SessionState:
         # resolve to a union of shelves rather than one canonical shelf.
         self.candidate_pool: list[str] | None = None
         self.pool_shelves: list[str] = []
+        # The pool as it was before an explicit price bound narrowed it, so a
+        # later "around $50" or "up to $80" can re-admit what "under $40" cut.
+        self.pool_before_budget: list[str] | None = None
         self.pool_signature_counts: dict[str, int] | None = None
         self.grounding_trace: list[dict] = []
+        # Dense baseline only: free-form messages accumulated as a query.
+        self.free_text: list[str] = []
+        # Dense value expansion (research option 1): catalog signature values
+        # the ranker may credit, at reduced weight, in place of a constraint.
+        # Keyed by the normalised constraint; empty on the protocol path.
+        self.constraint_alternatives: dict[str, list[tuple[str, float]]] = {}
+        # Off-protocol sentences the language layer has read, in order; the
+        # dense recall channel (research option 2) embeds them as a query.
+        self.grounded_messages: list[str] = []
         # True once the language layer has admitted evidence. The protocol's
         # four-constraint bound no longer applies to such a session.
         self.grounded = False
@@ -148,6 +160,7 @@ class SessionState:
         self._seen.discard(key)
         self._provisional.discard(key)
         self._constraint_weight.pop(key, None)
+        self.constraint_alternatives.pop(key, None)
         self.constraints = [
             item for item in self.constraints if norm(item) != key
         ]
@@ -182,6 +195,14 @@ class SessionState:
 
     def remember_recommendations(self, asins: list[str]) -> None:
         self._last_recommendations = list(dict.fromkeys(asins))
+
+    def previous_slate(self) -> list[str]:
+        """The products shown on the previous turn, before they are confirmed."""
+        return list(self._last_recommendations)
+
+    def unconfirm_misses(self, asins: list[str]) -> None:
+        """Keep a slate eligible: the shopper referred to it, not refuted it."""
+        self.proven_misses.difference_update(asins)
 
     def clear_recommendation_history(self) -> None:
         self.proven_misses.clear()

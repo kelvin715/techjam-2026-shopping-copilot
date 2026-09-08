@@ -26,7 +26,7 @@ from pathlib import Path
 
 from . import config
 
-MODES = ("off", "ground", "assist")
+MODES = ("off", "ground", "assist", "lexical", "dense")
 _JSON_BLOCK = re.compile(r"\{.*\}", re.S)
 
 
@@ -47,6 +47,15 @@ class LLMSettings:
     @property
     def says(self) -> bool:
         return self.mode == "assist" and bool(self.base_url)
+
+    @property
+    def grounder(self) -> str | None:
+        """Which free-text reader the agent should use, if any."""
+        if self.enabled:
+            return "llm"
+        if self.mode in ("lexical", "dense"):
+            return self.mode
+        return None
 
     @classmethod
     def from_env(cls, environ: dict | None = None) -> "LLMSettings":
@@ -101,8 +110,35 @@ class LLMReply:
         try:
             value = json.loads(match.group(0))
         except json.JSONDecodeError:
-            return None
+            value = _repair_json(match.group(0))
         return value if isinstance(value, dict) else None
+
+
+_UNQUOTED_KEY = re.compile(r'([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)\s*:')
+_HALF_QUOTED_KEY = re.compile(r'([{,]\s*)"([A-Za-z_][A-Za-z0-9_]*):')
+_TRAILING_COMMA = re.compile(r",\s*([}\]])")
+
+
+def _repair_json(text: str) -> dict | None:
+    """Recover a near-miss JSON object from a small model.
+
+    Instruction-tuned models at temperature zero occasionally drop one quote
+    (``"dropped:[]``), leave a key unquoted, add a trailing comma, or use
+    single quotes. Each of those is a syntax slip, not a different answer;
+    discarding the whole reply over it costs the shopper a turn. The repair
+    is purely syntactic and is attempted only after strict parsing failed.
+    """
+    candidate = _HALF_QUOTED_KEY.sub(r'\1"\2":', text)
+    candidate = _UNQUOTED_KEY.sub(r'\1"\2":', candidate)
+    candidate = _TRAILING_COMMA.sub(r"\1", candidate)
+    for attempt in (candidate, candidate.replace("'", '"')):
+        try:
+            value = json.loads(attempt)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(value, dict):
+            return value
+    return None
 
 
 @dataclass
@@ -141,8 +177,13 @@ class ChatClient:
     token counts are replayed so ``usage`` stays truthful.
     """
 
-    def __init__(self, settings: LLMSettings) -> None:
+    def __init__(self, settings: LLMSettings, *, replay_only: bool = False) -> None:
         self.settings = settings
+        # ``replay_only`` turns a cache miss into an error instead of a
+        # network call, so a benchmark can prove it used only recorded
+        # model outputs.
+        self.replay_only = replay_only
+        self.misses = 0
         self._cache: dict[str, dict] = {}
         self._cache_lock = threading.Lock()
         self._cache_dirty = False
@@ -172,9 +213,27 @@ class ChatClient:
         return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
     def flush(self) -> None:
+        """Persist new entries, merging with whatever is already on disk.
+
+        Two clients may share one cache file (a rewriter and a grounder in
+        one benchmark process). Writing this client's dictionary alone would
+        discard entries the other client added since this one loaded the
+        file, so the on-disk file is re-read and merged first. Entries never
+        change once written, so a plain union is the correct merge.
+        """
         if not self._cache_path or not self._cache_dirty:
             return
         with self._cache_lock:
+            merged: dict[str, dict] = {}
+            if self._cache_path.is_file():
+                try:
+                    on_disk = json.loads(self._cache_path.read_text(encoding="utf-8"))
+                    if isinstance(on_disk, dict):
+                        merged.update(on_disk)
+                except (OSError, json.JSONDecodeError):
+                    pass
+            merged.update(self._cache)
+            self._cache = merged
             self._cache_path.parent.mkdir(parents=True, exist_ok=True)
             tmp = self._cache_path.with_suffix(".tmp")
             tmp.write_text(
@@ -218,6 +277,9 @@ class ChatClient:
                 latency_ms=0.0,
                 cached=True,
             )
+        if self.replay_only:
+            self.misses += 1
+            return LLMReply(text="", error="cache miss in replay-only mode")
         body = json.dumps(
             {
                 "model": self.settings.model,

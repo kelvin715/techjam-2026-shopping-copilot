@@ -32,6 +32,7 @@ class Agent:
         catalog_path: str | Path = "data/catalog.jsonl",
         llm_settings: LLMSettings | None = None,
         llm_client=None,
+        dense=None,
     ) -> None:
         self.catalog = Catalog(catalog_path)
         self._sessions: dict[str, SessionState] = {}
@@ -45,6 +46,25 @@ class Agent:
             self.llm = ChatClient(self.llm_settings)
         else:
             self.llm = None
+        # Research baselines for free-form wording. ``lexical`` reads a message
+        # with exact catalog matching only; ``dense`` adds an embedding
+        # similarity to the evidence score. Neither runs on protocol wording.
+        if self.llm_settings.grounder is not None and config.LLM_WIDEN_RETRIEVE_LIMIT:
+            # Free-form sessions may look beyond their shelf pool; build the
+            # retrieval index now rather than on a shopper's turn.
+            self.catalog.retrieval_index(config.LLM_WIDEN_MAX_DF)
+        # ``dense`` (research only): True builds the embedding index for the
+        # dense value-expansion / shelf-recall options, which then run only
+        # while ``config.DENSE_VALUE_EXPANSION`` / ``config.DENSE_SHELF_RECALL``
+        # are switched on and only for off-protocol messages; an object with
+        # the ``DenseIndex`` interface is used as is (tests inject one).
+        self._dense = None
+        if self.llm_settings.mode == "dense" or dense is True:
+            from src.dense import DenseIndex
+
+            self._dense = DenseIndex(self.catalog)
+        elif dense is not None and dense is not False:
+            self._dense = dense
 
     def reset(self, session_id: str, user_profile: dict) -> None:
         self._sessions[session_id] = SessionState(user_profile)
@@ -69,16 +89,65 @@ class Agent:
             # Reaching another turn proves that the previous slate missed. The
             # override parser clears this history before it can affect the new
             # intent.
+            previous_slate = state.previous_slate()
             state.confirm_previous_misses()
+            scenario_before = state.scenario
             recognized = parse(user_message, state, self.catalog)
-            if self.llm is not None and not recognized:
-                # Off-protocol wording: let the model propose a reading and the
-                # catalog verify it. Protocol messages never reach the model.
-                from src.ground import ground_message
+            if not recognized and self.llm_settings.grounder is not None:
+                # The template parser may have guessed a scenario from a
+                # fragment ("I'm looking for ...") of a sentence it could not
+                # otherwise read; the free-text reader decides that itself.
+                state.scenario = scenario_before
+            dense = self._dense if (
+                config.DENSE_VALUE_EXPANSION or config.DENSE_SHELF_RECALL
+            ) and self.llm_settings.mode != "dense" else None
+            if not recognized and self.llm is None and self.llm_settings.mode == "lexical":
+                from src.ground import ground_message_lexical
 
-                grounding = ground_message(
-                    user_message, state, self.catalog, self.llm, usage
-                )
+                grounding = ground_message_lexical(user_message, state, self.catalog, dense)
+            elif not recognized and self.llm_settings.mode == "dense":
+                grounding = self._dense_note(user_message, state)
+            if self.llm is not None and not recognized:
+                # Off-protocol wording. The shipped reader lets the catalog
+                # read the sentence first and consults the model only when
+                # that is not enough; the model-only reader is kept for the
+                # attribution baselines. Protocol messages never reach the
+                # model on either path.
+                if config.LLM_GROUND_CASCADE:
+                    from src.ground import ground_message_cascade
+
+                    grounding = ground_message_cascade(
+                        user_message, state, self.catalog, self.llm, usage, dense
+                    )
+                else:
+                    from src.ground import ground_message
+
+                    grounding = ground_message(
+                        user_message, state, self.catalog, self.llm, usage, dense
+                    )
+                if (
+                    grounding.get("status") != "grounded"
+                    and state.shelf is None
+                    and not state.candidate_pool
+                ):
+                    # The model is configured but did not answer (timeout,
+                    # outage, unparseable reply). Rather than ranking the
+                    # whole catalog by popularity, fall back to a token
+                    # overlap between the message and the shelf names so the
+                    # shopper still lands in a plausible department.
+                    shelves, pool = self.catalog.shelf_pool(user_message)
+                    if pool:
+                        state.candidate_pool = pool
+                        state.pool_shelves = shelves
+                        grounding["fallback_pool"] = {
+                            "shelves": shelves[:6],
+                            "size": len(pool),
+                        }
+            if grounding is not None and grounding.get("keeps_slate") and previous_slate:
+                # A human building on what was just shown ("the first one
+                # looks good, does it come in blue?") has not refuted the
+                # slate; only the simulator's continuation rule says so.
+                state.unconfirm_misses(previous_slate)
             candidates = self.catalog.candidates(state.shelf)
             pool_widened = False
             if state.shelf is None and state.candidate_pool:
@@ -89,9 +158,9 @@ class Agent:
                 ):
                     # Failure detection: a grounded shelf guess that has
                     # already refuted a full slate is more likely wrong than
-                    # the accumulated evidence. Rank the whole catalog on
-                    # that evidence instead of exhausting the guessed pool.
-                    candidates = self.catalog.ids
+                    # the accumulated evidence. Rank the catalog on that
+                    # evidence instead of exhausting the guessed pool.
+                    candidates = self._beyond_pool(state, dense)
                     pool_widened = True
             rank_source_ids = candidates
             scores = score_candidates(
@@ -106,6 +175,7 @@ class Agent:
                     if config.ADAPT_SIGNATURE_ORDER
                     else True
                 ),
+                alternatives=state.constraint_alternatives,
             )
             if config.PROVEN_MISS_EXCLUSION and state.proven_misses:
                 scores = [
@@ -119,10 +189,14 @@ class Agent:
                 # Broaden to the complete read-only catalogue while retaining
                 # all grounded constraints and proven misses.
                 recovered = True
-                rank_source_ids = self.catalog.ids
+                rank_source_ids = (
+                    self._beyond_pool(state, dense)
+                    if state.grounded and not pool_widened
+                    else self.catalog.ids
+                )
                 scores = score_candidates(
                     self.catalog,
-                    self.catalog.ids,
+                    rank_source_ids,
                     state.constraints,
                     state.profile_tags,
                     state.constraint_weights(),
@@ -132,12 +206,17 @@ class Agent:
                         if config.ADAPT_SIGNATURE_ORDER
                         else True
                     ),
+                    alternatives=state.constraint_alternatives,
                 )
                 if config.PROVEN_MISS_EXCLUSION and state.proven_misses:
                     scores = [
                         (asin, score) for asin, score in scores
                         if asin not in state.proven_misses
                     ]
+
+            if self.llm_settings.mode == "dense" and self._dense is not None and state.free_text and scores:
+                query_vector = self._dense.query(" ".join(state.free_text))
+                scores = self._dense.rerank(scores, query_vector)
 
             if (
                 config.QUESTION_MODE in {
@@ -174,6 +253,7 @@ class Agent:
                         if config.ADAPT_SIGNATURE_ORDER
                         else True
                     ),
+                    alternatives=state.constraint_alternatives,
                 )
                 if config.PROVEN_MISS_EXCLUSION and state.proven_misses:
                     evidence_scores = [
@@ -243,6 +323,7 @@ class Agent:
                 state.last_decision_certificate["reason_codes"].append(
                     "grounded_pool_widened_to_catalog"
                 )
+                state.last_decision_certificate["widened_candidates"] = len(candidates)
             excluded = state.proven_misses if config.PROVEN_MISS_EXCLUSION else set()
             state.last_counterfactual_context = {
                 "candidate_ids": [
@@ -333,6 +414,81 @@ class Agent:
             state.last_counterfactual_explanation
         )
         return certificate
+
+    def _beyond_pool(self, state, dense=None) -> list[str]:
+        """Candidates for a grounded session that has outgrown its shelf pool.
+
+        A rarity-weighted retrieval over the whole catalog, bounded to
+        ``config.LLM_WIDEN_RETRIEVE_LIMIT`` products, so a late turn costs a
+        few thousand exact scores rather than fifty thousand. Falls back to
+        the full catalog when no constraint carries a discriminative word.
+        With the dense recall channel on (research option 2) the products
+        closest in embedding space to the shopper's own sentences are
+        unioned in, so a paraphrase that shares no rare word with the
+        catalog can still reach its product.
+        """
+        limit = config.LLM_WIDEN_RETRIEVE_LIMIT
+        retrieved: list[str] = []
+        if limit:
+            retrieved = self.catalog.retrieve(
+                state.constraints,
+                state.constraint_weights(),
+                limit,
+                config.LLM_WIDEN_MAX_DF,
+            )
+        if dense is not None and config.DENSE_SHELF_RECALL and config.DENSE_WIDEN_LIMIT and state.grounded_messages:
+            query = " ".join(state.grounded_messages[-4:])
+            seen = set(retrieved)
+            for asin in dense.search_products(query, config.DENSE_WIDEN_LIMIT):
+                if asin not in seen:
+                    seen.add(asin)
+                    retrieved.append(asin)
+        if retrieved:
+            return retrieved
+        return self.catalog.ids
+
+    def _dense_note(self, message: str, state) -> dict:
+        """Record a free-form message for the dense baseline; no extraction."""
+        from src.ground import _lexical_intent
+
+        intent = _lexical_intent(message)
+        trace = {"status": "grounded", "grounder": "dense", "intent": intent,
+                 "message": message, "accepted": [], "rejected": [], "removed": [],
+                 "tokens": {"prompt": 0, "completion": 0}, "latency_ms": 0.0}
+        if intent == "override":
+            state.override_seen = True
+            state.clear_recommendation_history()
+            state.free_text = []
+        elif intent == "no_preference":
+            asked = state.asked[-1] if state.asked else None
+            if asked and asked != "other":
+                state.exhausted.add(asked)
+                trace["exhausted"] = asked
+            elif asked == "other":
+                state.information_complete = True
+                trace["exhausted"] = "other"
+        if intent not in ("no_preference", "reject"):
+            state.free_text.append(message)
+        if state.shelf is None and not state.candidate_pool:
+            shelf = self.catalog.match_shelf(message)
+            if shelf is not None:
+                state.shelf = shelf
+            else:
+                shelves, pool = self.catalog.shelf_pool(message)
+                if pool:
+                    state.pool_shelves = shelves
+                    state.candidate_pool = pool
+                    trace["pool_size"] = len(pool)
+        if state.scenario is None:
+            state.scenario = "buying"
+        if state.free_text:
+            state.grounded = True
+            state.signature_positions_reliable = False
+        elif intent in ("reject", "no_preference") and state.asked and state.asked[-1] and "exhausted" not in trace:
+            state.exhausted.add(state.asked[-1])
+            trace["exhausted"] = state.asked[-1]
+        state.grounding_trace.append(trace)
+        return trace
 
     @staticmethod
     def _message(attribute: str | None) -> str:

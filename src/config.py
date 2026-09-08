@@ -91,7 +91,7 @@ ROBUST_PARSER = True
 LLM_MODE = "off"
 LLM_BASE_URL = ""
 LLM_MODEL = "gemma4"
-LLM_TIMEOUT_SECONDS = 20.0
+LLM_TIMEOUT_SECONDS = 30.0
 LLM_GROUND_MAX_TOKENS = 220
 LLM_RENDER_MAX_TOKENS = 90
 LLM_GROUND_MAX_FEATURES = 3
@@ -115,8 +115,59 @@ LLM_GROUND_RARE_TOKEN_DF = 250
 # deterministic policy does; ``remove`` deletes it.
 LLM_GROUND_DROP_MODE = "decay"
 # In a grounded (free-form) session, once this many products have been shown
-# and refuted, stop trusting the guessed shelf pool and rank the full catalog.
+# and refuted, stop trusting the guessed shelf pool and look beyond it.
 LLM_POOL_WIDEN_AFTER_MISSES = 10
+# Looking beyond the pool goes through a rarity-weighted inverted index
+# (tokens on at most ``LLM_WIDEN_MAX_DF`` products) and keeps the best
+# ``LLM_WIDEN_RETRIEVE_LIMIT`` products for exact scoring, instead of
+# re-scoring all 50,000 products on every later turn. ``0`` restores the
+# full-catalog scan.
+LLM_WIDEN_RETRIEVE_LIMIT = 2000
+LLM_WIDEN_MAX_DF = 12500
+# The shipped free-text reader is a cascade: the catalog reads the message
+# first (verbatim catalog strings, closed material / colour vocabularies, a
+# dollar amount; zero tokens), and the model is consulted only when that
+# leaves the sentence unexplained or the shopper cancels something. ``False``
+# sends every off-protocol message to the model (the model-only baseline).
+LLM_GROUND_CASCADE = True
+# A grounded "under $n" / "over $n" is a hard bound on the candidate pool;
+# the protocol's "budget around $n" keeps its proximity scoring.
+LLM_GROUND_HARD_BUDGET = True
+# Attribution baselines. ``LLM_GROUND_VERIFY=False`` admits every model
+# proposal as evidence without a catalog check; ``LLM_GROUND_VOCAB_HINTS=0``
+# removes the catalog vocabulary from the prompt. Both are research switches
+# for the ablations in the paper; the shipped defaults are verify=True, 40.
+LLM_GROUND_VERIFY = True
+# ``LLM_GROUND_TIERS`` restricts which verification tiers may admit evidence
+# (research switch); the shipped default admits all four.
+LLM_GROUND_TIERS = ("signature_verbatim", "signature_mapped", "lexical", "lexical_tokens")
+# Dense-retrieval baseline: cosine similarity between the shopper's free
+# text and a product-text embedding, min-max normalised within the pool and
+# added to the evidence score with this weight.
+DENSE_MODEL = "BAAI/bge-small-en-v1.5"
+DENSE_WEIGHT = 1.0
+# Dense as a translator (research option 1, off by default; never runs on
+# protocol wording). An admitted feature phrase is expanded into the pool's
+# signature values within ``DENSE_VALUE_MIN_COSINE`` of its embedding, and
+# the ranker credits such an alternative at ``DENSE_VALUE_ALT_WEIGHT`` of a
+# verbatim hit. A phrase with no catalog support at all is admitted as its
+# nearest supported signature value at ``DENSE_VALUE_TIER_WEIGHT``
+# confidence (tier ``signature_dense``, between mapped 0.8 and lexical 0.6).
+DENSE_VALUE_EXPANSION = False
+DENSE_VALUE_MIN_COSINE = 0.80
+DENSE_VALUE_MAX_ALTERNATIVES = 5
+DENSE_VALUE_ALT_WEIGHT = 0.5
+DENSE_VALUE_TIER_WEIGHT = 0.7
+# Dense as a recall channel (research option 2, off by default). A category
+# phrase is mapped onto the shelves whose name embedding is within
+# ``DENSE_SHELF_MIN_COSINE`` (at most ``DENSE_SHELF_LIMIT``), unioned with
+# the token-overlap shelves; a session that has outgrown its pool unions
+# ``DENSE_WIDEN_LIMIT`` products retrieved by embedding similarity of the
+# shopper's own sentences with the rarity-weighted lexical retrieval.
+DENSE_SHELF_RECALL = False
+DENSE_SHELF_MIN_COSINE = 0.80
+DENSE_SHELF_LIMIT = 5
+DENSE_WIDEN_LIMIT = 500
 # Endpoint circuit breaker. A shared or hosted model server can go down
 # mid-session; without this every later turn pays the full timeout twice
 # before falling back. After this many consecutive failures the client stops

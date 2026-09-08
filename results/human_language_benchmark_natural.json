@@ -58,9 +58,9 @@
         }
       },
       "agent_turns": 396,
-      "mean_respond_latency_ms": 43.9,
-      "p95_respond_latency_ms": 64.9,
-      "wall_seconds": 35.6,
+      "mean_respond_latency_ms": 55.9,
+      "p95_respond_latency_ms": 92.3,
+      "wall_seconds": 46.5,
       "customer_rewrite_failures": 0,
       "grounding": {
         "grounded_turns": 0,
@@ -112,9 +112,9 @@
         }
       },
       "agent_turns": 396,
-      "mean_respond_latency_ms": 46.6,
-      "p95_respond_latency_ms": 77.8,
-      "wall_seconds": 39.3,
+      "mean_respond_latency_ms": 57.1,
+      "p95_respond_latency_ms": 91.9,
+      "wall_seconds": 47.2,
       "customer_rewrite_failures": 0,
       "grounding": {
         "grounded_turns": 0,
@@ -129,11 +129,11 @@
     "natural__deterministic": {
       "level": "natural",
       "arm": "deterministic",
-      "hit_rate_at_10": 0.82,
-      "mrr": 0.625232,
-      "mttc": 4.495,
-      "efficiency": 0.6505,
-      "technical_score": 0.72767,
+      "hit_rate_at_10": 0.83,
+      "mrr": 0.620802,
+      "mttc": 4.425,
+      "efficiency": 0.6575,
+      "technical_score": 0.732741,
       "reported_token_usage": {
         "prompt_tokens": 0,
         "completion_tokens": 0,
@@ -149,26 +149,26 @@
         "browsing": {
           "sample_count": 80,
           "hit_rate_at_10": 0.9875,
-          "mrr": 0.830744,
-          "mttc": 2.8875
+          "mrr": 0.822411,
+          "mttc": 2.9375
         },
         "buying": {
           "sample_count": 80,
-          "hit_rate_at_10": 0.85,
-          "mrr": 0.603378,
-          "mttc": 4.3125
+          "hit_rate_at_10": 0.875,
+          "mrr": 0.599593,
+          "mttc": 4.15
         },
         "intent_override": {
           "sample_count": 30,
           "hit_rate_at_10": 0.233333,
-          "mrr": 0.133333,
-          "mttc": 9.466667
+          "mrr": 0.136111,
+          "mttc": 9.3
         }
       },
-      "agent_turns": 863,
-      "mean_respond_latency_ms": 182.1,
-      "p95_respond_latency_ms": 127.5,
-      "wall_seconds": 211.1,
+      "agent_turns": 851,
+      "mean_respond_latency_ms": 259.9,
+      "p95_respond_latency_ms": 126.3,
+      "wall_seconds": 317.1,
       "customer_rewrite_failures": 0,
       "grounding": {
         "grounded_turns": 0,
@@ -183,15 +183,15 @@
     "natural__hybrid": {
       "level": "natural",
       "arm": "hybrid",
-      "hit_rate_at_10": 0.995,
-      "mrr": 0.953006,
-      "mttc": 2.39,
-      "efficiency": 0.861,
-      "technical_score": 0.955602,
+      "hit_rate_at_10": 0.99,
+      "mrr": 0.95625,
+      "mttc": 2.38,
+      "efficiency": 0.862,
+      "technical_score": 0.954275,
       "reported_token_usage": {
-        "prompt_tokens": 218944,
-        "completion_tokens": 15852,
-        "total_tokens": 234796
+        "prompt_tokens": 233221,
+        "completion_tokens": 18013,
+        "total_tokens": 251234
       },
       "scenario_metrics": {
         "boundary": {
@@ -202,53 +202,53 @@
         },
         "browsing": {
           "sample_count": 80,
-          "hit_rate_at_10": 0.9875,
-          "mrr": 0.970313,
-          "mttc": 2.0125
+          "hit_rate_at_10": 0.975,
+          "mrr": 0.964063,
+          "mttc": 2.1
         },
         "buying": {
           "sample_count": 80,
           "hit_rate_at_10": 1.0,
-          "mrr": 0.946577,
-          "mttc": 2.2375
+          "mrr": 0.961979,
+          "mttc": 2.1
         },
         "intent_override": {
           "sample_count": 30,
           "hit_rate_at_10": 1.0,
-          "mrr": 0.908333,
-          "mttc": 3.7
+          "mrr": 0.905556,
+          "mttc": 3.766667
         }
       },
-      "agent_turns": 477,
-      "mean_respond_latency_ms": 214.5,
-      "p95_respond_latency_ms": 502.0,
-      "wall_seconds": 149.2,
+      "agent_turns": 474,
+      "mean_respond_latency_ms": 332.6,
+      "p95_respond_latency_ms": 699.7,
+      "wall_seconds": 213.7,
       "customer_rewrite_failures": 0,
       "grounding": {
-        "grounded_turns": 228,
+        "grounded_turns": 224,
         "statuses": {
-          "grounded": 228
+          "grounded": 224
         },
         "intents": {
           "open": 32,
-          "add": 161,
-          "override": 29,
-          "no_preference": 4,
-          "other": 2
+          "add": 159,
+          "override": 30,
+          "no_preference": 2,
+          "other": 1
         },
         "accepted_by_tier": {
-          "signature_verbatim": 219,
-          "typed_material": 57,
-          "lexical": 58,
+          "signature_verbatim": 216,
+          "typed_material": 58,
+          "lexical": 60,
           "typed_color": 22,
-          "lexical_tokens": 3,
-          "signature_mapped": 5
+          "signature_mapped": 4,
+          "lexical_tokens": 2
         },
         "rejected_by_reason": {
-          "material_already_inside_feature": 54
+          "material_already_inside_feature": 46
         },
-        "model_calls": 228,
-        "mean_model_latency_ms_per_turn": 373.7
+        "model_calls": 224,
+        "mean_model_latency_ms_per_turn": 537.0
       }
     }
   },
@@ -257,7 +257,7 @@
     "natural": [
       {
         "simulator": "I'm looking for Jewelry Necklaces. A key requirement is: Material:alloy.",
-        "human": "Hey, I'm looking for Jewelry Necklaces with Material:alloy."
+        "human": "I'm looking for Jewelry Necklaces with Material:alloy."
       },
       {
         "simulator": "For that, what matters is: Triple Moon Pentagram Symbol; The Triple Moon represents the Phases of the Moon which are linked to the three aspects of the Goddess and the phases of the Life of Women.The Pentagram representing the holistic r.",
@@ -285,7 +285,7 @@
       },
       {
         "simulator": "I'm looking for Watches Wrist Watches. Stainless Steel Band",
-        "human": "Hey, I'm looking for Watches Wrist Watches with a Stainless Steel Band."
+        "human": "Hey, I'm looking for Watches Wrist Watches. Stainless Steel Band"
       },
       {
         "simulator": "For that, what matters is: Water Resistant; 3 Year Battery.",

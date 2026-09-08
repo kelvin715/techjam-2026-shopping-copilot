@@ -57,9 +57,9 @@
         }
       },
       "agent_turns": 1267,
-      "mean_respond_latency_ms": 94.2,
-      "p95_respond_latency_ms": 219.0,
-      "wall_seconds": 119.8,
+      "mean_respond_latency_ms": 129.5,
+      "p95_respond_latency_ms": 298.8,
+      "wall_seconds": 164.5,
       "customer_rewrite_failures": 0,
       "grounding": {
         "grounded_turns": 0,
@@ -74,73 +74,74 @@
     "natural__hybrid": {
       "level": "natural",
       "arm": "hybrid",
-      "hit_rate_at_10": 0.92,
-      "mrr": 0.835851,
-      "mttc": 3.12,
-      "efficiency": 0.788,
-      "technical_score": 0.868355,
+      "hit_rate_at_10": 0.915,
+      "mrr": 0.845387,
+      "mttc": 3.145,
+      "efficiency": 0.7855,
+      "technical_score": 0.868216,
       "reported_token_usage": {
-        "prompt_tokens": 440572,
-        "completion_tokens": 24685,
-        "total_tokens": 465257
+        "prompt_tokens": 485926,
+        "completion_tokens": 29932,
+        "total_tokens": 515858
       },
       "scenario_metrics": {
         "boundary": {
           "sample_count": 10,
           "hit_rate_at_10": 1.0,
-          "mrr": 0.468452,
-          "mttc": 2.7
+          "mrr": 0.543452,
+          "mttc": 2.9
         },
         "browsing": {
           "sample_count": 80,
           "hit_rate_at_10": 0.9625,
-          "mrr": 0.913765,
-          "mttc": 2.6
+          "mrr": 0.928348,
+          "mttc": 2.6625
         },
         "buying": {
           "sample_count": 80,
           "hit_rate_at_10": 0.975,
-          "mrr": 0.927202,
-          "mttc": 2.4125
+          "mrr": 0.939583,
+          "mttc": 2.3625
         },
         "intent_override": {
           "sample_count": 30,
-          "hit_rate_at_10": 0.633333,
-          "mrr": 0.506944,
-          "mttc": 6.533333
+          "hit_rate_at_10": 0.6,
+          "mrr": 0.473611,
+          "mttc": 6.6
         }
       },
-      "agent_turns": 608,
-      "mean_respond_latency_ms": 2031.7,
-      "p95_respond_latency_ms": 13817.0,
-      "wall_seconds": 2030.5,
+      "agent_turns": 612,
+      "mean_respond_latency_ms": 2373.8,
+      "p95_respond_latency_ms": 15644.7,
+      "wall_seconds": 2271.7,
       "customer_rewrite_failures": 0,
       "grounding": {
-        "grounded_turns": 497,
+        "grounded_turns": 500,
         "statuses": {
-          "grounded": 497
+          "grounded": 452,
+          "unparseable_reply": 48
         },
         "intents": {
-          "add": 164,
-          "override": 17,
-          "open": 248,
-          "no_preference": 64,
+          "add": 166,
+          "override": 18,
+          "open": 220,
+          "no_preference": 44,
           "other": 4
         },
         "accepted_by_tier": {
-          "signature_verbatim": 234,
-          "typed_material": 73,
-          "lexical": 79,
-          "signature_mapped": 14,
-          "typed_color": 22,
-          "lexical_tokens": 15
+          "signature_verbatim": 229,
+          "typed_material": 78,
+          "lexical": 69,
+          "lexical_tokens": 16,
+          "signature_mapped": 10,
+          "typed_color": 21
         },
         "rejected_by_reason": {
-          "material_already_inside_feature": 42,
+          "material_already_inside_feature": 37,
           "no_catalog_support": 1
         },
-        "model_calls": 497,
-        "mean_model_latency_ms_per_turn": 325.2
+        "model_calls": 500,
+        "mean_model_latency_ms_per_turn": 433.8
       }
     }
   },

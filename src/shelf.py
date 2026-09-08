@@ -217,6 +217,15 @@ class Catalog:
         self._shelf_stems: dict[str, set[str]] | None = None
         self._signature_token_index: dict[str, set[str]] | None = None
 
+    def token_set(self, asin: str) -> set[str]:
+        """Unique tokens of one product's text.
+
+        Not cached: fifty thousand token sets cost more resident memory than
+        the whole catalog index, and the ranker tests membership with a padded
+        substring search on ``ltext`` instead.
+        """
+        return set(self.ltext[asin].split())
+
     def token_idf(self, token: str) -> float:
         return math.log(1.0 + len(self.ids) / (1.0 + self._df.get(token, 0)))
 
@@ -297,6 +306,129 @@ class Catalog:
                     seen.add(asin)
                     pool.append(asin)
         return matched, pool
+
+    def retrieval_index(self, max_df: int) -> dict[str, list[str]]:
+        """Inverted index over tokens rarer than ``max_df``, built once.
+
+        Used only when a grounded session has to look beyond its shelf
+        pool. Common tokens are left out because they do not discriminate
+        and their posting lists are the expensive ones to walk.
+        """
+        cached = getattr(self, "_retrieval_index", None)
+        if cached is None or cached[0] != max_df:
+            index: dict[str, list[str]] = {}
+            df = self._df
+            for asin in self.ids:
+                for token in self.token_set(asin):
+                    if df.get(token, 0) <= max_df:
+                        index.setdefault(token, []).append(asin)
+            cached = (max_df, index)
+            self._retrieval_index = cached
+        return cached[1]
+
+    def retrieve(
+        self,
+        constraints: list[str],
+        constraint_weights: list[float] | None,
+        limit: int,
+        max_df: int,
+    ) -> list[str]:
+        """Products sharing the rarest words with the constraints, best first.
+
+        A rarity-weighted union of posting lists: each product accumulates
+        the IDF of every discriminative constraint token it contains, scaled
+        by that constraint's confidence. Ties keep catalog order, so the
+        result is deterministic. Returns an empty list when no constraint
+        carries a discriminative token, which tells the caller to fall back
+        to the whole catalog.
+        """
+        if not constraints or limit <= 0:
+            return []
+        if constraint_weights is None or len(constraint_weights) != len(constraints):
+            constraint_weights = [1.0] * len(constraints)
+        index = self.retrieval_index(max_df)
+        accumulated: dict[str, float] = {}
+        for phrase, confidence in zip(constraints, constraint_weights):
+            value = norm(phrase)
+            if value.startswith("budget around"):
+                continue
+            wanted = [token for token in dict.fromkeys(tokens(value)) if len(token) > 2]
+            if value.startswith("color: gray") or value == "gray":
+                wanted.append("grey")
+            for token in wanted:
+                postings = index.get(token)
+                if not postings:
+                    continue
+                gain = confidence * self.token_idf(token)
+                for asin in postings:
+                    accumulated[asin] = accumulated.get(asin, 0.0) + gain
+        if not accumulated:
+            return []
+        order = {asin: position for position, asin in enumerate(self.ids)} if len(accumulated) > limit else None
+        ranked = sorted(
+            accumulated.items(),
+            key=(lambda item: (-item[1], order[item[0]])) if order else (lambda item: -item[1]),
+        )
+        return [asin for asin, _ in ranked[:limit]]
+
+    def signature_values_loose(self) -> dict[str, str]:
+        """Punctuation-stripped form of every signature value, computed once."""
+        cached = getattr(self, "_signature_loose", None)
+        if cached is None:
+            cached = {value: loose(value) for value in self.signature_value_count}
+            self._signature_loose = cached
+        return cached
+
+    def shelf_words(self) -> frozenset[str]:
+        """Content tokens and stems of every shelf name."""
+        cached = getattr(self, "_shelf_words", None)
+        if cached is None:
+            words: set[str] = set()
+            for shelf in self.by_shelf:
+                for token in tokens(shelf):
+                    if len(token) > 2:
+                        words.add(token)
+                        words.add(self._stem(token))
+            cached = frozenset(words)
+            self._shelf_words = cached
+        return cached
+
+    def signature_vocabulary(self) -> frozenset[str]:
+        """Every content stem that occurs in some intent-signature value.
+
+        The signature strings are the catalog's own attribute language, so
+        this set is "words that can describe a product attribute" without
+        any hand-written vocabulary.
+        """
+        cached = getattr(self, "_signature_vocabulary", None)
+        if cached is None:
+            words: set[str] = set()
+            for value in self.signature_value_count:
+                if value.startswith("budget around"):
+                    continue
+                for token in tokens(value):
+                    if len(token) > 2 and not token.isdigit():
+                        words.add(token)
+                        words.add(self._stem(token))
+            cached = frozenset(words)
+            self._signature_vocabulary = cached
+        return cached
+
+    def signature_values_by_first_token(self) -> dict[str, list[str]]:
+        """Signature values grouped by the first word of their loose form.
+
+        Lets a verbatim-string matcher consider only values that can occur
+        in a sentence instead of every string in the catalog.
+        """
+        cached = getattr(self, "_signature_by_first_token", None)
+        if cached is None:
+            cached = {}
+            for value, loose_value in self.signature_values_loose().items():
+                first = loose_value.split(" ", 1)[0] if loose_value else ""
+                if first:
+                    cached.setdefault(first, []).append(value)
+            self._signature_by_first_token = cached
+        return cached
 
     def top_signature_values(
         self, counts: dict[str, int], limit: int = 40, max_tokens: int = 5

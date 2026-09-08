@@ -1,0 +1,22 @@
+| level | shopper | arm | Hit@10 | MRR | MTTC | Score | calls/sess | tokens/sess | ms/turn |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| canonical | gemma | deterministic | 1.000 | 1.000 | 1.98 | 0.9804 | 0.0 | 0 | 15 |
+| canonical | gemma | lexical | 1.000 | 1.000 | 1.98 | 0.9804 | 0.0 | 0 | 15 |
+| canonical | gemma | cascade | 1.000 | 1.000 | 1.98 | 0.9804 | 0.0 | 0 | 15 |
+| canonical | gemma | hybrid | 1.000 | 1.000 | 1.98 | 0.9804 | 0.0 | 0 | 11 |
+| natural | gemma | deterministic | 0.840 | 0.640 | 4.33 | 0.7453 | 0.0 | 0 | 61 |
+| natural | gemma | lexical | 1.000 | 0.983 | 2.19 | 0.9710 | 0.0 | 0 | 7 |
+| natural | gemma | cascade | 1.000 | 0.983 | 2.15 | 0.9718 | 0.6 | 662 | 10 |
+| natural | gemma | hybrid | 0.990 | 0.961 | 2.37 | 0.9558 | 1.1 | 1,215 | 7 |
+| natural | qwen | deterministic | 0.565 | 0.389 | 6.77 | 0.4838 | 0.0 | 0 | 64 |
+| natural | qwen | lexical | 0.925 | 0.860 | 2.81 | 0.8842 | 0.0 | 0 | 17 |
+| natural | qwen | cascade | 0.940 | 0.895 | 2.71 | 0.9041 | 1.5 | 1,596 | 22 |
+| natural | qwen | hybrid | 0.910 | 0.838 | 3.12 | 0.8640 | 2.5 | 2,549 | 70 |
+| paraphrase | gemma | deterministic | 0.215 | 0.068 | 10.01 | 0.1478 | 0.0 | 0 | 89 |
+| paraphrase | gemma | lexical | 0.705 | 0.552 | 4.97 | 0.6386 | 0.0 | 0 | 23 |
+| paraphrase | gemma | cascade | 0.850 | 0.727 | 4.06 | 0.7818 | 3.8 | 4,048 | 52 |
+| paraphrase | gemma | hybrid | 0.855 | 0.747 | 3.97 | 0.7922 | 3.8 | 4,009 | 52 |
+| paraphrase | qwen | deterministic | 0.320 | 0.178 | 8.98 | 0.2538 | 0.0 | 0 | 81 |
+| paraphrase | qwen | lexical | 0.765 | 0.648 | 4.23 | 0.7123 | 0.0 | 0 | 32 |
+| paraphrase | qwen | cascade | 0.805 | 0.694 | 4.08 | 0.7490 | 2.7 | 2,787 | 50 |
+| paraphrase | qwen | hybrid | 0.810 | 0.702 | 4.00 | 0.7555 | 3.4 | 3,517 | 76 |

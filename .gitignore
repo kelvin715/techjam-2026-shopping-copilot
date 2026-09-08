@@ -63,6 +63,7 @@ docs/*.md
 docs/*.py
 docs/evaluation_config.json
 docs/agent_api_contract.json
+docs/finals_research
 
 # --- Editor / OS noise ---
 .DS_Store
@@ -78,3 +79,37 @@ results/logs/
 
 # Competitor research for the Grand Final playbook stays local.
 results/track4_devpost_projects.json
+
+# Cross-category catalogs built by tools/build_category_catalog.py stay local
+# under the source dataset terms; results/cross_category/summary.* is tracked.
+data/catalog_*.jsonl
+data/catalog_*.summary.json
+results/cross_category/*_full.json
+results/cross_category/logs/
+
+
+# paper
+paper/
+
+# --- Grand Final research artifacts -------------------------------------
+# The attribution grid, the dense arms and the cross-category runs produce
+# ~270 MB of per-session traces, grounding caches and embedding matrices.
+# Only the citable roll-ups (summary.json / summary.md / intervals.md) are
+# tracked; regenerate the rest with tools/run_attribution.py,
+# tools/cross_category.py and tools/build_mixed_catalog.py.
+results/attribution/**
+!results/attribution/**/
+!results/attribution/**/summary.json
+!results/attribution/**/summary.md
+!results/attribution/**/intervals.md
+
+results/dense/
+results/rewrites_gemma.json
+
+results/cross_category/**
+!results/cross_category/**/
+!results/cross_category/summary.json
+!results/cross_category/summary.md
+
+# Department maps derived from the mixed catalogs stay local with them.
+data/catalog_*.departments.json

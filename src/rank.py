@@ -41,38 +41,66 @@ def _constraint_kind(phrase: str) -> tuple[str, str | float | None]:
     return "phrase", None
 
 
-def _satisfies(catalog, asin: str, phrase: str, phrase_tokens: list[str]) -> float:
-    kind, value = _constraint_kind(phrase)
+def _satisfies(
+    catalog,
+    asin: str,
+    phrase: str,
+    phrase_tokens: list[str],
+    kind_value: tuple[str, str | float | None] | None = None,
+    needle: str | None = None,
+) -> float:
+    """Typed satisfaction of one constraint by one product.
+
+    ``kind_value`` and ``needle`` are pure functions of the phrase; callers
+    scoring a whole candidate pool pass them precomputed so the per-product
+    loop does no string parsing.
+    """
+    kind, value = kind_value if kind_value is not None else _constraint_kind(phrase)
+    # ``ltext`` is the product text with punctuation runs collapsed to single
+    # spaces, so a padded substring test is exactly token membership without
+    # materialising a token set per product.
     if kind == "material" and isinstance(value, str):
         if catalog.first_material.get(asin) == value:
             return 1.0
-        return 0.6 if value in tokens(catalog.text[asin]) else 0.0
+        return 0.6 if f" {value} " in f" {catalog.ltext[asin]} " else 0.0
     if kind == "color" and isinstance(value, str):
         if catalog.first_color.get(asin) == value:
             return 1.0
-        product_tokens = tokens(catalog.text[asin])
+        padded = f" {catalog.ltext[asin]} "
         if value == "gray":
-            return (
-                0.6
-                if "gray" in product_tokens or "grey" in product_tokens
-                else 0.0
-            )
-        return 0.6 if value in product_tokens else 0.0
+            return 0.6 if " gray " in padded or " grey " in padded else 0.0
+        return 0.6 if f" {value} " in padded else 0.0
     if kind == "budget" and isinstance(value, float):
         price = catalog.price.get(asin)
         if price is None or value <= 0:
             return 0.25
         return max(0.0, 1.0 - abs(price - value) / value)
 
-    needle = loose(phrase)
+    if needle is None:
+        needle = loose(phrase)
     blob = catalog.ltext[asin]
     if needle and needle in blob:
         return 1.0
     if not phrase_tokens:
         return 0.0
-    product_tokens = set(tokens(blob))
-    hits = sum(token in product_tokens for token in phrase_tokens)
+    padded = f" {blob} "
+    hits = sum(f" {token} " in padded for token in phrase_tokens)
     return 0.7 * hits / len(phrase_tokens)
+
+
+def _phrase_plan(
+    phrases: list[str],
+    phrase_tokens: list[list[str]],
+    constraint_weights: list[float],
+) -> list[tuple[str, list[str], float, tuple, str, float]]:
+    """Everything about a constraint that does not depend on the product."""
+    plan = []
+    for phrase, phrase_toks, confidence in zip(phrases, phrase_tokens, constraint_weights):
+        specificity = (1.0 + min(2.0, len(phrase_toks) / 6.0)) * confidence
+        plan.append((
+            phrase, phrase_toks, confidence, _constraint_kind(phrase), loose(phrase), specificity,
+        ))
+    return plan
 
 
 def _typed_score(
@@ -81,18 +109,30 @@ def _typed_score(
     phrases: list[str],
     phrase_tokens: list[list[str]],
     constraint_weights: list[float],
+    plan: list | None = None,
+    alternatives: dict | None = None,
 ) -> float:
     if not phrases:
         return 0.0
+    if plan is None:
+        plan = _phrase_plan(phrases, phrase_tokens, constraint_weights)
     total = 0.0
     weight_sum = 0.0
-    for phrase, phrase_toks, confidence in zip(
-        phrases, phrase_tokens, constraint_weights
-    ):
-        specificity = (1.0 + min(2.0, len(phrase_toks) / 6.0)) * confidence
-        total += specificity * _satisfies(
-            catalog, asin, phrase, phrase_toks
+    for phrase, phrase_toks, _confidence, kind_value, needle, specificity in plan:
+        satisfaction = _satisfies(
+            catalog, asin, phrase, phrase_toks, kind_value, needle
         )
+        if alternatives and satisfaction < 1.0:
+            # Dense value expansion: a catalog string the shopper's phrase
+            # may have meant counts at reduced credit (research option 1).
+            for alternative, _cosine in alternatives.get(phrase, ()):
+                alt = config.DENSE_VALUE_ALT_WEIGHT * _satisfies(
+                    catalog, asin, alternative,
+                    [token for token in tokens(alternative) if len(token) > 2],
+                )
+                if alt > satisfaction:
+                    satisfaction = alt
+        total += specificity * satisfaction
         weight_sum += specificity
     return total / weight_sum if weight_sum else 0.0
 
@@ -104,6 +144,7 @@ def _signature_score(
     constraint_weights: list[float],
     scenario: str | None,
     positions_reliable: bool = True,
+    alternatives: dict | None = None,
 ) -> float:
     """Likelihood that the candidate's canonical card produced these clues."""
     signature = catalog.signature.get(asin, ())
@@ -119,6 +160,10 @@ def _signature_score(
             satisfaction = 1.0
         elif phrase in signature:
             satisfaction = 0.7
+        elif alternatives and any(
+            alternative in signature for alternative, _cosine in alternatives.get(phrase, ())
+        ):
+            satisfaction = 0.7 * config.DENSE_VALUE_ALT_WEIGHT
         else:
             satisfaction = 0.0
         total += confidence * satisfaction
@@ -144,9 +189,20 @@ def score_candidates(
     scenario: str | None = None,
     popularity_weight: float | None = None,
     signature_positions_reliable: bool = True,
+    alternatives: dict | None = None,
 ):
+    """Score ``cand_ids`` against the shopper's constraints, best first.
+
+    ``alternatives`` (research option 1, dense value expansion) maps a
+    normalised constraint to catalog strings it may stand for; a product
+    carrying only an alternative earns ``config.DENSE_VALUE_ALT_WEIGHT`` of
+    the credit. It is ``None`` on the protocol path, where every branch below
+    is unchanged.
+    """
     if not cand_ids:
         return []
+    if not alternatives:
+        alternatives = None
     phrases = [phrase for phrase in (norm(value) for value in constraints) if phrase]
     if not phrases:
         if config.COLD_START_PRIOR == "review_count":
@@ -169,27 +225,37 @@ def score_candidates(
     if constraint_weights is None or len(constraint_weights) != len(phrases):
         constraint_weights = [1.0] * len(phrases)
 
-    loose_phrases = [loose(phrase) for phrase in phrases]
-    texts = {asin: catalog.text[asin] for asin in cand_ids}
+    texts = catalog.text
     phrase_tokens = [
         [token for token in tokens(phrase) if len(token) > 2]
         for phrase in phrases
     ]
+    plan = _phrase_plan(phrases, phrase_tokens, constraint_weights)
     candidate_count = len(cand_ids)
     weights = []
     for phrase, phrase_toks in zip(phrases, phrase_tokens):
+        if config.WEIGHT_MODE == "global":
+            weights.append(_global_weight(catalog, phrase_toks))
+            continue
         local = math.log(
             1.0
             + candidate_count
-            / (1.0 + sum(phrase in text for text in texts.values()))
+            / (1.0 + sum(phrase in texts[asin] for asin in cand_ids))
         )
         if config.WEIGHT_MODE == "local":
             weights.append(local)
-        elif config.WEIGHT_MODE == "global":
-            weights.append(_global_weight(catalog, phrase_toks))
         else:
             weights.append(local * _global_weight(catalog, phrase_toks))
 
+    typed_kinds = {"material", "color", "budget"}
+    scoring_plan = [
+        (phrase, loose_phrase, weight, phrase_toks, confidence, kind_value,
+         kind_value[0] in typed_kinds,
+         [(alternative, loose(alternative)) for alternative, _cosine in alternatives.get(phrase, ())]
+         if alternatives else ())
+        for (phrase, phrase_toks, confidence, kind_value, loose_phrase, _specificity), weight
+        in zip(plan, weights)
+    ]
     raw: list[float] = []
     mode = config.MATCH_MODE
     for asin in cand_ids:
@@ -197,22 +263,17 @@ def score_candidates(
         loose_text = catalog.ltext[asin]
         padded = " " + text + " "
         total = 0.0
-        for phrase, loose_phrase, weight, phrase_toks, confidence in zip(
-            phrases,
-            loose_phrases,
-            weights,
-            phrase_tokens,
-            constraint_weights,
-        ):
+        for phrase, loose_phrase, weight, phrase_toks, confidence, kind_value, typed, alts in scoring_plan:
             # The protocol synthesises typed clues such as ``color: grey`` and
             # ``budget around $25`` from catalog fields. Those literal strings
             # need not occur in searchable_text, so treating them as ordinary
             # phrases unfairly rewards products that happen to serialise a
             # matching field label. Score them through the same structured
             # interpretation that generated the clue instead.
-            kind, _ = _constraint_kind(phrase)
-            if kind in {"material", "color", "budget"}:
-                satisfaction = _satisfies(catalog, asin, phrase, phrase_toks)
+            if typed:
+                satisfaction = _satisfies(
+                    catalog, asin, phrase, phrase_toks, kind_value, loose_phrase
+                )
                 total += (
                     confidence
                     * weight
@@ -229,11 +290,23 @@ def score_candidates(
                     config.PHRASE_HIT if mode == "loose" else config.LOOSE_HIT
                 )
                 total += confidence * weight * hit_value
-            elif phrase_toks:
-                fraction = sum(
-                    f" {token} " in padded for token in phrase_toks
-                ) / len(phrase_toks)
-                if fraction:
+            else:
+                fraction = 0.0
+                if phrase_toks:
+                    fraction = sum(
+                        f" {token} " in padded for token in phrase_toks
+                    ) / len(phrase_toks)
+                alt_credit = 0.0
+                if alts:
+                    # An alternative catalog string present in the product
+                    # text counts at reduced credit (dense value expansion).
+                    for alternative, loose_alternative in alts:
+                        if alternative in text or loose_alternative in loose_text:
+                            alt_credit = config.PHRASE_HIT * config.DENSE_VALUE_ALT_WEIGHT
+                            break
+                if alt_credit > config.TOKEN_MAX * fraction:
+                    total += confidence * weight * alt_credit
+                elif fraction:
                     total += confidence * weight * config.TOKEN_MAX * fraction
             if (
                 config.TITLE_BONUS != 1.0
@@ -258,7 +331,7 @@ def score_candidates(
     for asin, base in zip(cand_ids, raw):
         normalised = base / top_raw if top_raw > 0 else 0.0
         typed = _typed_score(
-            catalog, asin, phrases, phrase_tokens, constraint_weights
+            catalog, asin, phrases, phrase_tokens, constraint_weights, plan, alternatives
         )
         signature = _signature_score(
             catalog,
@@ -267,6 +340,7 @@ def score_candidates(
             constraint_weights,
             scenario,
             signature_positions_reliable,
+            alternatives,
         )
         core.append(
             normalised

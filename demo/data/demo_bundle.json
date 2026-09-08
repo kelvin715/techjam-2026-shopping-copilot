@@ -1,48 +1,50 @@
 {
   "meta": {
     "schema_version": 2,
-    "generated_at": "2026-09-06T15:13:11.304868+00:00",
-    "source_commit": "3c3b43a42345a950bb8bc249e87ae53de1b73b88",
-    "source_fingerprint": "abb9c69830d7ad3ec5d0a36a9437dc3368719b25ed08cb8dc335ef0afb53983d",
+    "generated_at": "2026-09-08T10:43:31.699037+00:00",
+    "source_commit": "2744dfd4cabe320142b2791860c0a498d97b1a5d",
+    "source_fingerprint": "449cd35237e006ade3bc8fed9fc794ff859c6a6d5b7a5ca1c374a1248ef39b21",
     "source_hashes": {
-      "agent.py": "1cb88ff66c02169ed95f5443f0f7b791baa9e1889b5fc377238537569f7f8923",
+      "agent.py": "ec16110a35bee8da7f510ab3ef38d5078ac9e8c140541b01043adb8c07dd04d6",
       "demo/server.py": "3aba0a67eb733c1488747e5394894d8ea612b75d1f00b20601a8580f5470d945",
       "demo/static/app.js": "5d57fbd730b3e8e99bedc872fa1e6557721a7a65b2b34f1d1efdf1db5b436313",
-      "demo/static/components.js": "516352010623115c65b51586df875d6ede433c77d99a0f0aa2620101dc6379eb",
+      "demo/static/components.js": "a00d0b8711834fd057ccd77437f934d9f414c5efd74563637f97e64206b2b545",
       "demo/static/favicon.svg": "144b68065207a2e9bcc61cf26132506d263107eac950dfcb25216618501b186e",
       "demo/static/index.html": "0fb32d8a89e127459b30afe2c486d52375a47d9cea003f2782206480e0b9f589",
       "demo/static/state.js": "4501fbd529102e2c5d65c38112567efacdb3d4194b8ccb1899993dc497f412e8",
-      "demo/static/styles.css": "d6e1122e33e6456613d4997678b85f0b95d4cb2070f13336a9c9f3c8bdae99d1",
+      "demo/static/styles.css": "775363f727d4deee5b912317fe156d74dae393fe86d3e5c99e1f88e76fd4dbf9",
       "docs/baseline_results.json": "70834f738918191e4108f89ea66bc502db521bccce5ed95d6ccc73563fba5a96",
       "results/decision_trace.json": "9c18fa222bd64573f8f1cab952d4014a6e1ce87e9a5a210b924452d4244d95e3",
       "results/demo_walkthrough.json": "8dcd731b468e403d39df914841519faec919c361048669581c796b2a8b56db49",
       "results/explore_decision_trace.json": "7625650e269da89ad2a96f6e50bae988ffef2fac3667ae9a111e5bb50a1f20ba",
-      "results/human_language_benchmark.json": "751043c80dd6ea42369d28d1fce8f12eff5c134da588fcaf43c2cdfcd28657d7",
+      "results/human_language_benchmark.json": "d97066013fcb6bae12c69781c8d594ff0fcfb49c1d7538ae5086cb93be3a6c3e",
       "results/matched_proxy_metrics.json": "1861268fd025383d71148b71160ac9a2ade743430c4c0366d5e535dd89cd285b",
       "results/public_metrics.json": "f27c4951c0f01c07a93f2c5952704afd972e20f27a0f64f3aa2ddacfbc2dbbb0",
       "results/public_session_replays.json": "a3f7601ed69fc852b58e9cf2efebb4bf1bddbe5a9623e7ecbef8224cf8701fb4",
       "results/robustness_policy_benchmark.json": "d2ec0d733168cde2e818f536ef3fa835fadac886410a5ff2f1ce2b30df05a0d2",
-      "results/runtime_profile.json": "a6e72b4882a89cdc0bf428663a74f669f938e41af38d1c89e99aaacaca7abadb",
+      "results/runtime_profile.json": "2e1eb952af73de9105baef75017d7938323fa51786509899d02941baadb76f79",
       "results/uniform_proxy_metrics.json": "05880f16968a1efcfed5358dc283f453c838a70044249f615e1306906ae3c0d7",
       "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "src/config.py": "2ef3856a30b1af24b139fda3526d671b4d17bbc1caa0043d3f0abe2257cd1f00",
-      "src/dialog.py": "f1ea2ecc7274adeb3bb8bf5d28e7710d1f33ef890b643d8263f7d8c47a0ed67e",
+      "src/config.py": "b385ac053097df695b68adb90e74426ca60ad998220bb049e863c7a97049cc07",
+      "src/dense.py": "d85370190d639f852b847a0966ff9da359ef9724af65025abaa0356e75c0e5ec",
+      "src/dialog.py": "1f8c96f24ae1286bad1d42f851c81fac8426a211f50d52db6f3d22d739528872",
       "src/evidence.py": "82ce0e45cadae9d6671ab1ed993825a583956f429a37d11ba9f3c41e349b9444",
-      "src/ground.py": "f5372abce57e9ab5931cacb412cd817721330a9a19015717c276e2cf24c09e0c",
-      "src/llm.py": "ae5531de9585bfcb29ad561c554529a7c3e070772577aacf33614bf1e580ea37",
+      "src/ground.py": "f0bc81d049f5279ec2aaa80b84cda60c7a74a3c49a86d91970af1cc839dbbe7e",
+      "src/llm.py": "dfb31d8c2e8229312f5a87ea4170b86bb49da2c9ad9dab1a05036bb068f37456",
       "src/policy.py": "d18eb0df7852366b898c7648ede435fe86103473fca18c5ef91045cdb992b05c",
-      "src/rank.py": "6b860c9ea6b25728109af391cf225000f3d2cbf9e86135b31c55b47409916023",
-      "src/shelf.py": "ed22813c8c6ac145ab913788062ee5191ae9e9832b918622b98b8a7a3986ee90",
+      "src/rank.py": "12703039f86ae58589080da87638573b7d2de0fe5034475fb4bb6afdf5cbcaf5",
+      "src/shelf.py": "413b8ceaf14d74d7da4a6061b80be899643f341a2afe093af85b80231f06d8c3",
       "tests/test_agent.py": "767afd04819ceb31d79aabba757ece008b073d3fb1117fd59c3f1eb75dfffeae",
       "tests/test_demo_assets.py": "4ccb6032d34aba89333cc3d5e9a2200ab26b9695ae106ed03f674bd1d65919c2",
       "tests/test_demo_frontend.py": "e371243215496784df91033c1f40d68f1131fdebc2eaded73c8f6c7b87a4e8cb",
+      "tests/test_dense_options.py": "34e9bdcec4c3d3c72f44d28f854979805db31b8b672b91773174d6a1eb687be6",
       "tests/test_evaluator.py": "e07648ee81b1be0a14a4b13be3c566d17959154fef533f7ef6f4c349ce69d5df",
       "tests/test_evidence.py": "84dc3883883bca2a847add91c5ff11f8df937dadc61beced0326194a459fce05",
-      "tests/test_llm_grounding.py": "704ff8aa179e7691aa412e39edc1a7e8cf90bd8ec1081fbc3874ae3ce10fffe4",
+      "tests/test_llm_grounding.py": "06d26e3ffbaa3e74092a6324921fb93828c74c0b1f9e3f29aa8e15ea293a9a8b",
       "tests/test_rerank.py": "5ffce135d2ab675412016b47d1ba84d1ff41fad05e6f58b206f42e06b72450e0",
       "tests/test_signature.py": "ab6e42b3e7e7b179d7970de4a63ddb71f8f12b9c85228f62d65c93383a80bb2c",
       "tests/test_static_site.py": "8c31194f5f5c8528a42cffba383c6fedc92a71a9e8a087a9a2144bbc59072e90",
-      "tests/test_submission_tools.py": "cafbdb1f497c63d6e48319eb2651ccc2015abe0b790af920f99d8bf97a8c1e10",
+      "tests/test_submission_tools.py": "43d88281e34c87270f5ee751728440f9a199ee08dfe3a098a72ce4afebdc84c8",
       "tools/build_demo_bundle.py": "9b0fce61d47075f579d7638ed71ca1141a43e576dfc02299da80e7bfc4155fdf",
       "tools/build_session_replays.py": "b2170f189ba89d887cd767c87799ba233cb82be1b15adf24a6cb6d20ae274549"
     },
@@ -28368,11 +28370,11 @@
       "status": "reference_environment_measurement_filesystem_cache_dependent",
       "sample_count": 200,
       "response_count": 396,
-      "evaluator_catalog_load_seconds": 0.56959,
-      "agent_startup_seconds": 11.65464,
-      "evaluation_wall_seconds": 15.342067,
-      "mean_evaluation_wall_ms_per_response": 38.742595,
-      "peak_evaluator_plus_agent_rss_kb": 465644,
+      "evaluator_catalog_load_seconds": 0.500496,
+      "agent_startup_seconds": 10.796754,
+      "evaluation_wall_seconds": 5.93655,
+      "mean_evaluation_wall_ms_per_response": 14.991289,
+      "peak_evaluator_plus_agent_rss_kb": 469516,
       "reported_token_usage": {
         "prompt_tokens": 0,
         "completion_tokens": 0,
@@ -28395,17 +28397,31 @@
       ],
       "arms": [
         "deterministic",
+        "lexical",
+        "cascade",
         "hybrid"
       ],
       "grounding_model": {
         "model": "gemma4",
-        "base_url": "http://10.86.229.54:8000/v1"
+        "base_url": "replay://cache"
       },
       "customer_model": {
         "model": "gemma4",
-        "base_url": "http://10.86.229.54:8000/v1"
+        "base_url": "replay://cache"
       },
       "experiments": {
+        "canonical__cascade": {
+          "level": "canonical",
+          "arm": "cascade",
+          "hit_rate_at_10": 1.0,
+          "mrr": 1.0,
+          "mttc": 1.98,
+          "technical_score": 0.9804,
+          "model_calls": 0,
+          "total_tokens": 0,
+          "mean_model_latency_ms_per_turn": 0.0,
+          "accepted_by_tier": {}
+        },
         "canonical__deterministic": {
           "level": "canonical",
           "arm": "deterministic",
@@ -28430,13 +28446,45 @@
           "mean_model_latency_ms_per_turn": 0.0,
           "accepted_by_tier": {}
         },
+        "canonical__lexical": {
+          "level": "canonical",
+          "arm": "lexical",
+          "hit_rate_at_10": 1.0,
+          "mrr": 1.0,
+          "mttc": 1.98,
+          "technical_score": 0.9804,
+          "model_calls": 0,
+          "total_tokens": 0,
+          "mean_model_latency_ms_per_turn": 0.0,
+          "accepted_by_tier": {}
+        },
+        "natural__cascade": {
+          "level": "natural",
+          "arm": "cascade",
+          "hit_rate_at_10": 1.0,
+          "mrr": 0.982917,
+          "mttc": 2.155,
+          "technical_score": 0.971775,
+          "model_calls": 117,
+          "total_tokens": 132369,
+          "mean_model_latency_ms_per_turn": 455.8,
+          "accepted_by_tier": {
+            "ngram_signature": 162,
+            "signature_verbatim": 64,
+            "typed_material": 48,
+            "lexical": 36,
+            "typed_color": 21,
+            "signature_mapped": 1,
+            "lexical_tokens": 3
+          }
+        },
         "natural__deterministic": {
           "level": "natural",
           "arm": "deterministic",
-          "hit_rate_at_10": 0.82,
-          "mrr": 0.625232,
-          "mttc": 4.495,
-          "technical_score": 0.72767,
+          "hit_rate_at_10": 0.84,
+          "mrr": 0.64004,
+          "mttc": 4.335,
+          "technical_score": 0.745312,
           "model_calls": 0,
           "total_tokens": 0,
           "mean_model_latency_ms_per_turn": 0.0,
@@ -28445,20 +28493,56 @@
         "natural__hybrid": {
           "level": "natural",
           "arm": "hybrid",
-          "hit_rate_at_10": 0.995,
-          "mrr": 0.953006,
-          "mttc": 2.39,
-          "technical_score": 0.955602,
-          "model_calls": 228,
-          "total_tokens": 234796,
-          "mean_model_latency_ms_per_turn": 373.7,
+          "hit_rate_at_10": 0.99,
+          "mrr": 0.960673,
+          "mttc": 2.37,
+          "technical_score": 0.955802,
+          "model_calls": 216,
+          "total_tokens": 242919,
+          "mean_model_latency_ms_per_turn": 703.6,
           "accepted_by_tier": {
-            "signature_verbatim": 219,
-            "typed_material": 57,
-            "lexical": 58,
-            "typed_color": 22,
-            "lexical_tokens": 3,
-            "signature_mapped": 5
+            "signature_verbatim": 203,
+            "typed_material": 56,
+            "lexical": 65,
+            "typed_color": 20,
+            "signature_mapped": 5,
+            "lexical_tokens": 1
+          }
+        },
+        "natural__lexical": {
+          "level": "natural",
+          "arm": "lexical",
+          "hit_rate_at_10": 1.0,
+          "mrr": 0.982917,
+          "mttc": 2.195,
+          "technical_score": 0.970975,
+          "model_calls": 0,
+          "total_tokens": 0,
+          "mean_model_latency_ms_per_turn": 0.0,
+          "accepted_by_tier": {
+            "ngram_signature": 181,
+            "typed_material": 35,
+            "typed_color": 20
+          }
+        },
+        "paraphrase__cascade": {
+          "level": "paraphrase",
+          "arm": "cascade",
+          "hit_rate_at_10": 0.85,
+          "mrr": 0.726651,
+          "mttc": 4.06,
+          "technical_score": 0.781795,
+          "model_calls": 766,
+          "total_tokens": 809633,
+          "mean_model_latency_ms_per_turn": 365.8,
+          "accepted_by_tier": {
+            "lexical_tokens": 58,
+            "signature_verbatim": 263,
+            "typed_material": 133,
+            "lexical": 98,
+            "ngram_signature": 66,
+            "typed_color": 32,
+            "signature_mapped": 13
           }
         },
         "paraphrase__deterministic": {
@@ -28476,29 +28560,44 @@
         "paraphrase__hybrid": {
           "level": "paraphrase",
           "arm": "hybrid",
-          "hit_rate_at_10": 0.82,
-          "mrr": 0.710173,
-          "mttc": 4.155,
-          "technical_score": 0.759952,
-          "model_calls": 794,
-          "total_tokens": 765795,
-          "mean_model_latency_ms_per_turn": 304.5,
+          "hit_rate_at_10": 0.855,
+          "mrr": 0.747109,
+          "mttc": 3.97,
+          "technical_score": 0.792233,
+          "model_calls": 764,
+          "total_tokens": 801763,
+          "mean_model_latency_ms_per_turn": 483.5,
           "accepted_by_tier": {
-            "lexical_tokens": 51,
-            "signature_verbatim": 301,
-            "typed_material": 104,
-            "lexical": 91,
-            "typed_color": 29,
+            "lexical_tokens": 55,
+            "signature_verbatim": 285,
+            "typed_material": 107,
+            "lexical": 107,
+            "typed_color": 28,
             "signature_mapped": 14
+          }
+        },
+        "paraphrase__lexical": {
+          "level": "paraphrase",
+          "arm": "lexical",
+          "hit_rate_at_10": 0.705,
+          "mrr": 0.551823,
+          "mttc": 4.97,
+          "technical_score": 0.638647,
+          "model_calls": 0,
+          "total_tokens": 0,
+          "mean_model_latency_ms_per_turn": 0.0,
+          "accepted_by_tier": {
+            "ngram_signature": 164,
+            "typed_material": 133,
+            "typed_color": 30
           }
         }
       },
       "sample_rewrites": {
-        "canonical": [],
         "natural": [
           {
             "simulator": "I'm looking for Jewelry Necklaces. A key requirement is: Material:alloy.",
-            "human": "Hey, I'm looking for Jewelry Necklaces with Material:alloy."
+            "human": "I'm looking for Jewelry Necklaces with Material:alloy."
           },
           {
             "simulator": "For that, what matters is: Triple Moon Pentagram Symbol; The Triple Moon represents the Phases of the Moon which are linked to the three aspects of the Goddess and the phases of the Life of Women.The Pentagram representing the holistic r.",
@@ -28518,7 +28617,7 @@
       }
     },
     "tests": {
-      "count": 66,
+      "count": 90,
       "verified_pass": true,
       "command": "python3 -m unittest discover -v"
     }

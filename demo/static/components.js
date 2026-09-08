@@ -838,10 +838,14 @@ function languageContent(bundle) {
     return `<p class="live-placeholder">The human-language benchmark has not been recorded in this bundle yet. Run <code>tools/human_language_benchmark.py</code>, then <code>tools/fill_final_numbers.py</code> and rebuild.</p>`;
   }
   const levels = (data.levels || []).filter((level) => level !== "canonical");
-  const control = data.experiments["canonical__hybrid"];
+  // The shipped reader is the cascade (catalog first, model on demand);
+  // older bundles recorded only the model-only "hybrid" arm.
+  const shipped = (level) => data.experiments[`${level}__cascade`] || data.experiments[`${level}__hybrid`];
+  const control = shipped("canonical");
   const cards = levels.map((level) => {
     const det = data.experiments[`${level}__deterministic`];
-    const hyb = data.experiments[`${level}__hybrid`];
+    const lex = data.experiments[`${level}__lexical`];
+    const hyb = shipped(level);
     const meta = LANGUAGE_LEVEL[level] || { title: level, note: "" };
     const rewrite = (data.sample_rewrites?.[level] || [])[0];
     return `
@@ -849,24 +853,25 @@ function languageContent(bundle) {
         <span class="micro-label">${esc(meta.title)}</span>
         <p class="lang-note">${esc(meta.note)}</p>
         ${languageBar("Frozen submission · 0 tokens", det, "det")}
-        ${languageBar(`With grounding · ${esc(data.grounding_model?.model || "model")}`, hyb, "hyb")}
+        ${lex ? languageBar("Catalog reads the sentence · 0 tokens", lex, "lex") : ""}
+        ${languageBar(`Catalog first, ${esc(data.grounding_model?.model || "model")} on demand`, hyb, "hyb")}
         ${rewrite ? `<div class="lang-rewrite"><small>simulator</small><p>${esc(rewrite.simulator)}</p><small>shopper</small><p>${esc(rewrite.human)}</p></div>` : ""}
       </article>
     `;
   }).join("");
   const perSession = levels.map((level) => {
-    const hyb = data.experiments[`${level}__hybrid`];
+    const hyb = shipped(level);
     if (!hyb) return "";
     const n = data.sample_count || 1;
     return `<div><strong>${decimal(hyb.model_calls / n, 1)}</strong><span>calls per session, ${esc(LANGUAGE_LEVEL[level]?.title || level).toLowerCase()}</span></div>`;
   }).join("");
-  const latency = levels.map((level) => data.experiments[`${level}__hybrid`]?.mean_model_latency_ms_per_turn || 0);
+  const latency = levels.map((level) => shipped(level)?.mean_model_latency_ms_per_turn || 0);
   const meanLatency = latency.length ? latency.reduce((a, b) => a + b, 0) / latency.length : 0;
   return `
     <div class="lang-grid">${cards}</div>
     <div class="lang-tiers">
       <div class="lang-tier-flow">
-        <span>message</span>${icon("arrow")}<span>matches a template? <b>deterministic parser, 0 tokens</b></span>${icon("arrow")}<span>otherwise <b>the model proposes</b> intent · category · material · colour · budget · features</span>${icon("arrow")}<span><b>the catalog disposes</b></span>
+        <span>message</span>${icon("arrow")}<span>matches a template? <b>deterministic parser, 0 tokens</b></span>${icon("arrow")}<span>otherwise <b>the catalog reads it</b>: verbatim catalog strings, materials, colours, prices · 0 tokens</span>${icon("arrow")}<span>still unread? <b>the model proposes</b> intent · category · material · colour · budget · features</span>${icon("arrow")}<span><b>the catalog disposes</b></span>
       </div>
       <ul>
         <li><b>verbatim</b> catalog value · confidence 1.0</li>
@@ -1188,13 +1193,30 @@ function playgroundGrounding(certificate) {
     return "";
   }
   const tierText = {
+    ngram_signature: "verbatim catalog string (no model)",
     signature_verbatim: "verbatim catalog value",
     signature_mapped: "mapped to catalog value",
     lexical: "found in product text",
+    lexical_tokens: "every word found in product text",
     typed_material: "typed material",
     typed_color: "typed color",
     typed_budget: "typed budget",
+    typed_budget_around: "typed budget (target price)",
+    typed_budget_under: "typed budget (hard ceiling)",
+    typed_budget_over: "typed budget (hard floor)",
   };
+  const stageReason = {
+    catalog_string_found: "the catalog read the sentence itself; no model call",
+    dialogue_act_recognised: "a recognised dialogue act; no model call",
+    no_feature_evidence: "no verbatim catalog feature in the sentence, so the model was consulted",
+    cancellation_needs_dropped_list: "a cancellation: the model was consulted to name what was dropped",
+  };
+  const stage = grounding.stage1
+    ? `<div><dt>Reader</dt><dd>${esc(stageReason[grounding.stage1.reason] || grounding.stage1.reason || "")}${grounding.model_status && grounding.model_status !== "grounded" ? ` · model ${esc(String(grounding.model_status).replace(/_/g, " "))}, catalog reading kept` : ""}</dd></div>`
+    : "";
+  const slate = grounding.keeps_slate
+    ? `<p class="pg-note">The shopper built on the previous slate rather than rejecting it, so those products stay eligible.</p>`
+    : "";
   const accepted = (grounding.accepted || []).map((item) => `
     <li><strong>${esc(item.constraint)}</strong> <span class="pg-tier">${esc(tierText[item.tier] || item.tier)}${item.from ? ` · from “${esc(item.from)}”` : ""} · confidence ${decimal(item.confidence ?? 1, 1)}</span></li>
   `).join("");
@@ -1211,9 +1233,11 @@ function playgroundGrounding(certificate) {
     <div class="pg-grounding">
       <p class="micro-label">Language layer · ${esc(grounding.status || "")}${grounding.intent ? ` · intent ${esc(grounding.intent)}` : ""}</p>
       <dl>
+        ${stage}
         ${pool}
         <div><dt>Model cost</dt><dd>${count(usage.calls || 0)} call(s) · ${count((usage.prompt_tokens || 0) + (usage.completion_tokens || 0))} tokens · ${decimal(usage.latency_ms || 0, 0)} ms</dd></div>
       </dl>
+      ${slate}
       ${accepted ? `<p class="pg-note">Grounded into evidence:</p><ul>${accepted}</ul>` : ""}
       ${removed ? `<ul>${removed}</ul>` : ""}
       ${rejected ? `<p class="pg-note">Proposed by the model, refused by the catalog:</p><ul>${rejected}</ul>` : ""}

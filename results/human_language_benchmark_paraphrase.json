@@ -57,9 +57,9 @@
         }
       },
       "agent_turns": 1844,
-      "mean_respond_latency_ms": 119.3,
-      "p95_respond_latency_ms": 222.7,
-      "wall_seconds": 220.5,
+      "mean_respond_latency_ms": 187.0,
+      "p95_respond_latency_ms": 312.9,
+      "wall_seconds": 345.6,
       "customer_rewrite_failures": 0,
       "grounding": {
         "grounded_turns": 0,
@@ -74,15 +74,15 @@
     "paraphrase__hybrid": {
       "level": "paraphrase",
       "arm": "hybrid",
-      "hit_rate_at_10": 0.82,
-      "mrr": 0.710173,
-      "mttc": 4.155,
-      "efficiency": 0.6845,
-      "technical_score": 0.759952,
+      "hit_rate_at_10": 0.81,
+      "mrr": 0.699762,
+      "mttc": 4.27,
+      "efficiency": 0.673,
+      "technical_score": 0.749529,
       "reported_token_usage": {
-        "prompt_tokens": 727728,
-        "completion_tokens": 38067,
-        "total_tokens": 765795
+        "prompt_tokens": 812943,
+        "completion_tokens": 49924,
+        "total_tokens": 862867
       },
       "scenario_metrics": {
         "boundary": {
@@ -93,56 +93,56 @@
         },
         "browsing": {
           "sample_count": 80,
-          "hit_rate_at_10": 0.875,
-          "mrr": 0.77566,
-          "mttc": 3.6
+          "hit_rate_at_10": 0.8625,
+          "mrr": 0.736751,
+          "mttc": 3.75
         },
         "buying": {
           "sample_count": 80,
-          "hit_rate_at_10": 0.8625,
-          "mrr": 0.752153,
-          "mttc": 3.625
+          "hit_rate_at_10": 0.85,
+          "mrr": 0.762535,
+          "mttc": 3.775
         },
         "intent_override": {
           "sample_count": 30,
           "hit_rate_at_10": 0.733333,
-          "mrr": 0.616667,
-          "mttc": 5.7
+          "mrr": 0.623333,
+          "mttc": 5.666667
         }
       },
-      "agent_turns": 795,
-      "mean_respond_latency_ms": 3359.3,
-      "p95_respond_latency_ms": 16391.0,
-      "wall_seconds": 4408.9,
+      "agent_turns": 816,
+      "mean_respond_latency_ms": 4742.7,
+      "p95_respond_latency_ms": 22722.4,
+      "wall_seconds": 6436.5,
       "customer_rewrite_failures": 0,
       "grounding": {
-        "grounded_turns": 794,
+        "grounded_turns": 815,
         "statuses": {
-          "grounded": 791,
-          "unparseable_reply": 3
+          "grounded": 754,
+          "unparseable_reply": 61
         },
         "intents": {
-          "open": 245,
-          "add": 215,
+          "open": 243,
+          "add": 216,
           "override": 30,
-          "no_preference": 66,
-          "reject": 233,
-          "other": 2
+          "no_preference": 49,
+          "reject": 211,
+          "other": 5
         },
         "accepted_by_tier": {
-          "lexical_tokens": 51,
-          "signature_verbatim": 301,
-          "typed_material": 104,
-          "lexical": 91,
-          "typed_color": 29,
-          "signature_mapped": 14
+          "lexical_tokens": 54,
+          "signature_verbatim": 298,
+          "typed_material": 107,
+          "lexical": 96,
+          "typed_color": 28,
+          "signature_mapped": 15
         },
         "rejected_by_reason": {
-          "material_already_inside_feature": 50,
-          "no_catalog_support": 15
+          "material_already_inside_feature": 49,
+          "no_catalog_support": 12
         },
-        "model_calls": 794,
-        "mean_model_latency_ms_per_turn": 304.5
+        "model_calls": 815,
+        "mean_model_latency_ms_per_turn": 439.5
       }
     }
   },

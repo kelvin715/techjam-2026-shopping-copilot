@@ -1,0 +1,30 @@
+| level | shopper | A | B | score A | score B | Δ (B−A) | 95% CI | changed |
+|---|---|---|---|---:|---:|---:|---|---:|
+| canonical | gemma | cascade | cascade_dense_both | 0.9804 | 0.9804 | +0.0000 | [+0.0000, +0.0000] | 0 |
+| canonical | gemma | lexical | lexical_dense_both | 0.9804 | 0.9804 | +0.0000 | [+0.0000, +0.0000] | 0 |
+| natural | gemma | cascade | cascade_dense_values | 0.9718 | 0.9710 | -0.0007 | [-0.0024, +0.0003] | 3 |
+| natural | gemma | cascade | cascade_dense_pool | 0.9718 | 0.9718 | +0.0000 | [+0.0000, +0.0000] | 0 |
+| natural | gemma | cascade | cascade_dense_both | 0.9718 | 0.9708 | -0.0009 | [-0.0027, +0.0002] | 4 |
+| natural | gemma | lexical | lexical_dense_values | 0.9710 | 0.9710 | +0.0000 | [+0.0000, +0.0000] | 0 |
+| natural | gemma | lexical | lexical_dense_pool | 0.9710 | 0.9710 | +0.0000 | [+0.0000, +0.0000] | 0 |
+| natural | gemma | lexical | lexical_dense_both | 0.9710 | 0.9710 | +0.0000 | [+0.0000, +0.0000] | 0 |
+| natural | qwen | cascade | cascade_dense_values | 0.9041 | 0.9038 | -0.0003 | [-0.0013, +0.0007] | 6 |
+| natural | qwen | cascade | cascade_dense_pool | 0.9041 | 0.9017 | -0.0023 | [-0.0049, -0.0005] | 12 |
+| natural | qwen | cascade | cascade_dense_both | 0.9041 | 0.9022 | -0.0019 | [-0.0036, -0.0003] | 18 |
+| natural | qwen | lexical | lexical_dense_values | 0.8842 | 0.8839 | -0.0003 | [-0.0018, +0.0008] | 5 |
+| natural | qwen | lexical | lexical_dense_pool | 0.8842 | 0.8843 | +0.0001 | [+0.0000, +0.0003] | 1 |
+| natural | qwen | lexical | lexical_dense_both | 0.8842 | 0.8838 | -0.0004 | [-0.0019, +0.0007] | 6 |
+| paraphrase | gemma | cascade | cascade_dense_values | 0.7818 | 0.7771 | -0.0047 | [-0.0320, +0.0230] | 40 |
+| paraphrase | gemma | cascade | cascade_dense_pool | 0.7818 | 0.7639 | -0.0179 | [-0.0453, +0.0075] | 34 |
+| paraphrase | gemma | cascade | cascade_dense_both | 0.7818 | 0.7762 | -0.0056 | [-0.0401, +0.0289] | 58 |
+| paraphrase | gemma | cascade | cascade_dense_values_t75 | 0.7818 | 0.7768 | -0.0050 | [-0.0339, +0.0244] | 46 |
+| paraphrase | gemma | cascade | cascade_dense_values_t85 | 0.7818 | 0.7869 | +0.0052 | [-0.0180, +0.0279] | 33 |
+| paraphrase | gemma | lexical | lexical_dense_values | 0.6386 | 0.6391 | +0.0004 | [-0.0158, +0.0172] | 14 |
+| paraphrase | gemma | lexical | lexical_dense_pool | 0.6386 | 0.6385 | -0.0002 | [-0.0004, +0.0000] | 3 |
+| paraphrase | gemma | lexical | lexical_dense_both | 0.6386 | 0.6389 | +0.0002 | [-0.0160, +0.0170] | 17 |
+| paraphrase | qwen | cascade | cascade_dense_values | 0.7490 | 0.7381 | -0.0109 | [-0.0327, +0.0089] | 22 |
+| paraphrase | qwen | cascade | cascade_dense_pool | 0.7490 | 0.7341 | -0.0150 | [-0.0333, +0.0008] | 27 |
+| paraphrase | qwen | cascade | cascade_dense_both | 0.7490 | 0.7421 | -0.0070 | [-0.0331, +0.0177] | 41 |
+| paraphrase | qwen | lexical | lexical_dense_values | 0.7123 | 0.7106 | -0.0017 | [-0.0056, +0.0023] | 10 |
+| paraphrase | qwen | lexical | lexical_dense_pool | 0.7123 | 0.7137 | +0.0014 | [-0.0004, +0.0041] | 4 |
+| paraphrase | qwen | lexical | lexical_dense_both | 0.7123 | 0.7120 | -0.0003 | [-0.0049, +0.0048] | 13 |
