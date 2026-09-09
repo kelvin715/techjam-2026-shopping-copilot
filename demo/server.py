@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 import threading
@@ -68,6 +69,9 @@ class DemoRuntime:
         self._agent_error: str | None = None
         self._agent_lock = threading.RLock()
         self._sessions: set[str] = set()
+        from demo.live import LiveLab
+
+        self.lab = LiveLab(self)
         self.replay_fresh, self.changed_sources, self.current_fingerprint = (
             bundle_freshness(ROOT, self.bundle)
         )
@@ -119,7 +123,12 @@ class DemoRuntime:
                 try:
                     from agent import Agent
 
-                    self._agent = Agent(self.catalog_path)
+                    from src.llm import LLMSettings
+
+                    settings = LLMSettings.from_env()
+                    if "ARC_LLM_MODE" not in os.environ:
+                        settings.mode = "assist" if settings.base_url else "lexical"
+                    self._agent = Agent(self.catalog_path, llm_settings=settings)
                 except Exception as exc:  # pragma: no cover - defensive UI path
                     self._agent_error = f"{type(exc).__name__}: {exc}"
             if self._agent is None:
@@ -299,6 +308,9 @@ def make_handler(runtime: DemoRuntime) -> type[SimpleHTTPRequestHandler]:
             if parsed.path == "/api/health":
                 self._send_json(runtime.health())
                 return
+            if parsed.path == "/api/lab/config":
+                self._send_json(runtime.lab.config())
+                return
             if parsed.path == "/api/live/explain":
                 try:
                     session_id = parse_qs(parsed.query).get("session_id", [""])[0]
@@ -315,9 +327,14 @@ def make_handler(runtime: DemoRuntime) -> type[SimpleHTTPRequestHandler]:
 
         def do_POST(self) -> None:  # noqa: N802 - stdlib handler contract
             parsed = urlsplit(self.path)
+            if parsed.path in {"/api/lab/turn", "/api/lab/compare"}:
+                self._stream_turn(parsed.path)
+                return
             actions = {
                 "/api/live/reset": runtime.live_reset,
                 "/api/live/respond": runtime.live_respond,
+                "/api/lab/reset": runtime.lab.reset,
+                "/api/lab/rewrite": runtime.lab.rewrite,
             }
             action = actions.get(parsed.path)
             if action is None:
@@ -333,6 +350,39 @@ def make_handler(runtime: DemoRuntime) -> type[SimpleHTTPRequestHandler]:
                     {"status": "error", "error": str(exc)},
                     HTTPStatus.BAD_REQUEST,
                 )
+
+        def _stream_turn(self, path: str) -> None:
+            try:
+                payload = self._payload()
+            except (json.JSONDecodeError, ValueError) as exc:
+                self._send_json({"error": str(exc)}, HTTPStatus.BAD_REQUEST)
+                return
+            self.send_response(HTTPStatus.OK)
+            self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+            self.send_header("X-Accel-Buffering", "no")
+            self.send_header("Connection", "close")
+            self.end_headers()
+            self.close_connection = True
+            disconnected = False
+
+            def send(event, data):
+                nonlocal disconnected
+                if disconnected:
+                    return
+                packet = "event: " + event + "\ndata: " + json.dumps(data, separators=(",", ":")) + "\n\n"
+                try:
+                    self.wfile.write(packet.encode("utf-8"))
+                    self.wfile.flush()
+                except (BrokenPipeError, ConnectionResetError, OSError):
+                    disconnected = True
+
+            try:
+                action = runtime.lab.compare if path.endswith("/compare") else runtime.lab.turn
+                action(payload, send)
+            except (ValueError, RuntimeError) as exc:
+                send("error", {"error": str(exc)})
+            except Exception:
+                send("error", {"error": "The turn failed. Start a new session to reset the conversation."})
 
         def log_message(self, format: str, *args: Any) -> None:
             sys.stderr.write(f"demo {self.address_string()} {format % args}\n")

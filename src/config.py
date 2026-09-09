@@ -130,6 +130,31 @@ LLM_WIDEN_MAX_DF = 12500
 # leaves the sentence unexplained or the shopper cancels something. ``False``
 # sends every off-protocol message to the model (the model-only baseline).
 LLM_GROUND_CASCADE = True
+# The cascade also consults the model when the catalog cannot place the
+# shopper in a department: no shelf name occurs in the sentence and the
+# session has no candidate pool yet. The token overlap of a whole sentence
+# with shelf names is a last resort, not a reading.
+LLM_GROUND_ESCALATE_UNPLACED = True
+# A sentence places itself firmly when two or more of its words name a shelf
+# ("fashion sneakers"), or one word selects a small union of shelves
+# ("jeans"). One word over a union larger than this many products (a
+# twentieth of the catalog; "shoes" alone: every shoe department) is a weak
+# placement and goes to the model.
+LLM_GROUND_CONFIDENT_POOL = 2500
+# A model-named category on a new request or a cancellation ("open" /
+# "override" intents) that lands in a different department than the
+# session's current pool (fewer than this fraction of the smaller pool in
+# common) switches the department: pool, refuted products, retired questions
+# and the gate clock are reset; feature strings are dropped, a typed material
+# or colour is kept at OVERRIDE_DECAY confidence, a hard price bound is
+# re-applied. A category mentioned while adding a preference, or one that
+# overlaps the current pool, is a refinement and changes nothing.
+LLM_GROUND_SWITCH_OVERLAP = 0.2
+# A message in another language is translated by the model before the
+# catalog reads it (``src/language.py`` decides; English never triggers a
+# call), and the assist-mode reply is phrased in the shopper's language.
+LLM_TRANSLATE = True
+LLM_TRANSLATE_MAX_TOKENS = 160
 # A grounded "under $n" / "over $n" is a hard bound on the candidate pool;
 # the protocol's "budget around $n" keeps its proximity scoring.
 LLM_GROUND_HARD_BUDGET = True

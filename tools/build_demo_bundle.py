@@ -54,6 +54,7 @@ def sha256_file(path: Path) -> str:
 def _source_paths(root: Path) -> list[Path]:
     paths = [root / name for name in RESULT_SOURCES]
     paths.extend((root / "src").glob("*.py"))
+    paths.extend((root / "demo").glob("*.py"))
     paths.extend((root / "demo" / "static").glob("*"))
     paths.extend((root / "tests").glob("test_*.py"))
     paths.extend(
@@ -63,6 +64,8 @@ def _source_paths(root: Path) -> list[Path]:
             "demo/server.py",
             "tools/build_demo_bundle.py",
             "tools/build_session_replays.py",
+            "tools/build_live_demo_replays.py",
+            "tests/live_lab_frontend.mjs",
         )
     )
     return sorted(

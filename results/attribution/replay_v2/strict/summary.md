@@ -10,13 +10,13 @@
 | natural | gemma | hybrid | 0.990 | 0.961 | 2.37 | 0.9558 | 1.1 | 1,215 | 9 |
 | natural | qwen | deterministic | 0.565 | 0.389 | 6.77 | 0.4838 | 0.0 | 0 | 63 |
 | natural | qwen | lexical | 0.925 | 0.860 | 2.81 | 0.8842 | 0.0 | 0 | 17 |
-| natural | qwen | cascade | 0.940 | 0.895 | 2.71 | 0.9041 | 1.5 | 1,596 | 23 |
+| natural | qwen | cascade | 0.945 | 0.897 | 2.67 | 0.9082 | 1.5 | 1,555 | 21 |
 | natural | qwen | hybrid | 0.910 | 0.838 | 3.12 | 0.8640 | 2.5 | 2,549 | 84 |
 | paraphrase | gemma | deterministic | 0.215 | 0.068 | 10.01 | 0.1478 | 0.0 | 0 | 91 |
 | paraphrase | gemma | lexical | 0.705 | 0.552 | 4.97 | 0.6386 | 0.0 | 0 | 23 |
-| paraphrase | gemma | cascade | 0.850 | 0.727 | 4.06 | 0.7818 | 3.8 | 4,048 | 52 |
+| paraphrase | gemma | cascade | 0.850 | 0.729 | 4.04 | 0.7831 | 3.8 | 4,016 | 53 |
 | paraphrase | gemma | hybrid | 0.855 | 0.747 | 3.97 | 0.7922 | 3.8 | 4,009 | 60 |
 | paraphrase | qwen | deterministic | 0.320 | 0.178 | 8.98 | 0.2538 | 0.0 | 0 | 80 |
 | paraphrase | qwen | lexical | 0.765 | 0.648 | 4.23 | 0.7123 | 0.0 | 0 | 32 |
-| paraphrase | qwen | cascade | 0.805 | 0.694 | 4.08 | 0.7490 | 2.7 | 2,787 | 50 |
+| paraphrase | qwen | cascade | 0.815 | 0.708 | 4.00 | 0.7599 | 2.6 | 2,732 | 50 |
 | paraphrase | qwen | hybrid | 0.810 | 0.702 | 4.00 | 0.7555 | 3.4 | 3,517 | 78 |

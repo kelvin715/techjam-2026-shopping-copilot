@@ -175,19 +175,26 @@ the sentence first, and the model is consulted only when that is not enough.
 ```text
 message ──► matches a protocol template? ──yes──► deterministic parser (0 tokens)
                      │
-                     no ──► the catalog reads the sentence (0 tokens)
+                     no ──► not English? ──yes──► the model translates it (one short call)
+                     │                             the reply is phrased back in the shopper's language
+                     │
+                     └──► the catalog reads the sentence (0 tokens)
                             verbatim catalog strings · material · colour · "$n" bounds
                             "don't care" / "not those" / "forget the ..." dialogue acts
                                      │
-                     found a catalog feature, or a plain dialogue act? ──yes──► the same RANK · ASK · COMMIT
+                     found a catalog feature, placed in a department, or a plain
+                     dialogue act? ──yes──► the same RANK · ASK · COMMIT
                                      │
-                                     no (nothing read, or a cancellation)
+                                     no (nothing read, no department, or a cancellation)
                                      │
                             LLM proposes ──► catalog disposes ──► the same RANK · ASK · COMMIT
                             {intent, category,      every proposal needs evidence among the
                              material, color,        products still in play:
                              budget, features,        signature_verbatim 1.0 · signature_mapped 0.8
                              dropped}                 lexical 0.6 · lexical_tokens 0.5 · else refused
+                                                     a category names a department: a union of
+                                                     shelves on the first turn, a switch of
+                                                     department when it lands elsewhere later
 ```
 
 - **The catalog is the first reader, not the last check.** Our own attribution
@@ -195,8 +202,15 @@ message ──► matches a protocol template? ──yes──► deterministic 
   best reader whenever shoppers kept the listing's words, and that the model
   paid for itself only under paraphrase. The cascade keeps both: a message the
   catalog can read costs zero tokens; the model is consulted when the sentence
-  contains no catalog feature the catalog can find, or when the shopper cancels
-  something and only a reader of the sentence can say *what*.
+  contains no catalog feature the catalog can find, when the shopper cancels
+  something and only a reader of the sentence can say *what*, or when the
+  catalog cannot place the shopper in a department (no shelf name occurs in
+  the sentence and the session has no candidate pool yet). Placing a shopper
+  by the token overlap of a whole sentence with shelf names is a last resort,
+  not a reading: "running shoes for the gym" used to land on a holiday-sweater
+  shelf through "for" and "the"; the model now names the department, function
+  words never match a shelf, and a promotional node filed directly under the
+  catalog root ("Shoes & Jewelry Westlake") no longer answers "shoes".
 - **The model never ranks, never sees a label, and never sees the catalog
   beyond forty phrases.** It sees the shopper's sentence plus at most 40 of the
   most common catalog phrases in the candidate category, so it can say things
@@ -218,6 +232,23 @@ message ──► matches a protocol template? ──yes──► deterministic 
   slate has been refuted the session looks beyond the pool through a
   rarity-weighted inverted index bounded to 2,000 products (failure detection
   and strategy switching without a 50,000-product rescan on every later turn).
+- **A shopper can change what they are shopping for.** "Forget the belt, I
+  want a wallet instead" names a category that lands in a different
+  department (fewer than 20% of the smaller pool in common): the session
+  moves there, the refuted belts and the questions retired for them are
+  cleared, feature strings that described belts are dropped, a typed material
+  or colour is carried at `0.5` confidence when the new department can
+  satisfy it, an explicit price bound is re-applied to the new pool, and the
+  output gate's clock restarts. "More of a dress belt" overlaps the current
+  pool and is a refinement, not a switch.
+- **The shopper may write in another language.** A stdlib detector
+  (`src/language.py`: scripts for Chinese, Japanese, Korean, Thai, Vietnamese,
+  Arabic and others; function words for Indonesian, Malay, Filipino, Spanish,
+  Portuguese, French and German) sends a non-English message through one
+  short translation call before the catalog reads it; English never triggers
+  the call, a quoted catalog string in another script inside an English
+  sentence stays English, and a failed translation leaves the original for the
+  model stage. In `assist` mode the reply is phrased in the shopper's language.
 - **An explicit price ceiling or floor is a hard filter on the grounded
   pool** ("under $60" removes products priced above it, keeps unpriced ones
   flagged as unknown, and relaxes itself if nothing survives); the protocol's
@@ -260,26 +291,26 @@ every arm from a cache.
 | Natural wording, attributes verbatim (gemma4 shopper) | model on every off-protocol message | 0.9900 | 0.9607 | 2.370 | 0.955802 | 216 | 242,919 |
 | Natural wording, attributes paraphrased (gemma4 shopper) | deterministic (frozen submission) | 0.2150 | 0.0681 | 10.005 | 0.147826 | 0 | 0 |
 | Natural wording, attributes paraphrased (gemma4 shopper) | catalog reads the sentence, no model | 0.7050 | 0.5518 | 4.970 | 0.638647 | 0 | 0 |
-| Natural wording, attributes paraphrased (gemma4 shopper) | cascade: catalog first, model on demand (shipped) | 0.8500 | 0.7267 | 4.060 | **0.781795** | 766 | 809,633 |
+| Natural wording, attributes paraphrased (gemma4 shopper) | cascade: catalog first, model on demand (shipped) | 0.8500 | 0.7292 | 4.035 | **0.783070** | 760 | 803,211 |
 | Natural wording, attributes paraphrased (gemma4 shopper) | model on every off-protocol message | 0.8550 | 0.7471 | 3.970 | 0.792233 | 764 | 801,763 |
 | Natural wording, attributes verbatim (qwen2.5-7b-instruct shopper) | deterministic (frozen submission) | 0.5650 | 0.3889 | 6.770 | 0.483770 | 0 | 0 |
 | Natural wording, attributes verbatim (qwen2.5-7b-instruct shopper) | catalog reads the sentence, no model | 0.9250 | 0.8597 | 2.810 | 0.884195 | 0 | 0 |
-| Natural wording, attributes verbatim (qwen2.5-7b-instruct shopper) | cascade: catalog first, model on demand (shipped) | 0.9400 | 0.8946 | 2.715 | **0.904066** | 309 | 319,242 |
+| Natural wording, attributes verbatim (qwen2.5-7b-instruct shopper) | cascade: catalog first, model on demand (shipped) | 0.9450 | 0.8972 | 2.675 | **0.908152** | 302 | 311,093 |
 | Natural wording, attributes verbatim (qwen2.5-7b-instruct shopper) | model on every off-protocol message | 0.9100 | 0.8376 | 3.115 | 0.863977 | 494 | 509,768 |
 | Natural wording, attributes paraphrased (qwen2.5-7b-instruct shopper) | deterministic (frozen submission) | 0.3200 | 0.1778 | 8.980 | 0.253752 | 0 | 0 |
 | Natural wording, attributes paraphrased (qwen2.5-7b-instruct shopper) | catalog reads the sentence, no model | 0.7650 | 0.6481 | 4.230 | 0.712320 | 0 | 0 |
-| Natural wording, attributes paraphrased (qwen2.5-7b-instruct shopper) | cascade: catalog first, model on demand (shipped) | 0.8050 | 0.6942 | 4.085 | **0.749050** | 532 | 557,331 |
+| Natural wording, attributes paraphrased (qwen2.5-7b-instruct shopper) | cascade: catalog first, model on demand (shipped) | 0.8150 | 0.7079 | 4.000 | **0.759875** | 520 | 546,458 |
 | Natural wording, attributes paraphrased (qwen2.5-7b-instruct shopper) | model on every off-protocol message | 0.8100 | 0.7017 | 4.000 | 0.755511 | 673 | 703,343 |
 
 - 200 public sessions per cell; customer rewrites by `gemma4`, grounding by `gemma4` (the same local vLLM service; the rewriter sees only the template message, never the catalog).
 - Every rewrite and every model reply is served from an immutable cache and the grid was replayed with `--strict-replay --strict-grounding` (zero cache misses); per-session outcomes and turn-level trajectories are in `results/attribution/replay_v2/strict/`, and `tools/check_attribution_replay.py` verifies that the replay reproduces every cell.
 - On the organizer templates every arm makes zero model calls and reproduces the deterministic score exactly: protocol wording never reaches the model.
 - Natural wording, attributes verbatim: the shipped cascade averages 0.58 model calls and 662 tokens per session (the model-on-every-message baseline: 1.08 calls, 1,215 tokens), 456 ms per model call (latency from a live-call run of the same condition).
-- Natural wording, attributes paraphrased: the shipped cascade averages 3.83 model calls and 4,048 tokens per session (the model-on-every-message baseline: 3.82 calls, 4,009 tokens), 366 ms per model call (latency from a live-call run of the same condition).
+- Natural wording, attributes paraphrased: the shipped cascade averages 3.80 model calls and 4,016 tokens per session (the model-on-every-message baseline: 3.82 calls, 4,009 tokens), 366 ms per model call (latency from a live-call run of the same condition).
 - Example rewrite: simulator “I'm looking for Jewelry Necklaces. A key requirement is: Material:alloy.” → shopper “I'm looking for some alloy necklaces.”.
 - Agent latency with the language layer on, model calls included: natural wording mean 0.13 s per turn (p95 0.51 s); paraphrased wording mean 0.32 s (p95 0.58 s). A session that has refuted a full slate looks beyond its shelf pool through a rarity-weighted inverted index bounded to 2,000 products instead of re-scoring the whole catalog on every later turn.
-- Paraphrased wording by scenario (cascade): buying 0.887 / browsing 0.912 / intent override 0.767 / boundary 0.300 Hit@10. The boundary drop is a simulator artefact: its shopper says "no preference" once and then answers that very attribute later, which a human reading treats as a retired question.
-- Cross-model check: with `qwen2.5-7b-instruct` playing the shopper (rewrites pre-generated by `tools/precompute_customer_rewrites.py`, grounding still `gemma4`), natural wording scores 0.4838 deterministic and 0.9041 cascade (Hit@10 0.565 → 0.940, 1.5 calls per session); paraphrased wording scores 0.2538 deterministic and 0.7490 cascade: the same direction as the same-model run.
+- Paraphrased wording by scenario (cascade): buying 0.888 / browsing 0.913 / intent override 0.767 / boundary 0.300 Hit@10. The boundary drop is a simulator artefact: its shopper says "no preference" once and then answers that very attribute later, which a human reading treats as a retired question.
+- Cross-model check: with `qwen2.5-7b-instruct` playing the shopper (rewrites pre-generated by `tools/precompute_customer_rewrites.py`, grounding still `gemma4`), natural wording scores 0.4838 deterministic and 0.9082 cascade (Hit@10 0.565 → 0.945, 1.5 calls per session); paraphrased wording scores 0.2538 deterministic and 0.7599 cascade: the same direction as the same-model run.
 - These are research diagnostics with a model playing the shopper, not organizer scores.
 
 #### Where the recovery comes from
@@ -297,10 +328,10 @@ Nine agents on the same cached rewrites, all sharing the ARC controller and diff
 | LLM proposes, catalog verifies, no vocabulary hints | 0.9804 | 0.9622 | 0.7103 | 0.8672 | 0.7578 | 1.1–4.4 |
 | LLM proposes, catalog verifies (model on every off-protocol message) | 0.9804 | 0.9558 | **0.7921** | 0.8634 | 0.7594 | 1.1–3.8 |
 | LLM as agent: asks and ranks a 40-item shortlist | 0.6923 | 0.6846 | 0.5440 | 0.6440 | 0.5139 | 3.9–5.8 |
-| **Cascade: catalog reads first, model on demand (shipped)** | 0.9804 | **0.9718** | 0.7818 | **0.9041** | 0.7490 | 0.6–3.8 |
+| **Cascade: catalog reads first, model on demand (shipped)** | 0.9804 | **0.9718** | 0.7831 | **0.9082** | 0.7599 | 0.6–3.8 |
 
 - **Template independence explains most of the loss.** Exact catalog-string matching without any model recovers the largest share in every condition and has the highest score of the original nine arms when the rewrites keep the attribute strings. The frozen parser fails on those messages because it is bound to the organizer's templates, not because they need interpretation.
-- **The cascade keeps the best of both readers.** Built after this study, it lets the catalog read the sentence first and consults the model only when attribute vocabulary is left unread or the shopper cancels something. Against the model-on-every-message reader it is better by +0.016 [+0.004, +0.033] (G) and +0.040 [+0.016, +0.067] (Q) when the attribute strings are kept, at 0.6 and 1.5 calls per session instead of 1.1 and 2.5, and indistinguishable under paraphrase (-0.010 [-0.041, +0.020] G, -0.007 [-0.036, +0.023] Q) at equal or fewer calls (paired, scenario-stratified bootstrap in `results/attribution/replay_v2/strict/intervals.md`). The cascade row comes from the grid rerun in `results/attribution/replay_v2/strict/` (the model-only reader re-measured there at 0.9558 / 0.7922 / 0.8640 / 0.7555 after the JSON repair); the other rows are the original replay.
+- **The cascade keeps the best of both readers.** Built after this study, it lets the catalog read the sentence first and consults the model only when attribute vocabulary is left unread, the shopper cancels something, or the catalog cannot place the shopper in a department. Against the model-on-every-message reader it is better by +0.016 [+0.004, +0.033] (G) and +0.044 [+0.019, +0.072] (Q) when the attribute strings are kept, at 0.6 and 1.5 calls per session instead of 1.1 and 2.5, and indistinguishable under paraphrase (-0.009 [-0.040, +0.021] G, +0.004 [-0.026, +0.035] Q) at equal or fewer calls (paired, scenario-stratified bootstrap in `results/attribution/replay_v2/strict/intervals.md`). The cascade row comes from the grid rerun in `results/attribution/replay_v2/strict/` (the model-only reader re-measured there at 0.9558 / 0.7922 / 0.8640 / 0.7555 after the JSON repair); the other rows are the original replay.
 - **The model adds under paraphrase only.** Grounding minus exact matching is +0.153 [+0.095, +0.212] under Paraphrase (G) and +0.044 [-0.002, +0.091] under Paraphrase (Q); under the verbatim conditions it is -0.014 [-0.031, -0.000] (G) and -0.021 [-0.052, +0.008] (Q).
 - **Catalog verification is rarely exercised.** With vocabulary hints in the prompt the model proposes catalog strings, so the check rejects only 1–9 feature proposals per run; admitting everything scores the same or better (-0.005 [-0.016, +0.003] G verbatim, -0.021 [-0.043, -0.001] Q paraphrase, grounding minus unverified). Only the exact-only restriction hurts, in every condition. This is a negative result for our own design; it holds for a simulator whose clues are catalog strings.
 - **An LLM that asks and ranks on its own is the weakest arm everywhere**, including on the organizer templates, at 4–6 calls and 10–16k tokens per session.
@@ -321,6 +352,8 @@ into the pool and the 500 nearest products into the post-refutation widening.
 | Paraphrase (G) | 0.7818 | 0.7771 | 0.7639 | 0.7762 |
 | Verbatim (Q) | 0.9041 | 0.9038 | 0.9017 | 0.9022 |
 | Paraphrase (Q) | 0.7490 | 0.7381 | 0.7341 | 0.7421 |
+
+The dense options were measured on the cascade as it stood before the department-placement rules above (cascade column as of that run); the shipped cascade now scores 0.9718 / 0.7831 / 0.9082 / 0.7599 in the same four conditions.
 
 No cell is significantly positive (paired intervals in `results/attribution/dense/intervals.md`);
 the organizer templates still score 0.980400 with zero calls. The translator fixes six paraphrase
@@ -346,6 +379,9 @@ language path and in the engineering around it.
 | **Bounded widening** through a rarity-weighted inverted index (2,000 products) instead of a 50,000-product rescan | Tail latency after a refuted slate | Agent-side p95 per turn on paraphrased wording from 7.5 s to 0.14 s (cached-model replay, so model time excluded); scores unchanged |
 | **Per-phrase memoisation in the ranker** | 700,000 redundant string parses per full-catalog scoring pass | Full-catalog scoring 3.8 s to 1.1 s, mean evaluator time per response 38.7 ms to 15.0 ms; public-set outputs identical |
 | **Positive follow-ups keep the slate** ("the first one looks good, in blue?") | Continuation means refutation only for the simulator | Demo behaviour; no benchmark effect |
+| **Department placement goes to the model** when no shelf name occurs in the sentence; function words and root-level promotional nodes no longer match shelves | "running shoes for the gym" landed on a holiday-sweater shelf through "for" and "the", and a scarf filed under "Shoes & Jewelry Westlake" answered "shoes" | Rank one is a shoe; cascade grid re-measured below |
+| **Category switch** ("forget the belt, I want a wallet instead") | The model named the new category correctly and the agent ignored it, showing belts | Session moves department, keeps the budget, restarts the gate clock |
+| **Multilingual input** (`src/language.py` + one translation call) | A Chinese, Thai, Vietnamese or Indonesian message returned an unrelated product | Read in English, answered in the shopper's language; zero calls on English |
 | **Cross-category diagnostic** on Electronics, Musical Instruments and Baby Products catalogs built from Amazon Reviews 2023 | Every constant was chosen on the clothing catalog | 0.978 / 0.978 / 0.973 under the identical protocol, clothing reference 0.959; no constant changed |
 
 ## 🗺️ How this maps to the Track 4 directions
@@ -519,7 +555,7 @@ gzip -dc catalog.jsonl.gz > data/catalog.jsonl
 wc -l data/catalog.jsonl  # expected: 50000
 ```
 
-Run contract checks and all 82 dependency-free tests:
+Run contract checks and the dependency-free test suite:
 
 ```bash
 python3 tools/preflight.py

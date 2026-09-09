@@ -22,6 +22,7 @@ from src.llm import ChatClient, LLMSettings, LLMUsage
 from src.policy import available_attributes, choose, emit_count, exact_signature_prefix
 from src.rank import diversify_evidence_ties, score_candidates
 from src.shelf import Catalog
+from src.telemetry import emit
 
 
 class Agent:
@@ -86,6 +87,9 @@ class Agent:
         usage = LLMUsage()
         grounding: dict | None = None
         try:
+            emit("grounding", "running")
+            constraints_before = list(state.constraints)
+            state.current_turn = turn
             # Reaching another turn proves that the previous slate missed. The
             # override parser clears this history before it can affect the new
             # intent.
@@ -137,17 +141,29 @@ class Agent:
                     # shopper still lands in a plausible department.
                     shelves, pool = self.catalog.shelf_pool(user_message)
                     if pool:
+                        from src.ground import _apply_deferred_budget
+
                         state.candidate_pool = pool
                         state.pool_shelves = shelves
                         grounding["fallback_pool"] = {
                             "shelves": shelves[:6],
                             "size": len(pool),
                         }
+                        _apply_deferred_budget(state, self.catalog, grounding)
+            emit("grounding", "complete", recognized=recognized,
+                 grounding=grounding, usage=usage.to_dict())
+            emit("evidence", "running")
             if grounding is not None and grounding.get("keeps_slate") and previous_slate:
                 # A human building on what was just shown ("the first one
                 # looks good, does it come in blue?") has not refuted the
                 # slate; only the simulator's continuation rule says so.
                 state.unconfirm_misses(previous_slate)
+            emit("evidence", "complete", constraints=list(state.constraints),
+                 added=[x for x in state.constraints if x not in constraints_before],
+                 removed=[x for x in constraints_before if x not in state.constraints],
+                 weights=state.constraint_weights(), shelf=state.shelf,
+                 shelves=list(state.pool_shelves), proven_misses=len(state.proven_misses))
+            emit("ranking", "running")
             candidates = self.catalog.candidates(state.shelf)
             pool_widened = False
             if state.shelf is None and state.candidate_pool:
@@ -218,6 +234,7 @@ class Agent:
                 query_vector = self._dense.query(" ".join(state.free_text))
                 scores = self._dense.rerank(scores, query_vector)
 
+            emit("ranking", "complete", scores=scores, source_count=len(candidates))
             if (
                 config.QUESTION_MODE in {
                     "counterfactual", "metric_voi", "answerable_metric_voi"
@@ -225,18 +242,29 @@ class Agent:
                 and not state.information_complete
                 and not state.boundary_signal
             ):
+                emit("mvoi", "running")
                 question_values = estimate_question_values(
                     self.catalog,
                     scores,
                     state.constraints,
                     available_attributes(state),
                 )
+                emit("mvoi", "complete", values=[v.to_dict() for v in question_values],
+                     selected=choose(state, question_values), mode=config.QUESTION_MODE,
+                     turn_cost=config.QUESTION_TURN_COST)
             else:
                 question_values = []
+                emit("mvoi", "skipped", reason=(
+                    "Preferences exhausted" if state.information_complete else
+                    "Boundary response uses the safe question" if state.boundary_signal else
+                    "Fixed question policy"))
+            # A grounded session that switched department restarts the
+            # gate's clock; on the protocol path the offset is always zero.
+            effective_turn = max(1, turn - state.turn_offset)
             tail_exploration = False
             if (
                 config.TAIL_EXPLORATION_ENABLED
-                and turn >= config.TAIL_EXPLORATION_TURN
+                and effective_turn >= config.TAIL_EXPLORATION_TURN
                 and len(state.proven_misses) >= top_k
                 and scores
             ):
@@ -266,6 +294,9 @@ class Agent:
                     config.TAIL_EXPLORATION_CORE_WINDOW,
                 )
                 tail_exploration = True
+                emit("ranking", "complete", scores=scores,
+                     source_count=len(rank_source_ids), refined=True)
+            emit("planner", "running")
             refutation_cohort_size = exact_signature_prefix(
                 scores, self.catalog.signature
             )
@@ -277,7 +308,7 @@ class Agent:
             if state.grounded:
                 disclosed = min(disclosed, config.MAX_DISCLOSED_CONSTRAINTS - 1)
             count = emit_count(
-                turn,
+                effective_turn,
                 disclosed,
                 top_k,
                 scores,
@@ -286,6 +317,8 @@ class Agent:
             )
             recommendations = [asin for asin, _ in scores[:count]]
             attribute = choose(state, question_values)
+            emit("planner", "complete", emitted_count=len(recommendations),
+                 recommendations=recommendations, selected_question=attribute)
             score_lookup = dict(scores)
             details = [
                 candidate_signals(
@@ -344,6 +377,7 @@ class Agent:
             state.remember_recommendations(recommendations)
             state.asked.append(attribute)
         except Exception:
+            emit("error", "failed", reason="Agent entered contract-safe recovery")
             # The official harness treats an exception as an empty turn. Return a
             # valid recovery response so one bad message cannot terminate a run.
             recommendations, attribute = [], "feature"
@@ -355,6 +389,7 @@ class Agent:
                 "recommendations": [],
             }
 
+        emit("response", "running")
         message = self._message(attribute)
         if self.llm is not None and self.llm_settings.says and recommendations:
             try:
@@ -365,6 +400,8 @@ class Agent:
                     self.catalog.title.get(recommendations[0]),
                     self.llm,
                     usage,
+                    language=state.language,
+                    sample=state.language_sample,
                 )
                 if rendered:
                     message = rendered
@@ -372,7 +409,7 @@ class Agent:
             except Exception:
                 pass
 
-        return {
+        response = {
             "message": message,
             "ask_attribute": attribute,
             "recommendations": [
@@ -383,6 +420,8 @@ class Agent:
                 "completion_tokens": usage.completion_tokens,
             },
         }
+        emit("response", "complete", response=response)
+        return response
 
     def explain_last_decision(self, session_id: str) -> dict:
         """Return a copy of the latest non-contract diagnostic certificate."""

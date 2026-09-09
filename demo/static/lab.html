@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f3">
+  <title>ARC · Live Decision Lab</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./lab.css">
+</head>
+<body>
+  <a class="skip-link" href="#message">Skip to conversation</a>
+  <header class="app-header">
+    <a class="brand" href="./index.html" title="Open the presentation"><span class="brand-symbol">a<span>↗</span></span><span>ARC<small>ASK · RANK · COMMIT</small></span></a>
+    <div class="header-title"><span class="eyebrow">TECHJAM 2026 / TRACK 4</span><strong>Live Decision Lab</strong></div>
+    <div class="header-actions"><span id="engine-status" class="pill">Connecting</span><button id="export" class="quiet-button" disabled>↓ Export run</button><button id="fullscreen" class="icon-button" aria-label="Toggle fullscreen" title="Fullscreen"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5"/></svg></button></div>
+  </header>
+  <main>
+    <section class="toolbar" aria-label="Session controls">
+      <div class="segmented" aria-label="Execution mode"><button id="live-mode" class="selected" aria-pressed="true">● Live</button><button id="replay-mode" aria-pressed="false">↺ Replay</button></div>
+      <label class="scenario-field"><span>SCENARIO</span><select id="scenario" aria-label="Choose a shopping scenario"><option>Loading scenarios…</option></select></label>
+      <span id="reader" class="muted toolbar-reader"></span>
+      <button id="reset" class="secondary-button">↻ New session</button>
+    </section>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <div id="error" class="error-notice" role="alert" hidden></div>
+    <div class="workspace">
+      <section class="chat-panel panel" aria-label="Shopping conversation">
+        <div class="panel-heading"><div><span class="eyebrow">01 / THE CONVERSATION</span><h1>Find it, together.</h1></div><span id="turn-badge" class="pill">Turn 0 / 10</span></div>
+        <div id="transcript" class="transcript" role="log" aria-label="Messages between shopper and ARC"></div>
+        <div id="history-note" class="history-note" hidden>Viewing a previous turn. <button id="latest">Return to latest ↗</button></div>
+        <div class="composer">
+          <div class="composer-top"><label for="message">SHOPPER MESSAGE</label><button id="suggest" class="text-button">Use suggested reply ↙</button></div>
+          <form id="chat-form"><textarea id="message" rows="2" maxlength="4000" placeholder="Tell ARC what you’re looking for…" aria-label="Shopper message"></textarea><button id="send" class="send-button" type="submit" aria-label="Send shopper message">↑</button></form>
+          <div class="rewrite-controls"><span>Paraphrase with</span><select id="rewrite-model" aria-label="Shopper paraphrase model"><option value="gemma">Gemma</option><option value="qwen">Qwen</option></select><button id="rewrite" class="text-button">✧ Preview rewrite</button></div>
+          <div id="rewrite-preview" class="rewrite-preview" hidden></div>
+        </div>
+        <div id="replay-controls" class="replay-controls" hidden><span>Recorded computation · paced for explanation</span><button id="replay-next" class="primary-button">Play next turn →</button><button id="replay-all" class="secondary-button">Play all</button></div>
+      </section>
+      <section class="results-panel panel" aria-label="Ranking and target observation">
+        <div class="panel-heading"><div><span class="eyebrow">02 / THE SEARCH</span><h2>Every clue changes the picture.</h2></div><span id="candidate-count" class="pill">Waiting for a message</span></div>
+        <div id="target-card" class="target-card"></div>
+        <div class="rank-section"><div class="section-line"><h3>Target rank over the conversation</h3><span class="muted">Lower is better · log scale</span></div><div id="rank-chart" class="rank-chart"></div><div class="chart-legend"><span><i class="legend-dot"></i> Internal candidate rank</span><span><i class="legend-dot coral"></i> Submitted recommendation rank</span></div></div>
+        <div class="section-line ranking-title"><h3>Current candidate shortlist</h3><span id="ranking-note" class="muted">Top 5 shown</span></div>
+        <div id="candidates" class="candidates"></div>
+        <div id="evidence" class="evidence-strip"></div>
+      </section>
+    </div>
+    <section class="flow-panel panel" aria-label="Live agent computation">
+      <div class="flow-heading"><div><span class="eyebrow">03 / INSIDE THE DECISION</span><h2>Follow the thinking, step by step.</h2></div><div class="flow-meta"><span id="flow-status" class="pill">Ready for turn 1</span><button id="replay-trace" class="text-button" disabled>↺ Replay this calculation</button><span id="latency" class="muted"></span></div></div>
+      <div id="flow" class="flow-track"></div>
+      <div id="inspector" class="inspector" aria-live="polite"></div>
+    </section>
+    <div id="comparison" class="panel comparison" hidden></div>
+    <footer><span>ARC / A clearer choice, one conversation at a time.</span><span>Target observations stay outside the agent.</span></footer>
+  </main>
+  <noscript>This interactive demo requires JavaScript.</noscript>
+  <script type="module" src="./lab.js"></script>
+</body>
+</html>

@@ -79,6 +79,12 @@ def build(bundle_path: Path, output: Path, allow_stale: bool = False) -> dict:
     index_path.write_text(
         index.replace(DOCUMENT_TAG, STATIC_DOCUMENT_TAG, 1), encoding="utf-8"
     )
+    lab_path = output / "lab.html"
+    if lab_path.is_file():
+        lab_path.write_text(
+            lab_path.read_text(encoding="utf-8").replace(DOCUMENT_TAG, STATIC_DOCUMENT_TAG, 1),
+            encoding="utf-8",
+        )
 
     health = static_health(bundle, fresh, changed, current)
     (output / "data" / "demo_bundle.json").write_text(

@@ -31,9 +31,14 @@ import json
 import re
 
 from . import config
+from .language import detect, language_name
 from .shelf import COLOR_RE, COLORS, MATERIAL_RE, MATERIALS, loose, norm, tokens
 
 INTENTS = ("open", "add", "override", "no_preference", "reject", "other")
+
+TRANSLATE_PROMPT = """Translate the shopper's chat message into natural English for a product search over a clothing, shoes and jewelry catalog.
+Keep brand names, product names, sizes, numbers and currency amounts exactly as written; do not convert currencies. Keep the meaning exactly: a cancellation stays a cancellation, "no preference" stays "no preference".
+Output the English sentence only."""
 
 SYSTEM_PROMPT = """You convert one shopper chat message into a strict JSON object for a product-search engine over a clothing, shoes and jewelry catalog.
 Return exactly these fields:
@@ -62,7 +67,8 @@ Output only the JSON object."""
 RENDER_PROMPT = """You are the voice of a shopping assistant. Write one or two short, warm sentences (at most 40 words) to the shopper.
 Rules: mention at most two of the requirements you are matching; describe the top product only with the words given; never invent facts, prices or colours.
 If "question_attribute" is set, end by asking about exactly that attribute in plain words (material, color, size, style, feature, use_case; "other" means "anything else that matters to you").
-If it is null, do not ask a question. Output plain text only."""
+If it is null, do not ask a question.
+If "reply_language" is given, write the whole reply in that language, matching the language of "shopper_wrote"; otherwise write in English. Output plain text only."""
 
 _STEM_MIN = 4
 
@@ -153,7 +159,17 @@ def _apply_budget_bound(state, catalog, budget: float, operator: str) -> dict:
         # A new price statement supersedes the previous bound.
         state.candidate_pool = state.pool_before_budget
         state.pool_signature_counts = None
-    pool = state.candidate_pool or list(catalog.candidates(state.shelf))
+    if state.candidate_pool:
+        pool = state.candidate_pool
+    elif state.shelf is not None:
+        pool = list(catalog.candidates(state.shelf))
+    else:
+        # "Something under $25" with no department yet: the bound is
+        # remembered and applied the moment the session is placed. Filtering
+        # the whole catalog here would masquerade as a department.
+        state.budget_bound = (operator, budget)
+        return {"operator": operator, "bound": budget, "applied": False,
+                "reason": "deferred_until_department_placed"}
     kept: list[str] = []
     unknown = 0
     for asin in pool:
@@ -180,7 +196,186 @@ def _apply_budget_bound(state, catalog, budget: float, operator: str) -> dict:
     else:
         detail["applied"] = False
         detail["reason"] = "empty_after_filter" if not kept else "no_product_excluded"
+    # Remembered even when nothing was excluded: a later department switch
+    # re-applies the bound to the new pool.
+    state.budget_bound = (operator, budget)
     return detail
+
+
+def _apply_deferred_budget(state, catalog, trace: dict) -> None:
+    """Apply a price bound stated before the session had a department."""
+    if (
+        state.budget_bound
+        and config.LLM_GROUND_HARD_BUDGET
+        and state.pool_before_budget is None
+        and (state.candidate_pool or state.shelf is not None)
+    ):
+        operator, amount = state.budget_bound
+        trace["budget_bound"] = _apply_budget_bound(state, catalog, amount, operator)
+
+
+def _current_pool(catalog, state) -> list[str]:
+    """Products the session can currently recommend, before any price bound."""
+    if state.pool_before_budget is not None:
+        return state.pool_before_budget
+    if state.candidate_pool:
+        return state.candidate_pool
+    if state.shelf is not None:
+        return catalog.by_shelf.get(state.shelf, [])
+    return []
+
+
+def _pool_mentions(catalog, pool: list[str], value: str) -> bool:
+    """True when at least one product in ``pool`` carries ``value`` in its text."""
+    needle = " " + loose(value) + " "
+    if len(needle.strip()) < 3:
+        return False
+    for asin in pool:
+        if needle in " " + catalog.ltext[asin] + " ":
+            return True
+    return False
+
+
+def _place_category(catalog, state, category: str, intent: str, trace: dict, dense=None) -> None:
+    """Route a model-named category to a shelf or a union of shelves.
+
+    On a session's first placement this sets the pool. Later, a category
+    that lands in a different department than the current pool switches
+    the department (:func:`_switch_department`); one that overlaps the
+    current pool is a refinement ("a wide belt" while browsing belts) and
+    changes nothing. The token overlap of the category phrase with shelf
+    names is what places it; the sentence as a whole is never used here.
+    """
+    shelf = catalog.match_shelf(category)
+    if shelf is not None:
+        shelves, pool = [shelf], list(catalog.by_shelf.get(shelf, []))
+    else:
+        shelves, pool = catalog.shelf_pool(category)
+        shelves, pool = _dense_shelves(catalog, category, shelves, pool, dense, trace)
+    if not pool:
+        trace["category_unplaced"] = category
+        return
+    current = _current_pool(catalog, state)
+    if not current:
+        if shelf is not None:
+            state.shelf = shelf
+            trace["shelf"] = shelf
+        else:
+            state.pool_shelves = shelves
+            state.candidate_pool = pool
+            trace["pool_shelves"] = shelves[:12]
+            trace["pool_size"] = len(pool)
+        _apply_deferred_budget(state, catalog, trace)
+        return
+    shared = len(set(current) & set(pool))
+    overlap = shared / max(1, min(len(current), len(pool)))
+    if overlap >= config.LLM_GROUND_SWITCH_OVERLAP:
+        trace["category_kept"] = {
+            "category": category, "overlap": round(overlap, 3),
+            "reason": "refines_current_department",
+        }
+        return
+    if intent not in ("open", "override"):
+        # "I'll take the pretty ankle boots one" while browsing slippers is
+        # a product description, not a new request: only a new request or a
+        # cancellation moves the session.
+        trace["category_kept"] = {
+            "category": category, "overlap": round(overlap, 3),
+            "reason": f"not_a_new_request:{intent}",
+        }
+        return
+    if intent == "open" and _evidence_in_current_department(catalog, state, current, trace):
+        # "I'm looking for those hoop earrings with the leopard pattern"
+        # while browsing dangle earrings quotes what the current department
+        # sells; the shopper is describing a product, not leaving. Only a
+        # cancellation switches regardless.
+        trace["category_kept"] = {
+            "category": category, "overlap": round(overlap, 3),
+            "reason": "evidence_in_current_department",
+        }
+        return
+    _switch_department(catalog, state, category, shelf, shelves, pool, overlap, trace)
+
+
+def _evidence_in_current_department(catalog, state, current: list[str], trace: dict) -> bool:
+    """Does this turn's reading quote something the current pool sells?"""
+    if trace.get("stage1", {}).get("accepted"):
+        return True
+    proposal = trace.get("proposal") or {}
+    for phrase in proposal.get("features") or []:
+        text = norm(phrase)
+        if not text:
+            continue
+        if _support(catalog, state, text) >= 1 or _pool_mentions(catalog, current, text):
+            return True
+    return False
+
+
+def _switch_department(catalog, state, category: str, shelf, shelves: list[str],
+                       pool: list[str], overlap: float, trace: dict) -> None:
+    """"Forget the belt, I want a wallet": move the session to a new department.
+
+    The old pool, the products refuted in it and the questions retired for
+    it no longer describe the shopper's request. Feature strings ("buckle
+    closure") described the old product type and are dropped. A typed
+    material or colour is a preference about the shopper, not the product,
+    and is carried at ``OVERRIDE_DECAY`` confidence when the new pool can
+    satisfy it; a price bound is the shopper's budget and is re-applied to
+    the new pool at full strength.
+    """
+    previous = list(state.pool_shelves) if state.pool_shelves else ([state.shelf] if state.shelf else [])
+    kept: list[dict] = []
+    removed: list[str] = []
+    for value in list(state.constraints):
+        if value.startswith("budget around $"):
+            kept.append({"constraint": value, "confidence": 1.0, "reason": "budget_carries"})
+            continue
+        typed = value in MATERIALS or value.startswith("color:")
+        probe = value.split(":", 1)[1].strip() if value.startswith("color:") else value
+        if typed and _pool_mentions(catalog, pool, probe):
+            state.set_weight(value, config.OVERRIDE_DECAY)
+            kept.append({"constraint": value, "confidence": config.OVERRIDE_DECAY,
+                         "reason": "typed_preference_carries"})
+        else:
+            state.remove(value)
+            removed.append(value)
+    if shelf is not None:
+        state.shelf = shelf
+        state.candidate_pool = None
+        state.pool_shelves = []
+    else:
+        state.shelf = None
+        state.candidate_pool = pool
+        state.pool_shelves = shelves
+    state.pool_before_budget = None
+    state.pool_signature_counts = None
+    state.clear_recommendation_history()
+    state.exhausted.clear()
+    state.information_complete = False
+    state.last_reply_count = None
+    state.override_seen = True
+    state.grounded = True
+    # A new request restarts the output gate's clock.
+    state.turn_offset = max(0, state.current_turn - 1)
+    bound = None
+    if state.budget_bound and config.LLM_GROUND_HARD_BUDGET:
+        operator, amount = state.budget_bound
+        bound = _apply_budget_bound(state, catalog, amount, operator)
+    trace["department_switch"] = {
+        "category": category,
+        "from": previous[:6],
+        "to": shelves[:6],
+        "pool_size": len(pool),
+        "overlap_with_previous": round(overlap, 3),
+        "kept": kept,
+        "removed": removed,
+        "budget_bound": bound,
+    }
+    if shelf is not None:
+        trace["shelf"] = shelf
+    else:
+        trace["pool_shelves"] = shelves[:12]
+        trace["pool_size"] = len(pool)
 
 
 def _catalog_vocabulary(catalog, state) -> list[str]:
@@ -449,6 +644,9 @@ def ground_message(message: str, state, catalog, client, usage, dense=None) -> d
         "rejected": [],
         "removed": [],
     }
+    message = _read_language(message, state, client, usage, trace)
+    if trace.get("language", {}).get("english"):
+        trace["english"] = message
     if not _llm_extract(message, state, catalog, client, usage, trace, dense):
         state.grounding_trace.append(trace)
         return trace
@@ -518,19 +716,8 @@ def _llm_extract(message: str, state, catalog, client, usage, trace: dict, dense
 
     # --- shelf / candidate pool --------------------------------------------
     category = trace["proposal"]["category"]
-    if category and state.shelf is None and not state.candidate_pool:
-        shelf = catalog.match_shelf(category)
-        if shelf is None:
-            shelves, pool = catalog.shelf_pool(category)
-            shelves, pool = _dense_shelves(catalog, category, shelves, pool, dense, trace)
-            if pool:
-                state.pool_shelves = shelves
-                state.candidate_pool = pool
-                trace["pool_shelves"] = shelves[:12]
-                trace["pool_size"] = len(pool)
-        else:
-            state.shelf = shelf
-            trace["shelf"] = shelf
+    if category:
+        _place_category(catalog, state, category, intent, trace, dense)
     if state.scenario is None and intent in ("open", "add"):
         state.scenario = "buying" if (
             trace["proposal"]["material"] or trace["proposal"]["features"]
@@ -547,6 +734,11 @@ def _llm_extract(message: str, state, catalog, client, usage, trace: dict, dense
                 "confidence": weight,
                 **(detail or {}),
             })
+        elif trace.get("department_switch"):
+            # "I want a wallet instead, still leather": a preference carried
+            # into the new department at reduced confidence and restated in
+            # the same breath is back at full confidence.
+            state.set_weight(value, weight)
 
     features_accepted: list[str] = []
     for phrase in trace["proposal"]["features"]:
@@ -599,7 +791,10 @@ def _llm_extract(message: str, state, catalog, client, usage, trace: dict, dense
             state.candidate_pool = state.pool_before_budget
             state.pool_before_budget = None
             state.pool_signature_counts = None
+            state.budget_bound = None
             trace["budget_bound"] = {"operator": "around", "bound": budget, "applied": False, "reason": "previous_bound_lifted"}
+        elif operator == "around":
+            state.budget_bound = None
         # An earlier budget statement is superseded by the new one.
         for existing in list(state.constraints):
             if existing.startswith("budget around $") and existing != _format_budget(budget):
@@ -625,11 +820,13 @@ def _finish(trace: dict, state, intent: str) -> dict:
     # shopper had nothing to say about that attribute: retire the question,
     # exactly as the protocol's "no additional preference" reply would.
     asked = state.asked[-1] if state.asked else None
+    switched = bool(trace.get("department_switch"))
     if (
         asked
         and intent != "open"
         and not trace["accepted"]
         and not trace["removed"]
+        and not switched
         and "exhausted" not in trace
     ):
         if asked == "other":
@@ -639,13 +836,13 @@ def _finish(trace: dict, state, intent: str) -> dict:
             state.last_reply_count = 0
         trace["exhausted"] = asked
 
-    if trace["accepted"] or trace["removed"]:
+    if trace["accepted"] or trace["removed"] or switched:
         # A human does not disclose attributes in the simulator's canonical
         # slot order, so positional signature evidence is no longer reliable,
         # and the protocol's four-constraint bound no longer applies.
         state.signature_positions_reliable = False
         state.grounded = True
-        if len(state.constraints) < 4 or trace["accepted"]:
+        if len(state.constraints) < 4 or trace["accepted"] or switched:
             state.information_complete = False
     trace["status"] = "grounded"
     trace["constraints_after"] = list(state.constraints)
@@ -795,6 +992,7 @@ def _pool_from_message(message: str, state, catalog, trace: dict, dense=None) ->
         state.candidate_pool = pool
         trace["pool_shelves"] = shelves[:12]
         trace["pool_size"] = len(pool)
+        _apply_deferred_budget(state, catalog, trace)
 
 
 def _blanket_decay(state, trace: dict) -> None:
@@ -881,6 +1079,7 @@ def _lexical_extract(message: str, state, catalog, trace: dict, *,
         if shelf is not None:
             state.shelf = shelf
             trace["shelf"] = shelf
+            _apply_deferred_budget(state, catalog, trace)
         elif pool_from_message:
             _pool_from_message(message, state, catalog, trace, dense)
     if state.scenario is None:
@@ -1001,16 +1200,20 @@ def residual_attribute_words(message: str, trace: dict, catalog) -> list[str]:
     return residual
 
 
-def needs_model(trace: dict, message: str = "", catalog=None) -> tuple[bool, str]:
+def needs_model(trace: dict, message: str = "", catalog=None, state=None) -> tuple[bool, str]:
     """Decide whether stage one explained the message well enough.
 
     A cancellation always goes to the model, because only a reader of the
     sentence can say *what* was cancelled. A recognised dialogue act with
     nothing else ("no preference", "not those") is fully explained. Otherwise
     the catalog has read the sentence when it found at least one
-    discriminative catalog string in it and no attribute vocabulary is left
-    over; "a zipper closure and hand washing only" keeps "hand washing" for
-    the model even though "zipper closure" was matched verbatim.
+    discriminative catalog string in it, the session is placed in a
+    department (a shelf name occurred in a message, or a pool exists) and no
+    attribute vocabulary is left over; "a zipper closure and hand washing
+    only" keeps "hand washing" for the model even though "zipper closure"
+    was matched verbatim, and "running shoes for the gym" goes to the model
+    to name the department rather than to a token overlap of the sentence
+    with shelf names.
     """
     intent = trace.get("intent")
     if intent == "override":
@@ -1019,12 +1222,116 @@ def needs_model(trace: dict, message: str = "", catalog=None) -> tuple[bool, str
         return False, "dialogue_act_recognised"
     if not any(item.get("tier") == "ngram_signature" for item in trace["accepted"]):
         return True, "no_feature_evidence"
+    if (
+        state is not None
+        and catalog is not None
+        and config.LLM_GROUND_ESCALATE_UNPLACED
+        and state.shelf is None
+        and not state.candidate_pool
+    ):
+        best, pool_size = catalog.department_placement(message)
+        if best == 0 or (best == 1 and pool_size > config.LLM_GROUND_CONFIDENT_POOL):
+            trace["placement"] = {"shared_words": best, "pool_size": pool_size}
+            return True, "department_unplaced"
     if catalog is not None and message:
         residual = residual_attribute_words(message, trace, catalog)
         if residual:
             trace["residual"] = residual
             return True, "attribute_words_left_unread"
     return False, "catalog_string_found"
+
+
+def _translate(message: str, language: str, client, usage, trace: dict) -> str | None:
+    """English for a message the detector read as another language.
+
+    The catalog is English, so the readers are. The translation is one
+    short model call recorded in the trace; a reply that is empty, still not
+    English, or a failure leaves the original message in place, and the
+    cascade then reads it as before (the model stage understands the
+    language even when the catalog stage cannot).
+    """
+    record: dict = {
+        "detected": language,
+        "name": language_name(language),
+        "original": message,
+    }
+    reply = client.chat(
+        [
+            {"role": "system", "content": TRANSLATE_PROMPT},
+            {"role": "user", "content": message.strip()},
+        ],
+        max_tokens=config.LLM_TRANSLATE_MAX_TOKENS,
+        temperature=0.0,
+    )
+    usage.absorb(reply)
+    record["tokens"] = {"prompt": reply.prompt_tokens, "completion": reply.completion_tokens}
+    record["latency_ms"] = round(reply.latency_ms, 1)
+    trace["language"] = record
+    if not reply.ok:
+        record["status"] = "translation_failed"
+        record["error"] = reply.error
+        return None
+    text = " ".join(reply.text.strip().strip('"').strip("\'").split())
+    if (
+        not text
+        or len(text) > 400
+        or text.startswith(("{", "[", "```"))
+        or not re.search(r"[A-Za-z]", text)
+        or detect(text) is not None
+    ):
+        record["status"] = "translation_rejected"
+        record["reply"] = text[:200]
+        return None
+    record["status"] = "translated"
+    record["english"] = text
+    return text
+
+
+def _read_language(message: str, state, client, usage, trace: dict) -> str:
+    """Detect the shopper's language; return the text the readers should see."""
+    language = detect(message) if config.LLM_TRANSLATE else None
+    if language is None:
+        return message
+    state.language = language
+    state.language_sample = message.strip()[:120]
+    if client is None:
+        trace["language"] = {"detected": language, "name": language_name(language),
+                             "original": message, "status": "no_model"}
+        return message
+    return _translate(message, language, client, usage, trace) or message
+
+
+def _reclassify_category_phrase(state, trace: dict) -> None:
+    """A stage-one string the model read as the category is not an attribute.
+
+    "running shoes" is a feature string of exactly one product and also the
+    department the shopper named. Once the model has called it the category,
+    keeping it as a verbatim constraint would pin that one product.
+    """
+    category = (trace.get("proposal") or {}).get("category")
+    if not category:
+        return
+    category_tokens = set(content_tokens(category))
+    if not category_tokens:
+        return
+    stage1 = set(trace.get("stage1", {}).get("accepted", []))
+    kept: list[dict] = []
+    for item in trace["accepted"]:
+        value = item.get("constraint", "")
+        value_tokens = set(content_tokens(value))
+        if (
+            item.get("tier") == "ngram_signature"
+            and value in stage1
+            and value_tokens
+            and value_tokens <= category_tokens
+        ):
+            state.remove(value)
+            trace.setdefault("reclassified", []).append(
+                {"constraint": value, "as": "category", "category": category}
+            )
+            continue
+        kept.append(item)
+    trace["accepted"] = kept
 
 
 def ground_message_cascade(message: str, state, catalog, client, usage, dense=None) -> dict:
@@ -1046,11 +1353,14 @@ def ground_message_cascade(message: str, state, catalog, client, usage, dense=No
         "tokens": {"prompt": 0, "completion": 0},
         "latency_ms": 0.0,
     }
+    message = _read_language(message, state, client, usage, trace)
+    if trace.get("language", {}).get("english"):
+        trace["english"] = message
     _lexical_extract(
         message, state, catalog, trace, blanket_decay=False, pool_from_message=False,
         discriminative_only=True, apply_dialogue_acts=False, dense=dense,
     )
-    escalate, reason = needs_model(trace, message, catalog)
+    escalate, reason = needs_model(trace, message, catalog, state)
     stage1_intent = trace["intent"]
     trace["stage1"] = {
         "intent": stage1_intent,
@@ -1066,6 +1376,7 @@ def ground_message_cascade(message: str, state, catalog, client, usage, dense=No
     if escalate and config.LLM_GROUND_CASCADE:
         if _llm_extract(message, state, catalog, client, usage, trace, dense):
             trace["model_status"] = "grounded"
+            _reclassify_category_phrase(state, trace)
         else:
             trace["model_status"] = trace["status"]
             trace["intent"] = stage1_intent
@@ -1081,8 +1392,14 @@ def ground_message_cascade(message: str, state, catalog, client, usage, dense=No
     return _finish(trace, state, trace["intent"])
 
 
-def render_message(certificate: dict, top_title: str | None, client, usage) -> str | None:
-    """Phrase the customer-facing message from the decision certificate."""
+def render_message(certificate: dict, top_title: str | None, client, usage,
+                   language: str | None = None, sample: str | None = None) -> str | None:
+    """Phrase the customer-facing message from the decision certificate.
+
+    ``language`` (a ``src.language`` code) and ``sample`` (what the shopper
+    wrote) make the reply come back in the shopper's language; both are
+    absent on English sessions, whose prompt is unchanged.
+    """
     payload = {
         "action": certificate.get("action"),
         "requirements_matched": certificate.get("constraints", [])[:4],
@@ -1090,6 +1407,9 @@ def render_message(certificate: dict, top_title: str | None, client, usage) -> s
         "shown": len(certificate.get("recommendations", []) or []),
         "question_attribute": certificate.get("question"),
     }
+    if language:
+        payload["reply_language"] = language_name(language)
+        payload["shopper_wrote"] = (sample or "")[:120] or None
     reply = client.chat(
         [
             {"role": "system", "content": RENDER_PROMPT},

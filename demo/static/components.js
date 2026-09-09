@@ -137,6 +137,7 @@ function header(bundle, health, state) {
         <span class="brand-copy"><strong>ARC · ASK · RANK · COMMIT</strong><small>TechJam 2026 · evidence-grounded decisions</small></span>
       </button>
       <div class="system-status">
+        <a class="badge badge-cyan" href="./lab.html">Open Live Decision Lab ↗</a>
         ${modeBadge}
         ${badge("No internet", "quiet")}
         ${badge("0 AI tokens", "quiet")}

@@ -34,6 +34,18 @@ _EXCLUDED = {
     "clothing", "clothing shoes & jewelry", "clothing, shoes & jewelry",
 }
 
+# Function words that carry no department meaning when a free-form sentence
+# is matched against shelf names by token overlap (``Catalog.shelf_pool``).
+# Only the free-form path uses this; protocol messages name a shelf exactly.
+_SHELF_STOPWORDS = frozenset(
+    "the and for with from all our your you her him his she its are was not "
+    "but this that these those have has had who what when where how any some "
+    "one ones per via into onto than then too very just only also can may "
+    "will get got like want need looking buy something anything more most "
+    "new top best off out down over under around about after before between "
+    "within".split()
+)
+
 # The review-count term is deliberately sublinear twice: log compression
 # handles the heavy tail and the exponent prevents a blockbuster from
 # overwhelming a substantially better evidence match.
@@ -117,13 +129,19 @@ def intent_signature(product: dict, corpus: str) -> tuple[str, ...]:
     return tuple(dict.fromkeys(norm(value) for value in cleaned[:4]))
 
 
-def coarse_category(values: list) -> str:
+def category_parts(values: list) -> list[str]:
+    """The category path with the catalog root removed, one part per node."""
     cleaned: list[str] = []
     for value in values or []:
         for part in str(value).split(","):
             part = part.strip()
             if part and part.lower() not in _EXCLUDED:
                 cleaned.append(part)
+    return cleaned
+
+
+def coarse_category(values: list) -> str:
+    cleaned = category_parts(values)
     return " ".join(cleaned[-2:]) if cleaned else "clothing item"
 
 
@@ -146,6 +164,10 @@ class Catalog:
         self.rating_count: dict[str, int] = {}
         self.shelf_of: dict[str, str] = {}
         self.by_shelf: dict[str, list[str]] = {}
+        # The (parent, leaf) nodes a shelf name was built from; a shelf whose
+        # only parent is the catalog root's residual ("Shoes & Jewelry
+        # Westlake") is a promotional or brand node, not a department.
+        self.shelf_parts: dict[str, list[str]] = {}
 
         with Path(path).open(encoding="utf-8") as handle:
             for line in handle:
@@ -153,7 +175,10 @@ class Catalog:
                     continue
                 product = json.loads(line)
                 asin = str(product["parent_asin"])
-                shelf = coarse_category(product.get("categories") or [])
+                parts = category_parts(product.get("categories") or [])
+                shelf = " ".join(parts[-2:]) if parts else "clothing item"
+                if shelf not in self.shelf_parts:
+                    self.shelf_parts[shelf] = parts[-2:]
                 text = searchable_text(product)
                 self.ids.append(asin)
                 self.text[asin] = text
@@ -215,6 +240,8 @@ class Catalog:
         # Lazily built helpers for grounding free-form wording. They are
         # derived from the same read-only indexes and never touch labels.
         self._shelf_stems: dict[str, set[str]] | None = None
+        self._shelf_stems_full: dict[str, set[str]] = {}
+        self._root_residual_stems: frozenset[str] = frozenset()
         self._signature_token_index: dict[str, set[str]] | None = None
 
     def token_set(self, asin: str) -> set[str]:
@@ -260,7 +287,16 @@ class Catalog:
         return token
 
     def _stems(self, text: str) -> list[str]:
-        return [self._stem(token) for token in tokens(text) if len(token) > 2]
+        """Content stems of a shelf name or a shopper sentence.
+
+        Function words are dropped on both sides: a shelf called "Ugly
+        Holiday Sweaters (and More) for the Family" must not win a shopper's
+        "running shoes for the gym" on "for", "the" and "and".
+        """
+        return [
+            self._stem(token) for token in tokens(text)
+            if len(token) > 2 and token not in _SHELF_STOPWORDS
+        ]
 
     def shelf_pool(self, category: str, min_products: int = 100) -> tuple[list[str], list[str]]:
         """Union of shelves sharing the most content tokens with ``category``.
@@ -270,15 +306,18 @@ class Catalog:
         overlap, so a wrong guess widens the pool instead of losing the target.
         """
         if self._shelf_stems is None:
-            self._shelf_stems = {
-                shelf: set(self._stems(shelf)) for shelf in self.by_shelf
-            }
+            self._shelf_stems = self._department_stems()
         wanted = set(self._stems(category))
         if not wanted:
             return [], []
+        shelf_stems = self._shelf_stems
+        if self._root_residual_stems and self._root_residual_stems <= wanted:
+            # A shopper who says the root's own words ("men's shoes and
+            # jewelry") is naming the nodes filed under it; count them.
+            shelf_stems = self._shelf_stems_full
         best = 0
         matched: list[str] = []
-        for shelf, stems in self._shelf_stems.items():
+        for shelf, stems in shelf_stems.items():
             overlap = len(wanted & stems)
             if overlap > best:
                 best, matched = overlap, [shelf]
@@ -297,7 +336,7 @@ class Catalog:
                     shelf for shelf, stems in self._shelf_stems.items()
                     if len(wanted & stems) == best - 1
                 )
-        matched.sort(key=lambda shelf: (-len(wanted & self._shelf_stems[shelf]), -len(self.by_shelf[shelf]), shelf))
+        matched.sort(key=lambda shelf: (-len(wanted & shelf_stems[shelf]), -len(self.by_shelf[shelf]), shelf))
         pool: list[str] = []
         seen: set[str] = set()
         for shelf in matched:
@@ -306,6 +345,61 @@ class Catalog:
                     seen.add(asin)
                     pool.append(asin)
         return matched, pool
+
+    def _department_stems(self) -> dict[str, set[str]]:
+        """Content stems of every shelf name, minus the catalog root's residual.
+
+        ``coarse_category`` keeps the last two nodes of a product's category
+        path. Products filed directly under the root ("Clothing, Shoes &
+        Jewelry" > "Westlake") therefore get the root's residual as their
+        parent, and every such promotional, brand or event node would answer
+        a shopper's "shoes" or "jewelry". The residual is found as the parent
+        shared by the most shelves (at least a tenth of them); its words do
+        not count for the shelves it heads.
+        """
+        parents: dict[str, int] = {}
+        for shelf, parts in self.shelf_parts.items():
+            if len(parts) == 2:
+                parents[parts[0]] = parents.get(parts[0], 0) + 1
+        root_residual: str | None = None
+        if parents:
+            top = max(parents, key=lambda part: (parents[part], part))
+            if parents[top] >= max(3, 0.1 * len(self.by_shelf)):
+                root_residual = top
+        stems: dict[str, set[str]] = {}
+        self._shelf_stems_full = {
+            shelf: set(self._stems(shelf)) for shelf in self.by_shelf
+        }
+        self._root_residual_stems = (
+            frozenset(self._stems(root_residual)) if root_residual else frozenset()
+        )
+        for shelf in self.by_shelf:
+            parts = self.shelf_parts.get(shelf) or [shelf]
+            if root_residual is not None and len(parts) == 2 and parts[0] == root_residual:
+                stems[shelf] = set(self._stems(parts[1]))
+            else:
+                stems[shelf] = self._shelf_stems_full[shelf]
+        return stems
+
+    def department_placement(self, text: str) -> tuple[int, int]:
+        """How firmly a sentence places itself: (best stem overlap, pool size).
+
+        ``(0, 0)`` when no shelf shares a content word with the sentence. A
+        single shared word over a large union of shelves ("shoes" alone) is
+        a weak placement; two or more shared words ("fashion sneakers") name
+        a department.
+        """
+        shelves, pool = self.shelf_pool(text)
+        if not shelves:
+            return 0, 0
+        if self._shelf_stems is None:
+            self._shelf_stems = self._department_stems()
+        wanted = set(self._stems(text))
+        shelf_stems = self._shelf_stems
+        if self._root_residual_stems and self._root_residual_stems <= wanted:
+            shelf_stems = self._shelf_stems_full
+        best = max(len(wanted & shelf_stems[shelf]) for shelf in shelves)
+        return best, len(pool)
 
     def retrieval_index(self, max_df: int) -> dict[str, list[str]]:
         """Inverted index over tokens rarer than ``max_df``, built once.

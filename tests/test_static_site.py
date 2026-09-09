@@ -27,6 +27,11 @@ class StaticSiteTest(unittest.TestCase):
             "state.js",
             "styles.css",
             "favicon.svg",
+            "lab.html",
+            "lab.js",
+            "lab-state.js",
+            "lab.css",
+            "lab-replays.json",
             ".nojekyll",
             "data/demo_bundle.json",
             "data/health.json",
@@ -40,6 +45,9 @@ class StaticSiteTest(unittest.TestCase):
         self.assertIn('href="./styles.css"', index)
         self.assertNotIn('src="/app.js"', index)
         self.assertNotIn('href="/styles.css"', index)
+        lab = (self.output / "lab.html").read_text(encoding="utf-8")
+        self.assertIn('data-deploy="static"', lab)
+        self.assertIn('src="./lab.js"', lab)
 
     def test_frontend_reads_files_when_the_document_is_marked_static(self) -> None:
         app = (self.output / "app.js").read_text(encoding="utf-8")

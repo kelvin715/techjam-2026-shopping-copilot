@@ -132,6 +132,21 @@ class SessionState:
         # True once the language layer has admitted evidence. The protocol's
         # four-constraint bound no longer applies to such a session.
         self.grounded = False
+        # The shopper's language when it is not English (``src/language.py``
+        # code) and a sample of what they wrote, so the assist-mode reply can
+        # be phrased in that language. Never set on protocol wording.
+        self.language: str | None = None
+        self.language_sample: str | None = None
+        # The explicit price bound ("under $40") in force, so a department
+        # switch can re-apply it to the new pool.
+        self.budget_bound: tuple[str, float] | None = None
+        # The evaluator turn being answered, and the turns to discount from
+        # it: a department switch ("forget the belt, I want a wallet") starts
+        # the output gate's clock again, since the slate policy's late-turn
+        # opening was calibrated on one request, not two. Zero on the
+        # protocol path.
+        self.current_turn = 0
+        self.turn_offset = 0
 
     def add(self, value: str, *, provisional: bool = False, weight: float = 1.0) -> None:
         value = _clean(value)
