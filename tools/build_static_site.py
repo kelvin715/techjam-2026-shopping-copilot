@@ -1,9 +1,8 @@
-"""Export the verified replay as a static site for GitHub Pages.
+"""Publish the Live Decision Lab replay as the GitHub Pages homepage.
 
-The exported site is the same frontend the local server hosts, with the two
-read-only API responses written to disk.  The freshness check that colours the
-verified badge runs here, at build time, against the working tree; a stale
-replay fails the build instead of shipping a green badge to reviewers.
+The export includes only the Decision Lab frontend, with read-only API
+responses written to disk. The source-manifest check runs at build time;
+a stale replay fails the build. The previous presentation is not published.
 
 The live engine is never exported.  It needs the 50,000-row catalog, which the
 data terms keep out of this repository.
@@ -30,6 +29,7 @@ DEFAULT_BUNDLE = ROOT / "demo" / "data" / "demo_bundle.json"
 DEFAULT_OUTPUT = ROOT / "site"
 DOCUMENT_TAG = '<html lang="en">'
 STATIC_DOCUMENT_TAG = '<html lang="en" data-deploy="static">'
+LAB_ASSETS = ("lab.js", "lab-state.js", "lab.css", "lab-replays.json", "favicon.svg")
 
 
 def static_health(bundle: dict, fresh: bool, changed: list[str], current: str) -> dict:
@@ -68,23 +68,18 @@ def build(bundle_path: Path, output: Path, allow_stale: bool = False) -> dict:
         shutil.rmtree(output)
     (output / "data").mkdir(parents=True)
 
-    for source in sorted(STATIC_DIR.iterdir()):
-        if source.is_file():
-            shutil.copy2(source, output / source.name)
+    # Publish only this frontend: copying the whole directory would bring the
+    # retired presentation and session explorer back into each deployment.
+    for name in LAB_ASSETS:
+        shutil.copy2(STATIC_DIR / name, output / name)
 
-    index_path = output / "index.html"
-    index = index_path.read_text(encoding="utf-8")
+    index = (STATIC_DIR / "lab.html").read_text(encoding="utf-8")
     if DOCUMENT_TAG not in index:
-        raise SystemExit(f"cannot mark the static build: {DOCUMENT_TAG} not in index.html")
-    index_path.write_text(
-        index.replace(DOCUMENT_TAG, STATIC_DOCUMENT_TAG, 1), encoding="utf-8"
-    )
-    lab_path = output / "lab.html"
-    if lab_path.is_file():
-        lab_path.write_text(
-            lab_path.read_text(encoding="utf-8").replace(DOCUMENT_TAG, STATIC_DOCUMENT_TAG, 1),
-            encoding="utf-8",
-        )
+        raise SystemExit(f"cannot mark the static build: {DOCUMENT_TAG} not in lab.html")
+    index = index.replace(DOCUMENT_TAG, STATIC_DOCUMENT_TAG, 1)
+    (output / "index.html").write_text(index, encoding="utf-8")
+    # Keep existing links to the new demo working; both URLs open the lab.
+    (output / "lab.html").write_text(index, encoding="utf-8")
 
     health = static_health(bundle, fresh, changed, current)
     (output / "data" / "demo_bundle.json").write_text(

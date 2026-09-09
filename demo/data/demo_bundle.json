@@ -1,9 +1,9 @@
 {
   "meta": {
     "schema_version": 2,
-    "generated_at": "2026-09-09T15:42:56.088857+00:00",
-    "source_commit": "69c8c3a88d38acd630e6e52763e7b7b239eb93c9",
-    "source_fingerprint": "51843293ee5a36764a93a85c0fadc1d709f2f79c1c91b6085d352d43c41c5f0f",
+    "generated_at": "2026-09-09T16:35:27.275196+00:00",
+    "source_commit": "27d69c1ce9ab36e135494a45a28f9b56815b49b3",
+    "source_fingerprint": "478a3e4506a0f3250d03882e50de0ab573907ee3af4db9b22204b583cad58da2",
     "source_hashes": {
       "agent.py": "6f6ee4513c6ce3fabde72765d9f518942ca056ecb5827f18da29c301a45fc2ac",
       "demo/live.py": "789d00919ac4d6c311d043bc0075a4ab2bfe209511f8c9ed94301e62d515c98a",
@@ -15,7 +15,7 @@
       "demo/static/lab-replays.json": "a5a179bc305c8d322732d2c5662c0f7eea7aa97715ecfe9ba72cefcab5a6b920",
       "demo/static/lab-state.js": "ead1362310038254e4e5a711b300b246befb05f2964d7b321b50e0133624e8af",
       "demo/static/lab.css": "53f2a24660cad8612392fb3a1f0f3c2aefbd65075c72816417994e6a3405a47f",
-      "demo/static/lab.html": "3d19a45382ff5370d7aa3ec2b6f602ac00442ee20ce2ca7f3f61ba5867d0a429",
+      "demo/static/lab.html": "41c0454f07daaef29dcce920b06881dd4f299f648d9084de514df6acc411fa7e",
       "demo/static/lab.js": "bf30c84e2b7495d54192bf5823850147319fcbb7dc09a5e75f53e8aa6eda1e14",
       "demo/static/state.js": "4501fbd529102e2c5d65c38112567efacdb3d4194b8ccb1899993dc497f412e8",
       "demo/static/styles.css": "775363f727d4deee5b912317fe156d74dae393fe86d3e5c99e1f88e76fd4dbf9",
@@ -53,7 +53,7 @@
       "tests/test_llm_grounding.py": "655b7c0731f5a0e04c41ea19dadfa5fcf1c4f67e467025e820fc5ed09110142f",
       "tests/test_rerank.py": "5ffce135d2ab675412016b47d1ba84d1ff41fad05e6f58b206f42e06b72450e0",
       "tests/test_signature.py": "ab6e42b3e7e7b179d7970de4a63ddb71f8f12b9c85228f62d65c93383a80bb2c",
-      "tests/test_static_site.py": "865966da54fa836bcb9e5b0858c4d18471063bb70e3478aa73e3480aae0a5f28",
+      "tests/test_static_site.py": "07053b35255dc4b409a100f6232f6f63fd762a8da2a405c1031f02e3c2f46161",
       "tests/test_submission_tools.py": "43d88281e34c87270f5ee751728440f9a199ee08dfe3a098a72ce4afebdc84c8",
       "tools/build_demo_bundle.py": "e2bf5f5ec8ac010c147528055495277d94916314b03916697b58f46d0089ddf9",
       "tools/build_live_demo_replays.py": "413708d3667b68b2c15f165e010c5e8de1d79020ea5591d85136a9df8221c41c",

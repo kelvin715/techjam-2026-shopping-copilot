@@ -22,10 +22,6 @@ class StaticSiteTest(unittest.TestCase):
     def test_export_is_self_contained(self) -> None:
         for name in (
             "index.html",
-            "app.js",
-            "components.js",
-            "state.js",
-            "styles.css",
             "favicon.svg",
             "lab.html",
             "lab.js",
@@ -37,20 +33,25 @@ class StaticSiteTest(unittest.TestCase):
             "data/health.json",
         ):
             self.assertTrue((self.output / name).is_file(), name)
+        for retired in ("app.js", "components.js", "state.js", "styles.css"):
+            self.assertFalse((self.output / retired).exists(), retired)
 
     def test_index_marks_the_static_deployment_and_uses_relative_assets(self) -> None:
         index = (self.output / "index.html").read_text(encoding="utf-8")
         self.assertIn('data-deploy="static"', index)
-        self.assertIn('src="./app.js"', index)
-        self.assertIn('href="./styles.css"', index)
-        self.assertNotIn('src="/app.js"', index)
-        self.assertNotIn('href="/styles.css"', index)
+        self.assertIn("Live Decision Lab", index)
+        self.assertIn('src="./lab.js"', index)
+        self.assertIn('href="./lab.css"', index)
+        self.assertNotIn('src="/lab.js"', index)
+        self.assertNotIn('href="/lab.css"', index)
+        self.assertNotIn('src="./app.js"', index)
         lab = (self.output / "lab.html").read_text(encoding="utf-8")
         self.assertIn('data-deploy="static"', lab)
         self.assertIn('src="./lab.js"', lab)
+        self.assertEqual(index, lab)
 
     def test_frontend_reads_files_when_the_document_is_marked_static(self) -> None:
-        app = (self.output / "app.js").read_text(encoding="utf-8")
+        app = (self.output / "lab.js").read_text(encoding="utf-8")
         self.assertIn('dataset.deploy === "static"', app)
         self.assertIn('"./data/demo_bundle.json"', app)
         self.assertIn('"./data/health.json"', app)

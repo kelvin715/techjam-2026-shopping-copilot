@@ -28,54 +28,36 @@ Python standard library**. The measured optimization comparison is recorded in
 
 ## 🕹️ Try it live
 
-**<https://kelvin715.github.io/techjam-2026-shopping-copilot/>**
+**[→ Open the ARC Live Decision Lab](https://kelvin715.github.io/techjam-2026-shopping-copilot/)**
 
-The hosted replay and local Agent expose the same inspectable ARC decision
-pipeline.
+Follow a shopping conversation and the agent's decisions on one screen:
 
-Ten pages in the browser. No install, no catalog download, no API key. Pages
-1–3 give the problem, the turn loop, and the organizer result; pages 4–7 replay
-all four turns of one session; page 8 is the evaluation evidence; page 9 is
-what happens when the shopper stops quoting the catalog. Arrow keys
-change pages, space plays, `F` is fullscreen. The green `VERIFIED REPLAY` badge
-is earned: the page is published only when a SHA-256 manifest of every recorded
-source still matches the repository.
+- **Synchronized chat and flow:** each turn advances through understanding,
+  evidence updates, ranking, question selection, planning, and the reply.
+- **Target rank over time:** follow internal candidate rank separately from
+  the rank in the submitted recommendations. Target observations are joined
+  only after `Agent.respond` returns and never enter the agent.
+- **Inspect the calculations:** click a flow node for MVOI question values,
+  Batch Planner alternatives, or the output gate used that turn.
+- **Replay and export:** select a scenario, play the next turn or the full
+  conversation, revisit earlier decisions, and download the run as JSON.
 
-### 🔎 Inspect any of the 200 sessions yourself
+Start with the featured **`public_0099`** case: the target moves through
+**36 → 4 → 3 → 2 → 1**, with real MVOI and Batch Planner calculations.
+Six featured scenarios have full stage traces; the other public sessions show
+the values captured in their original recordings.
 
-**[→ Open the session explorer](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=9)**
-
-[![The session explorer on the final turn of public_0187: the conversation ARC actually saw on the left, the submitted list on the right with the evaluator-only target ranked first, and the decision certificate underneath](demo/screenshots/session-explorer.png)](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=9&session=public_0187&turn=4)
-
-<sub>Turn 4 of `public_0187`. Click the image to open that exact state.</sub>
-
-Every public session was replayed through the submitted Agent and the unchanged
-evaluator, and the last page lets you walk any of them:
-
-- pick a **Scenario** — buying, browsing, intent override, boundary — or leave
-  it on all 200;
-- choose a **Session** id, or press **Random** to sample one;
-- step the **Turn** selector: each step shows only the messages ARC had seen by
-  that point, the list it submitted, and the decision certificate behind it —
-  action, clues held, candidates ruled out, and the score margin;
-- the target product and its rank sit in a panel labelled evaluator-only. It is
-  joined *after* `Agent.respond` returns and is never sent to the Agent.
-
-One click lands on a specific case:
-
-- [`public_0187` at turn 3](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=9&session=public_0187&turn=3) — the boundary case where the shopper declines a question and the policy pivots
-- [only the intent-override sessions](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=9&scenario=intent_override)
-- [the four-turn walkthrough that explains the loop](https://kelvin715.github.io/techjam-2026-shopping-copilot/?scene=3)
-
-The second tab, **Live Agent**, replaces the recording with the real thing: type
-any shopper message and the submitted `Agent.respond` answers it, then *Explain
-this decision* prints the certificate and the smallest clue removal that would
-change rank one. It needs the 50,000-product catalog, which the data terms keep
-out of this repository, so it runs locally only:
+**GitHub Pages runs the recorded replay** with no install, catalog download,
+or API key. For live shopper input and **Gemma / Qwen paraphrase previews**,
+including comparisons from the same conversation state, run the same demo locally:
 
 ```bash
 python3 demo/server.py --catalog data/catalog.jsonl --live --prewarm
 ```
+
+Open **<http://127.0.0.1:8765/lab.html>**. Live mode streams actual processing
+events; replay is paced for explanation. See [demo setup](demo/README.md) for
+agent model endpoints, recorded rewrite caches, and deployment instructions.
 
 ## 🧭 Why shopping needs more than retrieval
 
